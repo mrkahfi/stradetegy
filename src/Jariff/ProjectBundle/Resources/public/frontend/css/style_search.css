@@ -1,0 +1,156 @@
+.navbar-fixed-side-left {
+
+ left: 0;
+}
+
+.navbar-fixed-side-right {
+    right: 0;
+}
+.navbar-fixed-side {
+    position: fixed;
+    border-width: 0;
+    z-index: 1030;
+    min-height: 5px;
+    min-width: 5px;
+    max-width: 200px;
+    margin-bottom: 0;
+    border: 0px solid transparent;
+}
+.navbar-fixed-side .navbar-toggle {
+   float: none;
+   margin: 0;
+}
+.navbar-fixed-side .nav > li > a {
+   width: 100%;
+   padding: 5px;
+}
+.navbar-fixed-side .dropdown-menu > li > a {
+   padding: 5px;
+}
+.navbar-fixed-side .dropdown-header {
+   padding: 5px;
+}
+.navbar-fixed-side .navbar-nav {
+   margin: 0;
+}
+.navbar-fixed-side .navbar-nav > li {
+   float: none;
+}
+.navbar-fixed-side .navbar-nav > li > a {
+    padding: 10px;
+    line-height: 20px;
+}
+.navbar-fixed-side .navbar-nav .open .dropdown-menu > li > a,
+.navbar-fixed-side .navbar-nav .open .dropdown-menu .dropdown-header {
+   padding: 3px 5px 3px 15px;
+}
+.navbar-fixed-side .container {
+    width: 100%;
+    padding: 0;
+}
+.navbar-fixed-side .navbar-header {
+   float: none;
+   margin: 0;
+}
+.navbar-fixed-side .navbar-collapse {
+   padding: 0 2px;
+}
+.navbar-fixed-side .container .navbar-collapse {
+    margin: 0;
+}
+.navbar-fixed-side .container .navbar-brand {
+   margin: 0;
+}
+.navbar-fixed-side .navbar-brand {
+   float: none;
+   height: 100%;
+   padding: 5px 3px;
+   font-size: 18px;
+   line-height: 20px;
+}
+
+.st-nav{
+    font-size: 35px;
+}
+.jar-pin{
+   background: url("../images/pin-active.png") no-repeat;
+   width: 32px;
+   height: 32px;
+   display: block;
+}
+
+.pushpin-unpin{
+   background: url("../images/pin-disable.png") no-repeat;
+   width: 32px;
+   height: 32px;
+   display: block;
+}
+
+.pushpin-green{
+   background: url("../images/Green-pushpin-32.png") no-repeat;
+   width: 32px;
+   height: 32px;
+   display: block;
+}
+
+.pushpin-grey{
+   background: url("../images/Grey-pushpin-32.png") no-repeat;
+   width: 32px;
+   height: 32px;
+   display: block;
+}
+
+.pushpin-pink{
+ background: url("../images/Pink-pushpin-32.png") no-repeat;
+ width: 32px;
+ height: 32px;
+ display: block;
+}
+
+.pushpin-yellow{
+    background: url("../images/Yellow-pushpin-32.png") no-repeat;
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.radio-inline+.radio-inline {
+    margin-left: 0;
+}
+
+.radio-inline {
+    margin-right: 10px;
+}
+
+.search-res strong{
+    color: red
+}
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    display: inline;
+}
+
+#field_us_custom_field_us_custom .checkbox + .checkbox {
+   margin-top: none; 
+}
+
+.btn-big-style{
+    width: 321px;
+    height: 44px;
+    font-size: 27px;
+    padding: 2px;
+}
+
+.text-word-wrap{
+    word-wrap: break-word;      /* IE 5.5-7 */
+    white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+    white-space: pre-wrap;      /* current browsers */
+}
+
+.text-justify{
+    text-align: justify;
+    margin-top: -30px;
+}

@@ -1,0 +1,97 @@
+<div class="col-md-12">
+    <p>{{ total_results|ribuan }} results matching <strong>{{ keyword }}</strong></p>
+
+    {% for res in resHybird %}
+
+        {% if loop.index == 5 %}
+            <h3 style="margin-bottom:-4px;text-align: center;padding: 10px 0px 12px 0px;background-color:#777;color: aliceblue;">
+                See all {{ total_results|ribuan }}<br/>
+                <a href="" class="btn btn-warning">Sign Up</a> </h3>
+                <hr/>  
+
+            {% endif %}
+
+            {% if loop.index < 5 %}
+                {% set match = res.getHit["highlight"] %}
+                    <h4 style="margin-bottom:-4px"><a href="">
+
+                        {{ match['product_desc'][0]|firstnlastword|raw }}</strong></strong>
+                    </a> </h4>
+                    <p>Imported from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}<br/>
+                        sent by Company {{ res.getHit["_source"]['shipper_name_pr']  }}
+
+                    </p>
+                    <p style="margin-top:-22px">
+                     {{ match['product_desc'][0]|raw }}</strong></strong>
+                     <br/>
+                     {#{% set key = res.getTransformed.getValue.getCompanyJoin|length - 1 %}#}
+                     {#{% set companyjoin = res.getTransformed.getValue.getCompanyJoin[key] %}#}
+
+                     Purchased by {{ res.getHit["_source"]['consignee_name_pr']  }}, {{ res.getHit["_source"]['slug_country_ori_shipper']  }}
+                     {#{% if companyjoin.getContainerCount > 0 %}#}
+                     {#{{ companyjoin.getContainerCount }} container(s)#}
+                     {#{% else %}#}
+                     Gross weight : {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }}
+                 </p>
+                 {% else %}
+                 <h4 style="margin-bottom:-4px"><a href="">
+
+                    {{ match['product_desc'][0]|firstnlastword|raw }}</strong></strong>
+                </a> </h4>
+                <p>Imported from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}<br/>
+                    sent by Company <a href=""><span class="label label-info">Sign up to get name company</span></a>
+
+                </p>
+                <p style="margin-top:-22px">
+                 {{ match['product_desc'][0]|raw }}</strong></strong>
+                 <br/>
+                 {#{% set key = res.getTransformed.getValue.getCompanyJoin|length - 1 %}#}
+                 {#{% set companyjoin = res.getTransformed.getValue.getCompanyJoin[key] %}#}
+
+                 Purchased by {{ res.getHit["_source"]['consignee_name_pr']  }}, {{ res.getHit["_source"]['slug_country_ori_shipper']  }}
+                 {#{% if companyjoin.getContainerCount > 0 %}#}
+                 {#{{ companyjoin.getContainerCount }} container(s)#}
+                 {#{% else %}#}
+                 Gross weight : {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }}
+             </p>
+         {% endif %}
+
+         <hr/>
+
+     {% endfor %}
+
+
+ </div>
+ {# <div class="col-md-3">
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-time"></span> Alert</a>&nbsp;&nbsp;
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span> Save</a>&nbsp;&nbsp;
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>
+
+    <hr/>
+
+    <p>Filter Country</p>
+
+    <form>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Indonesia
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Hongkong
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Malaysia
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Thailand
+            </label>
+        </div>
+    </form>
+
+</div> #}

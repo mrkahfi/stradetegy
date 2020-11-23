@@ -1,0 +1,163 @@
+{#{% if resHybirdProduct[0].getResult.getHit["highlight"] is defined %}#}
+    {#{% for res in resHybirdProduct %}#}
+<div class="span6 popresult {% if checkToChoice['product_'~res.getTransformed.getSlugShipperName] is defined %}disable-choice{% endif %}">
+
+    <div class="wrap-ribbon right-edge point lblue product lblue-strade"><span class="strade">Product <beta
+                    style="color: #e6e6e6">Beta
+            </beta></span>
+    </div>
+    {#<a href="{{ asset('bundles/jariffproject/frontend/images/logo.gif') }}" class="lightbox"#}
+    {#title="Watch Lorde-Royals">#}
+    {#<img#}
+    {#class="popchart-img" alt=""#}
+    {#src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"#}
+    {#width="170" height="170" style=""></a>#}
+
+    <h1 class="header-search-trade product-header">
+        {#<img#}
+        {#src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/48/'~res.getTransformed.getValue.getCountry|twolettercode~".png") }}">#}
+
+        <span class="imartist">
+                <a href="javascript:void(0);" style="color: #BC3415" class="j-add-tab-products"
+                   data-url="{{ path('member_cache_group_searching',{'category':'product','slug' : res.getTransformed.getSlugShipperName,'s_cache':app.request.get('s_cache') }) }}">
+                    {% set match = res.getResult.getHit["highlight"] %}
+                    {{ match['product_desc'][0]|firstnlastword|raw }}</strong></strong>
+
+                </a>
+            </span>
+        <br/>
+        <span>Imported From {{ res.getTransformed.getSlugCountry|twolettercodecountry }} <br/>
+            <n>Sent by Company {{ res.getTransformed.getShipperNamePr }}</n>
+        </span>
+
+    </h1>
+    <input type="hidden" class='j-body-products' value="{{ match['product_desc'][0]|descfirstnlastword }}">
+                <span class="charts-p">
+                    <span class="imname">
+                        <br/>
+
+                        {{ match['product_desc'][0]|descfirstnlastword|raw }}</strong></strong>
+                        <br/>
+                        {#{% set key = res.getTransformed.getValue.getCompanyJoin|length - 1 %}#}
+                        {#{% set companyjoin = res.getTransformed.getValue.getCompanyJoin[key] %}#}
+
+                        Purchased by {{ res.getTransformed.getConsigneeNamePr }}, USA
+                        {#{% if companyjoin.getContainerCount > 0 %}#}
+                        {#{{ companyjoin.getContainerCount }} container(s)#}
+                        {#{% else %}#}
+                        Gross weight : {{ res.getTransformed.getTotalWeight|setting_gross_weight(app.user) }}
+                        {#{% endif %}#}
+
+
+                    </span>
+                </span>
+
+        <span class="image_rollover">
+            <a href="javascript:void(0)" class="j-add-tab-product"></a>
+            <a target="_blank"
+               href="{{ path('member_importer_detail',{'slug':res.getTransformed.getSlugShipperName,'header':match['product_desc'][0]|firstnlastword,'body':match['product_desc'][0]|descfirstnlastword}) }}"></a>
+        </span>
+
+</div>
+{#{% endfor %}#}
+
+    {#{% if countryCheck is empty %}#}
+        {#<script type="text/javascript">#}
+            {#$(document).ready(function () {#}
+                {#$('.j-country-product').html('{% for terms in facetCountryProduct %}' +#}
+                        {#'{% for country in terms['terms'] %}' +#}
+                        {#'<div class="check_parent">' +#}
+                        {#'<input type="checkbox" name="check_product[]" id="check_product_{{ country['term'] }}" class="j-check-country-product"' +#}
+                        {#'value="{{ country['term'] }}">' +#}
+
+                        {#'<label for="check_product_{{ country['term'] }}">' +#}
+                        {#'<img style="position: absolute;"' +#}
+                        {#'src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/16/'~(country['term']|twolettercodeslug)['code']~".png") }}">' +#}
+                        {#'<span style="margin-left: 20px">{{ (country['term']|twolettercodeslug)['country'] }}</span>' +#}
+                        {#'</label>' +#}
+                        {#'<span class="total-in-country code">{{ country['count']|ribuan }}</span>' +#}
+                        {#'</div>' +#}
+                        {#'{% endfor %}' +#}
+                        {#'{% endfor %}');#}
+
+                {#toAjaxCountryProduct();#}
+            {#})#}
+        {#</script>#}
+    {#{% endif %}#}
+{#{% endif %}#}
+
+
+{#<script type="text/javascript">#}
+    {#var pageImages = [];#}
+    {#var pageNum = 1;#}
+    {#/**#}
+     {#* Reset numbering on tab buttons#}
+     {#*/#}
+    {#function reNumberPages(at) {#}
+        {#pageNum = 1;#}
+        {#var test = [];#}
+        {#var tabCount = $('#pageTab > li').length;#}
+        {#$('#pageTab > li').each(function () {#}
+            {#var pageId = $(this).children('a').attr('href');#}
+            {#test[pageId] = pageId;#}
+
+        {#});#}
+
+
+        {#if (at == 'product') {#}
+            {#if (!test['#product']) {#}
+                {#$('#pageTab').append(#}
+                        {#$('<li><a href="#product" id="products" data-title="Products">' +#}
+                                {#'Product' +#}
+                                {#'<button class="close" type="button" ' +#}
+                                {#'title="Remove this page" data-url="{{ path('member_cache_group_searching_remove',{'category':'product'}) }}">×</button>' +#}
+                                {#'</a></li>'));#}
+
+                {#$('#pageTabContent').append(#}
+                        {#$('<div class="tab-pane" id="product' +#}
+                                {#'"></div>'));#}
+
+
+            {#}#}
+        {#}#}
+    {#}#}
+
+    {#$(document).ready(function () {#}
+        {#/**#}
+         {#* Add a Tab#}
+         {#*/#}
+        {#$('.j-add-tab-product').click(function () {#}
+
+            {#$('#products').tab('show');#}
+            {#$.ajax({#}
+                {#type: 'GET',#}
+                {#url: $(this).parent('.image_rollover').siblings('.header-search-trade').children('.imartist').children('.j-add-tab-products').attr('data-url'),#}
+                {#success: function (data) {#}
+                    {#$('#product').html(data);#}
+                {#}#}
+            {#})#}
+            {#reNumberPages('product');#}
+            {#$(this).parent('.image_rollover').parent('.popresult').addClass('disable-choice');#}
+
+        {#});#}
+
+{#//        /**#}
+{#//         * Remove a Tab#}
+{#//         */#}
+{#//        $('#pageTab').on('click', ' li a .close', function () {#}
+{#//            var tabId = $(this).parents('li').children('a').attr('href');#}
+{#//            $(this).parents('li').remove('li');#}
+{#//            $(tabId).remove();#}
+{#////            reNumberPages();#}
+{#//            $('#pageTab a:first').tab('show');#}
+{#//        });#}
+{#//#}
+{#//        /**#}
+{#//         * Click Tab to show its content#}
+{#//         */#}
+{#//        $("#pageTab").on("click", "a", function (e) {#}
+{#//            e.preventDefault();#}
+{#//            $(this).tab('show');#}
+{#//        });#}
+    {#});#}
+{#</script>#}

@@ -1,0 +1,110 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}
+
+      {% if entity.id %}
+        {% if entity.event %}
+        Edit event activity
+        {% else %}
+        Edit task activity
+        {% endif %}
+      {% else %}
+        {% if entity.event %}
+        New event
+        {% else %}
+        New task
+        {% endif %}
+      {% endif %}
+{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Lead Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_show', {'id' : entity.lead.id }) }}">Lead #{{ entity.lead.number }}</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+
+      {% if entity.id %}
+        {% if entity.event %}
+        Edit event activity
+        {% else %}
+        Edit task activity
+        {% endif %}
+      {% else %}
+        {% if entity.event %}
+        New event
+        {% else %}
+        New task
+        {% endif %}
+      {% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+{{ form_start(form) }}
+<fieldset>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="social-box">
+      <div class="header">
+        <h4>Lead Activity</h4>
+      </div>
+      <div class="body">
+        <div class="span3">
+            {{ form_row(form.description) }}
+            {{ form_row(form.priority) }}
+            {{ form_row(form.event) }}
+        </div>
+        <div class="span3">
+            <div class="input-append datetimepicker">
+              {{ form_label(form.dateScheduled) }}
+              {{ form_widget(form.dateScheduled) }}
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+            <div class="input-append datetimepicker">
+              {{ form_label(form.dateTask) }}
+              {{ form_widget(form.dateTask) }}
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+        </div>
+        <div class="span3">
+            {{ form_row(form.type) }}
+            {{ form_row(form.assigned) }}
+        </div>
+
+        <div class="span3">
+            {{ form_row(form.result) }}
+            {{ form_row(form.status) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  {{ form_end(form) }}
+</fieldset>
+</form>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/bundles/jariffadmin/js/lead-activity.js"></script>
+    <script type="text/javascript">
+        $(function () {
+        });    
+    </script>
+{% endblock %}

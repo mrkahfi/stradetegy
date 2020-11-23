@@ -1,0 +1,30 @@
+
+    /**
+     * Displays a form to edit an existing {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/edit/{id}", name="{{ route_name_prefix }}_edit")
+     * @Method("GET")
+     * @Template()
+{% endif %}
+     */
+    public function editAction($id)
+    {
+        if(!$this->isGrantAdmin()){
+        }
+        $entity = $this->repo('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            $this->errorRedirect('Data {{ entity }} tidak valid.');
+        }
+
+        $editForm = $this->createForm(new {{ entity_class }}Type(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+{% if 'annotation' == format %}
+        return array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+        );
+{% endif %}
+    }

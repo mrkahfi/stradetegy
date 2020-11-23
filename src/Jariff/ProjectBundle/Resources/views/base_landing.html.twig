@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html dir="ltr" lang="en-US" class="ie6"><![endif]-->
+<!--[if IE 7]>
+<html dir="ltr" lang="en-US" class="ie7"><![endif]-->
+<!--[if IE 8]>
+<html dir="ltr" lang="en-US" class="ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="ltr" lang="en-US"><!--<![endif]-->
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+    <meta name="description" content="cmsmasters responsive html5 website template"/>
+    <meta name="keywords" content="html5, css3, template, responsive, adaptive"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
+    {% block head_style %}
+
+        {% stylesheets
+
+        'bundles/jariffproject/frontend/css-old/style.css'
+        'bundles/jariffproject/frontend/css/style.css'
+        'bundles/jariffproject/frontend/css-old/style_jariff.css'
+        'bundles/jariffproject/frontend/css-old/style_jariff_icon.css'
+
+        'bundles/jariffproject/frontend/css-old/styles/fonts.css'
+        'bundles/jariffproject/frontend/css-old/styles/jackbox.css'
+
+        'bundles/jariffproject/frontend/revolution/css/captions-original.css'
+        'bundles/jariffproject/frontend/revolution/css/captions.css'
+        'bundles/jariffproject/frontend/revolution/css/settings.css'
+
+        'bundles/jariffproject/frontend/css-old/styles/jquery.jPlayer.css'
+        'bundles/jariffproject/frontend/css-old/token-input-facebook.css'
+        'bundles/jariffproject/frontend/css-old/jquery.qtip.min.css'
+        'bundles/jariffproject/frontend/css-old/prettyPhoto.css'
+        'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/themes/base/jquery-ui.css'
+        'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/themes/base/jquery.ui.dialog.css'
+
+
+        filter='cssrewrite' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+        {#{{ form_stylesheet(form) }}#}
+        {% endstylesheets %}
+
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" type="text/css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" type="text/css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Headland+One" type="text/css"/>
+
+
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/css-old/styles/ie.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/css-old/styles/ie_css3.css') }}"
+              type="text/css" media="screen"/>
+        <![endif]-->
+
+
+
+        {% block style %}
+
+        {% endblock %}
+
+    {% endblock head_style %}
+
+    <title>{% block title %}TRADEtegy - The Important Service For Your Business{% endblock title %}</title>
+</head>
+<body style="overflow:auto">
+<div id="hv_overlay" class="" style="display: none;"></div>
+
+<!-- Top Bar
+    ============================================= -->
+    <div id="top-bar">
+        <div class="container clearfix">
+            <div class="col_half nobottommargin">
+
+            <!-- Top Links
+            ============================================= -->
+            <div class="top-links">
+                <ul>
+                    <li><a href="{{ url('demo_global_search') }}">Buyers</a></li>
+                    <li><a href="{{ url('demo_global_search') }}">Suppliers</a></li>
+                    <li><a href="{{ url('member_login') }}">Logistics</a></li>
+                    <li><a href="{{ url('member_login') }}">Login</a>
+
+                        <div class="top-link-section">
+                            <form id="top-login" role="form">
+                                <div class="input-group" id="top-login-username">
+                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                    <input type="email" class="form-control" placeholder="Email address" required="">
+                                </div>
+                                <div class="input-group" id="top-login-password">
+                                    <span class="input-group-addon"><i class="icon-key"></i></span>
+                                    <input type="password" class="form-control" placeholder="Password" required="">
+                                </div>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="remember-me"> Remember me
+                                </label>
+                                <button class="btn btn-danger btn-block" type="submit">Sign in</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- .top-links end -->
+
+        </div>
+
+        <div class="col_half fright col_last nobottommargin">
+
+            <!-- Top Social
+            ============================================= -->
+            <div id="top-social">
+                <ul>
+                    <li><a href="#" class="si-linkedin"><span class="ts-icon"><i class="icon-linkedin"></i></span><span
+                        class="ts-text">LinkedIn</span></a>
+                    </li>
+                    <li><a href="#" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span
+                        class="ts-text">Facebook</span></a>
+                    </li>
+                    <li><a href="#" class="si-twitter"><span class="ts-icon"><i class="icon-twitter"></i></span><span
+                        class="ts-text">Twitter</span></a></li>
+                    <!--<li><a href="#" class="si-dribbble"><span class="ts-icon"><i class="icon-dribbble"></i></span><span class="ts-text">Dribbble</span></a></li>
+                    <li><a href="#" class="si-github"><span class="ts-icon"><i class="icon-github-circled"></i></span><span class="ts-text">Github</span></a></li>
+                    <li><a href="#" class="si-pinterest"><span class="ts-icon"><i class="icon-pinterest"></i></span><span class="ts-text">Pinterest</span></a></li>
+                    <li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+                    <li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+91.11.85412542</span></a></li> -->
+                </ul>
+            </div>
+            <!-- #top-social end -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- __________________________________________________ Start Page -->
+{% block start_page %}
+    <section id="page" {% block css_page %}{% endblock %}>
+    <a href="#" id="slide_top"></a>
+    <!-- __________________________________________________ Start Header -->
+    {% block header %}
+        <header id="header" class="sticky-style-2">
+
+        <div class="container clearfix">
+
+        <!-- Logo
+        ============================================= -->
+        <div id="logo">
+            <a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img
+                src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}" alt="TRADEtegy Logo"></a>
+                <a href="#" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img
+                    src="{{ asset('/bundles/jariffproject/frontend/images/logo@2x.png') }}"
+                    alt="TRADEtegy Logo"></a>
+                </div>
+                <!-- #logo end -->
+
+                <ul class="header-extras">
+                    <li>
+                        <i class="i-plain icon-email3 nomargin"></i>
+
+                        <div class="he-text">
+                            Drop an Email
+                            <span>info@tradetegy.com</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="i-plain icon-call nomargin"></i>
+
+                        <div class="he-text">
+                            Get in Touch
+                            <span>555-666-777</span>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="header-wrap">
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="style-2 sub-title">
+
+                <div class="container clearfix">
+
+                    <div id="primary-menu-trigger" class="background-image:none !important"><i class="icon-reorder"></i>
+                    </div>
+
+                    <ul>
+                        <li><a href="#">
+                            <div>How We Help?</div>
+                        </a></li>
+                        <li><a href="#">
+                            <div>Plans & Pricing</div>
+                        </a></li>
+
+                    </ul>
+
+                    <!-- Top Search
+                    ============================================= -->
+                    <div id="top-search">
+                        <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+
+                        <form id="myForm" action="#" method="get">
+                            <input type="text" name="q" class="form-control" value=""
+                            placeholder="Type &amp; Hit Enter..">
+                        </form>
+                    </div>
+                    <!-- #top-search end -->
+
+                </div>
+
+            </nav>
+            <!-- #primary-menu end -->
+
+        </div>
+
+    </header>
+    {% endblock header %}
+    <!-- __________________________________________________ Finish Header -->
+
+    {% block wrap_headline %}
+    {% endblock wrap_headline %}
+
+
+    <div class="container" {% block add_style %}{% endblock %}>
+        <!-- __________________________________________________ Start Top -->
+        {% block container %}
+            <section id="top">
+                <div class="top_inner">
+
+                    {% block flashes %}
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="box success_box">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><p>{{ flashMessage }}</p></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('error') %}
+                            <div class="box error_box">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><p>{{ flashMessage }}</p></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endfor %}
+                    {% endblock flashes %}
+
+                    {% block top_inner %}
+                    {% endblock top_inner %}
+                </div>
+            </section>
+
+            <!-- __________________________________________________ Finish Top -->
+
+            <!-- __________________________________________________ Start Middle -->
+
+            <section id="middle">
+                <div class="middle_inner" {% block rm_style %}style="margin-top: 30px;"{% endblock %}>
+                    <section id="middle_content" style="min-height: 750px;
+                    /*z-index: 101;*/
+                    /*position: static;*/
+                    margin-top: -30px;">
+                        <div class="entry">
+                            <!-- __________________________________________________ Start Content -->
+                            {% block middle_content %}
+                                {% block content %}
+                                {% endblock content %}
+                            {% endblock middle_content %}
+                            <!-- __________________________________________________ Finish Content -->
+
+                        </div>
+
+                    </section>
+                </div>
+            <span class="disable-content" style="display: none">
+                        </span>
+            </section>
+
+        {% endblock container %}
+
+
+
+
+        <!-- __________________________________________________ Start Bottom -->
+
+        <section id="bottom">
+            <div class="bottom_inner">
+                {% block bottom_inner %}
+                    <div class="one_fourth">
+                        <aside class="widget widget_custom_portfolio_entries">
+
+                            <div class="widget_custom_portfolio_entries_container">
+                                <h2 class="widgettitle">Sliding article</h2>
+                                <ul class="widget_custom_portfolio_entries_slides responsiveContentSlider">
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_1.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_2.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_3.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_4.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside id="custom-twitter-4" class="widget widget_custom_twitter_entries">
+
+                            <h2 class="widgettitle">Twitter</h2>
+
+                            <div id="custom-twitter-4_tweets"></div>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside class="widget widget_links">
+                            <h2 class="widgettitle">List widget</h2>
+                            <ul>
+                                <li><a href="#">Styling options</a></li>
+                                <li><a href="#">Theme options</a></li>
+                                <li><a href="#">Sidebars &amp; widgets</a></li>
+                                <li><a href="#">Shortcodes</a></li>
+                                <li><a href="#">Blogs &amp; posts</a></li>
+                                <li><a href="#">Sliders &amp; slides</a></li>
+                                <li><a href="#">Contact form builder</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside class="widget widget_custom_contact_form_entries">
+                            <h2 class="widgettitle" id="contact-form">Contact Form</h2>
+
+                            <div class="cmsms-form-builder">
+                                <div class="widgetinfo">Thank you! <br/>Your message has been sent successfully.</div>
+
+                                <form action="#" method="post" id="form_contact_form_widget_001">
+                                    <div class="form_info cmsms_input">
+                                        <label for="field_003">Email *</label>
+                                        <input type="text" name="wemail" id="field_003" size="22" tabindex="11"
+                                               class="validate[required,custom[email]]"/>
+                                    </div>
+                                    <div class="form_info cmsms_textarea">
+                                        <label for="field_004">Message *</label>
+                                        <textarea name="wmessage" id="field_004" cols="28" rows="6" tabindex="13"
+                                                  class="validate[required,minSize[3]]"></textarea>
+                                    </div>
+                                    <div class="loading"></div>
+                                    <div><input type="hidden" name="contact_form_widget_001_wurl"
+                                                id="contact_form_widget_001_wurl"
+                                                value="http://magique-html.cmsmasters.net/php/sendmail.php"/></div>
+                                    <!-- Here you need to set the path to the sendmail file -->
+                                    <div><a href="#" id="contact_form_widget_001_wformsend" class="button"
+                                            tabindex="14"><span>Submit</span></a></div>
+                                </form>
+                            </div>
+                        </aside>
+                    </div>
+                {% endblock bottom_inner %}
+            </div>
+        </section>
+        <!-- __________________________________________________ Finish Bottom -->
+
+    </div>
+    </section>
+{% endblock start_page %}
+<!-- __________________________________________________ Finish Page -->
+
+
+<!-- __________________________________________________ Start Footer -->
+{% block footer %}
+    <footer id="footer">
+        <div class="footer_inner">
+            <span>Increase &copy; 2013 All rights reserved</span>
+
+            <div class="fr">
+                <ul id="footer_nav" class="footer_nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
+<!-- __________________________________________________ Finish Footer -->
+
+
+{% javascripts
+'bundles/jariffproject/frontend/js-old/modernizr.custom.all.js'
+'bundles/jariffproject/frontend/js-old/jquery.min.js'
+'bundles/jariffproject/frontend/icon/js/raphael-min.js'
+
+
+'bundles/jariffproject/frontend/js-old/jquery.easing.js'
+
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.min.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.plugins.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.tokeninput.js'
+
+'bundles/jariffproject/frontend/js-old/jackbox.js'
+'bundles/jariffproject/frontend/js-old/jquery.script.js'
+'bundles/jariffproject/frontend/js-old/jackbox-lib.js'
+
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine.js'
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine-lang.js'
+'bundles/jariffproject/frontend/js-old/jquery.jtweetsanywhere.js'
+'bundles/jariffproject/frontend/js-old/respond.js'
+'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/ui/jquery-ui.js'
+'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/ui/jquery.ui.dialog.js'
+'bundles/jariffproject/frontend/js-old/jquery.autocomplete.js'
+'bundles/jariffproject/frontend/js-old/jquery.qtip.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.prettyPhoto.js'
+'bundles/jariffproject/frontend/hover/js/jquery.easing.1.3.min.js'
+'bundles/jariffproject/frontend/hover/js/jquery.hoveralls.js'
+
+
+
+combine=false %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+<!--[if lt IE 8]>
+<script src="{{ asset('bundles/jariffproject/frontend/icon/js/json2.min.js') }}"></script>
+<![endif]-->
+
+
+{% endjavascripts %}
+{#{{ form_javascript(form) }}#}
+
+{% block javascript %}
+    {#
+    Untuk jquery object pakai notasi standard tanda dolar $
+    kita pakai satu library saja yaitu jQuery
+    kalau mau pakai lib yg lain kayak mootol prototype dll
+    maka no conflict tetap harus di resolve ke tanda dolar $
+    soalnya script2 awal yg sudah jadi pakai tanda dolar semua
+    tentunya yg datang belakangan jangan mengganggu yg di awal
+    #}
+    <script type="text/javascript">
+    </script>
+{% endblock javascript %}
+
+</body>
+</html>

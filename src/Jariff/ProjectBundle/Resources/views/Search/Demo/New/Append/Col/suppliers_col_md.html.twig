@@ -1,0 +1,65 @@
+{% form_theme form 'JariffProjectBundle:Themes:form_checkbox_country.html.twig' %}
+
+	<form class="j-glsubmit-country">
+		{{ form_widget(form) }}
+	</form>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('.j-glsubmit-country').find('input').on('change', function () {
+
+				var url = document.URL.split('/');
+				$.ajax({
+					type: 'POST',
+					url: Routing.generate('demo_submit_country',{cat : 'suppliers',keyword:$('#search_global_form_type_q').val()}),
+					data: $('.j-glsubmit-country').serialize(),
+					beforeSend: function () {
+						$('.j-content-result-suppliers').children(".col-md-9").html('<div style="margin-top:20px;text-align: center">' +
+							'<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+							'<h5 style="margin-top: 15px">Loading...</h5>' +
+							'</div>');
+
+						$('.j-total-suppliers').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+					},
+					success: function (data) {
+
+						var res = JSON.parse(data);
+
+						if (res.success) {
+
+							var value = 'suppliers';
+
+							window.history.pushState("object or string", "Title", res.urls);
+							$('.j-choice-category').eq(1).attr('data-url',res.urls_res);
+							$('.j-choice-category').eq(1).attr('data-url-window',res.urls);
+
+							$.ajax({
+								type: 'GET',
+								url: res.urls_res,
+                            // beforeSend: function () {
+                            //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                            // },
+                            success: function (data) {
+                            	var res = JSON.parse(data);
+
+                            	if (res.success) {
+                            		if(value != 'logistics'){
+                            			$('.j-content-result-'+value).children(".col-md-9").html(res.html_string);
+                            		}else{
+                            			$('.j-content-result-'+value).html(res.html_string);
+                            		}
+
+                            		$('.j-total-'+value).html(res.total_results);
+
+                            	}
+                            }
+                        })
+						}
+					}
+				});
+
+
+})
+})
+
+</script>

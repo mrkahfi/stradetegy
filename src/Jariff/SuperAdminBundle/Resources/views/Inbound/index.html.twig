@@ -1,0 +1,31 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Inbound Index{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_super_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Inbound Index
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+      <div id="grid_paging"></div>
+    </div>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block javascript %}
+	<script src="/bundles/jariffadmin/js/grid-inbound.js"></script>
+    <script type="text/javascript">
+        $(function () {
+        });    
+    </script>
+{% endblock %}

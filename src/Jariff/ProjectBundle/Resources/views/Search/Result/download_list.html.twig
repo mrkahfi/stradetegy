@@ -1,0 +1,51 @@
+<table class="table" style="margin-top: 10px">
+    <thead>
+    <tr>
+        <th>Actions</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Date Request</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for row in data %}
+
+        <tr>
+            <td>
+                {% if row.getIsExecute %}
+                    <a href="{{ asset('convert/'~row.getFileName~'.'~row.getFormat) }}" class="btn btn-info btn-mini">{{ row.getFileName~'.'~row.getFormat }}</a>
+                {% else %}
+                    <img src="{{ asset('bundles/jariffproject/frontend/images/301_12.GIF') }}"> Processing Export
+                {% endif %}
+            </td>
+            <td>
+                {% set search = row.getQuery|jsondecode %}
+                Your search of Data for : <br/>
+                {% for key in search.q %}
+
+                    {% if search.condition[loop.index - 2] is defined %}
+                        <br/>
+                        {{ search.condition[loop.index - 2]|upper }}
+                    {% endif %}
+
+                    {{ search.collect[loop.index - 1]|capitalize }}
+                    <span class="code">{{ key }}</span>
+
+                {% endfor %}
+            </td>
+            <td>
+                {% if row.getIsExecute %}
+                    Processing Done
+                {% else %}
+                    Processing
+                {% endif %}
+            </td>
+            <td>
+                {{ row.getRequestAt|date("M, d Y, H:i") }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>

@@ -1,0 +1,312 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Lead #{{ entity.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Lead Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Lead #{{ entity.number }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+<div>
+    {% if entity.flag %}<img src="{{ entity.flag.icon }}" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{ entity.flag.description }}" />{% endif %}
+    <a class="btn btn-success" href="{{ path('admin_lead_convert', { 'id': entity.id }) }}">
+        Convert to client
+    </a>
+    <a class="btn" href="{{ path('admin_lead_edit', { 'id': entity.id }) }}">
+        Edit
+    </a>
+</div>
+<br/>
+<br/>
+<h3>Lead #{{ entity.number }}</h3>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Created By :</th>
+                                <td>{% if entity.owner %}{{ entity.owner.name }}{% else %}---{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Primary Sales Executive :</th>
+                                <td></td>
+                            </tr>
+                            {% for sales in entity.sales if sales.primary %}
+                                <tr>
+                                    <th></th>
+                                    <td>- {{ sales.sales.name }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <th></th>
+                                    <td>No one assigned</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <th>Additional Sales Executive :</th>
+                                <td><br/></td>
+                            </tr>
+                            {% for sales in entity.sales if not sales.primary %}
+                                <tr>
+                                    <th></th>
+                                    <td>- {{ sales.sales.name }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <th></th>
+                                    <td>No one assigned</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <th>Business :</th>
+                                <td>{{ entity.business }}</td>
+                            </tr>
+                            <tr>
+                                <th>Business Type :</th>
+                                <td>{% if entity.businessType %}{{ entity.businessType.name }}{% else %}---{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Campaign :</th>
+                                <td>{{ entity.campaign }}</td>
+                            </tr>
+                            <tr>
+                                <th>Competitor :</th>
+                                <td>{% if entity.competitor %}{{ entity.competitor.name }}{% else %}---{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Competitor Status :</th>
+                                <td>{{ entity.competitorStatus }}</td>
+                            </tr>
+                            <tr>
+                                <th><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> Competitor Date End :</th>
+                                <td>{% if entity.competitorDateEnd %}{{ entity.competitorDateEnd|date('Y-m-d H:i:s') }}{% else %}---{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i> Extended Ready Date :</th>
+                                <td>{% if entity.dateReady %}{{ entity.dateReady|date('Y-m-d H:i:s') }}{% else %}---{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Product :</th>
+                                <td>{{ entity.product }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description :</th>
+                                <td>{{ entity.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Notes :</th>
+                                <td>{{ entity.notes }}</td>
+                            </tr>
+                            <tr>
+                                <th>Source :</th>
+                                <td>{% if entity.source %}{{ entity.source.name }}{% else %}---{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Stage :</th>
+                                <td>{% if entity.stage %}{{ entity.stage.name }}{% else %}---{% endif %}</td>
+                            </tr>
+                            {% if entity.stage and entity.stage.id == 3 %}
+                                <tr>
+                                    <th>Stage Reason :</th>
+                                    <td>{{ entity.stageReason }}</td>
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <th>Data Interest :</th>
+                                <td></td>
+                            </tr>
+                            {% for dataInterest in entity.dataInterest %}
+                                <tr>
+                                    <td></td>
+                                    <td>&nbsp;&nbsp;&nbsp;- {{ dataInterest.dataInterest.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% for contact in entity.contact %}
+
+<h3>Contact #{{ loop.index }}</h3>
+<div class="row-fluid" id="contact">
+    <div class="span12">
+        <div class="span3">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>First Name :</th>
+                                <td>{{ contact.firstName }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Last Name :</th>
+                                <td>{{ contact.lastName }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Call Time :</th>
+                                <td>{% if contact.callTime %}{{ contact.callTime.name }}{% else %}---{% endif %}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Dont Call :</th>
+                                <td>{{ contact.dontCall }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Dont Email :</th>
+                                <td>{{ contact.dontEmail }}<br/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Language :</th>
+                                <td>{{ contact.language }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Email :</th>
+                                <td>{{ contact.email }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Phone :</th>
+                                <td>{{ contact.phone }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Skype :</th>
+                                <td>{{ contact.skype }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Job Title :</th>
+                                <td>{{ contact.jobTitle }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Decision Maker :</th>
+                                <td>{{ contact.decisionMaker }}<br/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Paypal :</th>
+                                <td>{{ contact.paypal }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Facebook :</th>
+                                <td>{{ contact.facebook }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Linkedin :</th>
+                                <td>{{ contact.linkedin }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Twitter :</th>
+                                <td>{{ contact.twitter }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Website :</th>
+                                <td>{{ contact.website }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Ip :</th>
+                                <td>{{ contact.ip }}<br/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="social-box">
+                <div class="body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Country :</th>
+                                <td>{{ contact.country }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>Street :</th>
+                                <td>{{ contact.street }}<br/></td>
+                            </tr>
+                            <tr>
+                                <th>City :</th>
+                                <td>{{ contact.city }}<br/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+<div>
+    <a class="btn btn-primary" href="{{ path('lead_activity_new', { 'id' : entity.id, 'type' : 'task'}) }}">
+        Add Task
+    </a>
+    <a class="btn btn-primary" href="{{ path('lead_activity_new', { 'id' : entity.id, 'type' : 'event'}) }}">
+        Add Event
+    </a>
+</div>
+<br/>
+<div id="content">
+  <div id="grid_paging"></div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+    <script type="text/javascript">
+        var lead_id = {{ entity.id }};
+        $(function () {
+          $("[data-toggle='tooltip']").tooltip();
+        });    
+    </script>
+    <script src="/bundles/jariffadmin/js/grid-lead-activity.js"></script>
+{% endblock %}

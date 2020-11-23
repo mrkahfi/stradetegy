@@ -1,0 +1,125 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="robots" content="follow"><meta name="Title" CONTENT="HoverAlls jQuery Animation Plugin"><meta name="description" content="HoverAlls is a jQuery animation plugin that quickly and easily creates jQuery hover effects, click effects, tooltips, dropdowns, sliding panels, captions, tickers, scrollers, lightboxes, alerts, message boxes and more."><meta name="Author" content="Crusader12"><meta name="keywords" content="jQuery, hover, effect, animation, plugin, fast, click, tooltip, lightbox, scroller, ticker, crawler, sliders, panels, alerts, dialogs"><meta name="Designer" content="Crusader12"><meta name="copyright" content="&copy; 2012 Crusader12">
+<title>HoverAlls jQuery Plugin v1.3</title>
+<!-- LOAD the HoverAlls CSS --><link rel="stylesheet" type="text/css" media="screen" href="css/hoveralls.css"/>
+<!-- LOAD Demo CSS --><link rel="stylesheet" type="text/css" media="screen" href="css/demostyle.css"/>
+<!-- LOAD jQuery --><script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<!-- LOAD Easing --><script type="text/javascript" src="js/jquery.easing.1.3.min.js"></script>
+<!-- LOAD HoverAlls --><script type="text/javascript" src="js/jquery.hoveralls.js"></script>
+</head><body>
+<!-- HIDDEN TARGET CONTAINERS FOR LIGHTBOXES -->
+<div id="top_drop"></div><div id="top_drop2"></div><div id="top_drop3"></div><div id="top_drop4"></div>
+<div id="lightboxtarget1"></div><div id="lightboxtarget2"></div><div id="lightboxtarget3"></div>
+<!-- HEADER GRAPHICS -->
+<div class="maincontent"><div class="featureheadertop"><h1><a href="#captionsmark">Captions.</a>&nbsp;&nbsp; <a href="#lightboxesmark">Lightboxes.</a>&nbsp;&nbsp; <a href="#lightboxesmark">Tooltips.</a>&nbsp;&nbsp; <a href="#panelsmark">Panels.</a>&nbsp;&nbsp; <a href="#panelsmark">Scrollers.</a></h1></div>
+<!-- INTRO TEXT -->
+<div id="introbox"><p class="intro"><span class="opener">Simplicity.</span> Adding animation effects to your pages has never been easier or faster. With HoverAlls you can create ToolTips, Scrollers, Captions, Lightboxes, and Sliding Panels - <strong>all by using the same methods and settings</strong>. HoverAlls is extremely flexible, allowing you to <strong>write HTML however you feel comfortable</strong> - without the need for specific structure. With <strong>only 8 lines of CSS</strong>, HoverAlls removes any possibility of wasting time trying to make sense of a plugin's naming conventions. No knowledge of Javascript or jQuery is required, however the plugin is extendable.</p></div>
+<!-- CAPTIONS -->
+<div class="featureheader" id="captionsmark"><h1>Captions, Galleries & Navigation.</h1></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="cap1" alt="Highly Customizable" rel="http://www.codecanyon.net" /></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="cap2" alt="Simple, Easy, and Fast" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="cap3" alt="There's no need to change the way you write HTML or CSS. HoverAlls is flexible, and works around how you normally write code." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="cap4" alt="HoverAlls comes with a minimal 8 lines of CSS. You don't have to make sense of long stylesheets and oddly-named styles. " rel="http://www.codecanyon.net"/></div>
+<div class="clear"></div><div id="breaker"></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="advcap5" alt="Animate Text" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="advcap2" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="advcap7" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="advcap6" alt="A sophisticated, simple coordinates system allows you to set animation points." rel="http://www.codecanyon.net"/></div>
+<div class="clear"></div><div id="breaker"></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="nav1" alt="Perfect Segues" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="nav2" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="nav3" alt="Full Screen" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="nav4" alt="View Image" rel="http://www.codecanyon.net"/></div>
+<div class="clear"></div>
+<!-- COORDINATES -->
+<div id="introbox"><p class="intro"><span class="opener">Coordinates.</span> A simple coordinates system creates animations. Using HoverAlls settings, you define the Start, End and Return Coordinates. <strong>( starts:"x,y", ends:"x,y", returns:"x,y" )</strong>. Since HoverAlls is receiving specific coordinates, you are in full control over where the animation occurs. HoverAlls allows for full animation control with these 3 simple settings, providing the flexibility to create many types of effects.</p></div>
+<div class="featureheader" id="captionsmark"><h1>Build it all the same way... using your HTML and your CSS.</h1></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" class="multiple" alt="Image"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" class="multiple" alt="Image with Link" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><div style="width:230px;height:215px;background-image:url('images/image.jpg');" class="multiple"><p class="hoveralls_text">DIV Container</p></div></div>
+<div class="effect"><div style="width:230px;height:215px;background-image:url('images/image.jpg');" class="multiple"><p class="hoveralls_text">DIV Container with Link</p><a href="http://www.codecanyon.net" class="hoveralls_link"></a></div></div>
+<div class="clear"></div><div id="breaker"></div>
+<!-- CLASSES -->
+<div id="introbox"><p class="intro"><span class="opener">Classes.</span> 
+HoverAlls will automatically go out to each HTML element with a specified class and build the animation effect for you. Text and links are pulled from either images or HTML elements. Above: the two objects on the left are images and the two on the right are DIVs with background images. Classes are only recommended for elements with the same dimensions.</p></div>
+<!-- LIGHTBOXES -->
+<div class="featureheader" id="lightboxesmark" style="margin-top:60px;"><h1>Lightboxes, Alerts, Popups & Tooltips.</h1></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="lightbox1"/></div>
+<div id="lightbox1html"><p class="hoveralls_text"><span class="opener" style="color:#fff;line-height:79px;">Modals.</span><br/><span style="font-size:24px;font-family:'ColaborateThinRegular';">Creating a Popup is as simple as creating a Caption - and done the same way...</span><br/><br/> <span style="line-height:22px;font-size:15px;">There are additional settings available when creating Modals, Lightboxes or Alerts. This basic modal is positioned using the Coordinates System <span style="font-style:italic">(like any other HoverAlls effect)</span>. Rather than being centered on the screen, it's positioned according to the Start, End and Return Coordinates. If you like, you can use a simple setting to center the modal on screen, but still keep control over the starting position.</span></p><a href="http://www.codecanyon.net" target="_blank" class="hoveralls_link"></a></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="lightbox2" rel="images/imagebig.jpg" /></div>
+<div id="lightbox2html"><p class="hoveralls_text"><span class="pure">Extreme</span><br/>Customization.</p></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="lightbox3" rel="http://www.codecanyon.net"/></div><div id="lightbox3html"><p class="hoveralls_text"></p><a href="http://www.codecanyon.net" class="hoveralls_link"></a></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="lightbox4" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor" rel="http://www.codecanyon.net"/></div>
+<div id="catalert"></div><div id="runaway"><p class="hoveralls_text closelightbox">Run away!</p></div>
+<div class="clear"></div><div id="breaker"></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="tooltip1" alt="Making Tooltips has never been easier, now there's no excuse to leave them out." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="tooltip2" alt="Make every tooltip unique." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="tooltip3" alt="Woah. This looks pretty cool, but I'm still watching out for that cat." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="tooltip4" rel="http://www.codecanyon.net"/></div>
+<div class="clear"></div>
+<div id="tooltiphtml"><div id="map"></div><div class="maptext">Write a block of HTML and pass the container's ID to HoverAlls to automatically inject it into your HoverAlls effect. You can also animate text after injecting your custom code.</div></div>
+<!-- TARGET CONTAINERS -->
+<div id="introbox"><p class="intro"><span class="opener">Target Containers.</span> One of the most powerful features of HoverAlls is the ability to select your Target Container. HoverAlls effects don't need to occur on the object being hovered or clicked. The Target Container setting lets you select where you want the animation to occur. Additionally, an HTML Mode setting is available. Passing the ID of a container to this setting will automatically move that block of code into the HoverAlls animation. If a Target Container is set, your block of HTML is moved within the Target Container.</p></div>
+<!-- SLIDERS, TICKERS, SCROLLERS -->
+<div class="featureheader" id="panelsmark"><h1>Sliding Panels. Scrollers. Tickers.</h1></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="topbar1" alt="This is a basic example of a sliding panel using a quick HoverAlls setting." rel="http://www.codecanyon.net" /></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="topbar2" /></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="topbar3" alt="Creating Sliding Panels is easy - and done the exact same way as everything else. HoverAlls gives you complete control over the position, movement, timing, transitions, style and much more.  " rel="http://www.codecanyon.net" /></div>
+<div id="slidingpanel1html"><p class="hoveralls_text"><span class="opener" style="color:#66635B;line-height:79px;">Sliding Panels.</span><br/><span style="font-size:22px;font-family:'ColaborateThinRegular';">Quickly build Login Panels, Tours, Social Media Panels, etc.</span><br/><br/><span style="line-height:19px;font-size:15px;">You can place your text <span style="font-style:italic">the same as any other HoverAlls effect</span>, or you can opt to use the HTML Mode setting. Using this setting allows you to build your Sliding Panel by writing HTML however you like, wherever you like. Pass the ID of your code to the setting to have HoverAlls automatically move your HTML into the animation container.</span></p><a href="http://www.codecanyon.net" target="_blank" class="hoveralls_link"></a></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="topbar4" alt="Lorem ipsum dolor sit"/></div><div id="html5inject"><div class="html5image"></div>
+<p class="hoveralls_text"><span class="htmlinjectheader">The HTML Mode Setting</span><br/>This setting will move a block of code into the animation container, where you can use other HoverAlls settings to manipulate it. In this example, a setting is used to tell HoverAlls it's a sliding panel, then a Target Container is chosen - the white background. A separate block of code (containing this text and the HTML5 logo) is coded anywhere on the page. Supplying the ID of this block of code to the HTML Mode setting automatically moves the code into the animation container (and inside of your Target Container if you have one). </p><a href="http://www.codecanyon.net" class="hoveralls_link"></a></div>
+<div id="hoverfollow"><div class="innerwrapper"><div class="facebook"></div><div class="linkedin"></div><div class="stumbleupon"></div><div class="twitter"></div><div class="youtube"></div><div class="digg"></div><div class="delicious"></div></div></div>
+<div class="clear"></div><div id="breaker"></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="ticker1" alt="Easily make scrollers inside your lightboxes, captions, tooltips and target containers." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="ticker2" alt="HoverAlls" rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="ticker3" alt="Position and style your scroller however you like." rel="http://www.codecanyon.net"/></div>
+<div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="ticker4" alt="This example uses a scroller inside a target div. This can be called on page load and is ideal for news, articles, announcements, etc." /></div>
+<div class="clear"></div>
+<div id="scrolltarget"></div>
+<div class="clear"></div>
+<!-- SETTINGS -->
+<div class="featureheader" style="margin-top:20px;margin-bottom:20px;"><h1>Over 40 Settings for Complete Customization.</h1></div>
+<!-- PRESETS -->
+<div id="introbox"><p class="intro"><span class="opener">Code Faster.</span> <strong>HoverAlls is built to increase production time by making the approach to every obstacle exactly the same.</strong> With a focus on increasing productivity, HoverAlls also includes built-in animation presets. Once your effect is fine-tuned, save it to a "preset setting" and use it on other elements, or other websites. You can also detect Mobile Devices <span style="font-style:italic;">(users running webOS, iPhone/iPad/iPod, Windows Phone 7, Android Phones, and Blackberry Phones)</span> and create special HoverAlls effects for those environments.</p></div><div class="clear"></div>
+<!-- COMPATIBILITY -->
+</div><!-- /PRESETS --></div><div class="clear"></div>
+
+
+
+<!-- HoverAlls Function Calls -->
+<script type="text/javascript">
+$(window).load(function () {
+$('#cap1').HoverAlls({starts:"0px,230px",ends:"0px,165px",returns:"0px,230px",bg_class:"captionbackground1",speed_in:350,speed_out:350,text_class:"cap1text",bg_height:"50px",text_starts:"0px,50px",text_ends:"0px,0px",text_returns:"0px,50px",text_speed_in:380,text_speed_out:380});
+$('#cap2').HoverAlls({speed_in:350,speed_out:350,bg_class:"captionbackground2",starts:"0px,-55px",ends:"0px,0px",returns:"0px,-55px",bg_height:"50px", text_class:"cap2text",text_speed_in:380,text_speed_out:380,text_starts:"0px,-50px",text_ends:"0px,0px",text_returns:"0px,-50px"});
+$('#cap3').HoverAlls({speed_in:350,bg_class:"captionbackground3",starts:"215px,0px",ends:"40px,0px",returns:"215px,0px",speed_out:350,bg_height:"100%",bg_width:"185px",text_class:"cap3text",text_speed_in:380,text_speed_out:380,text_starts:"100px,0px",text_ends:"0px,0px",text_returns:"100px,0px"});
+$('#cap4').HoverAlls({speed_in:350,bg_class:"captionbackground4",starts:"-185px,0px",ends:"0px,0px",returns:"-185px,0px",speed_out:350,bg_height:"100%",bg_width:"185px",text_class:"cap4text",big_link:true,link_target:"_blank",text_speed_in:380,text_speed_out:380,text_starts:"-100px,0px",text_ends:"0px,0px",text_returns:"-100px,0px"});
+$('#advcap5').HoverAlls({starts:"230px,140px",ends:"20px,140px",returns:"230px,140px",bg_class:"advbg5",text_class:"advtext5",speed_in:400, speed_out:400,bg_width:"200px",bg_height:"30px",text_speed_in:400,text_speed_out:250,text_starts:"-460px,0px",text_ends:"0px,0px",text_returns:"-460px,0px",big_link:true, container_class:"advcap5container"});
+$('.multiple').HoverAlls({starts:"0px,230px",ends:"0px,165px",returns:"0px,230px",bg_class:"captionbackground1",speed_in:350,speed_out:350,text_class:"cap1textm",bg_height:"50px",text_starts:"0px,50px",text_ends:"0px,0px",text_returns:"0px,50px",text_speed_in:380,text_speed_out:380});
+$('#advcap2').HoverAlls({full_frame:true,speed_in:750,speed_out:800,bg_class:"advbg2",start_opacity:0,bg_width:"230px",bg_height:"215px"});
+$('#advcap7').HoverAlls({speed_in:500, bg_class : "censoredrobot", bg_height : "93px",starts:"0px,120px",ends:"0px,25px",returns:"0px,120px", start_opacity:.95, end_opacity:0,big_link:true});
+$('#advcap6').HoverAlls({starts:"200px,270px",ends:"-300px,-270px",returns:"-590px,-470px",speed_in:500,speed_out:680,bg_class:"advbg8",bg_width:"200px",bg_height:"190px",text_class:"advtext8",passthrough:true, text_starts:"400px,370px", text_ends:"10px,5px", text_returns:"-400px,-370px",text_speed_in:650,text_speed_out:650});
+$('#topbar1').HoverAlls({speed_in:750,starts:"0px,-55px",ends:"0px,0px",returns:"0px,-55px",bg_class:"topdrop1bg",text_class:"topdrop1text",container_class:"topdrop1container",start_opacity:1, end_opacity:1,bg_width:"100%", bg_height:"50px",top_drop:true,effect_in:"easeOutQuart",effect_out:"easeInSine",target_container:"#top_drop"});
+$('#topbar2').HoverAlls({speed_in:600,speed_out:600,starts:"-100px,150px",ends:"-20px,150px",returns:"-100px,150px",container_class:"topdrop2container",start_opacity:0, end_opacity:1,bg_width:"110px",bg_height:"550px",top_drop:true,target_container:"#top_drop2",html_mode:"#hoverfollow", on_click:true});
+$('#topbar3').HoverAlls({speed_in:750,starts:"50px,-700px",ends:"50px,-15px",returns:"50px,-700px",bg_class:"topdrop3bg",text_class:"topdrop3text",container_class:"topdrop3container",start_opacity:0, end_opacity:1,bg_width:"350px", bg_height:"575px",top_drop:true,
+text_starts:"25px,-200px",text_ends:"25px,40px",text_returns:"25px,-200px",target_container:"#top_drop3",html_mode:"#slidingpanel1html"});
+$('#topbar4').HoverAlls({speed_in:800,speed_out:400,starts:"0px,-365px",ends:"0px,0px",returns:"0px,-365",bg_class:"topdrop2bg",container_class:"topdrop4container",start_opacity:.5, end_opacity:1,bg_width:"100%", bg_height:"350px",on_click:true,html_mode:"#html5inject", target_container:"#top_drop4", top_drop:true,text_starts:"0px,-960px",text_ends:"0px,-30px",text_returns:"0px,-960px",text_speed_in:1050, text_speed_out:2500,big_link:true,text_start_opacity:0, text_end_opacity:.65, overlay:true,overlay_class:"lightbox1overlay"});
+$('#nav1').HoverAlls({starts:"0px,0px",ends:"0px,0px",returns:"0px,0px",bg_class:"navbg1",speed_in:650,bg_height:"215px",bg_width:"230px",text_starts:"0px,-100px",text_ends:"0px,155px",text_returns:"0px,-100px",text_start_opacity:0,text_end_opacity:1,text_speed_in:650,text_speed_out:450,text_class:"navtext"});
+$('#nav2').HoverAlls({starts:"-230px,215px",ends:"-10px,10px",returns:"-230px,215px",bg_class:"navbg2",end_opacity:1,speed_in:1500, speed_out:125, text_class:"cap1text", bg_height:"215px",bg_width:"230px",effect_in:"easeOutElastic"});
+$('#nav3').HoverAlls({bg_class:"navbg3",end_opacity:.85,speed_in:480, bg_height:"215px", bg_width:"230px",text_start_opacity:0,text_end_opacity:1,text_speed_in:1200,text_speed_out:250,text_effect_in:"easeOutBack",text_class:"navtext3",starts:"-100px,12px",ends:"8px,12px",returns:"-100px,12px",text_starts:"260px,210px",text_ends:"60px,25px",text_returns:"260px,210px"});
+$('#nav4').HoverAlls({starts:"0px,0px",ends:"0px,0px",returns:"0px,0px",bg_class:"navbg4",end_opacity:.95,speed_in:750, text_class:"cap1text", bg_height:"215px", text_class:"navtext4",text_starts:"100px,330px",text_ends:"100px,185px",text_returns:"100px,185px",text_start_opacity:1,text_end_opacity:1,text_speed_in:1200,text_speed_out:450,text_effect_in:"easeOutQuint",passthrough:true});
+$('#ticker1').HoverAlls({bg_class:"ticker1",text_class:"ticker1text",ticker_mode: true,start_opacity:0,end_opacity:1,bg_width:"230px",bg_height:"215px",starts:"0px,215px",ends:"0px,170px",returns:"0px,215px",text_speed_in:47000,text_speed_out:600,text_starts:"245px,0px",text_ends:"-1500px,0px",text_returns:"245px,0px"});
+$('#ticker2').HoverAlls({bg_class:"ticker2",text_class:"ticker2text",ticker_mode: true,start_opacity:0,end_opacity:.5,bg_width:"230px",bg_height:"215px",starts:"0px,0px",ends:"0px,0px",returns:"0px,0px",text_speed_in:37000,text_speed_out:600,text_starts:"245px,35px",text_ends:"-1500px,35px",text_returns:"245px,35px"});
+$('#ticker3').HoverAlls({speed_in:750,speed_out:750,bg_class:"ticker3",text_class:"ticker3text",ticker_mode: true,start_opacity:0,end_opacity:1,bg_width:"230px",bg_height:"30px",starts:"200px,25px",ends:"30px,25px",returns:"215px,25px",text_speed_in:47000,text_speed_out:600,text_starts:"215px,0px",text_ends:"-1500px,0px",text_returns:"245px,0px"});
+$('#ticker4').HoverAlls({text_class:"scrolltargettext",bg_class:"scrolltarget",ticker_mode: true,start_opacity:0,end_opacity:1,bg_width:"945px",bg_height:"20px",starts:"0px,0px",ends:"0px,0px",returns:"0px,0px",text_speed_in:109000,text_speed_out:600,text_starts:"945px,0px",text_ends:"-4500px,0px",text_returns:"245px,0px", target_container:"#scrolltarget", ticker_repeat:3});
+$('#tooltip1').HoverAlls({tooltip:true,starts:"0px,50px",ends:"120px,-55px",returns:"0px,50px",bg_class:"tooltip1background",text_class:"tooltip1text",speed_in:1000,speed_out:380,effect_in:"easeOutBack",effect_out:"easeInSine",bg_width:"250px",bg_height:"135px"});
+$('#tooltip2').HoverAlls({tooltip:true,starts:"-15px,0px",ends:"-15px,150px",returns:"-15px,0px",bg_class:"tooltip2background",text_class:"tooltip2text",speed_in:1000,speed_out:380,effect_in:"easeOutBack",effect_out:"easeInSine",bg_width:"250px",bg_height:"35px",big_link:true});
+$('#tooltip3').HoverAlls({tooltip:true,starts:"-35px,180px",ends:"210px,-30px",returns:"-35px,180px",bg_class:"tooltip3background",text_class:"tooltip3text",speed_in:1000,speed_out:380,effect_in:"easeOutBack",effect_out:"easeInSine",bg_width:"150px",bg_height:"35px",ticker_mode:true,text_speed_in:39000,text_speed_out:250,text_starts:"200px,0px",text_ends:"-1500px,0px",text_returns:"0px,0px",ticker_repeat: 2});
+$('#tooltip4').HoverAlls({tooltip:true,starts:"-100px,-20px",ends:"-100px,5px",returns:"-100px,-20px",bg_class:"tooltip4background",speed_in:1000,speed_out:380,effect_in:"easeOutBack",effect_out:"easeInSine",bg_width:"400px",bg_height:"185px",html_mode:"#tooltiphtml"});
+$('#lightbox1').HoverAlls({modal:true,speed_in:1550,speed_out:1200,container_class:"lightbox1container",text_class:"lightbox1text",overlay_class:"lightbox1overlay",big_link:true,starts:"-350px,-575px",ends:"350px,100px",returns:"-350px,-575px",start_opacity:0, end_opacity:1,bg_width:"450px", bg_height:"550px",text_starts:"25px,-400px",text_ends:"25px,20px",text_returns:"25px,-400px",target_container:"#lightboxtarget1",effect_in:"easeOutBack",effect_out:"easeInBack",overlay_speed_in:700,overlay_speed_out:800,html_mode:"#lightbox1html"});
+$('#lightbox2').HoverAlls({lightbox:true,lightbox_center:true,speed_in:950,speed_out:950,container_class:"lightbox2container",text_class:"lightbox2text",overlay_class:"lightbox2overlay",starts:"-900px,1000px",ends:"350px,100px",returns:"105%,1000px",start_opacity:0, end_opacity:1,bg_width:"575px", bg_height:"575px",					  
+text_starts:"120px,-900px",text_ends:"120px,100px",text_returns:"120px,-900px",target_container:"#lightboxtarget2",text_speed_in:1200,text_speed_out:1200,overlay_speed_in:500,effect_in:"easeOutBack",effect_out:"easeInBack",html_mode:"#lightbox2html"});
+$('#lightbox3').HoverAlls({modal:true,speed_in:900,speed_out:1200,container_class:"lightbox3container",overlay_class:"lightbox1overlay",big_link:true,
+starts:"22%,-600px",returns:"22%,-600px",start_opacity:0, text_start_opacity:0,end_opacity:1,bg_width:"980px", bg_height:"333px",text_starts:"855px,55px",text_ends:"455px,55px",text_returns:"855px,55px", text_speed_in:800, target_container:"#lightboxtarget3",lightbox_center:true, html_mode:"#lightbox3html",overlay_speed_in:800});
+$('#lightbox4').HoverAlls({alertbox:true,speed_in:1400,speed_out:500,bg_width:"900px", bg_height:"400px",target_container:"#catalert",overlay_class:"lightbox1overlay",container_class:"lightbox4container",html_mode:"#runaway",});
+});</script></body></html>

@@ -1,0 +1,73 @@
+<div class="col-md-12">
+    <p>{{ total_results|ribuan }} results matching <strong>{{ keyword }}</strong></p>
+
+    {% for res in resHybird %}
+
+
+                {% set match = res.getHit["highlight"] %}
+                    <h4 style="margin-bottom:-4px"><a href="">
+
+                        {{ match['product_desc'][0]|firstnlastword|raw }}</strong></strong>
+                    </a> </h4>
+                    <p>Imported from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}<br/>
+                        sent by Company {{ res.getHit["_source"]['shipper_name']  }}
+
+                    </p>
+                    <p style="margin-top:-22px">
+                     {{ match['product_desc'][0]|raw }}</strong></strong>
+                     <br/>
+                     {#{% set key = res.getTransformed.getValue.getCompanyJoin|length - 1 %}#}
+                     {#{% set companyjoin = res.getTransformed.getValue.getCompanyJoin[key] %}#}
+
+                     Purchased by {{ res.getHit["_source"]['consignee_name']  }}, {{ res.getHit["_source"]['slug_country_1']|twolettercodecountry }}
+                     {#{% if companyjoin.getContainerCount > 0 %}#}
+                     {#{{ companyjoin.getContainerCount }} container(s)#}
+                     {#{% else %}#}
+                     Gross weight : {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }}
+                 </p>
+
+
+         <hr/>
+
+     {% endfor %}
+
+
+ </div>
+
+<div class="jariff-pagination">
+    {{ pagination|raw }}
+</div>
+
+<script type="text/javascript">
+
+    $('.pagination li a').on('click', function () {
+
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            beforeSend: function () {
+                $('.j-content-result-logistics').html('<div style="text-align: center">' +
+                        '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                        '<h5 style="margin-top: 15px">Loading...</h5>' +
+                        '</div>'
+                )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-content-result-logistics').html(res.html_string);
+                    window.history.pushState("object or string", "Title", res.url_changes);
+
+
+                }
+
+            }
+        })
+
+        return false;
+
+    })
+</script>

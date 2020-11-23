@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>{{ entity['shipper_name'] }}</title>
+        <style type="text/css">
+
+            .row {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+
+            .col-md-6 {
+                width: 50%;
+            }
+
+
+
+            .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                float: left;
+            }
+
+            .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                position: relative;
+                min-height: 1px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .col-md-12 {
+                width: 100%;
+            }
+
+            .col-md-4 {
+                width: 33.33333333%;
+            }
+
+            .text-word-wrap{
+                word-wrap: break-word;      /* IE 5.5-7 */
+                white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+                white-space: pre-wrap;      /* current browsers */
+            }
+
+            .text-justify{
+                text-align: justify;
+            }
+
+            
+        </style>
+
+    </head>
+    <body>
+
+        <table style="table-layout: fixed; width: 100%"> 
+            <tr>
+                <td style="height:0px">
+                    <img src="http://tradetegy.com/bundles/jariffproject/frontend/images/logo.png" style="" 
+                    alt="Tradetegy Logo">
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>Bill Of lading #: {{ entity['bill_of_lading_number'] }}</td>
+            </tr>
+            
+            
+            <tr>
+                <td></td>
+                <td>Manifest #: {{ entity['manifest_scac'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Record Date : {{ entity['record_date']|date("Y-m-d") }}</td>
+            </tr>
+           
+           
+
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td><strong>Shipper</strong></td>
+            </tr>
+            <tr>
+                <td>{{ entity['shipper_name']|na }}</td>
+            </tr>
+            <tr>
+                <td>{{ entity['shipper_full_address']|na }}</td>
+            </tr>
+            <tr><td><hr/></td><td><hr/></td></tr>
+
+
+            <tr>
+                <td><strong>Container Information</strong></td>
+                <td><strong>Miscellaneous</strong></td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container #: <span>{{ entity['container_id'] }}</span></td>
+                <td>Departure Date : {{ entity['departure_date'] }}</td>
+            </tr>
+            <tr>
+                 <td class="text-word-wrap">Container Type : <span >{{ entity['container_type'] }}</span></td>
+                <td>US Port : {{ entity['us_port'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container Number : <span >{{ entity['container_number'] }}</span></td>
+                <td>Destination Port : {{ entity['destination_port'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">TEU : <span >{{ entity['container_teu'] }}</span></td>
+                <td>Flight Code # : {{ entity['flight_code'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap"></td>
+                <td>Carrier Code : {{ entity['vessel_scac'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Vessel IMO : {{ entity['vessel_imo'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Vessel Name : {{ entity['vessel_name'] }}</td>
+            </tr>
+            <tr>
+                <td><strong></strong></td>
+                <td>Vessel Country Code : {{ entity['vessel_flag'] }}</td>
+            </tr>
+            
+           
+            
+            <tr>
+                <td>Quantity : {{ entity['container_quantity'] }}</td>
+                <td>Carrier Code : {{ entity['vessel_scac'] }}</td>
+            </tr>
+            <tr>
+                <td>Weight (KG) : {{ entity['item_gross_weight_kg'] }}</td>
+                <td>Vessel IMO : {{ entity['vessel_imo'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Vessel Name : {{ entity['vessel_name'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Vessel Country Code : {{ entity['vessel_flag'] }}</td>
+            </tr>
+           
+            <tr>
+                <td colspan="2" class="text-justify"><span >Product Description : {{ entity['item_description']|replace({'<br/>': ','}) }}</td>
+
+            </tr>
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;">TRADEtegy.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="text-align:center;color: #1ABC9C;">+1 405-421-9501</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;text-align:right">info@TRADEtegy.com</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>

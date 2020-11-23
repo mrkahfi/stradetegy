@@ -1,0 +1,38 @@
+
+    /**
+     * Edits an existing {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_update")
+     * @Method("PUT")
+     * @Template("{{ bundle }}:{{ entity }}:edit.html.twig")
+{% endif %}
+     */
+    public function updateAction(Request $request, $id)
+    {
+        if(!$this->isGrantAdmin()){
+        }
+        $entity = $this->repo('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            $this->errorRedirect('Data {{ entity }} tidak valid.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createForm(new {{ entity_class }}Type(), $entity);
+        $editForm->bind($request);
+
+        if ($editForm->isValid()) {
+            $this->em()->persist($entity);
+            $this->em()->flush();
+
+            return $this->redirectUrl('{{ route_name_prefix }}_edit', array('id' => $id));
+        }
+
+{% if 'annotation' == format %}
+        return array(
+            'entity' => $entity,
+            'form'   => $editForm->createView(),
+        );
+{% endif %}
+    }

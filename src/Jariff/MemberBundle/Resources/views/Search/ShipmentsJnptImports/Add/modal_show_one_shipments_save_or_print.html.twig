@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>{{ entity['importer_name']|na }}</title>
+        <style type="text/css">
+
+            .row {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+
+            .col-md-6 {
+                width: 50%;
+            }
+
+
+
+            .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                float: left;
+            }
+
+            .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                position: relative;
+                min-height: 1px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .col-md-12 {
+                width: 100%;
+            }
+
+            .col-md-4 {
+                width: 33.33333333%;
+            }
+
+            .text-word-wrap{
+                word-wrap: break-word;      /* IE 5.5-7 */
+                white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+                white-space: pre-wrap;      /* current browsers */
+            }
+
+            .text-justify{
+                text-align: justify;
+            }
+
+            
+        </style>
+
+    </head>
+    <body>
+
+        <table style="table-layout: fixed; width: 100%"> 
+            <tr>
+                <td style="height:0px">
+                    <img src="http://stradetegy.com/bundles/jariffproject/frontend/images/logo.png" style="" 
+                    alt="stradetegy Logo">
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td><strong>Importer</strong></td>
+                <td><strong>Supplier</strong></td>
+            </tr>
+            <tr>
+                <td>{{ entity['importer_name']|na }}</td>
+                <td>{% if entity['supplier_name'] is empty %}-{% else %}{{ entity['supplier_name']|na }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td><span class="text-word-wrap">{{ entity['importer_address']|na }}</span></td>
+                <td>{% if entity['supplier_address'] is empty %}-{% else %}{{ entity['supplier_address']|na }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td><span class="text-word-wrap">{{ entity['importer_address_2']|na }}</span></td>
+                <td>{{ entity['supplier_country']|na }}</td>
+            </tr>
+            <tr>
+                <td>{{ entity['city']|na }}&nbsp;{{ entity['zip_cod']|na }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span class="text-word-wrap">{{ entity['phone']|na }}&nbsp;{{ entity['fax']|na }}&nbsp;{{ entity['e_mail']|na }}</span></td>
+                <td></td>
+            </tr>
+
+
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td><strong>Product Information</strong></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>HS Code : <span class="text-word-wrap">{{ entity['hs_code']|na }}</span></td>
+                <td>Quantity : {{ entity['quantity'] }}</td>
+            </tr>
+            <tr>
+                <td>Item Description : <span class="text-word-wrap">{{ entity['item_description']|na }}</span></td>
+                <td>Unit : {{ entity['unit'] }}</td>
+            </tr>
+             <tr>
+                <td></td>
+                <td>Unit Price Invoice : {{ entity['unit_price_invoice'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Unit Price USD : {{ entity['unit_price_usd'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Unit Price EURO : {{ entity['unit_price_euro'] }}</td>
+            </tr>
+
+             <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td><strong>Voyage Information</strong></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Port of Origin : {{ entity['origin_port']|na }}</td>
+                <td>Arrival Date : {{ entity['date']|date("Y-m-d") }}</td>
+            </tr>
+            <tr>
+                <td>Port of Arrival : Jawaharlal Nehru Port Trust</td>
+                <td></td>
+            </tr>
+
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td><strong>Miscellaneous</strong></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Contact 1 : {{ entity['contact_1'] }}</td>
+                <td>Customs Agent : {{ entity['custom_agent'] }}</td>
+            </tr>
+            <tr>
+                <td>Contact 2 : {{ entity['contact_2'] }}</td>
+                <td>Bank : {{ entity['bank'] }}</td>
+            </tr>
+             <tr>
+                <td></td>
+                <td>Be No. : {{ entity['be_no'] }}</td>
+            </tr>
+            
+             
+           
+
+
+            
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;">sTRADEtegy.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="text-align:center;color: #1ABC9C;">+1 405-421-9501</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;text-align:right">info@sTRADEtegy.com</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>

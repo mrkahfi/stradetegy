@@ -1,0 +1,43 @@
+jariff_authorize_net:
+    resource: "@JariffAuthorizeNetBundle/Controller"
+    type:   annotation
+
+jariff_member:
+    resource: "@JariffMemberBundle/Controller"
+    type:   annotation
+
+jariff_document:
+    resource: "@JariffDocumentBundle/Controller"
+    type:   annotation
+
+jariff_admin:
+    resource: "@JariffAdminBundle/Controller"
+    type:   annotation
+
+jariff_super_admin:
+    resource: "@JariffSuperAdminBundle/Controller"
+    type:   annotation
+
+jariff_project:
+    resource: "@JariffProjectBundle/Controller"
+    type:   annotation
+
+_widget_category:
+    pattern:  /widget/category/{keyword}
+    defaults: { _controller: JariffProjectBundle:Search\WidgetGlobalSearch:index }
+
+member_login_check:
+    path:   /member/login_check
+member_logout:
+    pattern:   /member/logout
+admin_login_check:
+    pattern:   /admin/login_check
+admin_logout:
+    pattern:   /admin/logout
+super_admin_login_check:
+    pattern:   /super-admin/login_check
+super_admin_logout:
+    pattern:   /super-admin/logout
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

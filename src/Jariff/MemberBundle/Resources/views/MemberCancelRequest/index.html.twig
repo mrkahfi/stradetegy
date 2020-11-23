@@ -1,0 +1,33 @@
+{% extends 'JariffProjectBundle::base_member_cs.html.twig' %}
+
+{% form_theme form 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+{% block header_title %}Cancel Request{% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{{ path('member_cancel_request_submit') }}">
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+            <button class="button" id="contact_form_formsend" tabindex="8"><span>Submit</span></button>
+
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $('#jariff_memberbundle_membercancelrequest_reason_3').on('change',function(){
+            if($('#jariff_memberbundle_membercancelrequest_reason_3:checked').val() == 'other'){
+                $('.j-reason-other').show();
+            }else{
+                $('.j-reason-other').hide();
+            }
+        })
+    </script>
+{% endblock %}

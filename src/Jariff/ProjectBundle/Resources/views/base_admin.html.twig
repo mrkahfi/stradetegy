@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+  Product:        Social - Premium Responsive Admin Template
+  Version:        v1.3.1
+  Copyright:      2013 CesarLab.com
+  License:        http://themeforest.net/licenses
+  Live Preview:   http://go.cesarlab.com/SocialAdminTemplate
+  Purchase:       http://go.cesarlab.com/PurchaseSocial
+-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}TRADEtegy Admin{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="{{ asset('/admin/img/favicon.ico') }}"/>
+    <link rel="icon" type="image/gif" href="{{ asset('/admin/img/favicon.gif') }}">
+
+    <!-- BEGIN STYLE CODES -->
+    {% block head_style %}
+
+        {% stylesheets
+        'bundles/jariffproject/admin/css/twitter-bootstrap/bootstrap.css'
+        'bundles/jariffproject/admin/css/social-jquery-ui-1.10.0.custom.css'
+        'bundles/jariffproject/admin/css/social.css'
+        'bundles/jariffproject/admin/css/social.plugins.css'
+        'bundles/jariffproject/admin/css/font-awesome.css'
+        'bundles/jariffproject/admin/css/social-coloredicons-buttons.css'
+        'bundles/jariffproject/admin/css/demo.css'
+        'bundles/jariffproject/admin/plugins/jquery.uipro/style.css'
+        'bundles/jariffproject/admin/plugins/jquery.uniform/themes/default/css/uniform.default.min.css'
+        'bundles/jariffproject/admin/plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.css'
+        'bundles/jariffproject/admin/css/themes/social.theme-blue.css'
+        'bundles/jariffproject/admin/css/twitter-bootstrap/bootstrap-responsive.css'
+        'bundles/jariffproject/admin/plugins/jquery.jqvmap/jqvmap.css'
+        'bundles/jariffproject/admin/plugins/jquery.avgrund.js/avgrund.css'
+        'bundles/jariffproject/admin/css/pqgrid-pro.min.css'
+        'bundles/jariffproject/frontend/js/grid/themes/Office/pqgrid.css'
+        'bundles/jariffproject/admin/plugins/jquery.select2/select2-bootstrap.css'
+        'bundles/jariffproject/admin/plugins/jquery.select2/select2.css'
+        'bundles/jariffproject/admin/css/style_jariff.css'
+        'bundles/jariffproject/frontend/js/jquery-ui-1.10.1/themes/base/minified/jquery-ui.min.css'
+        filter='cssrewrite' %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+        {% endstylesheets %}
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" type="text/css" href="/templates/social/assets/css/social-jquery.ui.1.10.0.ie.css"/>
+        <![endif]-->
+
+        <style>
+            .wraper #main {
+                margin-top: 40px;
+            }
+        </style>
+
+    {% endblock head_style %}
+
+    {% block style %}
+        <style>
+            #justGaugeExamples {
+                text-align: center;
+                height: 300px;
+            }
+
+            #g1, #g2 {
+                width: 200px;
+                height: 160px;
+                display: inline-block;
+                margin-top: -5px;
+                /*margin: 5px;*/
+            }
+        </style>
+        <!-- END STYLE CODE FOR THE CURRENT PAGE -->
+    {% endblock %}
+</head>
+<body>
+<!-- BEGIN WRAPER -->
+<div class="wraper sidebar-full">
+    {% block wraper %}
+        <!-- BEGIN SIDEBAR -->
+        <aside class="social-sidebar sidebar-full">
+            {% block social_sidebar %}
+                {% include "JariffProjectBundle:Component:sidebar.html.twig" %}
+            {% endblock %}
+        </aside>
+        <!-- END SIDEBAR -->
+        <header>
+            <!-- BEGIN NAVBAR -->
+            {% block navbar_header %}
+                {% include "JariffProjectBundle:Component:navbar_simple.html.twig" %}
+            {% endblock %}
+            <!-- END NAVBAR -->
+        </header>
+        <!-- BEGIN MAIN CONTAINER -->
+        <div id="main">
+            <!-- BEGIN CONTENT CONTANER -->
+            <div class="container-fluid">
+                <div class="row-fluid">
+                        <div class="span12">
+                            <h3 class="page-title">
+                                {% block breadcrumb_title %}Dashboard{% endblock %}
+                            </h3>
+                            <!-- BEGIN BREADCRUMBS -->
+
+                            <ul class="breadcrumb">
+                                {% block breadcrumb_content %}
+                                <li>
+                                    <i class="icon-home"></i>
+                                    <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+                                </li>
+                                {% endblock %}
+                            </ul>
+                            <!-- END BREADCRUMBS -->
+                        </div>
+                </div>
+
+
+                <div class="row-fluid">
+                            {% block flashes %}
+                                {% for flashMessage in app.session.flashbag.get('success') %}
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Well done!</strong> {{ flashMessage }}.
+                                    </div>
+                                {% endfor %}
+                                {% for flashMessage in app.session.flashbag.get('error') %}
+                                    <div class="alert alert-error">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <strong>Oh snap!</strong> {{ flashMessage }}.
+                                    </div>
+                                {% endfor %}
+                            {% endblock flashes %}
+                </div>
+                <div class="row-fluid">
+                    {% block shortcut %}
+
+                    {% endblock %}
+                </div>
+
+                <div class="row-fluid">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+
+            </div>
+            <!-- END CONTENT CONTAINER -->
+            <!-- BEGIN PAGE FOOTER -->
+            <footer id="footer">
+                {% block footer %}
+                    <div class="container-fluid">
+                        2014 © <em>TRADEtegy - Your trade strategy</em> by <a href="http://stradetegy.com/" target="_blank">ST</a>.
+                    </div>
+                {% endblock %}
+            </footer>
+            <!-- END PAGE FOOTER -->
+        </div>
+        <!-- END MAIN CONTAINER -->
+    {% endblock %}
+</div>
+<!-- END WRAPER -->
+
+<!-- BEGIN SIDEBAR PANEL -->
+<div style="display: none;">
+    <ul class="rightPanel">
+        <li><a href=""><i class="icon-user"></i><span>My Profile</span></a></li>
+        <li><a href="pages/chat-inbox.html"><i class="icon-envelope"></i><span>Messages</span></a></li>
+        <li><a href="#"><i class="icon-tasks"></i><span>Taks</span></a></li>
+    </ul>
+</div>
+<!-- END SIDEBAR PANEL -->
+
+
+    {% javascripts
+        'bundles/jariffproject/admin/plugins/jquery/jquery-1.9.1.min.js'
+        'bundles/jariffproject/admin/plugins/jquery.ui/jquery-ui-1.10.1.custom.min.js'
+        'bundles/jariffproject/admin/plugins/jquery.ui.touch-punch/jquery.ui.touch-punch.js'
+        'bundles/jariffproject/admin/plugins/jquery.uipro/ui-pro.js'
+        'bundles/jariffproject/admin/plugins/jquery.ui.chatbox/jquery.ui.chatbox.js'
+        'bundles/jariffproject/admin/plugins/twitter-bootstrap/bootstrap.js'
+        'bundles/jariffproject/admin/plugins/holder/holder.js'
+        'bundles/jariffproject/admin/plugins/jquery.slimscroll/jquery.slimscroll.min.js'
+        'bundles/jariffproject/admin/plugins/jquery.cookie/jquery.cookie.js'
+        'bundles/jariffproject/admin/plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.js'
+        'bundles/jariffproject/admin/plugins/jquery.livefilter/jquery.livefilter.js'
+        'bundles/jariffproject/admin/plugins/bootstrap.datetimepicker/bootstrap-datetimepicker.min.js'
+        'bundles/jariffproject/admin/plugins/jquery.select2/select2.min.js'
+        'bundles/jariffproject/admin/js/extents.js'
+        'bundles/jariffproject/admin/js/app.js'
+        'bundles/jariffproject/admin/js/demo-settings.js'
+        'bundles/jariffproject/admin/js/sidebar.js'
+        'bundles/jariffproject/admin/js/pqgrid-pro.min.js'
+        'bundles/jariffproject/admin/js/chatboxManager.js'
+        'bundles/jariffproject/frontend/js/jquery-ui-1.10.1/ui/minified/jquery-ui.min.js'
+        'bundles/fosjsrouting/js/router.js'
+        combine=false %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+        {# 'bundles/jariffproject/admin/js/jquery.history.js' #}
+
+        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <script type="text/javascript">
+        $(".select2").select2();
+    </script>
+
+        {% block javascript %}
+
+        {% endblock %}
+
+
+</body>
+
+</html>

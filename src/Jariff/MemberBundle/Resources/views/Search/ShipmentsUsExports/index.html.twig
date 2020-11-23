@@ -1,0 +1,547 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+{% form_theme formCustom 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme formCustomCountry 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout.html.twig' %}
+{% form_theme formDateRange 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search_date_range.html.twig' %}
+{#{% block menu %}#}
+{#{% endblock %}#}
+
+{#{% block wrap_headline %}#}
+
+    {#<div class="wrap_cont_nav">#}
+        {#<div class="cont_nav">#}
+            {#<h1>Search shipments trade data</h1>#}
+
+            {#<br/>#}
+            {#<br/>#}
+            {#<br/>#}
+
+            {#<form action="{{ path('member_search_shipments_submit') }}" method="POST" class="form-inline">#}
+
+
+
+                {#<br/>#}
+                {#<br/>#}
+                {#<br/>#}
+
+
+                {#{{ form_start(form) }}#}
+
+                {#{% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}#}
+
+                {#<div class="form-group j-show" data-prototype='{{ pro|raw }}'>#}
+
+
+                    {#{% for i in 0..(form.collect|length-1) %}#}
+
+                        {#{% if(i == 0) %}#}
+                            {#{{ form_row(form.collect[i]) }}#}
+                            {#{{ form_row(form.q[i]) }}#}
+
+                            {#<input type="submit" class="button button-search j-tour-button-submit" value="Search">#}
+
+                        {#{% endif %}#}
+
+                        {#{% if(i > 0) %}#}
+                            {#<div style="clear:both" class="j-is-remove">#}
+
+                                {#{{ form_row(form.condition[i]) }}#}
+                                {#{{ form_row(form.collect[i]) }}#}
+                                {#{{ form_row(form.q[i]) }}#}
+                                {#<a href="#" class="j-different-remove" style="font-size: 16px;"#}
+                                   {#title="Delete This Filter">  <span#}
+                                            {#class="glyphicon glyphicon-remove" style="line-height: 2"></span> </a>#}
+                            {#</div>#}
+
+                        {#{% endif %}#}
+                    {#{% endfor %}#}
+
+
+                    {#<div class="j-add-filter"></div>#}
+                {#</div>#}
+                {#{{ form_end(form) }}#}
+
+                {#<br/>#}
+
+
+                {#<div style="clear: both"></div>#}
+
+            {#</form>#}
+
+            {#<br/>#}
+            {#<br/>#}
+
+            {#<p>You have made <span class="code j-tour-count-search-today">{{ count_search_today }}</span> search(es)#}
+                {#today, and you have <span#}
+                        {#class="code j-tour-count-search-value">{{ count_search_value }}</span> search(es)#}
+                {#left</p>#}
+
+            {#<br/>#}
+
+           {#&#123;&#35;<div style="float: right">&#35;&#125;#}
+                {#&#123;&#35;<a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span> Save</a>&nbsp;&nbsp;&#35;&#125;#}
+                {#&#123;&#35;<a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>&#35;&#125;#}
+            {#&#123;&#35;</div>&#35;&#125;#}
+
+            {#<br/>#}
+            {#<br/>#}
+
+        {#</div>#}
+    {#</div>#}
+{% block content %}
+    <div class="pull-right">
+        <a href="{{ path('member_search_shipments') }}" class="btn btn-default btn-sm" role="button">Search</a>
+
+
+        <a href="#" type="button" class="btn btn-sm btn-default"
+           aria-expanded="false" disabled>
+            Save Search
+        </a>
+
+
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Modify Display Fields</a>
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Export/Email Report</a>
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Contact Company</a>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="j-form-change">
+
+        <form action="{{ path('member_search_shipments_submit') }}" method="POST" class="">
+
+            <label class="col-sm-12 control-label required">Choose Date Range: </label>
+
+            {#<div class="form-inline">#}
+            {#<div class="form-group">#}
+            {#<label class="sr-only" for="dpd1">From</label>#}
+            {#<input type="text" class="form-control" id="dpd1" placeholder="From">#}
+            {#</div>#}
+            {#<div class="form-group">#}
+            {#<label class="sr-only" for="dpd2">To</label>#}
+            {#<input type="text" class="form-control" id="dpd2" placeholder="To">#}
+            {#</div>#}
+
+            {#</div>#}
+
+
+
+            {{ form_widget(formDateRange) }}
+            <br/>
+            <br/>
+            <br/>
+
+            <div style="clear: both"></div>
+            {{ form_widget(formCustom) }}
+            <div style="clear: both"></div>
+            {{ form_widget(formCustomCountry) }}
+            {#<div style="clear: both"></div>#}
+            {#{{ form_widget(formCustom) }}#}
+
+            <div style="clear: both"></div>
+
+
+            {{ form_start(form) }}
+
+            {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+            <div class="j-show" data-prototype='{{ pro|raw }}'>
+
+
+                {% for i in 0..(form.collect|length-1) %}
+
+                    {% if(i == 0) %}
+                        {{ form_widget(form.collect[i]) }}
+                        {{ form_widget(form.q[i]) }}
+                        {#<div class="form-group">#}
+                        {#<div class="col-md-1">#}
+                        {#<input type="submit" class="button button-search j-tour-button-submit" value="Search">#}
+
+                        {#</div>#}
+                        {#</div>#}
+                        <button type="submit" class="btn btn-primary col-md-1">Search</button>
+
+                    {% endif %}
+
+                    {% if(i > 0) %}
+                        <div class="j-is-remove">
+
+                            {{ form_widget(form.condition[i]) }}
+                            {{ form_widget(form.collect[i]) }}
+                            {{ form_widget(form.q[i]) }}
+                            <div class="form-group">
+                                <div class="col-md-1">
+                                    <a href="#" class="j-different-remove col-md-1 btn btn-danger" aria-hidden="true"
+                                       style="font-size: 16px;"
+                                       title="Delete This Filter"> <span class="glyphicon glyphicon-remove"
+                                                                         style="line-height: 2"></span> remove </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+
+                <div style="clear: both"></div>
+                <div class="j-add-filter"></div>
+            </div>
+            {{ form_end(form) }}
+
+            <br/>
+
+            <div style="clear: both"></div>
+
+        </form>
+
+    </div>
+
+
+{% endblock %}
+
+{#{% block style %}#}
+    {#<link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"#}
+          {#rel="stylesheet"#}
+          {#media="screen"/>#}
+
+    {#<style>#}
+        {#table.floatThead-table {#}
+            {#border-top: none;#}
+            {#border-bottom: none;#}
+            {#background-color: #FFF;#}
+        {#}#}
+    {#</style>#}
+
+
+    {#<div id="dialog-message" title="Advance Search">#}
+        {#<p>#}
+            {#<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>#}
+            {#Advanced search is available for <strong>subscribers only</strong>. <a href="{{ path('signup') }}"><strong>See#}
+                    {#plans now#}
+                    {#»</strong></a>#}
+        {#</p>#}
+
+    {#</div>#}
+{#{% endblock %}#}
+
+{% block javascript %}
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/jquery.floatThead.js') }}"></script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+    <script type="text/javascript">
+    var $collectionHolder;
+
+    //        $('.j-show').children('div').addClass('form-group');
+
+    // setup an "add a tag" link
+    var $addFilterLink = $('<div class="form-group"><div class="col-md-2">' +
+            ' <a href="#" class="add_filter_link btn btn-info">Add Criteria <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></a></div></div>');
+    var $newLinkLi = $('<div></div>').append($addFilterLink);
+
+    jQuery(document).ready(function () {
+        // Get the ul that holds the collection of tags
+        $collectionHolder = $('div.j-show');
+
+        // add a delete link to all of the existing tag form li elements
+        $collectionHolder.find('div.j-add-filter').each(function () {
+            if ($(this).length > 1) {
+                addTagFormDeleteLink($(this));
+            }
+        });
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addFilterLink.on('click', function (e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            var check = $('h5.show');
+
+            if (check.length == 1) {
+                $("#dialog-message").dialog({
+                    modal: true
+                });
+                return false;
+            }
+
+            // add a new tag form (see next code block)
+            addTagForm($collectionHolder, $newLinkLi);
+        });
+
+
+    });
+
+    function addTagForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        console.log(prototype);
+
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = prototype.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<div><div style="clear: both"></div></div> ').append(newForm);
+        $newLinkLi.before($newFormLi);
+
+        // add a delete link to the new form
+        addTagFormDeleteLink($newFormLi);
+    }
+
+    function addTagFormDeleteLink($tagFormLi) {
+        var $removeFormA = $('<div class="form-group">' +
+                '<div class="col-md-1">' +
+                '<a href="#" class="j-different-remove btn btn-danger" style="font-size: 16px;"' +
+                'title="Delete This Filter"> <span class="glyphicon glyphicon-remove" aria-hidden="true"' +
+                '></span> remove </a>' +
+                '</div>' +
+                '</div>');
+        $tagFormLi.append($removeFormA);
+
+        $removeFormA.on('click', function (e) {
+            // prevent the link from creating a "#" on the URL
+            e.preventDefault();
+
+            // remove the li for the tag form
+            $tagFormLi.remove();
+        });
+    }
+
+    $('.j-choice-country').on("change", function () {
+
+        var company_as = $(".j-choice-as").val();
+        var country = $(this).val();
+
+        $.ajax({
+            type: 'POST',
+            url: Routing.generate('member_search_shipments_' + country + '_' + company_as + '_field'),
+            data: $('.j-form-change').children("form").serialize(),
+            beforeSend: function () {
+                $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+                        '<div class="modal-body" style="height: 100px">' +
+                        '<div class="css3-spinner">' +
+                        '<div class="css3-spinner-bounce1"></div>' +
+                        '<div class="css3-spinner-bounce2"></div>' +
+                        '<div class="css3-spinner-bounce3"></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+
+                $('#modalLoadingClick').modal('show');
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('.j-form-change').html(res.html_string);
+                    $('#modalLoadingClick').modal('hide');
+                } else {
+                    $('#modalLoadingClick').children('.modal-dialog').html(res.html_string);
+                    $('.j-form-change').html(res.html_callback);
+                }
+
+
+            }
+        })
+    })
+
+    function changeCountry() {
+
+        var company_as = $(".j-choice-as").val();
+        var country = $('.j-choice-country').val();
+
+        $.ajax({
+            type: 'POST',
+            url: Routing.generate('member_search_shipments_' + country + '_' + company_as + '_field'),
+            data: $('.j-form-change').children("form").serialize(),
+            success: function (data) {
+                var res = JSON.parse(data);
+                $('#modalLoadingClick').modal('hide');
+                if (res.success) {
+                    $('.j-form-change').html(res.html_string);
+
+                } else {
+
+                    $('.j-form-change').html(res.html_callback);
+                }
+
+
+            }
+        })
+    }
+
+    $('.j-choice-as').on("change", function () {
+        var country = $(".j-choice-country").children('option');
+
+        $.ajax({
+            type: 'POST',
+            url: Routing.generate('member_search_shipments_type_as_field'),
+            data: $('.j-form-change').children("form").serialize(),
+            beforeSend: function () {
+                $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+                        '<div class="modal-body" style="height: 100px">' +
+                        '<div class="css3-spinner">' +
+                        '<div class="css3-spinner-bounce1"></div>' +
+                        '<div class="css3-spinner-bounce2"></div>' +
+                        '<div class="css3-spinner-bounce3"></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+
+                $('#modalLoadingClick').modal('show');
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+                var letterCode;
+                if (res.success) {
+                    country.removeAttr('disabled');
+                    country.removeAttr('selected');
+                    for (letterCode in res.country_list) {
+                        for (var i = 0; i < country.length; i++) {
+                            if (country.eq(i).val() == letterCode) {
+                                country.eq(i).attr('disabled', 'disabled');
+                            }
+
+                            if (country.eq(i).val() == res.selected) {
+                                country.eq(i).attr('selected', 'selected');
+                            }
+                        }
+
+                    }
+
+                    changeCountry();
+                    $('#modalLoadingClick').modal('hide');
+                }
+            }
+        })
+
+    })
+
+
+    runLoad();
+    function runLoad() {
+        var country = $(".j-choice-country").children('option');
+
+        $.ajax({
+            type: 'POST',
+            url: Routing.generate('member_search_shipments_type_as_field'),
+            data: $('.j-form-change').children("form").serialize(),
+            beforeSend: function () {
+                $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+                        '<div class="modal-body" style="height: 100px">' +
+                        '<div class="css3-spinner">' +
+                        '<div class="css3-spinner-bounce1"></div>' +
+                        '<div class="css3-spinner-bounce2"></div>' +
+                        '<div class="css3-spinner-bounce3"></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>');
+
+                $('#modalLoadingClick').modal('show');
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+                var letterCode;
+                if (res.success) {
+
+                    for (letterCode in res.country_list) {
+                        for (var i = 0; i < country.length; i++) {
+                            if (country.eq(i).val() == letterCode) {
+                                country.eq(i).attr('disabled', 'disabled');
+                            }
+                        }
+
+                    }
+
+                    $('#modalLoadingClick').modal('hide');
+                }
+            }
+        })
+    }
+
+
+    //            $.ajax({
+    //                type: 'POST',
+    //                url: Routing.generate('member_search_shipments_' + country + '_' + company_as + '_field'),
+    //                data: $('.j-form-change').children("form").serialize(),
+    //                beforeSend: function () {
+    //                    $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+    //                            '<div class="modal-body" style="height: 100px">' +
+    //                            '<div class="css3-spinner">' +
+    //                            '<div class="css3-spinner-bounce1"></div>' +
+    //                            '<div class="css3-spinner-bounce2"></div>' +
+    //                            '<div class="css3-spinner-bounce3"></div>' +
+    //                            '</div>' +
+    //                            '</div>' +
+    //                            '</div>');
+    //
+    //                    $('#modalLoadingClick').modal('show');
+    //                },
+    //                success: function (data) {
+    //                    var res = JSON.parse(data);
+    //
+    //                    if (res.success) {
+    //                        $('.j-form-change').html(res.html_string);
+    //                        $('#modalLoadingClick').modal('hide');
+    //                    } else {
+    //                        $('#modalLoadingClick').children('.modal-dialog').html(res.html_string);
+    //                        $('.j-form-change').html(res.html_callback);
+    //                    }
+    //                }
+    //            })
+
+
+    $("table.table").floatThead()
+
+    </script>
+
+    <script type="text/javascript">
+
+        var checkout = $('#demo_search_date_to').datepicker({
+                    dateFormat: 'yy-mm-dd',
+                    maxDate: new Date(),
+                    numberOfMonths: 1,
+                    minDate: "{{ currentDate }}",
+                    onClose: function (selectedDate) {
+                        $("#demo_search_date_from").datepicker("option", "maxDate", selectedDate);
+                    }
+                }
+        );
+
+        var chk_in = $('#demo_search_date_from').datepicker({
+            dateFormat: 'yy-mm-dd',
+            maxDate: new Date(),
+            numberOfMonths: 1,
+            minDate: '{{ currentDate }}',
+            onClose: function (selectedDate) {
+                $("#demo_search_date_to").datepicker("option", "minDate", selectedDate);
+            }
+        });
+    </script>
+
+    {% include "@JariffMember/Search/Shipments/Add/Form/loading.html.twig" %}
+{% endblock %}
+
+{% block style %}
+   <style>
+        .checkbox {
+            margin-top: -5px;
+        }
+    </style>
+{% endblock %}

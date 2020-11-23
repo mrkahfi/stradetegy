@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+</head>
+<body>
+<table class="table table-hover">
+    <tbody>
+    {% for key,text in 'st_show_field'|us_column_view %}
+        {% if entity[key] is defined %}
+            <tr>
+                <th scope="row">{{ text }}</th>
+                {% if key == 'actual_arrival_date' %}
+                    <td style="border-top: 1px solid #dddddd;">{{ entity[key]|date('Y-m-d') }}</td>
+                {% else %}
+                    {% if key == 'product_desc' %}
+                        <td style="border-top: 1px solid #dddddd;">{{ entity[key]|raw }}</td>
+                    {% else %}
+                        {% if key == 'weight' %}
+                            <td style="border-top: 1px solid #dddddd;">{{ entity[key]|setting_gross_weight(app.user.id) }}</td>
+                        {% else %}
+                            <td style="border-top: 1px solid #dddddd;">{{ entity[key] }}</td>
+                        {% endif %}
+                    {% endif %}
+
+                {% endif %}
+
+
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

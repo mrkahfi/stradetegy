@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ data.getValue.getCompanyName }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="page-header">
+        <h1>{{ data.getValue.getCompanyName }}
+            <img alt=""
+                 src="{{ asset('bundles/jariffproject/frontend/images/importer.png') }}"
+                 width="90" height="30" style="float: right;margin-top: -35px;">
+        </h1>
+    </div>
+
+    <div id="map-canvas" style="height: 250px"></div>
+
+    <div class="page-header">
+        <h3>Address Company</h3>
+    </div>
+
+    <p class="lead">{{ data.getValue.getCompanyAddress }}</p>
+
+    <div class="page-header">
+        <h3>Contact</h3>
+    </div>
+
+    <address>
+        <abbr title="Phone">P:</abbr> (123) 456-7890
+    </address>
+
+    <div class="page-header">
+        <h3>Import Histories</h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+
+            <th>Date</th>
+            <th>Total Import</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for key,total in data.getValue.getDateGroup %}
+            <tr>
+                <td>
+                    {{ key|date("m/d/Y") }}
+                </td>
+                <td>
+                    {{ total }}
+                </td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="page-header">
+        <h3>Exporters Detail</h3>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Exporter Name</th>
+            <th>Total Shipment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for exporter in data.getValue.getCompanyJoin %}
+            <tr>
+                <td>
+                    {{ exporter.getCompanyJoinName }}
+                </td>
+                <td>
+                    {{ exporter.getShipment }}
+                </td>
+
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/bootstrap/bootstrap.js') }}"
+        type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+<script type="text/javascript">
+    var geocoder;
+    var map;
+
+    window.onload = function () {
+
+
+        var website = {{ data.getValue.getWebsite|json_encode|raw }};
+        var phone = {{ data.getValue.getPhone|json_encode|raw }};
+        var slug = {{ data.getValue.getSlugCompany|json_encode|raw }};
+        var url = Routing.generate('trademango_exporter', {'slug': slug });
+        if (website == undefined || phone == undefined) {
+            $.post(url, function (data) {
+            });
+        }
+    };
+
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+            zoom: 2,
+            center: latlng
+        }
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        codeAddress();
+
+    }
+
+    function codeAddress() {
+        geocoder.geocode({ 'address': '{{ (data.getValue.getSlugCountryOri|twolettercodeslug)['country'] }}'}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    position: results[0].geometry.location,
+                    animation: google.maps.Animation.DROP,
+                    map: map
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+</body>
+</html>

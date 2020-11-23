@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MemberEmail list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Altbody</th>
+                <th>Body</th>
+                <th>Datecreate</th>
+                <th>Datesend</th>
+                <th>Subject</th>
+                <th>Token</th>
+                <th>Viewdate</th>
+                <th>Viewipaddress</th>
+                <th>Viewos</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('email_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.altbody }}</td>
+                <td>{{ entity.body }}</td>
+                <td>{% if entity.dateCreate %}{{ entity.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateSend %}{{ entity.dateSend|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.subject }}</td>
+                <td>{{ entity.token }}</td>
+                <td>{% if entity.viewDate %}{{ entity.viewDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.viewIpAddress }}</td>
+                <td>{{ entity.viewOs }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('email_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('email_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('email_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,216 @@
+<?xml version="." encoding="UTF-"?>
+<countries>
+  <country code="AF" name="AFGHANISTAN" />
+  <country code="AL" name="ALBANIA" />
+  <country code="DZ" name="ALGERIA" />
+  <country code="AD" name="ANDORRA" />
+  <country code="AO" name="ANGOLA" />
+  <country code="AQ" name="ANTARCTICA" />
+  <country code="AR" name="ARGENTINA" />
+  <country code="AM" name="ARMENIA" />
+  <country code="AW" name="ARUBA" />
+  <country code="AU" name="AUSTRALIA" />
+  <country code="AT" name="AUSTRIA" />
+  <country code="AZ" name="AZERBAIJAN" />
+  <country code="BH" name="BAHRAIN" />
+  <country code="BD" name="BANGLADESH" />
+  <country code="BY" name="BELARUS" />
+  <country code="BE" name="BELGIUM" />
+  <country code="BZ" name="BELIZE" />
+  <country code="BJ" name="BENIN" />
+  <country code="BT" name="BHUTAN" />
+  <country code="BO" name="BOLIVIA" />
+  <country code="BA" name="BOSNIA AND HERZEGOVINA" />
+  <country code="BW" name="BOTSWANA" />
+  <country code="BR" name="BRAZIL" />
+  <country code="BN" name="BRUNEI DARUSSALAM" />
+  <country code="BG" name="BULGARIA" />
+  <country code="BF" name="BURKINA FASO" />
+  <country code="MM" name="MYANMAR" />
+  <country code="BI" name="BURUNDI" />
+  <country code="KH" name="CAMBODIA" />
+  <country code="CM" name="CAMEROON" />
+  <country code="CA" name="CANADA" />
+  <country code="CV" name="CAPE VERDE" />
+  <country code="CF" name="CENTRAL AFRICAN REPUBLIC" />
+  <country code="TD" name="CHAD" />
+  <country code="CL" name="CHILE" />
+  <country code="CN" name="CHINA" />
+  <country code="CX" name="CHRISTMAS ISLAND" />
+  <country code="CC" name="COCOS (KEELING) ISLANDS" />
+  <country code="CO" name="COLOMBIA" />
+  <country code="KM" name="COMOROS" />
+  <country code="CG" name="CONGO" />
+  <country code="CD" name="CONGO" />
+  <country code="CK" name="COOK ISLANDS" />
+  <country code="CR" name="COSTA RICA" />
+  <country code="HR" name="CROATIA" />
+  <country code="CU" name="CUBA" />
+  <country code="CY" name="CYPRUS" />
+  <country code="CZ" name="CZECH REPUBLIC" />
+  <country code="DK" name="DENMARK" />
+  <country code="DJ" name="DJIBOUTI" />
+  <country code="TL" name="TIMOR-LESTE" />
+  <country code="EC" name="ECUADOR" />
+  <country code="EG" name="EGYPT" />
+  <country code="SV" name="EL SALVADOR" />
+  <country code="GQ" name="EQUATORIAL GUINEA" />
+  <country code="ER" name="ERITREA" />
+  <country code="EE" name="ESTONIA" />
+  <country code="ET" name="ETHIOPIA" />
+  <country code="FK" name="FALKLAND ISLANDS (MALVINAS)" />
+  <country code="FO" name="FAROE ISLANDS" />
+  <country code="FJ" name="FIJI" />
+  <country code="FI" name="FINLAND" />
+  <country code="FR" name="FRANCE" />
+  <country code="PF" name="FRENCH POLYNESIA" />
+  <country code="GA" name="GABON" />
+  <country code="GM" name="GAMBIA" />
+  <country code="GE" name="GEORGIA" />
+  <country code="DE" name="GERMANY" />
+  <country code="GH" name="GHANA" />
+  <country code="GI" name="GIBRALTAR" />
+  <country code="GR" name="GREECE" />
+  <country code="GL" name="GREENLAND" />
+  <country code="GT" name="GUATEMALA" />
+  <country code="GN" name="GUINEA" />
+  <country code="GW" name="GUINEA-BISSAU" />
+  <country code="GY" name="GUYANA" />
+  <country code="HT" name="HAITI" />
+  <country code="HN" name="HONDURAS" />
+  <country code="HK" name="HONGKONG" />
+  <country code="HK" name="HONG KONG" />
+  <country code="HU" name="HUNGARY" />
+  <country code="IN" name="INDIA" />
+  <country code="ID" name="INDONESIA" />
+  <country code="IR" name="IRAN" />
+  <country code="IQ" name="IRAQ" />
+  <country code="IE" name="IRELAND" />
+  <country code="IM" name="ISLE OF MAN" />
+  <country code="IL" name="ISRAEL" />
+  <country code="IT" name="ITALY" />
+  <country code="CI" name="CÔTE D'IVOIRE" />
+  <country code="JP" name="JAPAN" />
+  <country code="JO" name="JORDAN" />
+  <country code="KZ" name="KAZAKHSTAN" />
+  <country code="KE" name="KENYA" />
+  <country code="KI" name="KIRIBATI" />
+  <country code="KW" name="KUWAIT" />
+  <country code="KG" name="KYRGYZSTAN" />
+  <country code="LA" name="LAO PEOPLE'S DEMOCRATIC REPUBLIC" />
+  <country code="LV" name="LATVIA" />
+  <country code="LB" name="LEBANON" />
+  <country code="LS" name="LESOTHO" />
+  <country code="LR" name="LIBERIA" />
+  <country code="LY" name="LIBYA" />
+  <country code="LI" name="LIECHTENSTEIN" />
+  <country code="LT" name="LITHUANIA" />
+  <country code="LU" name="LUXEMBOURG" />
+  <country code="MO" name="MACAO" />
+  <country code="MK" name="MACEDONIA" />
+  <country code="MG" name="MADAGASCAR" />
+  <country code="MW" name="MALAWI" />
+  <country code="MY" name="MALAYSIA" />
+  <country code="MV" name="MALDIVES" />
+  <country code="ML" name="MALI" />
+  <country code="MT" name="MALTA" />
+  <country code="MH" name="MARSHALL ISLANDS" />
+  <country code="MR" name="MAURITANIA" />
+  <country code="MU" name="MAURITIUS" />
+  <country code="YT" name="MAYOTTE" />
+  <country code="MX" name="MEXICO" />
+  <country code="FM" name="MICRONESIA" />
+  <country code="MD" name="MOLDOVA" />
+  <country code="MC" name="MONACO" />
+  <country code="MN" name="MONGOLIA" />
+  <country code="ME" name="MONTENEGRO" />
+  <country code="MA" name="MOROCCO" />
+  <country code="MZ" name="MOZAMBIQUE" />
+  <country code="NA" name="NAMIBIA" />
+  <country code="NR" name="NAURU" />
+  <country code="NP" name="NEPAL" />
+  <country code="NL" name="NETHERLANDS" />
+  <country code="NC" name="NEW CALEDONIA" />
+  <country code="NZ" name="NEW ZEALAND" />
+  <country code="NI" name="NICARAGUA" />
+  <country code="NE" name="NIGER" />
+  <country code="NG" name="NIGERIA" />
+  <country code="NU" name="NIUE" />
+  <country code="KP" name="KOREA NORTH" />
+  <country code="NO" name="NORWAY" />
+  <country code="OM" name="OMAN" />
+  <country code="PK" name="PAKISTAN" />
+  <country code="PW" name="PALAU" />
+  <country code="PA" name="PANAMA" />
+  <country code="PG" name="PAPUA NEW GUINEA" />
+  <country code="PY" name="PARAGUAY" />
+  <country code="PE" name="PERU" />
+  <country code="PH" name="PHILIPPINES" />
+  <country code="PN" name="PITCAIRN" />
+  <country code="PL" name="POLAND" />
+  <country code="PT" name="PORTUGAL" />
+  <country code="PR" name="PUERTO RICO" />
+  <country code="PR" name="PUERTORICO" />
+  <country code="QA" name="QATAR" />
+  <country code="RO" name="ROMANIA" />
+  <country code="RU" name="RUSSIAN FEDERATION" />
+  <country code="RU" name="RUSSIA" />
+  <country code="RW" name="RWANDA" />
+  <country code="BL" name="SAINT BARTHÉLEMY" />
+  <country code="WS" name="SAMOA" />
+  <country code="SM" name="SAN MARINO" />
+  <country code="ST" name="SAO TOME AND PRINCIPE" />
+  <country code="SA" name="SAUDI ARABIA" />
+  <country code="SN" name="SENEGAL" />
+  <country code="RS" name="SERBIA" />
+  <country code="SC" name="SEYCHELLES" />
+  <country code="SL" name="SIERRA LEONE" />
+  <country code="SG" name="SINGAPORE" />
+  <country code="SK" name="SLOVAKIA" />
+  <country code="SI" name="SLOVENIA" />
+  <country code="SB" name="SOLOMON ISLANDS" />
+  <country code="SO" name="SOMALIA" />
+  <country code="ZA" name="SOUTH AFRICA" />
+  <country code="KR" name="KOREA SOUTH" />
+  <country code="KR" name="SOUTH KOREA" />
+  <country code="ES" name="SPAIN" />
+  <country code="LK" name="SRI LANKA" />
+  <country code="SH" name="SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA" />
+  <country code="PM" name="SAINT PIERRE AND MIQUELON" />
+  <country code="SD" name="SUDAN" />
+  <country code="SR" name="SURINAME" />
+  <country code="SZ" name="SWAZILAND" />
+  <country code="SE" name="SWEDEN" />
+  <country code="CH" name="SWITZERLAND" />
+  <country code="SY" name="SYRIAN ARAB REPUBLIC" />
+  <country code="TW" name="TAIWAN" />
+  <country code="TJ" name="TAJIKISTAN" />
+  <country code="TZ" name="TANZANIA" />
+  <country code="TH" name="THAILAND" />
+  <country code="TG" name="TOGO" />
+  <country code="TK" name="TOKELAU" />
+  <country code="TO" name="TONGA" />
+  <country code="TN" name="TUNISIA" />
+  <country code="TR" name="TURKEY" />
+  <country code="TM" name="TURKMENISTAN" />
+  <country code="TV" name="TUVALU" />
+  <country code="AE" name="UNITED ARAB EMIRATES" />
+  <country code="AE" name="UNITEDAE" />
+  <country code="UG" name="UGANDA" />
+  <country code="GB" name="UNITED KINGDOM" />
+  <country code="GB" name="UK" />
+  <country code="UA" name="UKRAINE" />
+  <country code="UY" name="URUGUAY" />
+  <country code="US" name="UNITED STATES" />
+  <country code="US" name="US" />
+  <country code="US" name="USA" />
+  <country code="UZ" name="UZBEKISTAN" />
+  <country code="VU" name="VANUATU" />
+  <country code="VA" name="HOLY SEE (VATICAN CITY STATE)" />
+  <country code="VE" name="VENEZUELA" />
+  <country code="VN" name="VIET NAM" />
+  <country code="WF" name="WALLIS AND FUTUNA" />
+  <country code="YE" name="YEMEN" />
+  <country code="ZM" name="ZAMBIA" />
+  <country code="ZW" name="ZIMBABWE" />
+</countries>

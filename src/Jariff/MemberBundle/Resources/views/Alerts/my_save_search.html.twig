@@ -1,0 +1,117 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date Search</th>
+                        <th>Name Of Search</th>
+                        <th>Description</th>
+                        <th>Query Search</th>
+                        {#<th>Alert</th>#}
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                        {#{% set res = data.getQuery|jsondecode %}#}
+                        <tr>
+                            <td>{{ row.getDateSearch|date("d M Y") }}</td>
+                            <td>
+                                {% set splitSearch = row.getSlugCountrySubscription|split('-') %}
+                                {% if splitSearch[2] is not defined %}
+                                <a href="{{ path('member_search_shipments_result_new_time_'~splitSearch[0]~'_'~splitSearch[1],{'s_cache' : row.getQuery}) }}">
+                                    {{ row.getNameOfSearch }}
+                                </a>
+                                {% else %}
+                                    <a href="{{ path('member_search_global_result',{'category':splitSearch[2],'s_cache' : row.getQuery}) }}">
+                                        {{ row.getNameOfSearch }}
+                                    </a>
+                                {% endif %}
+                            </td>
+                            <td>{{ row.getDescription }}</td>
+                           <td>
+                                {% set search = row.getQuery|decrypted_query|jsondecode %}
+
+
+
+
+                        Your search of Data for : <br/>
+
+
+                        {% if search.search is defined %}
+                            {% for key in search.search %}
+
+
+
+                                {% if key.condition is defined %}
+
+                                    {{ key.condition|upper }}
+                                {% endif %}
+
+                                {{ key.collect|globalfield(search.type.custom_country~'_'~search.type.custom_data) }}
+
+                                <span class="code">{{ key.q }}</span>
+
+                            {% endfor %}
+
+                            <br/>
+                            {% if search.country is defined %}
+                                And Filter by Countries
+                                {% for key in search.country %}
+                                    {{ key|twolettercodecountry|capitalize }},
+                                {% endfor %}
+
+                            {% endif %}
+                        {% endif %}
+
+                        
+                        <span class="label label-primary">
+                            {{ search.type.custom_country|twolettercodecountry|upper }} {{ search.type.custom_data|capitalize }}
+                        </span>
+
+
+                               {#<br/>#}
+                               {#Total Data found {{ row.getHit["_source"]['total_row']|ribuan }}#}
+
+
+                            </td>
+                            {#<td>#}
+                                {#{% if row.getIsAlert %}#}
+                                    {#<span class="label label-success">Active</span>#}
+                                {#{% else %}#}
+                                    {#<span class="label label-default">Not Active</span>#}
+                                {#{% endif %}#}
+                            {#</td>#}
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    {#<tfoot>#}
+                    {#<tr>#}
+                    {#<th>Table Footer here ...</th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#</tr>#}
+                    {#</tfoot>#}
+                </table>
+
+
+                {{ knp_pagination_render(data) }}
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}

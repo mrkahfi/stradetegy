@@ -1,0 +1,36 @@
+{% block javascript %}
+<script language="javascript" type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/loadTreeBuyer.js') }}">
+</script>
+<script type="text/javascript">
+$('.cmsms_title').on("click", function(){ 
+    var slug = $(this).attr('name');
+    init(slug, 0);
+});
+</script>
+{% endblock %}
+<div>
+    <section>
+        {% for res in resultBuyer %}
+        <div class="ovh">
+            <header class="entry-header">
+                <div class="cmsms_title" name="{{ res.value.getSlug }}">
+                    <a class="company-link"><span id="company-item" >{{ res.value.getConsigneeName }}</span></a>
+                </div>
+                <div class="cmsms_post_info">
+                    <span class="user_name" />
+                    <img
+                    class="flag flag-{{ res.value.getCountryOfOrigin | twolettercode }}"
+                    src="{{ asset('bundles/jariffproject/frontend/images/blank.gif') }}"
+                    alt="{{ res.value.getCountryOfOrigin }}" />
+                    <span style='font-size:70%;'>{{ res.value.shipment }} <a href="#" class="cmsms_comments"> Shipments</a>
+                    </span>
+
+                </div>
+            </header>
+        </div>
+        {% endfor %}
+        {#{% if resultBuyer is not empty %}#}
+        {#{{ knp_pagination_render(resultBuyer) }}#}
+        {#{% endif %}#}
+    </section>
+</div>

@@ -1,0 +1,568 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+<div class="col_full">
+        <form action="#" id="filter_form" class="nobottommargin">
+            <div title="Unlimited number of searches" class="col_one_sixth">
+                <label for="term_key">Filter by term</label>
+                <input type="text" name="term_key" id="term_key"  class="sm-form-control"/>
+            </div>
+            <div class="col_five_sixth col_last">
+                <div title="How many shipment records would you like to download per month?" class="col_one_sixth">
+                    <label for="sort">Sort by</label>
+                    <select id="sort" class="sm-form-control">
+                        <option value="0">Most shipment</option>
+                        <option value="1">Company name (A-Z)</option>
+                    </select>
+                </div>
+                <div class="col_one_fourth">
+                    <label for="date_range">Date of last shipment</label>
+                    <select id="date_range" class="sm-form-control">
+                            <option value="1">Within last year</option>
+                            <option value="2">Within last 2 years</option>
+                            <option value="3">Within last 3 years</option>
+                            <option value="4">Within last 4 years</option>
+                            <option value="5">Within last 5 years</option>
+                            <option value="6">Within last 6 years</option>
+                            <option value="7">Within last 7 years</option>
+                            <option value="8" selected="selected">Within last 8 years</option>
+                    </select>
+                </div>
+                <div title="Unlimited number of searches" class="col_one_sixth">
+                    <label for="country">Country</label>
+                    <select id="country" class="sm-form-control">
+                        <option value="any">Any</option>
+                    </select>
+                </div>
+                <div title="How many shipment records would you like to download per month?" class="col_one_fifth">
+                    <label for="limit">Company Limit</label>
+                    <select id="limit" class="sm-form-control">
+                        <option value="20">Top 20</option>
+                        <option value="10">Top 10</option>
+                        <option value="5">Top 5</option>
+                    </select>
+                </div>
+                <div class="col_one_sixth">
+                    <label for="offset">Offset</label>
+                    <select id="offset" class="sm-form-control">
+                        <option value="0" selected="selected">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>  
+            </div>           
+        </form> 
+    </div> 
+
+
+    <div class="j-form-change">
+        <form action="{{ path('member_search_shipments_submit') }}" method="POST" class="">
+            {#<div class="form-inline" hidden>#}
+            {#<div class="form-group">#}
+            {#<label class="sr-only" for="dpd1">From</label>#}
+            {#<input type="text" class="form-control" id="dpd1" placeholder="From">#}
+            {#</div>#}
+            {#<div class="form-group">#}
+            {#<label class="sr-only" for="dpd2">To</label>#}
+            {#<input type="text" class="form-control" id="dpd2" placeholder="To">#}
+            {#</div>#}
+
+            {#</div>#}
+
+            <div hidden>
+            {{ form_widget(formDateRange) }}
+            <br/>
+            <br/>
+            <br/>
+
+            <div style="clear: both"></div>
+            {{ form_widget(formCustom) }}
+            <div style="clear: both"></div>
+            {{ form_widget(formCustomCountry) }}
+            {#<div style="clear: both"></div>#}
+            {#{{ form_widget(formCustom) }}#}
+
+            <div style="clear: both"></div>
+</div>
+
+            {{ form_start(form) }}
+
+            {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+            <div class="j-show" data-prototype='{{ pro|raw }}'>
+                <div hidden>
+
+                {% for i in 0..(form.collect|length-1) %}
+
+                    {% if(i == 0) %}
+                        {#<div class="form-group" >#}
+                        {{ form_widget(form.collect[i]) }}
+                        {{ form_widget(form.q[i]) }}
+                        {#<div class="col-md-1">#}
+                        {#<input type="submit" class="button button-search j-tour-button-submit" value="Search">#}
+
+                        {#</div>#}
+                        {#</div>#}
+
+                    {% endif %}
+
+                    {% if(i > 0) %}
+                        <div class="j-is-remove">
+
+                            {{ form_widget(form.condition[i]) }}
+                            {{ form_widget(form.collect[i]) }}
+                            {{ form_widget(form.q[i]) }}
+                            <div class="form-group">
+                                <div class="col-md-1">
+                                    <a href="#" class="j-different-remove col-md-1 btn btn-danger" aria-hidden="true"
+                                       style="font-size: 16px;"
+                                       title="Delete This Filter"> <span class="glyphicon glyphicon-remove"
+                                                                         style="line-height: 2"></span> remove </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+                        <button type="submit" class="btn btn-primary col-md-3">Search</button>
+                <div style="clear: both"></div>
+                <div class="j-add-filter"></div>
+            </div>
+            {{ form_end(form) }}
+
+            <br/>
+
+
+            <div style="clear: both"></div>
+
+        </form>
+
+    </div>
+
+    <div id="container">
+            <div id="center-container">
+                <div id="infovis" align="center"></div>
+            </div>
+        </div>
+        <div id="log"></div>
+
+{% endblock %}
+{% block style %}
+    <style type="text/css">
+    .node {
+        cursor: pointer;
+    }
+    .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 3px;
+    }
+    .node text {
+        font: 12px sans-serif;
+    }
+    .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+    }
+
+    div.tooltip {   
+      position: absolute;           
+      text-align: left;           
+      width: 220px;                  
+      height: 110px;                 
+      padding: 5px;             
+      font: 12px sans-serif;        
+      background: white;   
+      border: 4px;          
+      opacity: 1;       
+    }
+    </style>
+    {% endblock %}
+
+    {% block javascript %}
+      
+    <script language="javascript" type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/d3.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script language="javascript" type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/JSLINQ.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#myForm').on('submit', function () {
+            var value = $(this).serialize();
+            var url = Routing.generate('big_picture_search_buyer', {key: value.split("=")[1]});
+            if (value.split("=")[1]) {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('ajax_big_picture_buyer_search') }}',
+                    data: {key: value.split("=")[1]},
+                    success: function (data) {
+                        $('#search-result').html(data);
+                        $("#tabs").tabs("select", 2);
+                    }
+                });
+
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('ajax_count_buyer') }}',
+                    data: {key: value.split("=")[1]},
+                    success: function (data) {
+                        $('.count-buyer').html(data);
+                    }
+                });
+            } else {
+                alert("field cannot empty");
+            }
+            return false;
+        });
+    })
+    </script>
+
+    <script type="text/javascript">
+    $("#filter_form").submit(function() {
+        return false;
+    });
+    var root_origin;
+
+    var slug = '{{ slug }}';
+
+    var key = slug;
+
+    var sort = $('#sort').val();
+    var date_range = $('#date_range').val();
+    var country = $('#country').val();
+    console.log('country '+country);
+    var limit = $('#limit').val();
+    var offset = $('#offset').val();
+
+    var filterMode = false;
+
+    var preloader_img = $('#preloader_img');
+
+    $("input[name=term_key]").change(function(e) {
+        e.preventDefault();
+        filter()
+        return false;
+    });
+
+    $("select").change(function(e) {
+        e.preventDefault();
+        filter()
+        return false;
+    });
+
+    function filter(e) {
+
+        key = $('#term_key').val();
+        sort = $('#sort').val();
+        date_range = $('#date_range').val();
+        country = $('#country').val();
+        limit = $('#limit').val();
+        offset = $('#offset').val();
+
+        var today = new Date();
+        var dd = ("0" + today.getDate()).slice(-2);
+        var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+        var yyyy = today.getFullYear();
+        var prevYear = yyyy-date_range;
+
+        var d2 = Date.parse(prevYear+"-"+mm+"-"+dd);
+
+        console.log(d2);
+
+        console.log(root_origin.children);
+
+        var newList = JSLINQ(root_origin.children).Where(function(item){ 
+            var isValid = true;
+            if (country == 'any') {
+                isValid = true;
+            } else {
+                console.log(item.slug_country + " ----- " + country);
+                if (item.slug_country == country) {
+                    isValid = true;
+                } else {
+                    isValid = false;
+                }
+            }
+
+            console.log(item.actual_arrival_date + " vs " + prevYear+"-"+mm+"-"+dd);
+            isValid = isValid && compareDate(item.actual_arrival_date, d2);
+            isValid = isValid && item.product_desc.toLowerCase().indexOf(key.toLowerCase()) > -1;
+            console.log(isValid);
+            return isValid; 
+        }).Select(function(item){ return item; });
+
+        console.log(newList);
+
+        var newRoot = jQuery.extend({}, root_origin);
+        newRoot.children = newList.items;
+
+        if (sort == 0) {
+            newRoot.children.sort(compareShipment);
+        } else {
+            newRoot.children.sort(compareAlpha);
+        }
+
+        newRoot.children = newRoot.children.slice(parseInt(offset), parseInt(limit) + parseInt(offset));
+
+        filterMode = true;
+        update(newRoot, true);
+    }
+
+    function compareShipment(a,b) {
+        if (a.shipment_count < b.shipment_count)
+            return 1;
+        if (a.shipment_count > b.shipment_count)
+            return -1;
+        
+        return 0;
+    }
+
+    function compareAlpha(a,b) {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
+    }
+
+    function compareDate(a, d2) {
+
+        var d1 = Date.parse(a);
+
+        if (d2 < d1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var margin = [20, 120, 20, 240],
+    width = $('#container').width() - margin[1] - margin[3],
+    height = $('#container').width() * 2 - margin[0] - margin[2],
+    i = 0;
+
+    var div = d3.select("body").append("div").attr("class", "tooltip").style("opacity", 0);
+
+    var tree = d3.layout.tree().size([height, width]);
+
+    var diagonal = d3.svg.diagonal().projection(function(d) {
+        return [d.y, d.x];
+    });
+
+    var vis = d3.select("#container").append("svg:svg").attr("width", width + margin[1] + margin[3]).attr("height", height + margin[0] + margin[2]).append("svg:g").attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
+    var highest_shipment = 1;
+
+    loadNodes(vis, slug, key, sort, date_range, country, limit, offset);
+
+    var isBasicInfoLoaded = false;
+
+    function loadNodes(rootNode, slug, key, sort, date_range, country, limit, offset) {
+        var route = "{{ url('member_exporter_big_picture_json', { 'slug' : "PLACEHOLDER", 'mode' : "5000", 'key': "PLACEHOLDER2", 'sort': "PLACEHOLDER3", 'date_range': "PLACEHOLDER4", 'country': "PLACEHOLDER5", 'limit': "PLACEHOLDER6", 'offset': "PLACEHOLDER7" }) }}";
+        route = route.replace("PLACEHOLDER", slug);
+        route = route.replace("PLACEHOLDER2", key);
+        route = route.replace("PLACEHOLDER3", sort);
+        route = route.replace("PLACEHOLDER4", date_range);
+        route = route.replace("PLACEHOLDER5", country);
+        route = route.replace("PLACEHOLDER6", limit);
+        route = route.replace("PLACEHOLDER7", offset);
+        route = route.replace("5000", 0);
+        d3.json(route, function(json) {
+            root_origin = json;
+            var root = json;
+            root.x0 = height / 2;
+            root.y0 = 0;
+
+            if (!isBasicInfoLoaded) {
+                var countries = root.countries;
+                Object.keys(countries).forEach(function(key) {
+                    $("#country").append("<option value='" + key + "'>" + countries[key].substr(3) + "</option>");
+                });
+                isBasicInfoLoaded = true;
+            }
+
+            function toggleAll(d) {
+                if (d.children) {
+                    d.children.forEach(toggleAll);
+                    toggle(d);
+                }
+            }
+
+            if(typeof root.children !== 'undefined'){
+                root.children.forEach(toggleAll); 
+                for (var i = root.children.length - 1; i >= 0; i--) {
+                    toggle(root.children[i]);
+                };
+            };
+
+            highest_shipment = root.shipment_count;
+            update(root, true);
+        });
+        return false;
+    }
+
+    function update(source, nest) {
+        var duration = d3.event && d3.event.altKey ? 5000 : 500;
+        var nodes;
+        if (!filterMode) {
+            nodes = tree.nodes(root_origin).reverse();
+        } else {
+            nodes = tree.nodes(source).reverse();
+        }
+
+        nodes.forEach(function(d) {
+            d.y = d.depth * 270;
+        });
+
+        var node = vis.selectAll("g.node").data(nodes, function(d) {
+            return d.id || (d.id = ++i);
+        });
+
+        var nodeEnter = node.enter().append("svg:g").attr("class", "node").attr("transform", function(d) {
+            return "translate(" + source.y0 + "," + source.x0 + ")";
+        }).on("click", function(d) {
+            toggle(d);
+        }).on("mouseover", function(d) {      
+            div.transition().duration(200).style("opacity", 1);
+
+            var direction =  d.company_as == 'importer' ? 'from' : 'to';
+            var parent = d.parent_name;
+            if (typeof parent == 'undefined') {
+                parent = '';
+                direction = '';
+            }
+            var profile_url = "{{ url('member_importer_detail',  { 'slug' : "PLACEHOLDER", 'mode' : "5000" }) }}";
+            profile_url = profile_url.replace("PLACEHOLDER", d.slug);
+            profile_url = profile_url.replace("5000", 0);
+            div.html("<h6><b>" + d.name + "</h6></b><p>"  + d.shipment_count + " shipments " 
+                + direction + " <b>" + parent + "</b><p><a href='" + profile_url + "' class='post-popover' style='position:relative; overflow:auto;'>Show this profile</a>")  
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");
+        });
+
+        nodeEnter.append("svg:circle").attr("r", 1e-6).style("fill", function(d) {
+            return d._children ? "lightsteelblue" : "#fff";
+        });
+
+        nodeEnter.append("svg:text").attr("x", function(d) {
+            return d.children || d._children ? -10 : 10;
+        }).attr("dy", ".35em").attr("text-anchor", function(d) {
+            return d.children || d._children ? "end" : "start";
+        }).text(function(d) {
+            return d.name;
+        }).style("fill-opacity", 1e-6);
+
+        var nodeUpdate = node.transition().duration(duration).attr("transform", function(d) {
+            return "translate(" + d.y + "," + d.x + ")";
+        });
+
+        nodeUpdate.select("circle").attr("r", function(d) {
+            var radius = 5 + (95 * d.shipment_count / highest_shipment);
+            if (d.depth > 1) radius = 5;
+            console.log(d.slug + "   (" + d.depth + ")    radius :      95 * " + d.shipment_count + "/" + highest_shipment + " = " + radius);
+            if (d.depth > 1) stroke_width = 5;
+            return radius;
+        })
+        .style("fill", function(d) {
+            return d._children ? "lightsteelblue" : "#fff";
+        });
+
+        nodeUpdate.select("text").style("fill-opacity", 1);
+
+        var nodeExit = node.exit().transition().duration(duration).attr("transform", function(d) {
+            return "translate(" + source.y + "," + source.x + ")";
+        })
+        .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6).attr("opacity", 1e-6);
+
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        var link = vis.selectAll("path.link").data(tree.links(nodes), function(d) {
+            return d.target.id;
+        });
+
+        link.enter().insert("svg:path", "g").attr("class", "link").attr("d", function(d) {
+            var o = {
+                x: source.x0,
+                y: source.y0
+            };
+            return diagonal({
+                source: o,
+                target: o
+            });
+        })
+        .style("stroke-width", function(d) {
+            var stroke_width = 5 + (95 * d.target.shipment_count / highest_shipment);
+            if (d.target.depth > 1) stroke_width = 5;
+            console.log(d.slug + "   (" + d.target.depth + ")    stroke_width :      95 * " + d.target.shipment_count + "/" + highest_shipment + " = " + stroke_width);
+            return stroke_width;
+        }).transition().duration(duration).attr("d", diagonal);
+
+        link.transition().duration(duration).attr("d", diagonal);
+
+        link.exit().transition().duration(duration).attr("d", function(d) {
+            var o = {
+                x: source.x,
+                y: source.y
+            };
+            return diagonal({
+                source: o,
+                target: o
+            });
+        }).remove();
+
+        var k = 1;
+        var len = nodes.length;
+        if (!filterMode) {
+            nodes.reverse().forEach(function(d) {
+                d.x0 = d.x;
+                d.y0 = d.y;
+                if (slug != d.slug && nest) {
+                    var route = "{{ url('member_exporter_big_picture_json', { 'slug' : "PLACEHOLDER", 'mode' : "5000", 'key': "PLACEHOLDER2", 'sort': "PLACEHOLDER3", 'date_range': "PLACEHOLDER4", 'country': "PLACEHOLDER5", 'limit': "PLACEHOLDER6", 'offset': "PLACEHOLDER7" }) }}";
+                    route = route.replace("PLACEHOLDER", d.slug);
+                    route = route.replace("PLACEHOLDER2", key);
+                    route = route.replace("PLACEHOLDER3", sort);
+                    route = route.replace("PLACEHOLDER4", date_range);
+                    route = route.replace("PLACEHOLDER5", country);
+                    route = route.replace("PLACEHOLDER6", limit);
+                    route = route.replace("PLACEHOLDER7", offset);
+                    route = route.replace("5000", 1);
+                    $.getJSON(route, function(json) {
+                        if (typeof json.children !== 'undefined') {
+                            var newnodes = tree.nodes(json.children).reverse();
+                            d.children = newnodes[0];
+                            update(d, false);
+                        }
+                        if (k == len-1){
+                            preloader_img.hide();
+                        }
+                        k++;
+                    });
+                }
+            });
+        }
+    }
+
+    function toggle(d) {
+        if (d.children) {
+            d._children = d.children;
+            d.children = null;
+        } else {
+            d.children = d._children;
+            d._children = null;
+        }
+    }
+
+    </script>
+{% endblock %}

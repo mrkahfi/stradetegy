@@ -1,0 +1,75 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+        <a href="javascript:history.back()" class="button">Back</a>
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th>Compare By</th>
+                        {% for data in data %}
+                            {% set res = data.getPost|jsondecode %}
+                                <th>{{ res.company_name }}</th>
+
+                        {% endfor %}
+
+
+                    </tr>
+                    <tr>
+
+                        <th>Product Description</th>
+                        {% for data in data %}
+                            <td>{{ data.getHeader|readmore }}</td>
+                        {% endfor %}
+
+                    </tr>
+                    <tr>
+
+                        <th>Container Count</th>
+                        {% for data in data %}
+                            {% set res = data.getPost|jsondecode %}
+                            <td>{{ res.container_count }}</td>
+                        {% endfor %}
+
+                    </tr>
+                    <tr>
+
+                        <th>Total Shipment</th>
+                        {% for data in data %}
+                            {% set res = data.getPost|jsondecode %}
+                            <td>{{ res.shipment }}</td>
+                        {% endfor %}
+
+                    </tr>
+                    <tr>
+
+                        <th>Customer</th>
+                        {% for data in data %}
+                            {% set res = data.getPost|jsondecode %}
+                            <td>{{ res.customer }}</td>
+                        {% endfor %}
+
+                    </tr>
+                    <tr>
+
+                        <th>Last Export</th>
+                        {% for data in data %}
+                            {% set res = data.getPost|jsondecode %}
+                            <td>{{ res.arrivalDate }}</td>
+                        {% endfor %}
+
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}
+

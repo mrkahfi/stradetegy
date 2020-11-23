@@ -1,0 +1,37 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Previous Client{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_inbound_index') }}">Inbound Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_inbound_show', { 'id' : inbound.id }) }}">Inbound #{{ inbound.id }}</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Previous Client
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+      <div id="grid_paging"></div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var inbound_id = {{ inbound.id }};
+        $(function () {
+        });    
+    </script>
+    <script src="/bundles/jariffadmin/js/grid-inbound-previous-client.js"></script>
+{% endblock %}

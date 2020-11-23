@@ -1,0 +1,113 @@
+{% extends 'JariffProjectBundle::base_member.html.twig' %}
+
+{% form_theme form 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+    {% form_theme formCustom 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+        {% form_theme formCustomCountry 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+            {% form_theme formDateRange 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+
+                {% block content %}
+
+                    <div style="clear: both"></div>
+
+                    {% block menu_search_shipments %}
+                        {{ knp_menu_render('menu_member_search', {'currentClass' : 'active', 'id' : 'navigation','template': 'JariffProjectBundle:Menu:knp_menu_frontend.html.twig'}) }}
+                    {% endblock %}
+                    <div class="panel panel-default" style="margin-top:41px">
+                      <div class="panel-body">
+                        <div class="alert alert-info j-show-subscrib"></div>
+                        <div class="j-form-change" style="margin-top: 28px;">
+
+
+                            <form action="{{ path('member_search_shipments_submit') }}" method="POST" class="form-inline">
+
+                                {{ form_widget(formDateRange) }}
+
+                                {{ form_widget(formCustom) }}
+
+                                {{ form_widget(formCustomCountry) }}
+
+                                {{ form_start(form) }}
+
+                                {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+                                    <div class="j-show" data-prototype='{{ pro|raw }}'>
+
+
+                                        {% for i in 0..(form.collect|length-1) %}
+
+                                            {% if(i == 0) %}
+                                                {{ form_widget(form.collect[i]) }}
+                                                {{ form_widget(form.q[i]) }}
+
+                                                <button type="submit" class="btn btn-primary col-md-1">Search</button>
+
+                                            {% endif %}
+
+                                            {% if(i > 0) %}
+                                                <div class="j-is-remove">
+
+                                                    {{ form_widget(form.condition[i]) }}
+                                                    {{ form_widget(form.collect[i]) }}
+                                                    {{ form_widget(form.q[i]) }}
+                                                    <div class="form-group">
+                                                        <div class="col-md-1">
+                                                            <a href="#" class="j-different-remove col-md-1 btn btn-danger" aria-hidden="true"
+                                                            style="font-size: 16px;"
+                                                            title="Delete This Filter"> <span class="glyphicon glyphicon-remove"
+                                                            style="line-height: 2"></span> remove </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <div style="clear: both"></div>
+
+                                        <div class="j-add-filter"></div>
+                                    </div>
+                                    {{ form_end(form) }}
+
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                {% endblock %}
+
+                {% block javascript %}
+
+                    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+                    <script src="{{ asset('/bundles/jariffmember/js/search/trade-index-1.0.js')}}"></script>
+
+                    <script type="text/javascript">
+                       $('#demo_search_date_to').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            endDate: new Date(),
+                            startDate: "{{ currentDate }}"
+                        });
+                        $('#demo_search_date_from').datepicker({
+                            autoclose: true,
+                            format: 'yyyy-mm-dd',
+                            endDate: new Date(),
+                            startDate: "{{ currentDate }}"
+                        });
+
+                        
+                    </script>
+
+                    {% include "@JariffMember/Search/Shipments/Add/Form/loading.html.twig" %}
+                {% endblock %}
+
+                {% block style %}
+
+                  
+                  <link rel="stylesheet" type="text/css" href="{{ asset('bundles/jariffproject/frontend/css/datepicker.css') }}">
+                  <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/jariffmember/css/trade-style-1.0.css') }}">
+              {% endblock %}

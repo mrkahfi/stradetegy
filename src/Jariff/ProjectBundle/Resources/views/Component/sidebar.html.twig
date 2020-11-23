@@ -1,0 +1,315 @@
+
+    <!-- BEGIN USER SETTINGS -->
+    <div class="user-settings">
+        <div class="arrow"></div>
+        <h3 class="user-settings-title">Settings shortcuts</h3>
+
+        <div class="user-settings-content">
+            <a href="">
+                <div class="icon">
+                    <i class="icon-user"></i>
+                </div>
+                <div class="title">My Profile</div>
+                <div class="content">View your profile</div>
+            </a>
+            <a href="">
+                <div class="icon">
+                    <i class="icon-envelope"></i>
+                </div>
+                <div class="title">View Messages</div>
+                <div class="content">You have <strong>17</strong> new messages</div>
+            </a>
+            <a href="#view-pending-tasks">
+                <div class="icon">
+                    <i class="icon-tasks"></i>
+                </div>
+
+                <div class="title">View Tasks</div>
+                <div class="content">You have <strong>8</strong> pending tasks</div>
+            </a>
+        </div>
+        <div class="user-settings-footer">
+            <a href="#more-settings">See more settings</a>
+        </div>
+    </div>
+    <!-- END USER SETTINGS -->
+    <!-- BEGIN SIDEBAR CONTENT -->
+    <div class="social-sidebar-content">
+    <div class="scrollable">
+    <!-- BEGIN USER INFO SECTION -->
+    <div class="user">
+        <img class="avatar" width="25" height="25" src="{{ asset('/bundles/jariffproject/admin/img/avatar-30.png') }}"
+             alt="Julio Marquez">
+        <span>TRADEtegy</span>
+        <i class="icon-user trigger-user-settings"></i>
+    </div>
+    <!-- END USER INFO SECTION -->
+    <!-- BEGIN NAVIGATION CONTROLS -->
+    <div class="navigation-sidebar">
+        <i class="switch-sidebar-icon icon-align-justify"></i>
+    </div>
+    <!-- END NAVIGATION CONTROLS -->
+    <!-- BEGIN SEARCH SIDEBAR FORM -->
+    <div class="search-sidebar">
+        <img src="{{ asset('/bundles/jariffproject/admin/img/icons/stuttgart-icon-pack/32x32/search.png') }}"
+             alt="Search">
+
+        <form class="search-sidebar-form">
+            <input type="text" class="search-query input-block-level" placeholder="Search">
+        </form>
+    </div>
+    <!-- END SEARCH SIDEBAR FORM -->
+    <!-- BEGIN MENU SECTION -->
+    <section class="menu">
+    <!-- BEGIN ACCORDION SECTION -->
+    <div class="accordion" id="accordion2">
+
+    <!-- BEGIN ACCORDION GROUP -->
+
+    {{ knp_menu_render('menu_sidebar', {'currentClass' : 'active', 'id' : 'nav','template': 'JariffProjectBundle:Menu:knp_menu_sidebar.html.twig'}) }}
+
+
+    {#<ul class="accordion-group active">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<li class="accordion-heading">#}
+            {#<a class="accordion-toggle opened" href="Default/dashboard.html">#}
+                {#<img src="{{ asset('/bundles/jariffproject/admin/img/icons/stuttgart-icon-pack/32x32/home.png') }}"#}
+                     {#alt="Dashboard">#}
+                {#<span>Dashboard </span><span class="badge">9</span>#}
+            {#</a>#}
+        {#</li>#}
+
+
+        {#<!-- END ACCORDION HEADING -->#}
+    {#</ul>#}
+    <!-- END ACCORDION GROUP -->
+
+    <!-- BEGIN ACCORDION GROUP -->
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-ui-elements">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/database.png" alt="UI Elements">#}
+                {#<span>Menu 1 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-ui-elements" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="ui-elements/general.html">General</a></li>#}
+            {#<li><a href="ui-elements/jquery-ui.html">jQuery UI</a></li>#}
+            {#<li><a href="ui-elements/buttons.html">Buttons</a></li>#}
+            {#<li><a href="ui-elements/social-boxes.html">Social Boxes</a></li>#}
+            {#<li><a href="ui-elements/extra-plugins.html">Extra Plugins</a></li>#}
+            {#<li><a href="ui-elements/tabs-accordions.html">Tabs &amp; Accordions</a></li>#}
+            {#<li><a href="ui-elements/typography.html">Typography</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-form-stuff">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/sitemap.png" alt="Form Stuff">#}
+                {#<span>Menu 2 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-form-stuff" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="form-stuff/elements.html">Form elements</a></li>#}
+            {#<li><a href="form-stuff/validation.html">Form validation</a></li>#}
+            {#<li><a href="form-stuff/wizards.html">Wizards</a></li>#}
+            {#<li><a href="form-stuff/wysiwyg.html">WYSIWYG</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group  hidden-desktop">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-pages">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/star.png" alt="Pages">#}
+                {#<span>Menu 3 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-pages" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="pages/facebook-timeline.html">Facebook Timeline</a></li>#}
+            {#<li><a href="pages/basic-user-profile.html">Basic User Profile</a></li>#}
+            {#<li><a href="pages/chat-inbox.html">Chat Inbox</a></li>#}
+            {#<li><a href="pages/pricing-tables.html">Pricing Tables</a></li>#}
+            {#<li><a href="pages/email-templates.html">Email Templates</a></li>#}
+            {#<li><a href="pages/email-inbox.html">Email Inbox</a></li>#}
+            {#<li><a href="pages/search-results.html">Search Results</a></li>#}
+            {#<li><a href="pages/blog-category.html">Blog Category</a></li>#}
+            {#<li><a href="pages/blog-page.html">Blog Page</a></li>#}
+            {#<li><a href="pages/contact-us.html">Contact Us</a></li>#}
+            {#<li><a href="pages/404-page.html">404 Page</a></li>#}
+            {#<li><a href="pages/500-page.html">500 Page</a></li>#}
+            {#<li><a href="pages/invoice.html">Invoice</a></li>#}
+            {#<li><a href="pages/login.html">Login</a></li>#}
+            {#<li><a href="pages/faq.html">FAQ</a></li>#}
+            {#<li><a href="pages/features-page.html">Features Page</a></li>#}
+            {#<li><a href="pages/shop-category.html">Shop Category</a></li>#}
+            {#<li><a href="pages/shop-index.html">Shop Index</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group  hidden-desktop">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-layouts">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/archives.png" alt="Layouts">#}
+                {#<span>Menu 4 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-layouts" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="layouts/blank-page.html">Blank Page</a></li>#}
+            {#<li><a href="layouts/full-width-page.html">Full Width Page</a></li>#}
+            {#<li><a href="layouts/expanded-sidebar.html">Expanded Sidebar</a></li>#}
+            {#<li><a href="layouts/sticky-footer.html">Sticky footer</a></li>#}
+            {#<li><a href="layouts/auto-hide-sidebar.html">Auto-Hide Sidebar</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " href="charts.html">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/statistics.png" alt="Charts">#}
+                {#<span>Menu 5 </span><span class="badge">4</span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-tables">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/invoice.png" alt="Tables">#}
+                {#<span>Menu 6 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-tables" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="tables/basic.html">Basic tables</a></li>#}
+            {#<li><a href="tables/dynamic.html">Dynamic tables</a></li>#}
+            {#<li><a href="tables/responsive.html">Responsive Tables</a></li>#}
+            {#<li><a href="tables/jquery.html">jQuery Style</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-files-media">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/photography.png" alt="Files &amp; Media">#}
+                {#<span>Menu 7 </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-files-media" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="files-media/gallery.html">Gallery</a></li>#}
+            {#<li><a href="files-media/file-uploaders.html">File Uploaders</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " href="calendar.html">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/calendar.png" alt="Calendar">#}
+                {#<span>Menu 8 </span><span class="badge">1</span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+    {#</div>#}
+    {#<!-- END ACCORDION GROUP -->#}
+
+    {#<!-- BEGIN ACCORDION GROUP -->#}
+    {#<div class="accordion-group ">#}
+        {#<!-- BEGIN ACCORDION HEADING -->#}
+        {#<div class="accordion-heading">#}
+            {#<a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-maps">#}
+                {#<img src="../assets/img/icons/stuttgart-icon-pack/32x32/world.png" alt="Maps">#}
+                {#<span>Etc </span><span class="arrow"></span>#}
+            {#</a>#}
+        {#</div>#}
+        {#<!-- END ACCORDION HEADING -->#}
+        {#<!-- BEGIN MENU LIST ITEMS -->#}
+        {#<ul id="collapse-maps" class="accordion-body nav nav-list collapse ">#}
+            {#<li><a href="maps/vector.html">Vector Maps</a></li>#}
+            {#<li><a href="maps/google.html">Google Maps</a></li>#}
+        {#</ul>#}
+        {#<!-- END MENU LIST ITEMS -->#}
+    {#</div>#}
+    <!-- END ACCORDION GROUP -->
+    </div>
+    <!-- END ACCORDION SECTION -->
+    </section>
+    <!-- END MENU SECTION -->
+
+    </div>
+    <!-- BEGIN CHAT USERS LIST 
+    <div class="chat-users">
+        <div class="no-user">User not found</div>
+        <ul class="user-list">
+            <li>
+                <a data-firstname="Cesar" data-lastname="Mendoza" data-status="online" data-userid="1" href="#">
+                    <img src="{{ asset('bundles/jariffproject/admin/img/people-face/user2_22.jpg') }}" alt="">
+                    <span>Cesar Mendoza</span>
+                    <i class="icon-circle user-status online"></i>
+                </a>
+            </li>
+        </ul>
+
+
+        <form class="user-filter">
+            <div class="input-prepend open">
+                <div class="btn-group dropup">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left">
+                        <li><a href="#">Chat Sounds</a></li>
+                        <li><a href="#">Advanced Settings...</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Turn Off Chat</a></li>
+                    </ul>
+                </div>
+                <input type="text" class="input-filter" placeholder="Search user...">
+            </div>
+        </form>
+    </div>-->
+    <!-- END CHAT USERS LIST -->
+    </div>
+    <!-- END SIDEBAR CONTENT -->
+
+
+

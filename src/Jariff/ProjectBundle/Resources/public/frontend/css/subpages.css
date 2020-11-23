@@ -1,0 +1,96 @@
+
+*:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+#logo a.standard-logo {padding:0;}
+#footer .footer-widgets-wrap {position: relative; padding: 40px 0;}
+#header, #header-wrap, #logo img, #primary-menu:not(.style-2), #primary-menu:not(.style-2) > ul {height:60px;}
+#top-search {margin: 20px 0 20px 15px;}
+
+.shipment-section.selected {
+    border: 2px solid #bdc3c7;
+    padding: 1.5em;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+#posts p {
+	font-size: 1em;
+	line-height: 1.5em;
+	margin-bottom: 0.75em;
+	max-width: 37.5em;
+}
+
+#posts table.tightTable {font-size: 0.875em;}
+#posts table {width: 100%; border-collapse: collapse;}
+#posts table thead {background-color: #ecf0f1;}
+#posts table.tightTable th {padding: 0.375em 0.625em;}
+#posts table.monospace tr td {font-family: Menlo,Monaco,Consolas,"Courier New",monospace;text-transform: uppercase;}
+#posts .learnMore {display: inline-block;width: 100%;background-color: #ecf0f1;padding: .75em;}
+#posts .locked-content-preview {background: url(../images/profile-hiddenstriped.0082629cfd92fe9d.jpg); padding-top: 100px;height: 150px; background-size: cover;}
+#posts .numberedList {list-style: decimal inside none;}
+#posts .numberedList li {margin: 4px 0;}
+#posts progress {width: 100%;background-color: #ecf0f1;border: none;height: 1.5em;border-radius: 4px;}
+#posts .learnMore {display: inline-block;width: 100%;background-color: #ecf0f1;padding: .75em;}
+#posts .size1of1 {width: 100%;}
+#posts .top-item-link {width: 200px;display: inline-block;text-decoration: none;}
+#posts section {display: block;overflow: hidden;width: 100%;}
+#posts .size1of3 {width: 33.33333333333333%;}
+#posts .size1of6 {width: 16.666666666667%;}
+#posts .line {border-top: none}
+#posts table tr {border-bottom: 2px solid #ecf0f1;}
+#posts table tr:first-of-type {border-left: none;}
+#posts .label {display: inline-block;font-weight: bold;margin-bottom: 0.25em;min-width: 3.75em;max-width: 37.5em;width: 100%;}
+#posts table td {border-left: 2px solid #ecf0f1;}
+#posts .vcard.translate {display: block;width: 100%;overflow: hidden;}
+#posts #suggestions td {vertical-align: top;border: none !important;}
+#posts table.tightTable td, .everest table.tightTable th {padding: 0.375em 0.625em;}
+#posts table.tightTable li {list-style-type: none}
+
+#trading-partners {margin-top:30px;}
+#trading-partners .line {margin:0;}
+#trading-partners .networkMap {	background-image: url(../images/networtmap.485ccd742cfb8541.png);height: 410px;padding: 1.5em;padding-top: 0;background-size: cover;}
+#trading-partners .network-view-banner {	border: 2px solid #bdc3c7;	padding: 1.5em;	border-radius: 4px;}
+#trading-partners .networkMap .networkMapTagline {	margin-bottom: 240px;	max-width: 100%;}
+#trading-partners .networkMap p {font-weight: bold;}
+
+#trading-partners .size1of2 {width: 50%;}
+#trading-partners .unit {overflow: hidden;-moz-background-clip: padding-box !important;-webkit-background-clip: padding-box !important;background-clip: padding-box !important;float: left;padding-right: 1.5em;}
+#trading-partners .numberedList {margin-bottom: 10px;}
+#trading-partners .numberedList span.progress-bar {float: right;}
+
+.network-view-banner.unit.size1of1.lastUnit {margin-bottom: 20px;}
+
+.progress-bar {
+	float: left;
+	width: auto !important;
+	height: 100%;
+	font-size: 12px;
+	line-height: inherit !important;
+	color: #ffffff;
+	text-align: center;
+	background-color: #fff;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	-webkit-transition: width 0.6s ease;
+	-o-transition: width 0.6s ease;
+	transition: width 0.6s ease;
+}
+
+ol.numberedList li a {text-transform: capitalize;}
+hr {border: 1px solid #ecf0f1;margin: 1.5em 0;}
+
+#cr_detail {padding:30px 0;}
+#cr_detail .sample_bol {border: 2px solid #bdc3c7;padding: 1.5em;border-radius: 4px;display: inline-block;}
+#cr_detail table td:first-of-type {width: 150px;}
+#cr_detail .label {text-align: right;}
+#cr_detail td {text-align: left;padding: 2px 10px;text-align: left;}
+#cr_detail td.label {color: #000;font-size: 14px;font-weight: 400 !important;border-left: none !important;}
+
+#suggestions p.translate, #suggestions li a {font-size:1.25em;}
+.hero {width: 100%;margin: 0;padding: 20px 0;background-color: #ecf0f1;}
+.hero .profileHeader, .hero .profileHeader {margin-right: 1.5em;}

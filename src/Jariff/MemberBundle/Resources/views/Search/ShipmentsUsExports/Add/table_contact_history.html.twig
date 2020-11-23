@@ -1,0 +1,17 @@
+<table class="table table-bordered">
+
+    <tbody>
+    {% for row in entitiesContactHistory %}
+        <tr>
+            <td>{{ row.getCompanyName }}</td>
+            <td>{{ row.getRequestAt|date("F jS \\a\\t g:ia Y T") }}</td>
+        </tr>
+    {% endfor %}
+    {% if entitiesContactHistory is empty %}
+
+        <tr>
+            <td>You not Select from the list of companies</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

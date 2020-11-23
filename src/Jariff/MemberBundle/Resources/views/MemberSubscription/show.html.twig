@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MemberSubscription</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ entity.active }}</td>
+            </tr>
+            <tr>
+                <th>Bigpicture</th>
+                <td>{{ entity.bigPicture }}</td>
+            </tr>
+            <tr>
+                <th>Bigpicturevalue</th>
+                <td>{{ entity.bigPictureValue }}</td>
+            </tr>
+            <tr>
+                <th>Dateactivation</th>
+                <td>{{ entity.dateActivation|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datecanceled</th>
+                <td>{{ entity.cancelDate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datesuspended</th>
+                <td>{{ entity.dateSuspended|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Download</th>
+                <td>{{ entity.download }}</td>
+            </tr>
+            <tr>
+                <th>Downloadvalue</th>
+                <td>{{ entity.downloadValue }}</td>
+            </tr>
+            <tr>
+                <th>History</th>
+                <td>{{ entity.history }}</td>
+            </tr>
+            <tr>
+                <th>Historyvalue</th>
+                <td>{{ entity.historyValue }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ entity.number }}</td>
+            </tr>
+            <tr>
+                <th>Search</th>
+                <td>{{ entity.search }}</td>
+            </tr>
+            <tr>
+                <th>Searchvalue</th>
+                <td>{{ entity.searchValue }}</td>
+            </tr>
+            <tr>
+                <th>Training</th>
+                <td>{{ entity.training }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('subscription') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('subscription_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

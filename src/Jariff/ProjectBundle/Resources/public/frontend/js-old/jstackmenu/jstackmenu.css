@@ -1,0 +1,145 @@
+.ui-stackmenu {
+	position: relative;
+}
+
+.ui-stackmenu-item {
+	position: absolute;
+}
+
+#stack {
+    width: 48px;
+    /*height: 68px;*/
+    /*padding: 0;*/
+    /*position: absolute;*/
+    /*left: 100px;*/
+    /*bottom: 10px;*/
+}
+
+
+#stack .trigger {
+    position: absolute;
+    z-index: 50;
+    /*height: 64px;*/
+    /*width: 64px;*/
+    padding: 2px;
+    /*left: 0;*/
+    /*top: 0;*/
+    cursor: pointer;
+}
+
+#stack ul {
+    /*position: absolute;*/
+    top: 0;
+    left: 3px;
+    height: 64px;
+    width: 32px;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#stack ul li {
+    display: block;
+    padding: 0px;
+    width: 32px;
+    height: 32px;
+    margin: 6px 0;
+}
+
+#stack ul li .title {
+    display: none;
+}
+
+#stack ul li a:hover .title {
+    display: block;
+    position: absolute;
+    right: 38px;
+    top: 8px;
+    padding: 1px 8px;
+    height: 14px;
+    font-size: 11px;
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+
+}
+
+#stack ul li img {
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    box-shadow: 0 0 5px #222;
+    -webkit-box-shadow: 0 0 5px #222;
+    -moz-box-shadow: 0 0 5px #222;
+    -o-box-shadow: 0 0 5px #222;
+    border: none 0;
+    padding: 2px;
+    background-color: #fff;
+}
+
+#stack ul li a:hover img,
+#stack ul li a:hover .title {
+    box-shadow: 0 0 10px #00a;
+    -webkit-box-shadow: 0 0 10px #00a;
+    -moz-box-shadow: 0 0 10px #00a;
+    -o-box-shadow: 0 0 10px #00a;
+}
+
+
+
+#stack .trigger {
+    /*border-radius: 5px;*/
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*box-shadow: 0 0 3px #222;*/
+    /*-webkit-box-shadow: 0 0 3px #222;*/
+    /*-moz-box-shadow: 0 0 3px #222;*/
+    /*-o-box-shadow: 0 0 3px #222;*/
+    /*background-color: #7ee6ff;*/
+}
+
+
+#click-me-message {
+    position: absolute;
+    left: 180px;
+    bottom: 30px;
+    width: 300px;
+    padding: 0 0 10px 75px;
+    font-family: JournalRegular;
+    font-size: 45px;
+
+    background-image: url("arrow.png");
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+}
+
+
+#sources {
+    position: absolute;
+    bottom: 10px;
+    right: 50px;
+    margin: 0;
+}
+
+#sources li {
+    display: block;
+    list-style-type: none;
+}
+
+#sources li:before {
+    content: "* ";
+}
+
+#sources a {
+    text-decoration: none;
+    color: #6cd5f0;
+}
+
+.footer .trigger-rewrite{
+    float: right;
+    padding-left: 10px;
+    cursor: pointer;
+}

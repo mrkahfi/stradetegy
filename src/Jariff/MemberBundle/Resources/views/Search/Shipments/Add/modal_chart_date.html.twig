@@ -1,0 +1,34 @@
+<div id="chart_div_component">
+
+</div>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+
+    google.load("visualization", "1", {packages: ["corechart"]});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+        var jsonData = $.ajax({
+            url: "{{ path('member_chart_shipments',{'s_cache' : app.request.get('s_cache')}) }}",
+            dataType: "json",
+            async: false
+        }).responseText;
+
+        var obj = jQuery.parseJSON(jsonData);
+
+        var data = google.visualization.arrayToDataTable(obj);
+
+        var options = {
+            title: 'Month Total Shipments',
+            hAxis: {title: 'Month/Year', titleTextStyle: {color: 'red'}, 'width': 900}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div_component'));
+
+        chart.draw(data, options);
+
+    }
+
+</script>

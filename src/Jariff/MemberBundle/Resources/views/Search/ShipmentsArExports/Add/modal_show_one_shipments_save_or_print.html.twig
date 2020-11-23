@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+</head>
+<body>
+<img src="http://stradetegy.com/bundles/jariffproject/frontend/images/logo.png"
+     alt="stradetegy Logo">
+<h3 style="text-align:center">{{ entity['export_id'] }}</h3><br/>
+<table class="table table-hover">
+    <tbody>
+    {% for key,text in 'st_show_field'|ar_exports_column_view %}
+        {% if entity[key] is defined %}
+            <tr>
+                <th scope="row" style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;text-align: left;">{{ text }}</th>
+                {% if key == 'date' %}
+                    <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|date('Y-m-d') }}</td>
+                {% else %}
+                    {% if key == 'product' %}
+                        <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|raw }}</td>
+                    {% else %}
+                        {% if key == 'gross_weight' %}
+                            <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|setting_gross_weight('KG',app.user.id) }}</td>
+                        {% else %}
+                            <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key] }}</td>
+                        {% endif %}
+                    {% endif %}
+
+                {% endif %}
+
+
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

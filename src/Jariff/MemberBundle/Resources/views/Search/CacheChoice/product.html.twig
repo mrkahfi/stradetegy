@@ -1,0 +1,138 @@
+<div class="menu-cache" xmlns="http://www.w3.org/1999/html">
+
+    <div id="noti_Container">
+        <a href="{{ path('member_compare_detail',{'category':'product'}) }}">
+            <img src="{{ asset('bundles/jariffproject/frontend/images-old/document-copy-icon.png') }}"/>
+
+            <div class="noti_bubble">{{ countHistory }}</div>
+        </a>
+    </div>
+    {#<div id="historys">#}
+    {#<a href="">#}
+    {#<img src="{{ asset('bundles/jariffproject/frontend/images/History-Folder-Blue-icon.png') }}"/>#}
+    {#</a>#}
+    {#</div>#}
+    {#<div id="keep-data">#}
+    {#<a href="">#}
+    {#<img src="{{ asset('bundles/jariffproject/frontend/images/keep-icon.png') }}"/>#}
+    {#</a>#}
+    {#</div>#}
+</div>
+<div style="clear: both"></div>
+{% for resData in data %}
+
+    <div class="span6 popresult cache-show {% if check[loop.index - 1].getIsCompare %}disable-cache{% endif %}">
+
+        <div class="wrap-ribbon right-edge point lblue product lblue-strade"><span class="strade">Product <beta
+                        style="color: #e6e6e6">Beta
+                </beta></span>
+        </div>
+        {#<a href="{{ asset('bundles/jariffproject/frontend/images/logo.gif') }}" class="lightbox"#}
+        {#title="Watch Lorde-Royals"><img#}
+        {#class="popchart-img" alt=""#}
+        {#src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"#}
+        {#width="170" height="170" style=""></a>#}
+
+        <h1 class="header-search-trade product-header">
+            {#<img#}
+            {#src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/48/'~res.getTransformed.getValue.getCountry|twolettercode~".png") }}">#}
+
+            <span class="imartist">
+                <a href="javascript:void(0);" style="color: #BC3415" class="j-add-tab-products"
+                   data-url="{{ path('member_cache_group_searching',{'category':'product','slug' : resData.getSlugShipperName }) }}">
+
+                    {{ check[loop.index - 1].getHeader|raw }}</strong></strong>
+
+                </a>
+            </span>
+            <br/>
+        <span>Imported From {{ (resData.getSlugCountry|twolettercodeslug)['country'] }} <br/>
+            <n>Sent by Company {{ (resData.getShipperName) }}</n>
+        </span>
+
+        </h1>
+                <span class="charts-p">
+                    <span class="imname">
+                        <br/>
+                        {{ check[loop.index - 1].getBody|raw }}</strong>
+                        <br/>
+                        Purchased by {{ (resData.getConsigneeName) }}
+                        , {{ resData.getSlugCountryOriConsignee }}
+
+                        Gross weight : {{ resData.getTotalWeight|setting_gross_weight(app.user) }} KG
+
+
+                    </span>
+                </span>
+
+        <span class="image_rollover">
+            <a href="javascript:void(0)" class="j-remove-product-remove"
+               data-url="{{ path('member_cache_group_searching_remove',{'category':'product','slug':resData.getSlugShipperName}) }}"></a>
+            <a href="javascript:void(0)"
+               data-url="{{ path('member_cache_group_is_compare',{'category':'product','slug':resData.getSlugShipperName}) }}"
+               class="j-add-compare"></a>
+            <a href="{{ path('member_importer_detail',{'slug':resData.getSlugShipperName}) }}"></a>
+        </span>
+
+
+    </div>
+{% endfor %}
+
+ {% block js_call %}
+     <script src="{{ asset('bundles/jariffproject/frontend/js-old/jackbox.js') }}"></script>
+     <script src="{{ asset('bundles/jariffproject/frontend/js-old/jackbox-lib.js') }}"></script>
+
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $('.j-remove-product-remove').on('click', function () {
+                 var nThis = $(this);
+                 $.ajax({
+                     type: 'GET',
+                     url: $(this).attr('data-url'),
+                     success: function (data) {
+                         ajaxResultData($('.j-searching').serialize());
+                         $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                         nThis.parent('.image_rollover').parent('.cache-show').remove();
+
+                     }
+                 })
+             })
+
+             $('.j-add-compare').on('click', function () {
+                 var nThis = $(this);
+                 $.ajax({
+                     type: 'GET',
+                     url: $(this).attr('data-url'),
+                     success: function (data) {
+                         $(nThis).parent('.image_rollover').parent('.cache-show').addClass('disable-cache');
+                         $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                     }
+                 })
+             })
+
+             function ajaxResultData(formSubmit) {
+                 $.ajax({
+                     type: 'GET',
+                     url: Routing.generate('member_search_global_result_ajax',{s_cache:'{{ app.request.get('s_cache') }}'}),
+
+                     beforeSend: function () {
+                         $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                                 '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                                 '<h5 style="margin-top: 15px">Loading...</h5>' +
+                                 '</div>');
+                     },
+                     success: function (data) {
+                         var res = JSON.parse(data);
+
+                         if (res.success) {
+                             $('#page1').html(res.html_string);
+
+                             return false;
+                         }
+                     }
+                 });
+             }
+         })
+     </script>
+ {% endblock %}
+

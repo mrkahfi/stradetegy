@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<!--
+  Product:        Social - Premium Responsive Admin Template
+  Version:        v1.3.1
+  Copyright:      2013 CesarLab.com
+  License:        http://themeforest.net/licenses
+  Live Preview:   http://go.cesarlab.com/SocialAdminTemplate
+  Purchase:       http://go.cesarlab.com/PurchaseSocial
+-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Social - Premium Responsive Admin Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="shortcut icon" href="../assets/img/favicon.ico?v1.3.1" />
+  <link rel="icon" type="image/gif" href="../assets/img/favicon.gif?v1.3.1">
+
+  <!-- BEGIN STYLE CODES -->
+  <link href="../assets/css/twitter-bootstrap/bootstrap.css?v1.3.1" rel="stylesheet">
+  <link href="../assets/css/social-jquery-ui-1.10.0.custom.css?v1.3.1" rel="stylesheet">
+  <link href="../assets/css/social.css?v1.3.1" rel="stylesheet">
+  <link href="../assets/css/social.plugins.css?v1.3.1" rel="stylesheet">
+  <link href="../assets/css/font-awesome.css?v1.3.1" rel="stylesheet">
+  <link href="../assets/css/social-coloredicons-buttons.css?v1.3.1" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="/templates/social/assets/css/social-jquery.ui.1.10.0.ie.css"/>
+    <![endif]-->
+
+    <!-- BEGIN STYLE CODE FOR THE CURRENT PAGE -->
+    <!-- END STYLE CODE FOR THE CURRENT PAGE -->
+    <link href="../assets/css/demo.css?v1.3.1" rel="stylesheet">
+    <link href="../assets/plugins/jquery.uipro/style.css?v1.3.1" rel="stylesheet">
+    <link href="../assets/plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.css?v1.3.1" rel="stylesheet">
+    <link href="../assets/css/themes/social.theme-blue.css?v1.3.1" rel="stylesheet" id="theme">
+    <link href="../assets/css/twitter-bootstrap/bootstrap-responsive.css?v1.3.1" rel="stylesheet">
+    <!-- BEGIN STYLE CODE FOR THE CURRENT PAGE -->
+
+    <link href="../assets/plugins/jquery.jqvmap/jqvmap.css?v1.3.1" rel="stylesheet">
+    <style>
+    #justGaugeExamples{
+      text-align: center;
+      height: 300px;
+    }
+    #g1, #g2 {
+      width:200px; height:160px;
+      display: inline-block;
+      margin-top: -5px;
+      /*margin: 5px;*/
+    }
+    </style>
+    <!-- END STYLE CODE FOR THE CURRENT PAGE -->
+
+    <style>
+    .wraper #main{
+      margin-top: 40px;
+    }
+    </style>
+    <!-- END STYLE CODES -->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/templates/social/assets/plugins/html5shiv.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+      <!-- BEGIN WRAPER -->
+      <div class="wraper sidebar-full">
+        <!-- BEGIN SIDEBAR -->
+        <aside class="social-sidebar sidebar-full">
+          <!-- BEGIN USER SETTINGS -->
+          <div class="user-settings">
+            <div class="arrow"></div>
+            <h3 class="user-settings-title">Settings shortcuts</h3>
+            <div class="user-settings-content">
+              <a href="pages/basic-user-profile.html">
+                <div class="icon">
+                  <i class="icon-user"></i>
+                </div>
+                <div class="title">My Profile</div>
+                <div class="content">View your profile</div>
+              </a>
+              <a href="pages/chat-inbox.html">
+                <div class="icon">
+                  <i class="icon-envelope"></i>
+                </div>
+                <div class="title">View Messages</div>
+                <div class="content">You have <strong>17</strong> new messages</div>
+              </a>
+              <a href="#view-pending-tasks">
+                <div class="icon">
+                  <i class="icon-tasks"></i>
+                </div>
+
+                <div class="title">View Tasks</div>
+                <div class="content">You have <strong>8</strong> pending tasks</div>
+              </a>
+            </div>
+            <div class="user-settings-footer">
+              <a href="#more-settings">See more settings</a>
+            </div>
+          </div>
+          <!-- END USER SETTINGS -->
+          <!-- BEGIN SIDEBAR CONTENT -->
+          <div class="social-sidebar-content">
+            <div class="scrollable">
+              <!-- BEGIN USER INFO SECTION -->
+              <div class="user">
+                <img class="avatar" width="25" height="25" src="../assets/img/avatar-30.png" alt="Julio Marquez">
+                <span>Julio Marquez</span>
+                <i class="icon-user trigger-user-settings"></i>
+              </div>
+              <!-- END USER INFO SECTION -->
+              <!-- BEGIN NAVIGATION CONTROLS -->
+              <div class="navigation-sidebar">
+                <i class="switch-sidebar-icon icon-align-justify"></i>
+              </div>
+              <!-- END NAVIGATION CONTROLS -->
+              <!-- BEGIN SEARCH SIDEBAR FORM -->
+              <div class="search-sidebar">
+                <img src="../assets/img/icons/stuttgart-icon-pack/32x32/search.png" alt="Search">
+                <form class="search-sidebar-form">
+                  <input type="text" class="search-query input-block-level" placeholder="Search">
+                </form>
+              </div>
+              <!-- END SEARCH SIDEBAR FORM -->
+              <!-- BEGIN MENU SECTION -->
+              <section class="menu">
+                <!-- BEGIN ACCORDION SECTION -->
+                <div class="accordion" id="accordion2">
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group active">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle opened" href="dashboard.html">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/home.png" alt="Dashboard">
+                        <span>Dashboard </span><span class="badge">9</span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-ui-elements">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/database.png" alt="UI Elements">
+                        <span>UI Elements </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-ui-elements" class="accordion-body nav nav-list collapse ">
+                      <li><a href="ui-elements/general.html">General</a></li>
+                      <li><a href="ui-elements/jquery-ui.html">jQuery UI</a></li>
+                      <li><a href="ui-elements/buttons.html">Buttons</a></li>
+                      <li><a href="ui-elements/social-boxes.html">Social Boxes</a></li>
+                      <li><a href="ui-elements/extra-plugins.html">Extra Plugins</a></li>
+                      <li><a href="ui-elements/tabs-accordions.html">Tabs &amp; Accordions</a></li>
+                      <li><a href="ui-elements/typography.html">Typography</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-form-stuff">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/sitemap.png" alt="Form Stuff">
+                        <span>Form Stuff </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-form-stuff" class="accordion-body nav nav-list collapse ">
+                      <li><a href="form-stuff/elements.html">Form elements</a></li>
+                      <li><a href="form-stuff/validation.html">Form validation</a></li>
+                      <li><a href="form-stuff/wizards.html">Wizards</a></li>
+                      <li><a href="form-stuff/wysiwyg.html">WYSIWYG</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group  hidden-desktop">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-pages">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/star.png" alt="Pages">
+                        <span>Pages </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-pages" class="accordion-body nav nav-list collapse ">
+                      <li><a href="pages/facebook-timeline.html">Facebook Timeline</a></li>
+                      <li><a href="pages/basic-user-profile.html">Basic User Profile</a></li>
+                      <li><a href="pages/chat-inbox.html">Chat Inbox</a></li>
+                      <li><a href="pages/pricing-tables.html">Pricing Tables</a></li>
+                      <li><a href="pages/email-templates.html">Email Templates</a></li>
+                      <li><a href="pages/email-inbox.html">Email Inbox</a></li>
+                      <li><a href="pages/search-results.html">Search Results</a></li>
+                      <li><a href="pages/blog-category.html">Blog Category</a></li>
+                      <li><a href="pages/blog-page.html">Blog Page</a></li>
+                      <li><a href="pages/contact-us.html">Contact Us</a></li>
+                      <li><a href="pages/404-page.html">404 Page</a></li>
+                      <li><a href="pages/500-page.html">500 Page</a></li>
+                      <li><a href="pages/invoice.html">Invoice</a></li>
+                      <li><a href="pages/login.html">Login</a></li>
+                      <li><a href="pages/faq.html">FAQ</a></li>
+                      <li><a href="pages/features-page.html">Features Page</a></li>
+                      <li><a href="pages/shop-category.html">Shop Category</a></li>
+                      <li><a href="pages/shop-index.html">Shop Index</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group  hidden-desktop">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-layouts">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/archives.png" alt="Layouts">
+                        <span>Layouts </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-layouts" class="accordion-body nav nav-list collapse ">
+                      <li><a href="layouts/blank-page.html">Blank Page</a></li>
+                      <li><a href="layouts/full-width-page.html">Full Width Page</a></li>
+                      <li><a href="layouts/expanded-sidebar.html">Expanded Sidebar</a></li>
+                      <li><a href="layouts/sticky-footer.html">Sticky footer</a></li>
+                      <li><a href="layouts/auto-hide-sidebar.html">Auto-Hide Sidebar</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " href="charts.html">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/statistics.png" alt="Charts">
+                        <span>Charts </span><span class="badge">4</span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-tables">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/invoice.png" alt="Tables">
+                        <span>Tables </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-tables" class="accordion-body nav nav-list collapse ">
+                      <li><a href="tables/basic.html">Basic tables</a></li>
+                      <li><a href="tables/dynamic.html">Dynamic tables</a></li>
+                      <li><a href="tables/responsive.html">Responsive Tables</a></li>
+                      <li><a href="tables/jquery.html">jQuery Style</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-files-media">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/photography.png" alt="Files &amp; Media">
+                        <span>Files &amp; Media </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-files-media" class="accordion-body nav nav-list collapse ">
+                      <li><a href="files-media/gallery.html">Gallery</a></li>
+                      <li><a href="files-media/file-uploaders.html">File Uploaders</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " href="calendar.html">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/calendar.png" alt="Calendar">
+                        <span>Calendar </span><span class="badge">1</span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+
+                  <!-- BEGIN ACCORDION GROUP -->
+                  <div class="accordion-group ">
+                    <!-- BEGIN ACCORDION HEADING -->
+                    <div class="accordion-heading">
+                      <a class="accordion-toggle " data-toggle="collapse" data-parent="#accordion2" href="#collapse-maps">
+                        <img src="../assets/img/icons/stuttgart-icon-pack/32x32/world.png" alt="Maps">
+                        <span>Maps </span><span class="arrow"></span>
+                      </a>
+                    </div>
+                    <!-- END ACCORDION HEADING -->
+                    <!-- BEGIN MENU LIST ITEMS -->
+                    <ul id="collapse-maps" class="accordion-body nav nav-list collapse ">
+                      <li><a href="maps/vector.html">Vector Maps</a></li>
+                      <li><a href="maps/google.html">Google Maps</a></li>
+                    </ul>
+                    <!-- END MENU LIST ITEMS -->
+                  </div>
+                  <!-- END ACCORDION GROUP -->
+                </div>
+                <!-- END ACCORDION SECTION -->
+              </section>
+              <!-- END MENU SECTION -->
+
+            </div>
+            <!-- BEGIN CHAT USERS LIST -->
+            <div class="chat-users">
+              <div class="no-user">User not found</div>
+              <ul class="user-list">
+                <li>
+                  <a data-firstname="Cesar" data-lastname="Mendoza" data-status="online" data-userid="1" href="#">
+                    <img src="../assets/img/people-face/user2_22.jpg" alt="">
+                    <span>Cesar Mendoza</span>
+                    <i class="icon-circle user-status online"></i>
+                  </a>
+                </li>
+                <li>
+                  <a data-firstname="Yadra" data-lastname="Abels" data-status="offline" data-userid="2" href="#">
+                    <img src="../assets/img/people-face/user1_22.jpg" alt="">
+                    <span>Yadra Abels</span>
+                    <i class="icon-circle user-status offline"></i>
+                  </a>
+                </li>
+                <li>
+                  <a data-firstname="Tobei" data-lastname="Tsumura" data-status="online" data-userid="3" href="#">
+                    <img src="../assets/img/people-face/user4_22.jpg" alt="">
+                    <span>Tobei Tsumura</span>
+                    <i class="icon-circle user-status online"></i>
+                  </a>
+                </li>
+                <li>
+                  <a data-firstname="John" data-lastname="Doe" data-status="offline" data-userid="4" href="#">
+                    <img src="../assets/img/people-face/user3_22.jpg" alt="">
+                    <span>John Doe</span>
+                    <i class="icon-circle user-status offline"></i>
+                  </a>
+                </li>
+              </ul>
+
+
+              <form class="user-filter">
+                <div class="input-prepend open">
+                  <div class="btn-group dropup">
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                      <i class="icon-cog"></i>
+                    </button>
+                    <ul class="dropdown-menu pull-left">
+                      <li><a href="#">Chat Sounds</a></li>
+                      <li><a href="#">Advanced Settings...</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Turn Off Chat</a></li>
+                    </ul>
+                  </div>
+                  <input type="text" class="input-filter" placeholder="Search user...">
+                </div>
+              </form>
+            </div>
+            <!-- END CHAT USERS LIST -->
+          </div>
+          <!-- END SIDEBAR CONTENT -->
+        </aside>
+        <!-- END SIDEBAR -->
+        <header>
+          <!-- BEGIN NAVBAR -->
+          <nav class="navbar navbar-blue navbar-fixed-top social-navbar">
+           <div class="navbar-inner">
+             <div class="container-fluid">
+               <!-- BEGIN SIDEBAR COLLAPSER -->
+               <a class="btn btn-navbar" data-toggle="collapse" data-target=".social-sidebar">
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+               </a>
+               <!-- END SIDEBAR COLLAPSER -->
+               <!-- BEGIN BRAND LINK -->
+               <a class="brand" href="dashboard.html">
+                 Social
+               </a>
+               <!-- END BRAND LINK -->
+               <ul class="nav visible-desktop">
+                <!--  -->
+                <li class="dropdown ">
+                  <a href="#pages" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+
+                    <!--  -->
+                    <li>
+                      <a href="pages/email-templates.html">Email Templates</a>
+                    </li>
+                    <!--  -->
+                    <!--  -->
+                    <li>
+                      <a href="pages/search-results.html">Search Results</a>
+                    </li>
+                    <!--  -->
+                    <!--  -->
+                    <li>
+                      <a href="pages/invoice.html">Invoice</a>
+                    </li>
+                    <!--  -->
+                    <!--  -->
+                    <li>
+                      <a href="pages/login.html">Login</a>
+                    </li>
+                    <!--  -->
+                    <!--  -->
+                    <li>
+                      <a href="pages/faq.html">FAQ</a>
+                    </li>
+                    <!--  -->
+                    <li class="dropdown-submenu">
+                      <a tabindex="-1" href="#timelines">Timelines</a>
+                      <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="pages/facebook-timeline.html">Facebook Timeline</a></li></ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#userprofiles">User Profiles</a>
+                        <ul class="dropdown-menu">
+                          <li><a tabindex="-1" href="pages/basic-user-profile.html">Basic User Profile</a></li></ul>
+                        </li>
+                        <li class="dropdown-submenu">
+                          <a tabindex="-1" href="#inbox">Inbox</a>
+                          <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="pages/chat-inbox.html">Chat Inbox</a></li>
+                            <li><a tabindex="-1" href="pages/email-inbox.html">Email Inbox</a></li></ul>
+                          </li>
+                          <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#business">Business</a>
+                            <ul class="dropdown-menu">
+                              <li><a tabindex="-1" href="pages/pricing-tables.html">Pricing Tables</a></li>
+                              <li><a tabindex="-1" href="pages/contact-us.html">Contact Us</a></li>
+                              <li><a tabindex="-1" href="pages/features-page.html">Features Page</a></li></ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                              <a tabindex="-1" href="#blog">Blog</a>
+                              <ul class="dropdown-menu">
+                                <li><a tabindex="-1" href="pages/blog-category.html">Blog Category</a></li>
+                                <li><a tabindex="-1" href="pages/blog-page.html">Blog Page</a></li></ul>
+                              </li>
+                              <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#errorpages">Error pages</a>
+                                <ul class="dropdown-menu">
+                                  <li><a tabindex="-1" href="pages/404-page.html">404 Page</a></li>
+                                  <li><a tabindex="-1" href="pages/500-page.html">500 Page</a></li></ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                  <a tabindex="-1" href="#shop">Shop</a>
+                                  <ul class="dropdown-menu">
+                                    <li><a tabindex="-1" href="pages/shop-category.html">Shop Category</a></li>
+                                    <li><a tabindex="-1" href="pages/shop-index.html">Shop Index</a></li></ul>
+                                  </li>
+                                  <!-- BEGIN MORE OPTIONS -->
+                                  <li class="dropdown-submenu">
+                                    <a tabindex="-1" href="#">More options</a>
+                                    <ul class="dropdown-menu">
+                                      <li><a tabindex="-1" href="#">Second level link</a></li>
+                                      <li><a tabindex="-1" href="#">Second level link</a></li>
+                                      <li class="dropdown-submenu">
+                                        <a tabindex="-1" href="#">More options</a>
+                                        <ul class="dropdown-menu">
+                                          <li><a tabindex="-1" href="#">Third level link</a></li>
+                                          <li><a tabindex="-1" href="#">Third level link</a></li>
+                                          <li><a tabindex="-1" href="#">Third level link</a></li>
+                                        </ul>
+                                      </li>
+                                      <li><a tabindex="-1" href="#">Second level link</a></li>
+                                    </ul>
+                                  </li>
+                                  <!-- END MORE OPTIONS -->
+                                </ul>
+                              </li>
+                              <li class="dropdown ">
+                                <a href="#layouts" class="dropdown-toggle" data-toggle="dropdown">Layouts <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+
+                                  <!--  -->
+                                  <li>
+                                    <a href="layouts/blank-page.html" target=&quot;_blank&quot;>Blank Page</a>
+                                  </li>
+                                  <!--  -->
+                                  <!--  -->
+                                  <li>
+                                    <a href="layouts/full-width-page.html" target=&quot;_blank&quot;>Full Width Page</a>
+                                  </li>
+                                  <!--  -->
+                                  <!--  -->
+                                  <li>
+                                    <a href="layouts/expanded-sidebar.html" target=&quot;_blank&quot;>Expanded Sidebar</a>
+                                  </li>
+                                  <!--  -->
+                                  <!--  -->
+                                  <li>
+                                    <a href="layouts/sticky-footer.html" target=&quot;_blank&quot;>Sticky footer</a>
+                                  </li>
+                                  <!--  -->
+                                  <!--  -->
+                                  <li>
+                                    <a href="layouts/auto-hide-sidebar.html" target=&quot;_blank&quot;>Auto-Hide Sidebar</a>
+                                  </li>
+                                  <!--  -->
+                                </ul>
+                              </li>
+                              <!--  -->        </ul>
+
+                              <!-- BEGIN NAVBAR INDICATORS -->
+                              <ul class="nav pull-right nav-indicators">
+
+
+
+                                <!-- BEGIN DROPDOWN NOTIFICATIONS -->
+                                <li class="dropdown nav-notifications">
+                                  <!-- BEGIN DROPDOWN TOGGLE -->
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="badge">9</span><i class="icon-warning-sign"></i>
+                                  </a>
+                                  <!-- END DROPDOWN TOGGLE -->
+                                  <!-- BEGIN DROPDOWN MENU -->
+                                  <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-notifications-header">
+                                      <a tabindex="-1" href="#">You have <strong>9</strong> new notifications</a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN NOTIFICATION ITEMS -->
+                                    <li class="nav-notification-body text-info">
+                                      <a href="#">
+                                        <i class="icon-user"></i> New User
+                                        <small class="pull-right">Just Now</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body text-error">
+                                      <a href="#">
+                                        <i class="icon-user"></i> User Deleted
+                                        <small class="pull-right">Just Now</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body text-warning">
+                                      <a href="#">
+                                        <i class="icon-cogs"></i> Sever is overloaded
+                                        <small class="pull-right">2 minutes ago</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body">
+                                      <a href="#">
+                                        <i class="icon-briefcase"></i> Backup is completed
+                                        <small class="pull-right">4 minutes ago</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body text-info">
+                                      <a href="#">
+                                        <i class="icon-user"></i> New User
+                                        <small class="pull-right">Just Now</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body text-error">
+                                      <a href="#">
+                                        <i class="icon-user"></i> User Deleted
+                                        <small class="pull-right">Just Now</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body text-warning">
+                                      <a href="#">
+                                        <i class="icon-cogs"></i> Sever is overloaded
+                                        <small class="pull-right">3 minutes ago</small>
+                                      </a>
+                                    </li>
+                                    <li class="nav-notification-body">
+                                      <a href="#">
+                                        <i class="icon-briefcase"></i> Backup is completed
+                                        <small class="pull-right">6 minutes ago</small>
+                                      </a>
+                                    </li>
+                                    <!-- END NOTIFICATION ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-notifications-footer">
+                                      <a tabindex="-1" href="#">View all messages
+                                      </a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                  </ul>
+                                  <!-- END DROPDOWN MENU -->
+                                </li>
+                                <!-- END DROPDOWN NOTIFICATIONS -->
+
+                                <!-- BEGIN DROPDOWN TASKS -->
+                                <li class="dropdown nav-tasks">
+                                  <!-- BEGIN DROPDOWN TOGGLE -->
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="badge">13</span>
+                                    <i class="icon-tasks"></i>
+                                  </a>
+                                  <!-- END DROPDOWN TOGGLE -->
+                                  <!-- BEGIN DROPDOWN MENU -->
+                                  <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-taks-header">
+                                      <a tabindex="-1" href="#">You have <strong>13</strong> tasks in progress</a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN DROPDOWN ITEMS -->
+                                    <li>
+                                      <a>
+                                        <strong>Prepare Report</strong><span class="pull-right">30%</span>
+                                        <div class="progress progress-danger active">
+                                          <div class="bar" style="width: 30%;"></div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a>
+                                        <strong>Make new update</strong><span class="pull-right">40%</span>
+                                        <div class="progress progress-info active">
+                                          <div class="bar" style="width: 40%;"></div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a>
+                                        <strong>Fix critical bugs</strong><span class="pull-right">80%</span>
+                                        <div class="progress progress-striped active">
+                                          <div class="bar" style="width: 80%;"></div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a>
+                                        <strong>Complete project</strong><span class="pull-right">5%</span>
+                                        <div class="progress progress-success active">
+                                          <div class="bar" style="width: 5%;"></div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a>
+                                        <strong>Others</strong><span class="pull-right">15%</span>
+                                        <div class="progress progress-warning active">
+                                          <div class="bar" style="width: 15%;"></div>
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <!-- END DROPDOWN ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-taks-footer">
+                                      <a tabindex="-1" href="#">View all tasks
+                                      </a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                  </ul>
+                                  <!-- END DROPDOWN MENU -->
+                                </li>
+                                <!-- END DROPDOWN TASKS -->
+
+                                <!-- BEGIN DROPDOWN MESSAGES -->
+                                <li class="dropdown nav-messages">
+                                  <!-- BEGIN DROPDOWN TOGGLE -->
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="badge">8</span>
+                                    <i class="icon-envelope"></i>
+                                  </a>
+                                  <!-- END DROPDOWN TOGGLE -->
+                                  <!-- BEGIN DROPDOWN MENU -->
+                                  <ul class="dropdown-menu">
+                                    <!-- BEGIN DROPDOWN HEADER -->
+                                    <li class="nav-messages-header">
+                                      <a tabindex="-1" href="#">You have <strong>8</strong> new messages</a>
+                                    </li>
+                                    <!-- END DROPDOWN HEADER -->
+                                    <!-- BEGIN DROPDOWN ITEMS -->
+                                    <li class="nav-message-body">
+                                      <a>
+                                        <img src="../assets/img/people-face/user1_55.jpg" alt="User">
+                                        <div>
+                                          <small class="pull-right">Just Now</small>
+                                          <strong>Yadra Abels</strong>
+                                        </div>
+                                        <div>
+                                          Lorem ipsum dolor sit amet, consectetur...
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                      <a>
+                                        <img src="../assets/img/people-face/user2_55.jpg" alt="User">
+                                        <div>
+                                          <small class="pull-right">Just Now</small>
+                                          <strong>Cesar Mendoza</strong>
+                                        </div>
+                                        <div>
+                                          Lorem ipsum dolor sit amet, consectetur...
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                      <a>
+                                        <img src="../assets/img/people-face/user3_55.jpg" alt="User">
+                                        <div>
+                                          <small class="pull-right">Just Now</small>
+                                          <strong>John Doe</strong>
+                                        </div>
+                                        <div>
+                                          Lorem ipsum dolor sit amet, consectetur...
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <li class="nav-message-body">
+                                      <a>
+                                        <img src="../assets/img/people-face/user4_55.jpg" alt="User">
+                                        <div>
+                                          <small class="pull-right">Just Now</small>
+                                          <strong>Tobei Tsumura</strong>
+                                        </div>
+                                        <div>
+                                          Lorem ipsum dolor sit amet, consectetur...
+                                        </div>
+                                      </a>
+                                    </li>
+                                    <!-- END DROPDOWN ITEMS -->
+                                    <!-- BEGIN DROPDOWN FOOTER -->
+                                    <li class="nav-messages-footer">
+                                      <a tabindex="-1" href="pages/chat-inbox.html">View all messages
+                                      </a>
+                                    </li>
+                                    <!-- END DROPDOWN FOOTER -->
+                                  </ul>
+                                  <!-- END DROPDOWN MENU -->
+                                </li>
+                                <!-- END DROPDOWN MESSAGES -->
+
+                                <li class="divider-vertical"></li>
+                                <!-- BEGIN EXTRA DROPDOWN -->
+                                <li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-caret-down"></i></a>
+                                  <ul class="dropdown-menu">
+                                    <li><a href="pages/basic-user-profile.html"><i class="icon-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="icon-cogs"></i> Settings</a></li>
+                                    <li><a href="login.html"><i class="icon-off"></i> Log Out</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="pages/faq.html"><i class="icon-info-sign"></i> Help</a></li>
+                                  </ul>
+                                </li>
+                                <!-- END EXTRA DROPDOWN -->
+                              </ul>
+                              <!-- END NAVBAR INDICATORS -->
+                              <!-- BEGIN PANEL TEMPLATE SETTINGS TRIGGER -->
+                              <ul class="nav pull-right hidden-phone">
+                                <!-- BEGIN DEMO SETTINGS -->
+                                <li id="demo-setting" class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-cog"></i>
+                                  </a>
+                                  <ul class="dropdown-menu settings">
+                                    <li class="header">Sidebar</li>
+                                    <li>
+                                      <a href="#autohide">
+                                        <label class="checkbox">
+                                          <input type="checkbox" id="sidebar-autohide" value="option1">
+                                          Auto Hide
+                                        </label>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="#dividers">
+                                        <label class="checkbox">
+                                          <input type="checkbox" id="sidebar-dividers" value="option2">
+                                          Dividers
+                                        </label>
+                                      </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="header">Themes</li>
+                                    <li id="colorpickers">
+                                      <select name="colorpicker">
+                                        <option value="#f2f2f2">Light</option>
+                                        <option value="#3b5998" data-class="blue">Blue</option>
+                                        <option value="#51a351" data-class="green">Green</option>
+                                        <option value="#f89406" data-class="orange">Orange</option>
+                                      </select>
+                                    </li>
+
+                                  </ul>
+                                </li>
+                                <!-- END DEMO SETTINGS -->
+
+                              </ul>
+                              <!-- END PANEL TEMPLATE SETTINGS TRIGGER -->
+                            </div>
+                          </div>
+                        </nav>
+                        <!-- END NAVBAR -->
+                      </header>
+                      <!-- BEGIN MAIN CONTAINER -->
+                      <div id="main">
+                        <!-- BEGIN CONTENT CONTANER -->
+                        <div class="container-fluid">
+                          <div class="row-fluid">
+                            <div class="span12">
+                              <h3 class="page-title">
+                                Dashboard
+                              </h3>
+                              <!-- BEGIN BREADCRUMBS -->
+                              <ul class="breadcrumb">
+                                <li>
+                                  <i class="icon-home"></i>
+                                  <a href="dashboard.html">Dashboard</a>
+                                </li>
+                                <li class="pull-right" >
+                                  <div id="dashboard-reportrange">
+                                    <i class="icon-calendar"></i>
+                                    <span></span>
+                                    <b class="caret"></b>
+                                  </div>
+                                </li>
+
+                              </ul>
+                              <!-- END BREADCRUMBS -->
+                            </div>
+                          </div>
+
+                          <div class="row-fluid">
+                            <a href="#" class="icon-btn icon-btn-green span2 offset2">
+                              <i class="icon-dashboard icon-2x"></i>
+                              <div>Dashboard</div>
+                              <span class="badge label-warning">2</span>
+                            </a>
+                            <a href="charts.html" class="icon-btn span2">
+                              <!-- <i class="icon-money icon-2x"></i> -->
+                              <span id="compositebar"></span>
+                              <div>Finances</div>
+                              <span class="badge  label-info badge-right">890$</span>
+                            </a>
+                            <a href="calendar.html" class="icon-btn icon-btn-blue span2">
+                              <i class="icon-calendar icon-2x"></i>
+                              <div>Calendar</div>
+                              <span class="badge label-success">4</span>
+                            </a>
+                            <a href="pages/email-inbox.html" class="icon-btn icon-btn-orange span2">
+                              <i class="icon-inbox icon-2x"></i>
+                              <div>Inbox</div>
+                              <span class="badge label-important badge-right">2</span>
+                            </a>
+
+                          </div>
+
+                          <div class="row-fluid">
+                            <div class="span6">
+                              <!-- FLot example -->
+                              <section class="social-box social-bordered">
+                                <header class="header">
+                                  <h4><i class="icon-bar-chart"></i> Visits by location</h4>
+                                  <div class="tools">
+                                  </div>
+                                </header>
+                                <div class="body">
+                                  <div id="demo-plot" class="plot"></div>
+                                </div>
+                              </section>
+                            </div>
+                            <div class="span6">
+                              <!-- Feed list example -->
+                              <section id="feeds" class="feeds social-box social-bordered social-blue">
+                                <div class="header">
+                                 <!-- BEGIN FEED TITLE  -->
+                                 <h4>
+                                  <i class="icon-th-list"></i>
+                                  <span class="hidden-phone">Recent Activities</span>
+                                  <span class="visible-phone">Feeds</span>
+                                </h4>
+                                <!-- END FEED TITLE  -->
+                                <!-- BEGIN TABS TOGGLES -->
+                                <div class="tools">
+                                  <ul id="myTab" class="nav nav-tabs">
+                                    <li class="active">
+                                      <a class="active" href="#users" data-toggle="tab">Users</a>
+                                    </li>
+                                    <li>
+                                      <a href="#system" data-toggle="tab">System</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- BEGIN TABS TOGGLES -->
+                              </div>
+                              <!-- BEGIN FEED BODY -->
+                              <div class="body">
+                                <div class="tab-content">
+                                  <!-- BEGIN USERS FEEDS SECTION -->
+                                  <div class="tab-pane fade in users-feeds active" id="users">
+                                    <div class="content">
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user3_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">John Doe</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-info">new message</span>
+                                          </div>
+                                        </div>
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user3_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">John Doe</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-info">new message</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user1_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Yadra Abels</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user4_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:46pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user2_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Cesar Mendoza</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <span></span><img class="feed-object" src="../assets/img/people-face/user5_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:46pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user1_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Yadra Abels</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user4_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:47pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user2_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Cesar Mendoza</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <span></span><img class="feed-object" src="../assets/img/people-face/user5_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:47pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user1_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Yadra Abels</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user4_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:48pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user2_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Cesar Mendoza</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <span></span><img class="feed-object" src="../assets/img/people-face/user5_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:48pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user1_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Yadra Abels</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed message -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user4_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:49pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                      <!-- BEGIN ROW FEEDS -->
+                                      <div class="row-fluid">
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <img class="feed-object" src="../assets/img/people-face/user2_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Cesar Mendoza</h6>
+                                            <span><small>25 Sept 2013 3:45pm</small></span>
+                                            <span class="label label-warning">confirming</span>
+                                          </div>
+                                        </div>
+                                        <!-- feed essage -->
+                                        <div class="feed span6">
+                                          <span></span><img class="feed-object" src="../assets/img/people-face/user5_55.jpg" alt="John Doe">
+                                          <div class="feed-body">
+                                            <h6 class="feed-heading">Tobei Tsumura</h6>
+                                            <span><small>25 Sept 2013 3:49pm</small></span>
+                                            <span class="label label-success">registered</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END ROW FEEDS -->
+                                    </div>
+                                  </div>
+                                  <!-- END USERS FEEDS SECTION -->
+                                  <!-- BEGIN SYSTEM FEEDS SECTION -->
+                                  <div class="tab-pane fade in system-feeds" id="system">
+                                    <div class="content">
+                                      <ul class="unstyled">
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>5 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>6 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>7 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>8 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>9 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>10 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>11 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>12 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>13 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>14 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>14 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>16 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>17 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>18 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>19 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>19 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>21 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>22 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>23 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>24 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>24 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>25 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>26 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>27 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>28 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>29 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>30 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>31 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>32 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>33 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>33 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>35 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>36 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>37 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>38 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-warning"><i class="icon-warning-sign"></i></div>
+                                            <span>System overload</span>
+                                            <span class="label label-success">warning</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>38 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-important"><i class="icon-remove"></i></div>
+                                            <a href="#">Emails couldn't be sent</a>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>40 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-info"><i class="icon-info-sign"></i></div>
+                                            <span>New user registered</span>
+                                            <span class="label label-info">username</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>41 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label label-success"><i class="icon-check"></i></div>
+                                            <span>The backup has been created</span>
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>42 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                        <!-- feed message -->
+                                        <li class="feed">
+                                          <div class="feed-message">
+                                            <div class="label"><i class="icon-info-sign"></i></div>
+                                            Success
+                                          </div>
+                                          <div class="feed-time">
+                                            <span><em>43 minutes ago</em></span>
+                                          </div>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <!-- END SYSTEM FEEDS SECTION -->
+                                </div>
+                              </div>
+                              <!-- END FEED BODY -->
+                            </section>  </div>
+                          </div>
+
+
+                          <div class="row-fluid">
+                            <div class="span6">
+                              <!-- Vector Map Example -->
+                              <section class="social-box social-bordered social-green">
+                                <header class="header">
+                                  <h4><i class="icon-map-marker"></i> World Map</h4>
+                                  <div class="tools">
+                                  </div>
+                                </header>
+                                <div class="body">
+                                  <div id="vmap-world" class="vmap"></div>
+                                </div>
+                              </section>
+                            </div>
+                            <div class="span6">
+                              <!-- justGauge Example -->
+                              <section class="social-box social-bordered social-orange">
+                                <div class="header">
+                                  <h4><i class="icon-bar-chart"></i> Server Stats</h4>
+                                </div>
+                                <div id="justGaugeExamples" class="body">
+                                  <div>
+                                    <div class="hidden-phone muted"><h3>Nice & clean Gauges</h3></div>
+                                    <div id="g1"></div>
+                                    <div id="g2"></div>
+                                  </div>
+                                  <div class="clearfix"></div>
+                                </div>
+                              </section>
+                            </div>
+                          </div>
+
+                          <div class="row-fluid">
+                            <div class="span6">
+                              <!-- Chat example -->
+                              <!-- BEGIN CHAT BOX -->
+                              <div class="social-box social-blue social-bordered">
+                                <div class="header">
+                                  <h4><i class="icon-bar-chart"></i> Chat</h4>
+
+
+                                </div>
+                                <!-- BEGIN CHAT WINDOW -->
+                                <div class="body chat">
+                                  <!-- BEGIN CHAT MESSAGES LIST -->
+                                  <div class="chat-messages-list" style="height:400px">
+                                    <div class="content">
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/people-face/user1_55.jpg" alt="Friend">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Yadra Abels <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message pull-right">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/avatar-55.png" alt="Julio Marquez">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Julio Marquez <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/people-face/user1_55.jpg" alt="Friend">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Yadra Abels <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message pull-right">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/avatar-55.png" alt="Julio Marquez">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Julio Marquez <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/people-face/user1_55.jpg" alt="Friend">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Yadra Abels <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message pull-right">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/avatar-55.png" alt="Julio Marquez">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Julio Marquez <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/people-face/user1_55.jpg" alt="Friend">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Yadra Abels <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                      <!-- BEGIN CHAT MESSAGE -->
+                                      <div class="chat-message pull-right">
+                                        <div class="chat-message-avatar">
+                                          <img width="55" height="55" src="../assets/img/avatar-55.png" alt="Julio Marquez">
+                                        </div>
+                                        <div class="chat-message-body">
+                                          <div class="chat-message-body-header">Julio Marquez <small>Yesterday, 23:00</small></div>
+                                          <div class="chat-message-body-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, eaque nobis natus odit reiciendis distinctio corporis optio suscipit. Suscipit, omnis, eum veniam animi est pariatur voluptate quo ab quaerat dolores.
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END CHAT MESSAGE -->
+                                    </div>
+                                  </div>
+                                  <!-- END CHAT MESSAGES LIST -->
+                                  <!-- BEGIN CHAT COMPOSER -->
+                                  <div class="chat-composer">
+                                    <div class="chat-form">
+                                      <div class="chat-input">
+                                        <input id="composerMessage" type="text" placeholder="Type a message...">
+                                      </div>
+                                      <button class="btn btn-primary chat-sender" type="submit">
+                                        <span class="icon icon-share-alt "></span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <!-- END CHAT COMPOSER -->
+                                </div>
+                                <!-- END CHAT WINDOW -->
+                              </div>
+                              <!-- END CHAT BOX -->  </div>
+                              <div class="span6">
+                                <section class="social-box social-bordered">
+                                  <div class="header">
+                                    <h4><i class="icon-calendar"></i> Calendar</h4>
+                                  </div>
+                                  <div class="body">
+                                    <div id="demo-calendar1" class="social-box-calendar"></div>
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- END CONTENT CONTAINER -->
+                          <!-- BEGIN PAGE FOOTER -->
+                          <footer id="footer">
+                            <div class="container-fluid">
+                              2013 © <em>Social - Premium Responsive Admin Template</em> by  <a href="http://cesarlab.com/" target="_blank">cesarlab.com</a>.
+                            </div>
+                          </footer>
+                          <!-- END PAGE FOOTER -->
+                        </div>
+                        <!-- END MAIN CONTAINER -->
+                      </div>
+                      <!-- END WRAPER -->
+
+                      <!-- BEGIN SIDEBAR PANEL -->
+                      <div style="display: none;">
+                        <ul class="rightPanel">
+                          <li><a href="pages/basic-user-profile.html"><i class="icon-user"></i><span>My Profile</span></a></li>
+                          <li><a href="pages/chat-inbox.html"><i class="icon-envelope"></i><span>Messages</span></a></li>
+                          <li><a href="#"><i class="icon-tasks"></i><span>Taks</span></a></li>
+                        </ul>
+                      </div>
+                      <!-- END SIDEBAR PANEL -->
+
+                      <!-- BEGIN JAVASCRIPT CODES -->
+                      <!-- BEGIN GENERAL JAVASCRIPT CODE -->
+                      <script src="../assets/plugins/jquery/jquery-1.9.1.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.ui/jquery-ui-1.10.1.custom.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.ui.touch-punch/jquery.ui.touch-punch.js?v1.3.1"></script>
+                      <script src="../assets/plugins/twitter-bootstrap/bootstrap.js?v1.3.1"></script>
+
+                      <script src="../assets/plugins/holder/holder.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.slimscroll/jquery.slimscroll.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.cookie/jquery.cookie.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.simplecolorpicker/jquery.simplecolorpicker.js?v1.3.1"></script>
+
+                      <script src="../assets/plugins/jquery.uipro/uipro.min.js?v1.3.1"></script>
+
+                      <script src="../assets/plugins/jquery.ui.chatbox/jquery.ui.chatbox.js?v1.3.1"></script>
+                      <script src="../assets/js/chatboxManager.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.livefilter/jquery.livefilter.js"></script>
+
+                      <script src="../assets/js/extents.js?v1.3.1"></script>
+                      <script src="../assets/js/app.js?v1.3.1"></script>
+                      <script src="../assets/js/demo-settings.js?v1.3.1"></script>
+                      <script src="../assets/js/sidebar.js?v1.3.1"></script>
+
+                      <script>
+                      /*<![CDATA[*/
+                      $(function() {
+                        App.init();
+                        DemoSettings.init({ urlThemes: '/templates/social/assets/css/themes/social.theme-'});
+                        SideBar.init({shortenOnClickOutside: false});
+                        $.uiPro({
+                          rightMenu : '.rightPanel',
+                          threshold : 15
+                        });
+                      });
+                      /*]]>*/
+                      </script>
+                      <!-- END GENERAL JAVASCRIPT CODE -->
+
+                      <!-- BEGIN JAVASCRIPT CODES FOR THE CURRENT PAGE -->
+                      <script src="../assets/plugins/jquery.fullcalendar/fullcalendar.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.jqvmap/jquery.vmap.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.jqvmap/maps/jquery.vmap.world.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.jqvmap/data/jquery.vmap.sampledata.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.flot/jquery.flot.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.flot/jquery.flot.resize.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.flot/jquery.flot.selection.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.sparkline/jquery.sparkline.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.justgage/raphael.2.1.0.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.justgage/justgage.1.0.1.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.gritter/jquery.gritter.min.js?v1.3.1"></script>
+                      <script src="../assets/plugins/bootstrap.daterangepicker/moment.js?v1.3.1"></script>
+                      <script src="../assets/plugins/bootstrap.daterangepicker/daterangepicker.js?v1.3.1"></script>
+                      <script src="../assets/plugins/jquery.pulsate/jquery.pulsate.min.js?v1.3.1"></script>
+
+                      <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="/templates/social/assets/plugins/jquery.flot/excanvas.min.js"></script><![endif]-->
+
+                      <script src="../assets/js/dashboard.js?v1.3.1"></script>
+
+                      <script>
+                      $(function() {
+                        var urlAvatar = "../assets/img/avatar-55.png?v1.3.1";
+                        Dashboard.init({urlAvatar:urlAvatar});
+                      });
+                      </script>
+
+                      <!-- END JAVASCRIPT CODES FOR THE CURRENT PAGE -->
+                      <!-- END JAVASCRIPT CODES -->
+                    </body>
+
+                    </html>

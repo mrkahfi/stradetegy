@@ -1,0 +1,537 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:form_demo.html.twig' %}
+{% block menu %}
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="wrap_cont_nav">
+    <div class="cont_nav">
+    <h1>Search shipments trade data</h1>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <form action="{{ path('demo_global_search_submit') }}" method="POST" class="form-inline">
+
+                {{ form_widget(formCustom) }}
+
+
+    </form>
+    <br/>
+    <br/>
+    <br/>
+
+    <form action="{{ path('demo_global_search_submit') }}" method="POST" class="form-inline">
+
+
+        {{ form_start(form) }}
+
+        {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+        <div class="form-group j-show" data-prototype='<h5 class="show" style="margin-left: 15%;margin-top: 2%;">Advanced search is available for <strong>subscribers only</strong>. <a href="/app_dev.php/signup"><strong>See
+                        plans now
+                        »</strong></a></h5>
+                        <div id="demo_search_embed_condition_4"><label style="display:none" for="demo_search_embed_condition_4_collect">Collect</label><select id="demo_search_embed_condition_4_collect" disabled="disabled" class="col-md-1" style="margin-right:3px"><option value="and">AND</option><option value="or">OR</option><option value="not">NOT</option></select></div>
+                        <div id="demo_search_embed_collect_4"><label style="display:none" for="demo_search_embed_collect_4_collect" class="required">Collect</label><select id="demo_search_embed_collect_4_collect" class="col-md-2" disabled="disabled"><option value="all">All</option><option value="consignee_name">Importer Name</option><option value="consignee_address">Importer Address</option><option value="shipper_name">Exporter Name</option><option value="shipper_address">Exporter Address</option><option value="product_description">Product</option></select></div>
+                        <div id="demo_search_embed_q_4"><label style="display:none" for="demo_search_embed_q_4_q" class="required">Q</label><input type="text" id="demo_search_embed_q_4_q" required="required" style="margin: 0px 3px 3px 3px;" disabled="disabled" class="col-md-8" placeholder="Enter a keyword"></div>
+                        '>
+
+
+            {% for tag in form.collect %}
+                {{ form_row(tag.collect) }}
+            {% endfor %}
+
+            {% for tagq in form.q %}
+                {{ form_row(tagq.q) }}
+            {% endfor %}
+
+            <input type="submit" class="button button-search j-tour-button-submit" value="Search">
+
+            <div class="j-add-filter"></div>
+        </div>
+        {{ form_end(form) }}
+
+        <br/>
+
+
+        <div style="clear: both"></div>
+
+    </form>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <div style="margin-left: 3px">
+        <a href="" class="btn btn-default">Shipments <span class="btn btn-primary btn-xs">9,568</span></a>
+        <a href="" class="btn btn-default" style="background: #cccccc">Consignee <span class="btn btn-primary btn-xs">PRO</span></a>
+        <a href="" class="btn btn-default" style="background: #cccccc">Shipper <span
+                    class="btn btn-primary btn-xs">PRO</span></a>
+        <!-- Split button -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" style="background: #cccccc">Rollups</button>
+            <button type="button" class="btn btn-default dropdown-toggle" style="background: #cccccc"
+                    data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action <span class="btn btn-primary btn-xs">PRO</span></a></li>
+                <li><a href="#">Another action <span class="btn btn-primary btn-xs">PRO</span></a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="floatThead-wrapper" style="position: relative; clear:both;">
+    <table class="table" style="table-layout: auto; min-width: 1170px;">
+    <thead>
+    <tr role="row">
+        <th></th>
+        <th>Arrival Date</th>
+        <th>Consignee</th>
+        <th>Shipper</th>
+        <th>Quantity</th>
+        <th>Weight</th>
+        <th>Product Description</th>
+        <th>Mark & NUmbers</th>
+    </tr>
+    </thead>
+    <colgroup>
+        <col style="width: 18px;">
+        <col style="width: 288px;">
+        <col style="width: 116px;">
+        <col style="width: 101px;">
+        <col style="width: 187px;">
+        <col style="width: 187px;">
+        <col style="width: 121px;">
+        <col style="width: 152px;">
+    </colgroup>
+
+    <tbody aria-relevant="all" aria-live="polite" role="alert">
+    <tr class="odd" id="0">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Confirm Driver Loaded</div>
+            <small>load ID: 12345678 | Catman</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 32 minutes</div>
+        </td>
+        <td class="">Booked</td>
+        <td class="">
+            <div class="header">Pooville, CA</div>
+            <small>2/15/13 | 13:51 - 12:45 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>9/8/13 | 16:38 - 15:50 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Reliable Trucking</div>
+            <small>Pepsi Co</small>
+        </td>
+    </tr>
+    <tr class="even" id="1">
+        <td class=""><i class="fa fa-lock" style="color:#b94a48; font-size:15px;"></i></td>
+        <td class="">
+            <div class="header">Past PU Appt TimePay your cable bill</div>
+            <small>load ID: 12345678 | Fat Frank</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in an hour</div>
+        </td>
+        <td class="">In-Transit</td>
+        <td class="">
+            <div class="header">Washington DC</div>
+            <small>8/13/13 | 20:52 - 16:36 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>5/21/13 | 20:42 - 19:47 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Catman</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">RR Donnely</div>
+            <small>NSA</small>
+        </td>
+    </tr>
+    <tr class="odd" id="2">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Confirm Driver Loaded</div>
+            <small>load ID: 12345678 | Catman</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 38 minutes</div>
+        </td>
+        <td class="">Bounced</td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>8/23/13 | 14:28 - 14:38 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>5/20/13 | 18:15 - 18:51 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Catman</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Reliable Trucking</div>
+            <small>Pepsi Co</small>
+        </td>
+    </tr>
+    <tr class="even" id="3">
+        <td class=""><i class="fa fa-lock" style="color:#b94a48; font-size:15px;"></i></td>
+        <td class="">
+            <div class="header">Past PU Appt TimePay your cable bill</div>
+            <small>load ID: 12345678 | Mike Mikelson</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in an hour</div>
+        </td>
+        <td class="">Booked</td>
+        <td class="">
+            <div class="header">Pooville, CA</div>
+            <small>10/19/13 | 16:56 - 16:40 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Pooville, CA</div>
+            <small>9/18/13 | 16:38 - 16:25 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Ryder</div>
+            <small>Elkay</small>
+        </td>
+    </tr>
+    <tr class="odd" id="4">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Past PU Appt TimePay your cable bill</div>
+            <small>load ID: 12345678 | Catman</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 41 minutes</div>
+        </td>
+        <td class="">Unloading</td>
+        <td class="">
+            <div class="header">Plum Island, NH</div>
+            <small>5/19/13 | 14:32 - 16:41 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Brian's House</div>
+            <small>4/16/13 | 17:13 - 15:40 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Ryder</div>
+            <small>Archway</small>
+        </td>
+    </tr>
+    <tr class="even" id="5">
+        <td class=""><i class="fa fa-lock" style="color:#b94a48; font-size:15px;"></i></td>
+        <td class="">
+            <div class="header">Past NCD</div>
+            <small>load ID: 12345678 | Fat Frank</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 17 minutes</div>
+        </td>
+        <td class="">Booked</td>
+        <td class="">
+            <div class="header">Pooville, CA</div>
+            <small>4/28/13 | 17:24 - 14:17 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Pooville, CA</div>
+            <small>11/13/13 | 12:51 - 18:37 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Ryder</div>
+            <small>Elkay</small>
+        </td>
+    </tr>
+    <tr class="odd" id="6">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Eat</div>
+            <small>load ID: 12345678 | Mike Mikelson</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in an hour</div>
+        </td>
+        <td class="">Dispatched</td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>9/14/13 | 15:37 - 20:31 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Washington DC</div>
+            <small>5/19/13 | 13:33 - 17:14 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">Reliable Trucking</div>
+            <small>Elkay</small>
+        </td>
+    </tr>
+    <tr class="even" id="7">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Past PU Appt TimePay your cable bill</div>
+            <small>load ID: 12345678 | Mike Mikelson</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 8 minutes</div>
+        </td>
+        <td class="">Booked</td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>2/10/13 | 15:41 - 14:56 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Brian's House</div>
+            <small>4/25/13 | 17:29 - 17:27 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Mike Mikelson</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">AAA Trucking</div>
+            <small>NSA</small>
+        </td>
+    </tr>
+    <tr class="odd" id="8">
+        <td class=""></td>
+        <td class="">
+            <div class="header">Eat</div>
+            <small>load ID: 12345678 | Catman</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in an hour</div>
+        </td>
+        <td class="">Loaded</td>
+        <td class="">
+            <div class="header">Brian's House</div>
+            <small>7/13/13 | 15:34 - 13:31 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Boston, MA</div>
+            <small>4/10/13 | 14:40 - 21:36 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Fat Frank</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">AAA Trucking</div>
+            <small>NSA</small>
+        </td>
+    </tr>
+    <tr class="even" id="9">
+        <td class=""><i class="fa fa-lock" style="color:#b94a48; font-size:15px;"></i></td>
+        <td class="">
+            <div class="header">Eat</div>
+            <small>load ID: 12345678 | Catman</small>
+        </td>
+        <td class="">
+            <div class=" time-from-now">in 13 minutes</div>
+        </td>
+        <td class="">Dispatched</td>
+        <td class="">
+            <div class="header">Brigton, VA</div>
+            <small>7/17/13 | 15:25 - 16:43 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Plum Island, NH</div>
+            <small>7/15/13 | 17:45 - 18:51 ET</small>
+        </td>
+        <td class="">
+            <div class="header">Some Dude</div>
+            <small>(123) 456-7890</small>
+        </td>
+        <td class="">
+            <div class="header">RR Donnely</div>
+            <small>Anthony Intl</small>
+        </td>
+    </tr>
+    </tbody>
+    <fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;">
+        <fthrow style="display:table-row;border-spacing:0;height:0;border-collapse:collapse">
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+        </fthrow>
+    </fthfoot>
+    </table>
+    <div style="overflow: hidden; padding-left: 0px; padding-right: 0px; position: absolute; margin-top: 0px; top: 0px; z-index: 1001; left: 0px; width: 1170px;"
+         class="floatThead-container">
+        <table class="table table-striped floatThead-table"
+               style="border-collapse: collapse; border: 0px none rgb(128, 128, 128); display: table; margin: 0px; table-layout: auto; width: 1170px;">
+            <colgroup>
+                <col style="width: 18px;">
+                <col style="width: 288px;">
+                <col style="width: 116px;">
+                <col style="width: 101px;">
+                <col style="width: 187px;">
+                <col style="width: 187px;">
+                <col style="width: 121px;">
+                <col style="width: 152px;">
+            </colgroup>
+        </table>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <style>
+        table.floatThead-table {
+            border-top: none;
+            border-bottom: none;
+            background-color: #FFF;
+        }
+    </style>
+
+
+    <div id="dialog-message" title="Advance Search">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Advanced search is available for <strong>subscribers only</strong>. <a href="{{ path('signup') }}"><strong>See
+                    plans now
+                    »</strong></a>
+        </p>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap/jquery.floatThead.js') }}"></script>
+
+    <script type="text/javascript">
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+        var $addFilterLink = $('<br/><a href="#" class="add_filter_link col-md-12">Add Filter Search <span class="glyphicon glyphicon-circle-arrow-down"></span></a>');
+        var $newLinkLi = $('<div class="j-add-filter"></div>').append($addFilterLink);
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('div.j-show');
+
+            // add a delete link to all of the existing tag form li elements
+            $collectionHolder.find('div.j-add-filter').each(function () {
+                if ($(this).length > 1) {
+                    addTagFormDeleteLink($(this));
+                }
+            });
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addFilterLink.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                var check = $('h5.show');
+
+                if (check.length == 1) {
+                    $("#dialog-message").dialog({
+                        modal: true
+                    });
+                    return false;
+                }
+
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+
+
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            console.log(prototype);
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div style="clear:both"></div> ').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#" style="font-size: 16px;" title="Delete This Filter"><span class="glyphicon glyphicon-remove" style="line-height: 2"></span> </a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+
+
+        $("table.table").floatThead()
+
+    </script>
+
+
+{% endblock %}

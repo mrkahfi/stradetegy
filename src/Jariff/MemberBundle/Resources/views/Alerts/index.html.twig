@@ -1,0 +1,132 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date Search</th>
+                        <th>Name Of Search</th>
+                        <th>Description</th>
+                        <th>Email Alerts</th>
+                        <th>Query Search</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                        {#{% set res = data.getQuery|jsondecode %}#}
+                        <tr>
+                            <td>{{ row.getDateCreate|date("d M Y") }}</td>
+                            <td>
+                                <a href="{{ path('member_search_global_result',{'s_cache' : row.getKeyword}) }}">
+                                    {{ row.getName }}
+                                </a>
+                            </td>
+                            <td>{{ row.getDescription }}</td>
+                            <td style="text-align: center">
+                                {% if row.getIsAlerts %}
+                                    <span class="glyphicon glyphicon-volume-up" aria-hidden="true" data-toggle="tooltip"
+                                          data-placement="top" title="Email Alerts is Active"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-volume-off" aria-hidden="true"
+                                          data-toggle="tooltip" data-placement="top"
+                                          title="Email Alerts is Not Active"></span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                {% set search = row.getKeyword|decrypted_query|jsondecode %}
+                                Your search of Data for : <br/>
+
+                                {% for key in search.search %}
+
+                                    {% if key.condition is not empty %}
+                                        <br/>
+                                        {{ key.condition|upper }}
+                                    {% endif %}
+
+                                    {{ key.collect }}
+                                    <span class="code">{{ key.q }}</span>
+
+                                {% endfor %}
+
+
+                                <br/>
+                                <br/>
+                                {% if search.category is defined %}
+                                    With
+                                    {% for key in search.category %}
+                                        {{ key }},
+                                    {% endfor %}
+                                {% else %}
+                                    With Importer, Exporter, and Product
+                                {% endif %}
+
+                                <br/>
+                                {% if search.country is defined %}
+                                    And Filter by Countries
+                                    {% for key in search.country %}
+                                        {{ key|twolettercodecountry }},
+                                    {% endfor %}
+
+                                {% endif %}
+
+                                <br/>
+
+
+                            </td>
+
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    {#<tfoot>#}
+                    {#<tr>#}
+                    {#<th>Table Footer here ...</th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#</tr>#}
+                    {#</tfoot>#}
+                </table>
+
+
+                {{ knp_pagination_render(data) }}
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}
+
+{% block style %}
+
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript"
+            src="{{ asset('bundles/jariffproject/frontend/js/bootstrap/bootstrap.js') }}"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}

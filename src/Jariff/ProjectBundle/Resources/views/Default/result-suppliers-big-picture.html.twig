@@ -1,0 +1,33 @@
+{% block javascript %}
+<script language="javascript" type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/loadTreeSupplier.js') }}">
+</script>
+<script type="text/javascript">
+$('.cmsms_title').on("click", function(){ 
+    init($(this).attr('name'), 0);
+});
+</script>
+{% endblock %}
+<div>
+    <section>
+        {% for res in result %}
+        <div class="ovh">
+            <header class="entry-header">
+                <div class="cmsms_title" name="{{ res.value.getSlug }}">
+                    <a class="company-link"><span id="company-item" >{{ res.value.getShipperName }}</span></a>
+                </div>
+                <div class="cmsms_post_info">
+                    <span class="user_name"/>
+                    <img
+                    class="flag flag-{{ res.value.getShipRegisteredIn | twolettercode }}"
+                    src="{{ asset('bundles/jariffproject/frontend/images/blank.gif') }}"
+                    alt="{{ res.value.getShipRegisteredIn }}" />
+                    <span style='font-size:70%;'>{{ res.value.shipment }} <a href="#" class="cmsms_comments"> Shipments</a></span>
+                </div>
+            </header>
+        </div>
+        {% endfor %}
+        {#{% if result is not empty %}#}
+        {#{{ knp_pagination_render(result) }}#}
+        {#{% endif %}#}
+    </section>
+</div>

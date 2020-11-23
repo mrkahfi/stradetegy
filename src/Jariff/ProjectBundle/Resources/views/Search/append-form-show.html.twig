@@ -1,0 +1,131 @@
+{% for r in collect %}
+    {% if loop.index > 1 %}
+        <div class="entry-content project_content portfolio_container three_blocks j-condition-to-remove"
+             style="margin-top: -22px;">
+            <div class="cmsms_media">
+                <div class="cmsms_media_box" style="width: 11%">
+                    <div class="form_info cmsms_input">
+                        <select id="search_form_collect" style="width:125%" name="condition[]"
+                                required="required">
+                            <option value="and" {% if condition[loop.index - 2] == "and" -%}
+                                selected="selected"
+                                    {% endif -%}>AND
+                            </option>
+                            <option value="or" {% if condition[loop.index - 2] == "or" -%}
+                                selected="selected"
+                                    {% endif -%}>OR
+                            </option>
+                            <option value="not" {% if condition[loop.index - 2] == "not" -%}
+                                selected="selected"
+                                    {% endif -%}>NOT
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box">
+                    <div class="form_info cmsms_input">
+
+                        {#<input type="text" name="wemail" id="field_003" size="10" style="width: 32%;" tabindex="11"#}
+                        {#/>#}
+                        <select id="search_form_collect" style="width: 108%" name="collect[]"
+                                required="required">
+                            <option value="consignee_name"
+                                    {% if r == "consignee_name" -%}
+                                        selected="selected"
+                                    {% endif -%}
+                                    >Consignee Name
+                            </option>
+                            <option value="consignee_address"  {% if r == "consignee_address" -%}
+                                selected="selected"
+                                    {% endif -%}>Consignee Address
+                            </option>
+                            <option value="notify_name"  {% if r == "notify_name" -%}
+                                selected="selected"
+                                    {% endif -%}>Notify Name
+                            </option>
+                            {#<option value="notify_address"  {% if r == "notify_address" -%}#}
+                                {#selected="selected"#}
+                                    {#{% endif -%}>Notify Address#}
+                            {#</option>#}
+                            <option value="shipper_name"  {% if r == "shipper_name" -%}
+                                selected="selected"
+                                    {% endif -%}>Shipper Name
+                            </option>
+                            <option value="shipper_address"  {% if r == "shipper_address" -%}
+                                selected="selected"
+                                    {% endif -%}>Shipper Address
+                            </option>
+                            <option value="container_number"  {% if r == "container_number" -%}
+                                selected="selected"
+                                    {% endif -%}>Container Number
+                            </option>
+                            <option value="product_description"  {% if r == "product_description" -%}
+                                selected="selected"
+                                    {% endif -%}>Product Description
+                            </option>
+                            <option value="all"  {% if r == "all" -%}
+                                selected="selected"
+                                    {% endif -%}>All
+                            </option>
+                            <option value="carrier"  {% if r == "carrier" -%}
+                                selected="selected"
+                                    {% endif -%}>Carrier
+                            </option>
+                            <option value="vessel"  {% if r == "vessel" -%}
+                                selected="selected"
+                                    {% endif -%}>Vessel
+                            </option>
+                            <option value="voyage"  {% if r == "voyage" -%}
+                                selected="selected"
+                                    {% endif -%}>Voyage
+                            </option>
+                            <option value="us_port"  {% if r == "us_port" -%}
+                                selected="selected"
+                                    {% endif -%}>Us Port
+                            </option>
+                            <option value="foreign_port"  {% if r == "foreign_port" -%}
+                                selected="selected"
+                                    {% endif -%}>Foreign Port
+                            </option>
+                            <option value="country_of_origin"  {% if r == "country_of_origin" -%}
+                                selected="selected"
+                                    {% endif -%}>Country Of Origin
+                            </option>
+                            <option value="place_of_receipt"  {% if r == "place_of_receipt" -%}
+                                selected="selected"
+                                    {% endif -%}>Place Of Receipt
+                            </option>
+                            <option value="bill_of_lading"  {% if r == "bill_of_lading" -%}
+                                selected="selected"
+                                    {% endif -%}>Bill Of Landing
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box">
+                    <div class="form_info cmsms_input">
+                        <input type="text" placeholder="Input Keywords" name="q[]" style="width: 108%"
+                               id="field_003" size="10" tabindex="11" value="{{ q[loop.index - 1] }}"
+                                />
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box" style="float: right;margin: 0px -67px 0px 0px;">
+                    <div class="form_info cmsms_input">
+                        <div class="button_click">
+                            <a class="button j-remove" href="javascript:void(0)"><span>X</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+{% endfor %}
+

@@ -1,0 +1,184 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Member #{{ member.number }}
+    </li>
+{% endblock %}
+
+{% block content %}
+<div>
+	<img src="/bundles/jariffproject/admin/img/icons/flag/red.png" data-toggle="tooltip" data-placement="right" title="" data-original-title="DONT CONTINUE, Cannot move forward without completing required tasks">
+    <a class="btn" href="{{ path('admin_member_subscription_new', {'id' : member.id}) }}">
+		New Subscription
+    </a>
+    <a class="btn" href="{{ path('admin_member_profile_edit', {'id' : member.id}) }}">
+        Update Profile
+    </a>
+    <a class="btn" href="{{ path('admin_company_edit', {'id' : member.company.id}) }}">
+		Update Company
+    </a>
+    {#<a class="btn" href="#">
+		Update Payment
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_cancel_request', {'id' : member.id}) }}">
+		Cancel Request
+    </a>
+    {#<a class="btn disabled" href="#">
+		Add Users
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_reset_password', {'id' : member.id}) }}">
+		Reset Password
+    </a>
+    <a class="btn" href="{{ path('admin_member_email_new', {'id' : member.id}) }}">
+		Send email
+    </a>
+</div>
+
+<br/>
+<br/>
+
+<div id="content">
+    <div class="body">
+      <ul id="myTab" class="nav nav-tabs">
+		<li class="active"><a href="{{ path('admin_member_profile_show', { 'id' : member.id }) }}">Client Info</a></li>
+		{# <li><a href="{{ path('admin_member_activities', { 'id' : member.id }) }}">Activities</a></li> #}
+		<li><a href="{{ path('admin_member_subscription_show', { 'id' : member.id }) }}">Subscription History</a></li>
+		<li><a href="{{ path('admin_member_invoice_show', { 'id' : member.id }) }}">Invoice History</a></li>
+		<li><a href="{{ path('admin_member_history_show', { 'id' : member.id }) }}">Client History</a></li>
+		<li><a href="{{ path('admin_member_representative_history_show', { 'id' : member.id }) }}">Representative History</a></li>
+		<li><a href="{{ path('admin_lead_history_show', { 'id' : member.id }) }}">Lead History</a></li>
+		<li><a href="{{ path('admin_member_email_show', { 'id' : member.id }) }}">Email History</a></li>
+      </ul>
+	</div>
+</div>
+
+
+<div class="row-fluid">
+    <div class="span12">
+    	<div class="span6">
+            <article class="social-box social-blue social-bordered">
+                <header>
+                  <h4><i class="icon-desktop"></i> Member : {{ entity.name }}</h4>
+                </header>
+                <div class="body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Status :</th>
+                                <td>{{ member.status }}, {% if member.parent %}child member{% else %}parent member{% endif %}</td>
+                            </tr>
+                			<tr>
+                			    <th>Number :</th>
+                			    <td>#{{ member.number }}</td>
+                			</tr>
+                            <tr>
+                                <th>Phone :</th>
+                                <td>{{ entity.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email :</th>
+                                <td>{{ member.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Country :</th>
+                                <td>{{ entity.country }}</td>
+                            </tr>
+                            <tr>
+                                <th>State :</th>
+                                <td>{{ entity.state }}</td>
+                            </tr>
+                            <tr>
+                                <th>Registration :</th>
+                                <td>{{ entity.dateRegistration|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </div>
+        <div class="span6">
+            <article class="social-box social-blue social-bordered">
+                <header>
+                  <h4><i class="icon-desktop"></i> Company : {{ member.company.name }}</h4>
+                  <div class="tools">
+                    <div class="btn-group">
+                        <a href="{{ path('admin_company_show', { 'id' : member.company.id }) }}" class="btn btn-mini">show</a>
+                        <a href="{{ path('admin_company_edit', { 'id' : member.company.id }) }}" class="btn btn-mini">edit</a>
+                    </div>
+                  </div>
+                </header>
+                <div class="body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Bill To</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Name :</th>
+                                <td>{{ member.company.billToName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adress :</th>
+                                <td>{{ member.company.billToAdress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email :</th>
+                                <td>{{ member.company.billToEmail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Phone :</th>
+                                <td>{{ member.company.billToPhone }}</td>
+                            </tr>
+                            
+                            <tr>
+                                <th>Ship To</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Name :</th>
+                                <td>{{ member.company.shipToName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Adress :</th>
+                                <td>{{ member.company.shipToAdress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email :</th>
+                                <td>{{ member.company.shipToEmail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Phone :</th>
+                                <td>{{ member.company.shipToPhone }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var member_id = {{ entity.id }};
+        $(function () {
+          $("[data-toggle='tooltip']").tooltip();
+        });    
+    </script>
+    {# <script src="/bundles/jariffadmin/js/grid-lead-activity.js"></script> #}
+{% endblock %}

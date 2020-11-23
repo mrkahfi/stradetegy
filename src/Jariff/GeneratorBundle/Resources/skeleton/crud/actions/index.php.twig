@@ -1,0 +1,20 @@
+
+    /**
+     * Lists all {{ entity }} entities.
+     *
+{% if 'annotation' == format %}
+     * @Route("/", name="{{ route_name_prefix }}")
+     * @Method("GET")
+     * @Template()
+{% endif %}
+     */
+    public function indexAction()
+    {
+        $entities = $this->repo('{{ bundle }}:{{ entity }}')->findAll();
+
+{% if 'annotation' == format %}
+        return array(
+            'entities' => $entities,
+        );
+{% endif %}
+    }

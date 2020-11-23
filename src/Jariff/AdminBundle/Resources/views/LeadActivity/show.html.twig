@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>LeadActivity</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ entity.category }}</td>
+            </tr>
+            <tr>
+                <th>Datecompleted</th>
+                <td>{{ entity.dateCompleted|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{{ entity.dateCreate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datescheduled</th>
+                <td>{{ entity.dateScheduled|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datetask</th>
+                <td>{{ entity.dateTask|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dateupdate</th>
+                <td>{{ entity.dateUpdate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ entity.priority }}</td>
+            </tr>
+            <tr>
+                <th>Result</th>
+                <td>{{ entity.result }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ entity.type }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('activity') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('activity_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

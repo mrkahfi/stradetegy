@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>jQuery.liveFilter</title>
+<link rel="stylesheet" href="http://cheeaun.github.com/cacss/ca.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="jquery.liveFilter.js"></script>
+<script>
+  $(function(){
+    $('#livefilter-list').liveFilter('#livefilter-input', 'li', {
+      filterChildSelector: 'a'
+    });
+  });
+</script>
+<h1><a href="http://github.com/cheeaun/jquery.livefilter">jQuery.liveFilter</a></h1>
+
+<h2>Demo</h2>
+<div id="demo-container">
+  <fieldset>
+    <legend><label for="livefilter-input">Type anything.</label></legend>
+    <input id="livefilter-input" type="text" value="">
+    <ul id="livefilter-list">
+      <li><a href="#">cool</a></li>
+      <li><a href="#">nice</a></li>
+      <li><a href="#">interesting</a></li>
+      <li><a href="#">javascript</a></li>
+      <li><a href="#">css</a></li>
+      <li><a href="#">html</a></li>
+      <li><a href="#">script</a></li>
+      <li><a href="#">international</a></li>
+    </ul>
+  </fieldset>
+</div>
+
+<h2>Code</h2>
+<h3>HTML:</h3>
+<pre><code>&lt;input id=&quot;livefilter-input&quot; type=&quot;text&quot; value=&quot;&quot;&gt;
+&lt;ul id=&quot;livefilter-list&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;cool&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;nice&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;interesting&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;javascript&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;css&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;html&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;script&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#&quot;&gt;international&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<h3>JavaScript:</h3>
+<pre><code>$('#livefilter-list').liveFilter('#livefilter-input', 'li', {
+  filterChildSelector: 'a'
+});</code></pre>
+
+<a href="http://github.com/cheeaun/jquery.livefilter"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>

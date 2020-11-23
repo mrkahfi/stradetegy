@@ -1,0 +1,403 @@
+{% extends 'JariffProjectBundle::base_left_sidebar.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:form_checkbox_category.html.twig' %}
+{% form_theme formCountry 'JariffProjectBundle:Themes:form_checkbox_country.html.twig' %}
+{% block menu %}
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="wrap_cont_nav" style="margin-top: -6%;">
+        <div class="cont_nav">
+            <form action="{{ path('demo_global_search_submit') }}" method="POST" class="form-inline j-searching">
+
+
+                {{ form_start(form) }}
+
+                {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+                <div class="form-group j-show" data-prototype='<h5 class="show" style="margin-left: 15%;margin-top: 2%;">Advanced search is available for <strong>subscribers only</strong>. <a href="/app_dev.php/signup"><strong>See
+                        plans now
+                        »</strong></a></h5>
+                        <div id="demo_search_embed_condition_4"><label style="display:none" for="demo_search_embed_condition_4_collect">Collect</label><select id="demo_search_embed_condition_4_collect" disabled="disabled" class="col-md-1" style="margin-right:3px"><option value="and">AND</option><option value="or">OR</option><option value="not">NOT</option></select></div>
+                        <div id="demo_search_embed_collect_4"><label style="display:none" for="demo_search_embed_collect_4_collect" class="required">Collect</label><select id="demo_search_embed_collect_4_collect" class="col-md-2" disabled="disabled"><option value="all">All</option><option value="consignee_name">Importer Name</option><option value="consignee_address">Importer Address</option><option value="shipper_name">Exporter Name</option><option value="shipper_address">Exporter Address</option><option value="product_description">Product</option></select></div>
+                        <div id="demo_search_embed_q_4"><label style="display:none" for="demo_search_embed_q_4_q" class="required">Q</label><input type="text" id="demo_search_embed_q_4_q" required="required" style="margin: 0px 3px 3px 3px;" disabled="disabled" class="col-md-8" placeholder="Enter a keyword"></div>
+                        '>
+
+
+                    {% for tag in form.collect %}
+                        {{ form_row(tag.collect) }}
+                    {% endfor %}
+
+                    {% for tagq in form.q %}
+                        {{ form_row(tagq.q) }}
+
+                    {% endfor %}
+
+                    <input type="submit" class="button button-search j-tour-button-submit" value="Search">
+
+                    <div class="j-add-filter"></div>
+
+                </div>
+                {{ form_end(form) }}
+
+            </form>
+
+            <br/>
+
+            <div style="float: right">
+                <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-time"></span> Alert</a>&nbsp;&nbsp;
+                <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span> Save</a>&nbsp;&nbsp;
+                <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>
+            </div>
+
+            <br/>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block content %}
+
+        <ul id="pageTab" class="nav nav-tabs">
+            <li class="active j-tour-tab-search-result"><a href="#page1"
+                                                           data-toggle="tab">{{ res.getNbResults }} Search Results</a></li>
+            <li class="j-tour-tab-search-importers"><a href="#importer" id="importers"
+                                                       data-title="Importer">Importers</a></li>
+            <li class="j-tour-tab-search-exporters"><a href="#exporter" id="exporters"
+                                                       data-title="Exporter">Exporters</a></li>
+            <li class="j-tour-tab-search-product"><a href="#product" id="products" data-title="Products">Products</a>
+            </li>
+        </ul>
+        <div id="pageTabContent" class="tab-content">
+            <div class="tab-pane active" id="page1">
+                    {% if pagination is defined %}
+                        <div class="jariff-pagination j-tour-pagination">
+                            {{ pagination|raw }}
+                        </div>
+                    {% endif %}
+
+
+
+                    {% for res in resHybird %}
+                        {% if res.getResult.getHit["highlight"] is defined and res.getResult.getHit["highlight"] is not empty and res.getTransformed.getCompanyAs == 'product' %}
+                            {% include "@JariffProject/Search/Result/product.html.twig" %}
+                        {% else %}
+                            {% if res.getTransformed.getCompanyAs == 'importer' %}
+                                {% include "@JariffProject/Search/Result/importer.html.twig" %}
+                            {% endif %}
+                            {% if res.getTransformed.getCompanyAs == 'exporter' %}
+                                {% include "@JariffProject/Search/Result/exporter.html.twig" %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="jariff-pagination">
+                        {{ pagination|raw }}
+                    </div>
+
+            </div>
+
+            <div class="tab-pane" id="importer">
+
+            </div>
+            <div class="tab-pane" id="exporter">Exporter</div>
+            <div class="tab-pane" id="product">Product</div>
+        </div>
+
+        <div id="dialog-confirm" title="Empty the tab?" style="display: none">
+            <p><span class="ui-icon ui-icon-alert"></span>All data in this tab will disappear. Are you sure?</p>
+        </div>
+    {% endblock content %}
+
+{% block left_sidebar %}
+    <section id="sidebar">
+
+        <div class="one_first">
+            <aside class="widget widget_custom_latest_popular_recent_entries">
+                <h2 class="widgettitle" style="display: inline">Show Per Page</h2>
+                <select name="size" class="j-change">
+                    <option value="10"
+                            {% if size is defined %}{% if size == 10 %}selected="SELECTED"{% endif %}{% endif %}>10
+                    </option>
+                    <option value="50"
+                            {% if size is defined %}{% if size == 50 %}selected="SELECTED"{% endif %}{% endif %}>50
+                    </option>
+                    <option value="100"
+                            {% if size is defined %}{% if size == 100 %}selected="SELECTED"{% endif %}{% endif %}>100
+                    </option>
+                </select>
+            </aside>
+
+
+            <aside class="widget widget_custom_latest_popular_recent_entries">
+                <h2 class="widgettitle">I would like to see</h2>
+
+
+                <div class="tab_content">
+
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes">
+                           {% render url('_widget_category',{'keyword' : keyword ,'s_cache' : app.request.get('s_cache')}) %}
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </aside>
+
+            <aside class="widget widget_custom_latest_popular_recent_entries">
+                <h2 class="widgettitle">Advanced filter</h2>
+
+
+                <div class="tab_content">
+
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes j-country-importer j-tour-country">
+
+                            <form method="post"
+                                  class="j-filter-country"
+                                  action="{{ path('demo_search_country_global_ajax',{'keyword' : keyword,'s_cache' :app.request.get('s_cache')}) }}">
+                                {{ form_widget(formCountry) }}
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block style %}
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/hover/css/hoveralls.css') }}" type="text/css" rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/wrapping/wrap-ribbon.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+
+    <div id="dialog-message" title="Advance Search">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Advanced search is available for <strong>subscribers only</strong>. <a style="color:#1ABC9C;" href="{{ path('signup') }}"><strong>See
+                    plans now
+                    »</strong></a>
+        </p>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/icon/js/livicons-1.2.min.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+
+    {% block js_call %}
+
+        <script type="text/javascript">
+            var $collectionHolder;
+
+            // setup an "add a tag" link
+            var $addFilterLink = $('<br/><a href="#" class="add_filter_link col-md-12">Add Filter Search <span class="glyphicon glyphicon-circle-arrow-down"></span></a>');
+            var $newLinkLi = $('<div class="j-add-filter"></div>').append($addFilterLink);
+
+            jQuery(document).ready(function () {
+                // Get the ul that holds the collection of tags
+                $collectionHolder = $('div.j-show');
+
+                // add a delete link to all of the existing tag form li elements
+                $collectionHolder.find('div.j-add-filter').each(function () {
+                    if ($(this).length > 1) {
+                        addTagFormDeleteLink($(this));
+                    }
+                });
+
+                // add the "add a tag" anchor and li to the tags ul
+                $collectionHolder.append($newLinkLi);
+
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                $addFilterLink.on('click', function (e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    var check = $('h5.show');
+
+                    if (check.length == 1) {
+                        $("#dialog-message").dialog({
+                            modal: true
+                        });
+                        return false;
+                    }
+
+                    // add a new tag form (see next code block)
+                    addTagForm($collectionHolder, $newLinkLi);
+                });
+
+
+            });
+
+            function addTagForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+
+                console.log(prototype);
+
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                var newForm = prototype.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                var $newFormLi = $('<div style="clear:both"></div> ').append(newForm);
+                $newLinkLi.before($newFormLi);
+
+                // add a delete link to the new form
+                addTagFormDeleteLink($newFormLi);
+            }
+
+            function addTagFormDeleteLink($tagFormLi) {
+                var $removeFormA = $('<a href="#" style="font-size: 16px;" title="Delete This Filter"><span class="glyphicon glyphicon-remove" style="line-height: 2"></span> </a>');
+                $tagFormLi.append($removeFormA);
+
+                $removeFormA.on('click', function (e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
+
+                    // remove the li for the tag form
+                    $tagFormLi.remove();
+                });
+            }
+
+            $('.j-change').on('change', function () {
+                $("#dialog-message").dialog({
+                    modal: true
+                });
+                return false;
+            })
+
+            $('.j-subscribe').on('click', function () {
+                $("#dialog-message").dialog({
+                    modal: true
+                });
+                return false;
+            })
+
+            $('.j-tour-pagination').children('div').children('ul').children('li').on('click', function () {
+                $("#dialog-message").dialog({
+                    modal: true
+                });
+                return false;
+            })
+
+
+            $.ajax({
+                type: 'POST',
+                url: Routing.generate('demo_global_search_count_product'),
+                data: $('.j-searching').serialize(),
+                beforeSend: function () {
+                    $('.j-total-product').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                },
+                success: function (data) {
+                    $('.j-total-product').html(data);
+                }
+            })
+
+            $.ajax({
+                type: 'POST',
+                url: Routing.generate('demo_global_search_count_importer'),
+                data: $('.j-searching').serialize(),
+                beforeSend: function () {
+                    $('.j-total-importer').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                },
+                success: function (data) {
+                    $('.j-total-importer').html(data);
+                }
+            })
+
+            $.ajax({
+                type: 'POST',
+                url: Routing.generate('demo_global_search_count_exporter'),
+                data: $('.j-searching').serialize(),
+                beforeSend: function () {
+                    $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                },
+                success: function (data) {
+                    $('.j-total-exporter').html(data);
+                }
+            })
+            $("#dialog-refresh-page").dialog({
+                modal: false
+            });
+
+            $('.j-see-submit').find('input').on('change', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: $('.j-see-submit').attr('action'),
+                    data: $('.j-see-submit').serialize(),
+                    beforeSend: function () {
+                        $('#page1').html('<div class="j-loading" style="text-align: center;margin-top: 50px;">'+
+                                '<img src="{{ asset('/bundles/jariffproject/frontend/images-old/loading_.GIF') }}">'+
+                                '<h5>Loading Trade Data ...</h5>'+
+                        '</div>');
+                    },
+                    success: function (data) {
+                        var res = JSON.parse(data);
+
+                        if (res.success) {
+
+                            window.location = res.urls;
+                        }
+                    }
+                })
+            })
+
+            $('.j-filter-country').find('input').on('change', function () {
+                $.ajax({
+                    type: 'POST',
+                    url: $('.j-filter-country').attr('action'),
+                    data: $('.j-filter-country').serialize(),
+                    beforeSend: function () {
+                        $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                                '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                                '<h5 style="margin-top: 15px">Loading...</h5>' +
+                                '</div>');
+                    },
+                    success: function (data) {
+                        $('#page1').html(data);
+                    }
+                })
+            })
+
+        </script>
+
+
+
+    {% endblock %}
+
+{% endblock %}

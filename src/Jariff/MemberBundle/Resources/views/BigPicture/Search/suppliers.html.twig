@@ -1,0 +1,196 @@
+<p>{{ total_results|ribuan }} results matching <strong>{{ keyword }}</strong></p>
+
+{% for res in resHybird %}
+
+    {% set displaySave = 'display:block' %}
+    {% set displayDelete = 'display:none' %}
+
+    {% set displayCompare = 'display:block' %}
+    {% set displayDeleteCompare = 'display:none' %}
+
+    {% if checkToChoice[res.getHit["_source"]['slug_consignee_name']]  is defined%}
+        {% set displaySave = 'display:none' %}
+        {% set displayDelete = 'display:block' %}
+    {% endif %}
+
+    {% if checkCompare[res.getHit["_source"]['slug_consignee_name']]  is defined%}
+        {% set displayCompare = 'display:none' %}
+        {% set displayDeleteCompare = 'display:block' %}
+    {% endif %}
+
+    {% set detail = {'consignee_name' : res.getHit["_source"]['consignee_name'],'consignee_address': res.getHit["_source"]['consignee_address'],'total_weight':res.getHit["_source"]['total_weight'],'weight_unit':res.getHit["_source"]['weight_unit'],'total_shipment':res.getHit["_source"]['total_shipment'],'product_desc':res.getHit["_source"]['product_desc'],'actual_arrival_date':res.getHit["_source"]['actual_arrival_date'],'shipper_name':res.getHit["_source"]['shipper_name']} %}
+    <a class="loadTree" id="{{ res.getHit['_source']['slug_shipper_name'] }}" name="{{ res.getHit['_source']['shipper_name'] }}" href="#">
+    <h5 style="margin-top:-10px; margin-bottom:0px">{{ res.getHit["_source"]['consignee_name'] }}
+    </h5>
+    <p style="margin-bottom:0px">{{ res.getHit["_source"]['shipper_address'] }}</p>
+    <hr/>
+{% endfor %}
+
+<div class="jariff-pagination">
+    {{ pagination|raw }}
+</div>
+
+{#<div id="modalSave" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">#}
+    {#<div class="modal-dialog">#}
+        {#<div class="modal-content modal-lg">#}
+            {#<div class="modal-body st-content">#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#</div>#}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.pagination li a').on('click', function () {
+
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('href'),
+                beforeSend: function () {
+                    $('.j-content-result').children(".col-md-3").html('<div style="text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        $('.j-content-result').children(".col-md-3").html(res.html_string);
+                        window.history.pushState("object or string", "Title", res.url_changes);
+
+
+                    }
+
+                }
+            })
+
+            return false;
+
+        });
+
+
+
+        $('.loadTree').on('click', function () {
+            $('#map_loading_div').show();
+            $('#map_loading_text').html("Loading the big picture of " + $(this).attr('name'));
+            // $('svg').remove();
+            loadTree($(this).attr('id'), $(this).attr('name'), 'suppliers');
+            return false;
+        });
+
+        $('.j-modal-save-company').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                beforeSend: function () {
+                    $('.st-content').html('<div class="css3-spinner">' +
+                            '<div class="css3-spinner-bounce1"></div>' +
+                            '<div class="css3-spinner-bounce2"></div>' +
+                            '<div class="css3-spinner-bounce3"></div>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.st-content').html(res.html_string);
+                        isThis.parent('.j-save-company-show').hide();
+                        isThis.parent('.j-save-company-show').siblings('.j-delete-company-show').show();
+
+                    }
+                }
+            })
+        })
+
+
+        $('.j-modal-delete-company').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                beforeSend: function () {
+                    $('.st-content').html('<div class="css3-spinner">' +
+                            '<div class="css3-spinner-bounce1"></div>' +
+                            '<div class="css3-spinner-bounce2"></div>' +
+                            '<div class="css3-spinner-bounce3"></div>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.st-content').html(res.html_string);
+                        isThis.parent('.j-delete-company-show').siblings('.j-save-company-show').show();
+                        isThis.parent('.j-delete-company-show').hide();
+
+                        isThis.parent('.j-delete-company-show').siblings('.j-compare-company-show').show();
+                        isThis.parent('.j-delete-company-show').siblings('.j-delete-compare-company-show').hide();
+                    }
+                }
+            })
+        })
+
+        $('.j-modal-compare-company').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                beforeSend: function () {
+                    $('.st-content').html('<div class="css3-spinner">' +
+                            '<div class="css3-spinner-bounce1"></div>' +
+                            '<div class="css3-spinner-bounce2"></div>' +
+                            '<div class="css3-spinner-bounce3"></div>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.st-content').html(res.html_string);
+                        isThis.parent('.j-compare-company-show').hide();
+                        isThis.parent('.j-compare-company-show').siblings('.j-delete-compare-company-show').show();
+
+                    }
+                }
+            })
+        })
+
+        $('.j-modal-delete-compare-company').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                beforeSend: function () {
+                    $('.st-content').html('<div class="css3-spinner">' +
+                            '<div class="css3-spinner-bounce1"></div>' +
+                            '<div class="css3-spinner-bounce2"></div>' +
+                            '<div class="css3-spinner-bounce3"></div>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.st-content').html(res.html_string);
+                        isThis.parent('.j-delete-compare-company-show').siblings('.j-compare-company-show').show();
+                        isThis.parent('.j-delete-compare-company-show').hide();
+                    }
+                }
+            })
+        })
+
+    })
+</script>

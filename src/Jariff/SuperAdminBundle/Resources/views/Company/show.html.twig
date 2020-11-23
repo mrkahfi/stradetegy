@@ -1,0 +1,91 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content -%}
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <article class="social-box social-blue social-bordered">
+                <header>
+                  <h4><i class="icon-desktop"></i> Company : {{ entity.name }}</h4>
+                </header>
+                <div class="body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>Bill To Name</th>
+                                <td>{{ entity.billToName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bill To Adress</th>
+                                <td>{{ entity.billToAdress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bill To Email</th>
+                                <td>{{ entity.billToEmail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bill To Phone</th>
+                                <td>{{ entity.billToPhone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Invoice Type</th>
+                                <td>{{ entity.invoiceType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Payment</th>
+                                <td>{{ entity.payment }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ship To Name</th>
+                                <td>{{ entity.shipToName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ship To Adress</th>
+                                <td>{{ entity.shipToAdress }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ship To Email</th>
+                                <td>{{ entity.shipToEmail }}</td>
+                            </tr>
+                            <tr>
+                                <th>Ship To Phone</th>
+                                <td>{{ entity.shipToPhone }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date Create</th>
+                                <td>{{ entity.dateCreate|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <footer>
+                  Footer content
+                </footer>
+            </article>
+        </div>
+        <div class="span6">
+            <article class="social-box social-blue social-bordered">
+                <header>
+                  <h4><i class="icon-desktop"></i> Company's Member</h4>
+                </header>
+                <div class="body">
+                    <table class="table table-striped">
+                        <tbody>
+                            {% for member in entity.member %}
+                                <tr>
+                                    <th>Member {{ loop.index }}</th>
+                                    <td><a href="{{ path('admin_member_profile_show', { 'id' : member.id }) }}">{{ member.profile.name }}</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer>
+                  Footer content
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

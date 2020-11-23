@@ -1,0 +1,323 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+
+                <div class="panel panel-info" id="tour-chart">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Search History</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="j-chart-sell"></div>
+                        <div id="j-chart-employee"></div>
+
+                    </div>
+                </div>
+                <div class="count">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5 style="margin-right: 12px;">Total {{ data.getTotalItemCount }}</h5>
+                        </div>
+                        <div class="col-md-6 pull-right">
+                            <div class="col-md-3">
+                                <h5 style="margin-right: 12px;">Filter By : </h5>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ path('member_search_history',{'filter' : 'green'}) }}"
+                                   class="jar-tooltip-filter" title="Filter Pin Green">
+                                    <span class="pushpin-green"></span>
+                                </a>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ path('member_search_history',{'filter' : 'yellow'}) }}"
+                                   class="jar-tooltip-filter" title="Filter Pin Yellow">
+                                    <span class="pushpin-yellow"></span>
+                                </a>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ path('member_search_history',{'filter' : 'pink'}) }}"
+                                   class="jar-tooltip-filter" title="Filter Pin Red">
+                                    <span class="pushpin-pink"></span>
+                                </a>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{{ path('member_search_history') }}" class="jar-tooltip-filter"
+                                   title="Remove Filter">
+                                    <span class="pushpin-unpin"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date Search</th>
+                        <th>Timezone</th>
+                        <th>Search On</th>
+                        <th>Query Search</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                        {#{% set res = data.getQuery|jsondecode %}#}
+                        <tr>
+                            <td>{{ row.getDateSearch|date("d M Y") }}</td>
+                            <td>{{ row.getTimezone }}</td>
+                            <td>
+                                {{ row.getSearchOn }}
+                            </td>
+                            <td>
+                                <div class="row stats-icon">
+                                    {#<div class="col-md-1">#}
+                                    {#<a href="javascript:void(0)" class="jar-tooltip" title="tooltip text">#}
+                                    {#<span class="flag-green"></span>#}
+                                    {#</a>#}
+                                    {#</div>#}
+                                    {#{% set search = row.getQuery|jsondecode %}#}
+
+
+
+                                    <div class="col-md-3">
+                                        <a href="javascript:void(0)" class="j-pin-choice-{{ loop.index }} jar-tooltip"
+                                           data-class="j-pin-choice-{{ loop.index }}"
+                                           data-id="{{ row.getId }}"
+                                           data-toggle="tooltip"
+                                           data-container="body"
+                                           data-placement="top" title="Set Filter">
+                                            <span class="pushpin-{% if row.getSetPin is not empty %}{{ row.getSetPin }}{% else %}unpin{% endif %}"></span>
+                                        </a>
+                                    </div>
+                                    {% if row.getSearchOn == "shipments-search" %}
+                                        <div class="col-md-3" style="margin-left: -15px;">
+                                            <a href="{{ path('member_search_shipments_result_us_imports',{'s_cache' : row.getQuery}) }}"
+                                               class="jar-tooltip" data-toggle="tooltip" data-placement="top"
+                                               data-container="body"
+                                               title="Go to Search">
+                                                <span class="jar-search"></span>
+                                            </a>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-md-3" style="margin-left: -15px;">
+                                            <a href="{{ path('member_search_global_result',{'s_cache' : row.getQuery}) }}"
+                                               data-toggle="tooltip" data-placement="top"
+                                               data-container="body"
+                                               title="Go to Search">
+                                                <span class="jar-search"></span>
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                {% set search = row.getQuery|decrypted_query|jsondecode %}
+                                Your search of Data for : <br/>
+
+                                {% for key in search.search %}
+
+                                    {% if key.condition is not empty %}
+                                        <br/>
+                                        {{ key.condition|upper }}
+                                    {% endif %}
+
+                                    {{ key.collect }}
+                                    <span class="code">{{ key.q }}</span>
+
+                                {% endfor %}
+
+                                <br/>
+                                {% if search.category is defined %}
+                                    With
+                                    {% for key in search.category %}
+                                        {{ key }},
+                                    {% endfor %}
+                                {% else %}
+                                    With Importer, Exporter, and Product
+                                {% endif %}
+
+                                <br/>
+                                {% if search.country is defined %}
+                                    And Filter by Countries
+                                    {% for key in search.country %}
+                                        {{ key|twolettercodecountry }},
+                                    {% endfor %}
+
+                                {% endif %}
+
+                                <br/>
+
+
+                                <br/>
+                                Total Data found {{ row.getTotalRow|ribuan }}
+
+                            </td>
+
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    {#<tfoot>#}
+                    {#<tr>#}
+                    {#<th>Table Footer here ...</th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#</tr>#}
+                    {#</tfoot>#}
+                </table>
+
+
+                {{ knp_pagination_render(data) }}
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}
+
+{% block style %}
+
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <script type="text/javascript"
+            src="{{ asset('bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.jar-tooltip').tooltip({
+                placement: 'top',
+                container: 'body'
+            });
+
+            $('.jar-tooltip-filter').tooltip({
+                placement: 'top',
+                container: 'body'
+            });
+            $('.jar-tooltip').popover({
+                placement: 'bottom',
+                container: 'body',
+                title: '',
+                template: "<div class='popover tour' style='width: 200px'>" +
+                        "<div class='arrow'></div>" +
+                        "<h3 class='popover-title' style='display: none'></h3>" +
+                        "<div class='popover-content'>" +
+                        "<div class='row'> " +
+                        "<div class='col-md-1'> " +
+                        "<a href='javascript:void(0)' class='j-pin' data-class='pushpin-unpin' data-priority='0' data-pin='unpin' title='No Pin'>" +
+                        "<span class='pushpin-unpin'></span>" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class='col-md-1' > " +
+                        "<a href='javascript:void(0)' class='j-pin' data-class='pushpin-green' data-priority='1' data-pin='green' title='Normal Priority'>" +
+                        "<span class='pushpin-green'></span>" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class='col-md-1' > " +
+                        "<a href='javascript:void(0)' class='j-pin' data-class='pushpin-yellow' data-priority='2' data-pin='yellow' title='Middle Priority'>" +
+                        "<span class='pushpin-yellow'></span>" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class='col-md-1' > " +
+                        "<a href='javascript:void(0)' class='j-pin' data-class='pushpin-pink' data-priority='3' data-pin='pink' title='Hard Priority'>" +
+                        "<span class='pushpin-pink'></span>" +
+                        "</a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>",
+                html: true,
+                callback: function () {
+
+                }
+
+            });
+
+            $('.jar-tooltip').on('shown.bs.popover', function () {
+                // do something…
+                check($(this).attr('data-class'));
+//                alert('ok');
+                $('.j-pin').tooltip({
+                    placement: 'top',
+                    container: 'body'
+                });
+            })
+
+            function check(clas) {
+                $('.j-pin').on('click', function () {
+
+                    var thisPin = $(this);
+                    $.ajax({
+                        type: 'GET',
+                        url: Routing.generate('member_search_history_pin', {id: $('.' + clas).attr('data-id'), pin: $(this).attr('data-pin'), priority: $(this).attr('data-priority')}),
+                        success: function (data) {
+                            $('.' + clas).html('<span class="' + $(thisPin).attr('data-class') + '"></span>');
+
+                        }
+                    })
+
+
+                })
+            }
+
+
+//            $(".jar-tooltip").on('click', function () {
+//                $(this).find('.j-flag').html(' <div class="arrow"></div>' +
+//                        '<h3 class="popover-title" style="display: none;"></h3>' +
+//                        '<div class="popover-content">Vivamus sagittis lacus vel augue laoreet' +
+//                        'rutrum faucibus.' +
+//                        '</div>')
+//            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var optionsSell = {
+                title: 'Charts Search Per Day',
+                'width': 850,
+                'height': 300,
+                hAxis: { titleTextStyle: {color: 'red'}}
+            };
+
+            var jsonData = $.ajax({
+                url: '{{ path('member_search_history_total') }}',
+                dataType: "json",
+                async: false
+            }).responseText;
+
+            var obj = jQuery.parseJSON(jsonData);
+
+            var dataline = google.visualization.arrayToDataTable(obj);
+
+            //            var chartEmployee = new google.visualization.ColumnChart(document.getElementById('j-chart-employee'));
+            var chartSell = new google.visualization.ColumnChart(document.getElementById('j-chart-sell'));
+            //            chartEmployee.draw(dataEmployee, optionsEmployee);
+            chartSell.draw(dataline, optionsSell);
+        }
+    </script>
+{% endblock %}

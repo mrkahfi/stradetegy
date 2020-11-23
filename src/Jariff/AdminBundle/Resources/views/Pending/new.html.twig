@@ -1,0 +1,24 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+
+{% block content %}
+        <section id="middle_content" style="min-height: 750px;z-index: 101;position: static">
+            <div class="entry">
+			    <h1>Signup</h1>
+
+			    {{ form(form) }}
+
+            </div>
+        </section>
+
+{% endblock %}
+
+
+{% block javascript %}
+	{{ parent() }}
+
+    <script type="text/javascript">
+    	jQuery('#pending_expired_day').hide();
+    </script>
+
+{% endblock javascript %}

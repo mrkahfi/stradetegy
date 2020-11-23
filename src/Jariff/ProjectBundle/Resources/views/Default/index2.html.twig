@@ -1,0 +1,704 @@
+   {% extends 'JariffProjectBundle::landing.html.twig' %}
+
+   {% block middle_content %}
+   <section id="slider" class="slider-parallax swiper_wrapper full_screen clearfix">
+      <div class="swiper-container swiper-parent">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide dark"
+            style="background-image: url('/bundles/jariffproject/frontend/images/slider/swiper/hk.jpg');">
+            <div class="container clearfix">
+               <div class="slider-caption slider-caption-center">
+                  <h2 data-caption-animate="fadeInUp">Welcome to TRADEtegy</h2>
+                  <p data-caption-animate="fadeInUp" data-caption-delay="200"><strong>International Trade
+                     Research Made Easy</strong>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="swiper-slide dark"
+         style="background-image: url('/bundles/jariffproject/frontend/images/slider/swiper/port.jpg');">
+         <div class="container clearfix">
+            <div class="slider-caption slider-caption-center">
+               <h2 data-caption-animate="fadeInUp">TRADEtegy</h2>
+               <p data-caption-animate="fadeInUp" data-caption-delay="200"><strong>International Trade Transparency At Your Finger Tips</strong></p>
+            </div>
+         </div>
+               <!-- <div class="video-wrap">
+                  <video poster="/bundles/jariffproject/frontend/images/videos/explore-poster.jpg" preload="auto" loop autoplay muted>
+                      <source src="{{ asset('/bundles/jariffproject/frontend/images/videos/explore.mp4') }}" type='video/mp4' />
+                      <source src="{{ asset('/bundles/jariffproject/frontend/images/videos/explore.webm') }}" type='video/webm' />
+                  </video>
+                  <div class="video-overlay" style="background-color: rgba(0,0,0,0.55);"></div>
+               </div> -->
+            </div>
+         </div>
+         <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
+         <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
+         <div id="slide-number">
+            <div id="slide-number-current"></div>
+            <span>/</span>
+            <div id="slide-number-total"></div>
+         </div>
+      </div>
+   </section>
+   <div id="dialog-form" title="Request a Hosted Demo">
+      <style type="text/css">
+      div#users-contain { width: 450px; margin: 20px 0; }
+      div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+      div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+      .ui-dialog .ui-state-error { padding: .3em; }
+      .validateTips { border: 1px solid transparent; padding: 0.3em; }
+      .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+      .ui-timepicker-div dl { text-align: left; }
+      .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+      .ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+      .ui-timepicker-div td { font-size: 90%; }
+      .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+      .ui-timepicker-rtl{ direction: rtl; }
+      .ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+      .ui-timepicker-rtl dl dt{ float: right; clear: right; }
+      .ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+      .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+         float:left;
+         background: #900;
+         display: none;
+      }
+
+      </style>
+      <div id="demo-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Request Sent Successfully!"></div>
+      <form class="nobottommargin" id="template-demoform" name="template-demoform" action="{{ url('request_demo') }}" method="post">
+         <div class="demo-form-process"></div>
+         <div class="col_half">
+            <label for="first_name">First Name
+               <small>*</small>
+            </label>
+            <input type="text" id="first_name" name="first_name" value="" class="sm-form-control required"/>
+         </div>
+         <div class="col_half col_last">
+            <label for="last_name">Last Name
+            </label>
+            <input type="text" id="last_name" name="last_name" value="" class="sm-form-control required"/>
+         </div>
+         <div class="col_one_third">
+            <label for="demo_email">Email
+               <small>*</small>
+            </label>
+            <input type="email" id="demo_email" name="demo_email" value="" class="required email sm-form-control"/>
+         </div>
+         <div class="col_two_third col_last">
+            <label for="company_name">Company Name</label>
+            <input type="text" id="company_name" name="company_name" value="" class="sm-form-control"/>
+         </div>
+         <div class="clear"></div>
+         <div class="col_half">
+            <label for="country">Country Where You Are</label>
+            <select id="country" name="country" class="sm-form-control">
+            </select>
+         </div>
+
+         <div class="col_one_fourth">
+            <label for="phone_code">Country Code</label>
+            <input type="text" id="phone_code" name="phone_code" value="+93" class="sm-form-control" />
+         </div>
+
+         <div class="col_one_fourth col_last">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" value="" class="sm-form-control"/>
+         </div>
+         <div class="clear"></div>
+         <div class="col_half">
+            <label for="demo_schedule">Requested Demo Date/Time</label>
+            <select id="demo_schedule" name="demo_schedule" class="sm-form-control">
+               <option value="0">Now</option>
+               <option value="1">Schedule</option>
+            </select>
+         </div>
+         <div class="col_half col_last" id="work_time_col">
+            <label for="work_time">What date and time in your country works for you?
+               <small>*</small>
+            </label>
+            <input type="text" id="work_time" name="work_time" value="" class="required sm-form-control"/>
+         </div>
+         <div class="clear"></div>
+         <div class="col_full">
+            <label for="demo_message">Message
+               <small>(Please add data of special interest here)</small>
+            </label>
+            <textarea class="required sm-form-control" id="demo_message" name="demo_message" rows="3" cols="30"></textarea>
+         </div>
+         <div class="col_full hidden">
+            <input type="text" id="template-demoform-botcheck" name="template-demoform-botcheck" value="" class="sm-form-control"/>
+         </div>
+         <!-- <div class="col_full">
+            <button class="button button-3d nomargin" type="submit" id="demo_request_button" name="demo_request_button" value="submit">SEND REQUEST
+            </button>
+         </div> -->
+      </form>
+   </div>
+   <section id="content">
+      <marquee behavior="scroll" direction="left" id="home-marquee">
+         <ul>
+         </ul>
+      </marquee>
+      <div class="content-wrap">
+         <div class="container clearfix">
+            <div class="center bottommargin">
+               <a href="#" id="demo-button" class="button button-3d button-teal button-xlarge nobottommargin"><i class="icon-line-box"></i>Hosted
+                  DEMO</a> <span class="or-divider"> - OR - </span><a href="#" data-scrollto="#section-pricing"
+                  class="button button-3d button-red button-xlarge nobottommargin"><i
+                  class="icon-paperplane"></i>Presentation</a> - OR - </span><a href="https://z1.le.liveperson.net/a/47200450/#mng!lptag/walkme/61844"
+                  data-scrollto="#section-pricing"
+                  class="button button-3d button-aqua button-xlarge nobottommargin"><i
+                  class="icon-chat"></i>Chat</a>
+               </div>
+               <div class="clear"></div>
+               <h3>What does TRADEtegy do?</h3>
+               <p>Our Service is a great tool for identifying reliable manufacturers and importers of just about any product.
+                  We track imports and exports from various Customs agencies for fifteen (15) countries and make the data
+                  searchable via our web-based application. With a login and password you will easily search our records and
+                  acquire the data you need to get a competitive edge.
+                  All the data you need via your PC, tablet or smartphone!
+               </p>
+               <div class="col_two_third topmargin">
+                  <img data-animate="fadeInLeft" src="{{ asset('/bundles/jariffproject/frontend/images/landing/device1.png') }}"
+                  alt="Mac" style="position: absolute; opacity: 0; width: 100%; top: 0; left: 0;">
+                  <img data-animate="fadeInRight" data-delay="300"
+                  src="{{ asset('/bundles/jariffproject/frontend/images/landing/device2.png') }}" alt="iPad"
+                  style="position: absolute; opacity: 0; width: 100%; top: 0; left: 0;">
+                  <img data-animate="fadeInUp" data-delay="600"
+                  src="{{ asset('/bundles/jariffproject/frontend/images/landing/device3.png') }}" alt="iPhone"
+                  style="position: absolute; opacity: 0; width: 100%; top: 0; left: 0;">
+               </div>
+               <div class="col_one_third topmargin col_last">
+                  <!--<div class="divider divider-short"><i class="icon-circle"></i></div>-->
+                  <ul class="iconlist iconlist-large iconlist-color">
+                     <li><i class="icon-ok-sign"></i> Uncover Opportunities In Global Trade </li>
+                     <!--<li><i class="icon-ok-sign"></i> Download buttons for Apple, Android, Windows apps</li>-->
+                     <li><i class="icon-ok-sign"></i> Keep tabs on a company of interest by viewing Customs records (bills of lading) or downloading them in Excel or CSV format for your convenience.</li>
+                     <li><i class="icon-ok-sign"></i> Research Suppliers by seeing what they manufacture, who they export to, how much they export and how often.</li>
+                     <li><i class="icon-ok-sign"></i> Target promising sales leads by viewing the shipping records of companies importing products like yours, who they are buying from, how much and how often.</li>
+                     <li><i class="icon-ok-sign"></i> Find out who else your suppliers are supplying to - if companies you don't know are buying products similar to yours from your supplier, it's possible you have a new competitor!</li>
+                     <li><i class="icon-ok-sign"></i> Enforce your exclusivity agreements</li>
+                  </ul>
+               </div>
+               <div class="clear"></div>
+               <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+               <div id="section-features" class="heading-block title-center page-section">
+                  <h2>Features</h2>
+               </div>
+               <div class="col_one_third">
+                  <div class="feature-box fbox-plain">
+                  <!-- <div class="fbox-icon" data-animate="zoomIn">
+                     <a href="#"><img src="{{ asset('/bundles/jariffproject/frontend/images/icons/features/responsive.png') }}" alt="Responsive Layout"></a>
+                  </div> -->
+                  <h3>The Big Picture</h3>
+                  <p>
+                     <div data-animate="zoomIn">
+                        <a href="#"><img
+                           src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/11_the_big_picture_for_buyer.png') }}"
+                           alt="Responsive Layout"></a>
+                        </div>
+                     </p>
+                  </div>
+               </div>
+               <div class="col_one_third">
+                  <div class="feature-box fbox-plain">
+                  <!-- <div class="fbox-icon" data-animate="zoomIn" data-delay="200">
+                     <a href="#"><img src="{{ asset('/bundles/jariffproject/frontend/images/icons/features/retina.png') }}" alt="Retina Graphics"></a>
+                  </div> -->
+                  <h3>Customized Reports</h3>
+                  <p>
+                     <div data-animate="zoomIn" data-delay="200">
+                        <a href="#"><img
+                           src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/4_advance_download.png') }}"
+                           alt="Retina Graphics"></a>
+                        </div>
+                     </p>
+                  </div>
+               </div>
+               <div class="col_one_third col_last">
+                  <div class="feature-box fbox-plain">
+                  <!-- <div class="fbox-icon" data-animate="zoomIn" data-delay="400">
+                     <a href="#"><img src="{{ asset('/bundles/jariffproject/frontend/images/icons/features/performance.png') }}" alt="Retina Graphics"></a>
+                  </div> -->
+                  <h3>Analytical Graphs</h3>
+                  <p>
+                     <div data-animate="zoomIn" data-delay="400">
+                        <a href="#"><img
+                           src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/13_world_map_view_for_supplier.png') }}"></a>
+                        </div>
+                     </p>
+                  </div>
+               </div>
+               <div class="clear"></div>
+               <!--<div class="col_one_third">
+                  <div class="feature-box fbox-plain">
+                     <h3>Contact Information</h3>
+                     <p>
+                        <div data-animate="zoomIn" data-delay="600">
+                           <a href="#"><img
+                              src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/0_search_result.png') }}"
+                              alt="Responsive Layout"></a>
+                           </div>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col_one_third">
+                     <div class="feature-box fbox-plain">
+                        <h3>Product Pictures</h3>
+                        <p>
+                           <div data-animate="zoomIn" data-delay="800">
+                              <a href="#"><img
+                                 src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/3_compare_company.png') }}"
+                                 alt="Responsive Layout"></a>
+                              </div>
+                           </p>
+                        </div>
+                     </div>
+                     <div class="col_one_third col_last">
+                        <div class="feature-box fbox-plain">
+                           <h3>Free Apps for our mobile devices</h3>
+                           <p>
+                              <div data-animate="zoomIn" data-delay="1000">
+                                 <a href="#"><img
+                                    src="{{ asset('/bundles/jariffproject/frontend/images/feature/Thumb/6_detail_company.png') }}"
+                                    alt="Responsive Layout">
+                                 </a>
+                              </div>
+                           </p>
+                        </div>
+                     </div>-->
+                     <div class="clear"></div>
+                     <div class="divider divider-short divider-center"><i class="icon-circle"></i>
+                     </div>
+                     <div id="section-faqs" class="heading-block title-center page-section">
+                        <h2>Frequently Asked Questions</h2>
+                     </div>
+                     <div class="nobottommargin clearfix">
+
+                        <ul id="portfolio-filter" class="clearfix">
+
+                          <li class="activeFilter"><a href="#" data-filter="all">All</a></li>
+                          <li><a href="#" data-filter=".faq-marketplace">Marketplace</a></li>
+                          <li><a href="#" data-filter=".faq-authors">Authors</a></li>
+                          <li><a href="#" data-filter=".faq-legal">Legal</a></li>
+                          <li><a href="#" data-filter=".faq-itemdiscussion">Item Discussion</a></li>
+                          <li><a href="#" data-filter=".faq-affiliates">Affiliates</a></li>
+                          <li><a href="#" data-filter=".faq-miscellaneous">Miscellaneous</a></li>
+
+                       </ul>
+
+                       <div class="clear"></div>
+
+<div id="faqs" class="faqs">
+
+                            <div class="toggle faq faq-marketplace faq-authors">
+                                <div class="togglet"><i class="toggle-closed icon-question-sign"></i><i class="toggle-open icon-question-sign"></i>If these data are free, why do I need TRADEtegy?</div>
+                                <div class="togglec">While the data is public record, the steps an individual would have to take to obtain these data would be time consuming and quite a hassle.  TRADEtegy takes the raw data and organizes it so you can easily target and retrieve the data you need.</div>
+                            </div>
+
+                            <div class="toggle faq faq-authors faq-miscellaneous">
+                                <div class="togglet"><i class="toggle-closed icon-comments-alt"></i><i class="toggle-open icon-comments-alt"></i>Is there a minimum subscription requirement?</div>
+                                <div class="togglec">No! Our service does not require a minimum subscription term although, by committing to longer terms, you will save money.</div>
+                            </div>
+
+                            <div class="toggle faq faq-miscellaneous">
+                                <div class="togglet"><i class="toggle-closed icon-lock3"></i><i class="toggle-open icon-lock3"></i>Can I search by HS Code?</div>
+                                <div class="togglec">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, dolorum, vero ipsum molestiae minima odio quo voluptate illum excepturi quam cum voluptates doloribus quae nisi tempore necessitatibus dolores ducimus enim libero eaque explicabo suscipit animi at quaerat aliquid ex expedita perspiciatis? Saepe, aperiam, nam unde quas beatae vero vitae nulla.</div>
+                            </div>
+
+                            <div class="toggle faq faq-authors faq-legal faq-itemdiscussion">
+                                <div class="togglet"><i class="toggle-closed icon-download-alt"></i><i class="toggle-open icon-download-alt"></i>Is this service legal?</div>
+                                <div class="togglec">The U.S. Department of Homeland Security and other Customs agencies provides these documents to us as public records (legal) which gives us the right to republish them.</div>
+                            </div>
+
+                            <div class="toggle faq faq-marketplace faq-authors">
+                                <div class="togglet"><i class="toggle-closed icon-ok"></i><i class="toggle-open icon-ok"></i>What data do you provide?</div>
+                                <div class="togglec">The data we provide comes from the Bills of Lading for each shipment. These data include consignee, shipper, arrival date of import, product descriptions, quantity, arrival ports, and more.</div>
+                            </div>
+
+                            <div class="toggle faq faq-affiliates faq-miscellaneous">
+                                <div class="togglet"><i class="toggle-closed icon-money"></i><i class="toggle-open icon-money"></i>Do you provide export data?</div>
+                                <div class="togglec">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, dolorum, vero ipsum molestiae minima odio quo voluptate illum excepturi quam cum voluptates doloribus quae nisi tempore necessitatibus dolores ducimus enim libero eaque explicabo suscipit animi at quaerat aliquid ex expedita perspiciatis? Saepe, aperiam, nam unde quas beatae vero vitae nulla.</div>
+                            </div>
+
+                            <div class="toggle faq faq-legal faq-itemdiscussion">
+                                <div class="togglet"><i class="toggle-closed icon-picture"></i><i class="toggle-open icon-picture"></i>What are my payment options?</div>
+                                <div class="togglec">You can pay via U.S. check, credit card (MasterCard, Visa, AmEx), PayPal or wire transfer. The fastest afafnd easiest way to gain access to our service is via credit card.</div>
+                            </div>
+
+                            <div class="toggle faq faq-legal faq-authors faq-itemdiscussion">
+                                <div class="togglet"><i class="toggle-closed icon-file3"></i><i class="toggle-open icon-file3"></i>Do you provide shipment values?</div>
+                                <div class="togglec">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, dolorum, vero ipsum molestiae minima odio quo voluptate illum excepturi quam cum voluptates doloribus quae nisi tempore necessitatibus dolores ducimus enim libero eaque explicabo suscipit animi at quaerat aliquid ex expedita perspiciatis? Saepe, aperiam, nam unde quas beatae vero vitae nulla.</div>
+                            </div>
+
+                            <div class="toggle faq faq-affiliates">
+                                <div class="togglet"><i class="toggle-closed icon-bar-chart"></i><i class="toggle-open icon-bar-chart"></i>Do you offer one-time reports?</div>
+                                <div class="togglec">Yes! Please contact our office via phone, chat, email or contact form for more information.</div>
+                            </div>
+
+                            <div class="toggle faq faq-authors faq-itemdiscussion">
+                                <div class="togglet"><i class="toggle-closed icon-phone3"></i><i class="toggle-open icon-phone3"></i>How much shipping history do you offer?</div>
+                                <div class="togglec">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, dolorum, vero ipsum molestiae minima odio quo voluptate illum excepturi quam cum voluptates doloribus quae nisi tempore necessitatibus dolores ducimus enim libero eaque explicabo suscipit animi at quaerat aliquid ex expedita perspiciatis? Saepe, aperiam, nam unde quas beatae vero vitae nulla.</div>
+                            </div>
+
+                            <div class="toggle faq faq-authors faq-itemdiscussion">
+                                <div class="togglet"><i class="toggle-closed icon-file2"></i><i class="toggle-open icon-file2"></i>How di I cancel my subscription?</div>
+                                <div class="togglec">You may cancel your subscription any time by clicking the following link to let us know. Your subscription will terminate 12:01 a.m. EST on the last day of the billing period. <br /><br />
+
+                                <a class="button button-3d nomargin" href='http://stradetegy.com/member/cancel-request'>Click Here to Cancel</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        </div>
+
+                  <div class="clear"></div>
+                  <div class="divider divider-short divider-center"><i class="icon-circle"></i></div>
+                  <div id="section-contact" class="heading-block title-center page-section">
+                     <h2>Get in Touch with us</h2>
+                     <span>Still have questions? Use Contact Form below</span>
+                  </div>
+                  <div class="col_half">
+                     <div class="fancy-title title-dotted-border">
+                        <h3>Contact Us</h3>
+                     </div>
+                     <div id="contact-form-result" data-notify-type="success"
+                     data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
+                     <form class="nobottommargin" id="template-contactform" name="template-contactform"
+                     action="{{ url('contact_send')}}" method="post">
+                     <div class="form-process"></div>
+                     <div class="col_one_third">
+                        <label for="name_contact">Name
+                           <small>*</small>
+                        </label>
+                        <input type="text" id="name_contact" name="name_contact" value=""
+                        class="sm-form-control required"/>
+                     </div>
+                     <div class="col_one_third">
+                        <label for="email_contact">Email
+                           <small>*</small>
+                        </label>
+                        <input type="email" id="email_contact" name="email_contact" value=""
+                        class="required email sm-form-control"/>
+                     </div>
+                     <div class="col_one_third col_last">
+                        <label for="phone_contact">Phone</label>
+                        <input type="text" id="phone_contact" name="phone_contact" value=""
+                        class="sm-form-control"/>
+                     </div>
+                     <div class="clear"></div>
+                     <div class="col_two_third">
+                        <label for="subject_contact">Subject
+                           <small>*</small>
+                        </label>
+                        <input type="text" id="subject_contact" name="subject_contact" value=""
+                        class="required sm-form-control"/>
+                     </div>
+                     <div class="col_one_third col_last">
+                        <label for="service_contact">Services</label>
+                        <select id="service_contact" name="service_contact" class="sm-form-control">
+                           <option value="">-- Select One --</option>
+                           <option value="Buyers">Buyers</option>
+                           <option value="Suppliers">Suppliers</option>
+                           <option value="Traders">Traders</option>
+                        </select>
+                     </div>
+                     <div class="clear"></div>
+                     <div class="col_full">
+                        <label for="message_contact">Message
+                           <small>*</small>
+                        </label>
+                        <textarea class="required sm-form-control" id="message_contact"
+                        name="message_contact" rows="6" cols="30"></textarea>
+                     </div>
+                     <div class="col_full hidden">
+                        <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value=""
+                        class="sm-form-control"/>
+                     </div>
+                     <div class="col_full">
+                        <button class="button button-3d nomargin" type="submit" id="contactform_submit"
+                        name="contactform_submit" value="submit">Send Message
+                     </button>
+                  </div>
+               </form>
+            </div>
+            <div class="col_half col_last">
+               <section id="google-map" class="gmap" style="height: 410px;"></section>
+            </div>
+            <!--<div class="col_full nobottommargin clearfix">
+               <div class="col_one_fourth">
+                  <div class="feature-box fbox-center fbox-bg fbox-plain">
+                     <div class="fbox-icon">
+                        <a href="#"><i class="icon-map-marker2"></i></a>
+                     </div>
+                     <h3>Our Headquarters<span class="subtitle">PO Box ___, Newalla, OK 74857</span></h3>
+                  </div>
+               </div>
+               <div class="col_one_fourth">
+                  <div class="feature-box fbox-center fbox-bg fbox-plain">
+                     <div class="fbox-icon">
+                        <a href="#"><i class="icon-phone3"></i></a>
+                     </div>
+                     <h3>Speak to Us<span class="subtitle">+1 405-421-9501</span></h3>
+                  </div>
+               </div>
+               <div class="col_one_fourth">
+                  <div class="feature-box fbox-center fbox-bg fbox-plain">
+                     <div class="fbox-icon">
+                        <a href="https://z1.le.liveperson.net/a/47200450/#mng!lptag/walkme/61844"><i class="icon-skype2"></i></a>
+                     </div>
+                     <h3>CHAT<span class="subtitle">LivePerson</span></h3>
+                  </div>
+               </div>
+               <div class="col_one_fourth col_last">
+                  <div class="feature-box fbox-center fbox-bg fbox-plain">
+                     <div class="fbox-icon">
+                        <a href="https://twitter.com/stradetegy"><i class="icon-twitter2"></i></a>
+                     </div>
+                     <h3>Follow on Twitter<!--<span class="subtitle">2.3M Followers</span></h3>
+                  </div>
+               </div>
+            </div>-->
+         </div>
+         <div id="section-buy" class="section page-section footer-stick">
+            <div class="container clearfix">
+               <div class="heading-block title-center nobottomborder">
+                  <h2>Still have questions?</h2>
+                  <a href="#" class="button button-3d button-teal button-xlarge nobottommargin"><i
+                     class="icon-line-box"></i>PRODUCT DEMO</a>
+                  </div>
+                  <div class="heading-block title-center nobottomborder">
+                     <h2>Ready? </h2>
+                     <a href="{{ url('signup') }}" data-animate="tada" data-scrollto="#section-pricing"
+                     class="button button-3d button-red button-xlarge nobottommargin"><i class="icon-user2"></i>Sign Up</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      {% endblock %}
+      {% block javascript %}
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+      <script type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/form-rest.js') }}"></script>
+      <script type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/jquery.gmap.js') }}"></script>
+      <script type="text/javascript">
+
+      jQuery(document).ready(function($){
+         var json = (function() {
+           var json = null;
+           var jsonUrl = '{{ asset("/bundles/jariffproject/frontend/json/country_codes.json") }}';
+           $.ajax({
+               'async': false,
+               'global': false,
+               'url': jsonUrl,
+               'dataType': "json",
+               'success': function (data) {
+                   json = data;
+                   json.sort(compare);
+                   if (json.length > 0) {
+                     $('#country').empty();
+                   }
+                   for (var i = 0; i < json.length; i++) {
+                     $('#country').append('<option>' + json[i].name + '</option>');
+                   };
+               }
+           });
+           return json;
+       })();
+
+       $('#country').change(function () {
+          var str = "";
+          var i = $("#country option:selected").index();
+          console.log('index ' + i + ' ' + json[i].name);
+          console.log(json[i].dial_code);
+          $('#phone_code').val(json[i].dial_code);
+          // $("div").text( str );
+        }).change();
+
+
+      });
+
+      function compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        else if (a.name > b.name)
+          return 1;
+        else 
+          return 0;
+      }
+
+
+
+      jQuery('#google-map').gMap({
+
+        address: 'New York, USA',
+        maptype: 'ROADMAP',
+        zoom: 14,
+        markers: [
+        {
+          address: "New York, USA",
+          icon: {
+            image: "images/icons/map-icon-red.png",
+            iconsize: [32, 39],
+            iconanchor: [32, 39]
+         }
+      }
+      ],
+      doubleclickzoom: false,
+      controls: {
+       panControl: true,
+       zoomControl: true,
+       mapTypeControl: true,
+       scaleControl: false,
+       streetViewControl: false,
+       overviewMapControl: false
+    }
+
+   });
+      </script>
+
+                        <script type="text/javascript">
+                            jQuery(document).ready(function($){
+                                var $faqItems = $('#faqs .faq');
+                                if( window.location.hash != '' ) {
+                                    var getFaqFilterHash = window.location.hash;
+                                    var hashFaqFilter = getFaqFilterHash.split('#');
+                                    if( $faqItems.hasClass( hashFaqFilter[1] ) ) {
+                                        $('#portfolio-filter li').removeClass('activeFilter');
+                                        $( '[data-filter=".'+ hashFaqFilter[1] +'"]' ).parent('li').addClass('activeFilter');
+                                        var hashFaqSelector = '.' + hashFaqFilter[1];
+                                        $faqItems.css('display', 'none');
+                                        if( hashFaqSelector != 'all' ) {
+                                            $( hashFaqSelector ).fadeIn(500);
+                                        } else {
+                                            $faqItems.fadeIn(500);   
+                                        }
+                                    }                                    
+                                }
+
+                                $('#portfolio-filter a').click(function(){
+                                    $('#portfolio-filter li').removeClass('activeFilter');
+                                    $(this).parent('li').addClass('activeFilter');
+                                    var faqSelector = $(this).attr('data-filter');
+                                    $faqItems.css('display', 'none');
+                                    if( faqSelector != 'all' ) {
+                                        $( faqSelector ).fadeIn(500);
+                                    } else {
+                                        $faqItems.fadeIn(500);
+                                    }
+                                    return false;
+                               });
+                            });
+                        </script>
+      <script>
+      jQuery(document).ready(function ($) {
+        var swiperSlider = new Swiper('.swiper-parent', {
+          paginationClickable: false,
+          slidesPerView: 1,
+          grabCursor: true,
+          speed: 200,
+          autoplay: 20000,
+          onSwiperCreated: function (swiper) {
+            $('[data-caption-animate]').each(function () {
+              var $toAnimateElement = $(this);
+              var toAnimateDelay = $(this).attr('data-caption-delay');
+              var toAnimateDelayTime = 0;
+              if (toAnimateDelay) {
+                toAnimateDelayTime = Number(toAnimateDelay) + 750;
+             } else {
+                toAnimateDelayTime = 750;
+             }
+             if (!$toAnimateElement.hasClass('animated')) {
+                $toAnimateElement.addClass('not-animated');
+                var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+                setTimeout(function () {
+                  $toAnimateElement.removeClass('not-animated').addClass(elementAnimation + ' animated');
+               }, toAnimateDelayTime);
+             }
+          });
+         },
+         onSlideChangeStart: function (swiper) {
+            $('#slide-number-current').html(swiper.activeIndex + 1);
+            $('[data-caption-animate]').each(function () {
+              var $toAnimateElement = $(this);
+              var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+              $toAnimateElement.removeClass('animated').removeClass(elementAnimation).addClass('not-animated');
+           });
+         },
+         onSlideChangeEnd: function (swiper) {
+            $('#slider .swiper-slide').each(function () {
+              if ($(this).find('video').length > 0) {
+                $(this).find('video').get(0).pause();
+             }
+          });
+            $('#slider .swiper-slide:not(".swiper-slide-active")').each(function () {
+              if ($(this).find('video').length > 0) {
+                if ($(this).find('video').get(0).currentTime != 0) $(this).find('video').get(0).currentTime = 0;
+             }
+          });
+            if ($('#slider .swiper-slide.swiper-slide-active').find('video').length > 0) {
+              $('#slider .swiper-slide.swiper-slide-active').find('video').get(0).play();
+           }
+
+           $('#slider .swiper-slide.swiper-slide-active [data-caption-animate]').each(function () {
+              var $toAnimateElement = $(this);
+              var toAnimateDelay = $(this).attr('data-caption-delay');
+              var toAnimateDelayTime = 0;
+              if (toAnimateDelay) {
+                toAnimateDelayTime = Number(toAnimateDelay) + 300;
+             } else {
+                toAnimateDelayTime = 300;
+             }
+             if (!$toAnimateElement.hasClass('animated')) {
+                $toAnimateElement.addClass('not-animated');
+                var elementAnimation = $toAnimateElement.attr('data-caption-animate');
+                setTimeout(function () {
+                  $toAnimateElement.removeClass('not-animated').addClass(elementAnimation + ' animated');
+               }, toAnimateDelayTime);
+             }
+          });
+        }
+     });
+
+   $('#slider-arrow-left').on('click', function (e) {
+     e.preventDefault();
+     swiperSlider.swipePrev();
+   });
+
+   $('#slider-arrow-right').on('click', function (e) {
+     e.preventDefault();
+     swiperSlider.swipeNext();
+   });
+
+   $('#slide-number-current').html(swiperSlider.activeIndex + 1);
+   $('#slide-number-total').html(swiperSlider.slides.length);
+   });
+   </script>
+   <script type="text/javascript">
+   $(document).ready(function () {
+      $('#work_time').datetimepicker();
+
+      $('#work_time_col').hide();
+      $('#work_time').val("NOW");
+
+      $('#demo_schedule').change(function () {
+         if ($('#demo_schedule').val() == 0) {
+            console.log('now');
+            $('#work_time_col').hide();
+            $('#work_time').val("NOW");
+         } else {
+            $('#work_time').val("");
+            $('#work_time_col').show();
+            console.log('schedule');
+         }
+
+      });
+
+          // $('#myForm').HoverAlls({alertbox: true, speed_in: 1400, speed_out: 500, bg_width: "900px", bg_height: "100px", target_container: "#catalert", overlay_class: "lightbox1overlay", container_class: "lightbox4container", html_mode: "#runaway"});
+
+       })
+   </script>
+   {% endblock %}

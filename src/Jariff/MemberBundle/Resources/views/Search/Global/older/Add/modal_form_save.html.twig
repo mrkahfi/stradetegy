@@ -1,0 +1,80 @@
+{% form_theme formSave 'JariffProjectBundle:Themes:form_exports_shipments.html.twig' %}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+    <h2 class="modal-title" id="exampleModalLabel">Save Search</h2>
+    <h5 class="modal-title" id="exampleModalLabel">Speed up your research in the future with your saved searches</h5>
+</div>
+<form action="{{ path('member_display_modal_save_global_submit',{'s_cache' : s_cache}) }}" class="j-submit-save">
+    <div class="modal-body">
+
+        {% set search = s_cache|decrypted_query|jsondecode %}
+        Your search of Data for :
+
+        {% for key in search.search %}
+
+            {% if key.condition is not empty %}
+                <br/>
+                {{ key.condition|upper }}
+            {% endif %}
+
+            {{ key.collect }}
+            <span class="code">{{ key.q }}</span>
+
+        {% endfor %}
+
+        <br/>
+        {% if search.category is defined %}
+            With
+            {% for key in search.category %}
+                {{ key }},
+            {% endfor %}
+        {% else %}
+            With Importer, Exporter, and Product
+        {% endif %}
+
+        <br/>
+        {% if search.country is defined %}
+            And Filter by Countries
+            {% for key in search.country %}
+                {{ key|twolettercodecountry }},
+            {% endfor %}
+
+        {% endif %}
+
+        <br/>
+        <br/>
+
+
+        {{ form_widget(formSave) }}
+
+    </div>
+    <div style="clear: both"></div>
+    <br/>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nervermind</button>
+        <button type="submit" class="btn btn-primary">Save Search</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $('.j-submit-save').on('submit', function () {
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('.modal-content').html(res.message);
+                }
+            }
+        })
+
+        return false;
+    })
+
+</script>

@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>LeadActivity list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Datecompleted</th>
+                <th>Datecreate</th>
+                <th>Datescheduled</th>
+                <th>Datetask</th>
+                <th>Dateupdate</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Result</th>
+                <th>Status</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('activity_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.category }}</td>
+                <td>{% if entity.dateCompleted %}{{ entity.dateCompleted|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateCreate %}{{ entity.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateScheduled %}{{ entity.dateScheduled|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateTask %}{{ entity.dateTask|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateUpdate %}{{ entity.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.priority }}</td>
+                <td>{{ entity.result }}</td>
+                <td>{{ entity.status }}</td>
+                <td>{{ entity.type }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('activity_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('activity_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('activity_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

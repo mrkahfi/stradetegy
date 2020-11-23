@@ -1,0 +1,303 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+        {#<a href="javascript:history.back()" class="button">Back</a>#}
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+                <header class="entry-header">
+
+                    <div class="cmsms_title" style="margin-left: 0px">
+                        <h2 class="entry-title"><a href="openpost.html">
+                                {{ data.getValue.getCompanyName }}</a></h2>
+                        <img alt=""
+                             src="{{ asset('bundles/jariffproject/frontend/images/importer.png') }}"
+                             width="90" height="30" style="float: right;margin-top: -35px;">
+                    </div>
+                    <div class="cmsms_post_info" style="margin-left: 0px">
+                        <span class="user_name">
+
+                            <a href="#">http://www.recycleamerica.com/</a></span>
+
+                    </div>
+                </header>
+                <div style="clear: both"></div>
+                <div class="entry-content" style="margin-top: 50px">
+
+                    <div class="one">
+                        <div id="map-canvas" style="height: 250px"></div>
+                    </div>
+
+                    <div style="clear: both"></div>
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="entry">
+
+                <h3>Address Company</h3>
+                <address>
+                    {{ data.getValue.getCompanyAddress }}
+                </address>
+                <div class="divider"></div>
+                <h3>Customer Service</h3>
+                <address>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
+                <div class="divider"></div>
+                <h3>Import Histories</h3>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Total Import</th>
+
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for key,total in data.getValue.getDateGroup %}
+                        <tr>
+                            <td>
+                                {{ key|date("m/d/Y") }}
+                            </td>
+                            <td>
+                                {{ total }}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="divider"></div>
+                <h3>Exporters Detail</h3>
+                <table class="table table-border">
+                    <thead>
+                    <tr>
+                        <th>Exporter Name</th>
+                        <th>Total Shipment</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for exporter in data.getValue.getCompanyJoin %}
+                        <tr>
+                            <td>
+                                {{ exporter.getCompanyJoinName }}
+                            </td>
+                            <td>
+                                {{ exporter.getShipment }}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="divider"></div>
+                <br>
+            </div>
+            <div class="divider"></div>
+
+
+
+        </article>
+        <div class="footer">
+            <div class="trigger-rewrite"><img
+                        src="{{ asset('bundles/jariffproject/frontend/images/alert-icon.png') }}" alt="alert"/>
+            </div>
+            <div id="stack" class="trigger-rewrite">
+                <div class="trigger"><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/export-icon.png') }}"
+                            alt="export"/></div>
+                <ul>
+                    <li><a href="{{ asset('pdf/'~data.getValue.getSlugCompany~'.pdf') }}" target="_blank"><span
+                                    class="title">Download</span><img
+                                    src="{{ asset('bundles/jariffproject/frontend/images/img/Download-icon.png') }}"
+                                    alt="Twitter"></a></li>
+                    <li><a href="{{ asset('dropbox') }}" data-filename="{{ data.getValue.getSlugCompany~'.pdf' }}"
+                           class="j-dropbox-saver"><span class="title">Save</span><img
+                                    src="{{ asset('bundles/jariffproject/frontend/images/img/dropbox-icon.png') }}"
+                                    alt="Digg"></a></li>
+                    <li><a href="http://www.facebook.com/"><span class="title">Email</span><img
+                                    src="{{ asset('bundles/jariffproject/frontend/images/img/mail-icon.png') }}"
+                                    alt="Facebook"></a></li>
+                    <li><a href="#"><span class="title">Colaborate</span><img
+                                    src="{{ asset('bundles/jariffproject/frontend/images/img/group-icon.png') }}"
+                                    alt="Reddit"></a></li>
+                    <li><a href="{{ asset('pdf/'~data.getValue.getSlugCompany~'.pdf') }}"><span class="title">Print</span><img
+                                    src="{{ asset('bundles/jariffproject/frontend/images/img/print-icon.png') }}"
+                                    alt="StumbleUpon"></a></li>
+
+                </ul>
+            </div>
+            <div class="trigger-rewrite"><img
+                        src="{{ asset('bundles/jariffproject/frontend/images/save-icon.png') }}" alt="save"/>
+            </div>
+
+            {#<a href="#" class="j-dropbox-saver">click</a>#}
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jstackmenu.css') }}"
+          type="text/css"/>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script language="javascript" type="text/javascript"
+            src="{{ asset('/bundles/jariffproject/frontend/js/yui/build/yui/yui-min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script type="text/javascript">
+        var geocoder;
+        var map;
+
+        window.onload = function () {
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('member_importer_print_pdf_',{'slug' : data.getValue.getSlugCompany}) }}',
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
+            var website = {{ data.getValue.getWebsite|json_encode|raw }};
+            var phone = {{ data.getValue.getPhone|json_encode|raw }};
+            var slug = {{ data.getValue.getSlugCompany|json_encode|raw }};
+            var url = Routing.generate('trademango_exporter', {'slug': slug });
+            if (website == undefined || phone == undefined) {
+                $.post(url, function (data) {
+                });
+            }
+        };
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 2,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            codeAddress();
+
+        }
+
+        function codeAddress() {
+            geocoder.geocode({ 'address': '{{ (data.getValue.getSlugCountryOri|twolettercodeslug)['country'] }}'}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        animation: google.maps.Animation.DROP,
+                        map: map
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    {#<script type="text/javascript">#}
+        {#google.load("visualization", "1", {packages:["corechart"]});#}
+        {#google.setOnLoadCallback(drawChart);#}
+
+        {#function drawChart() {#}
+            {#var data = google.visualization.arrayToDataTable([#}
+                {#['Element', 'Percentage'],#}
+                {#['chair', 3/5 * 100],            // RGB value#}
+                {#['followship', 2/5 * 100],            // English color name#}
+{#//                ['Gold', 19.30],#}
+{#//                ['Platinum', 21.45], // CSS-style declaration#}
+            {#]);#}
+
+            {#&#123;&#35;var jsonData = $.ajax(&#123;&#35;}#}
+                {#&#123;&#35;url: '{{ path('member_keyword_history_total',{'slug' : data.getValue.getSlugCompany }) }}',&#35;&#125;#}
+                {#&#123;&#35;dataType: "json",&#35;&#125;#}
+                {#&#123;&#35;async: false&#35;&#125;#}
+            {#&#123;&#35;}).responseText;&#35;&#125;#}
+
+            {#&#123;&#35;var obj = $.parseJSON(jsonData);&#35;&#125;#}
+
+            {#&#123;&#35;var data = google.visualization.arrayToDataTable(obj);&#35;&#125;#}
+
+            {#var options = {#}
+                {#title: 'Product Terms',#}
+                {#vAxis: {title: 'Keyword',  titleTextStyle: {color: 'red'}}#}
+            {#};#}
+
+            {#var chart = new google.visualization.BarChart(document.getElementById('chart_div'));#}
+            {#chart.draw(data, options);#}
+        {#}#}
+    {#</script>#}
+
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Exporter Name', 'Shipment']
+
+            ]);
+
+            var options = {
+                title: 'Exporter Chart',
+                legend: 'none',
+                pieSliceText: 'label',
+                slices: {  4: {offset: 0.2},
+                    12: {offset: 0.3},
+                    14: {offset: 0.4},
+                    15: {offset: 0.5}
+                }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+
+    <script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-1.3.2.js') }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-ui-1.7.2.custom.js') }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-animate-css-rotate-scale.js') }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-css-transform.js') }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jstackmenu.js') }}"></script>
+
+    <script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs"
+            data-app-key="iur6clon35uacpu"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var stack = jQuery('#stack ul').stackmenu();
+
+            jQuery('#stack .trigger').click(function () {
+                stack.stackmenu('toggle');
+            });
+
+            jQuery('.j-dropbox-saver').click(function(){
+//                alert('ok');
+                Dropbox.save($(this).attr('href'), $(this).attr('data-filename'));
+                return false;
+            })
+        });
+    </script>
+
+
+{% endblock %}

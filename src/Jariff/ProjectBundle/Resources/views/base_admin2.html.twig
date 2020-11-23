@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}TRADEtegy Admin{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('/admin/img/favicon.ico') }}"/>
+    <link rel="icon" type="image/gif" href="{{ asset('/admin/img/favicon.gif') }}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    {% block head_style %}
+        {% stylesheets
+        'bundles/jariffproject/admin2/css/grid.css'
+        'bundles/jariffproject/admin2/css/style.css'
+        filter='cssrewrite' %}
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+        {% endstylesheets %}
+    {% endblock head_style %}
+</head>
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ST Admin</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="{{ path('dashboard_admin') }}">Dashboard</a></li>
+            <li><a href="{{ path('admin_inbound_index') }}">Inbound</a></li>
+            <li><a href="{{ path('admin_lead_index') }}">Lead</a></li>
+            <li><a href="{{ path('admin_member_index') }}">Member</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ path('admin_logout') }}">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+<div class="container-fluid main">
+    <div class="row">
+        {% block flashes %}
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Well done!</strong> {{ flashMessage }}.
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Oh snap!</strong> {{ flashMessage }}.
+                </div>
+            {% endfor %}
+        {% endblock flashes %}
+    </div>
+    <div class="row">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+<hr>
+<footer>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span4">
+                <p class="muted pull-right">© 2014 TRADEtegy. All rights reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    {% javascripts
+        'bundles/fosjsrouting/js/router.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    {% block javascript %}
+        <script type="text/javascript">
+        </script>
+    {% endblock %}
+</body>
+</html>

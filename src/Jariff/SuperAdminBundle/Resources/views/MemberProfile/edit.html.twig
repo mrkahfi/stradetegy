@@ -1,0 +1,51 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_profile_show', {'id' : member.id}) }}">Member #{{ member.number }} Profile</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Edit Profile
+    </li>
+{% endblock %}
+
+{% block content %}
+		    
+{{ form_start(form) }}
+<fieldset>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span6">
+		    <div class="social-box">
+				<div class="body">
+				    {{ form_row(form.salutation) }}
+				    {{ form_row(form.firstName) }}
+				    {{ form_row(form.lastName) }}
+				    {{ form_row(form.phone) }}
+				    {{ form_row(form.country) }}
+				    {{ form_row(form.state) }}
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+{{ form_row(form.member) }}         
+{{ form_row(form._token) }}
+<button type="submit" class="btn btn-primary">Save</button>
+</fieldset>
+</form>
+
+{% endblock %}

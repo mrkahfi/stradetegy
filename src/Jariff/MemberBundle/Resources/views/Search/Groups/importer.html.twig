@@ -1,0 +1,160 @@
+{% extends 'JariffProjectBundle::base_right_sidebar.html.twig' %}
+
+
+
+    {% block content %}
+        <div class="tab-pane" id="importer">
+
+        </div>
+    {% endblock content %}
+
+{% block right_sidebar %}
+    <div class="one_first">
+        <aside class="widget widget_custom_advertising_entries">
+            <h2 class="widgettitle">IT'S LIMITED ACCESS</h2>
+
+            <p>
+                You have limited access to Stradetegy's search, company profiles, shipment data, and more.
+            </p>
+
+            <p>
+                Let us show you what you can do with a Stradetegy subscription — sign up for a free demo today.
+            </p>
+
+            <a href="#" class="button">
+                Request a demo
+            </a>
+
+            or
+
+            <a href="">see plans.</a>
+        </aside>
+    </div>
+
+    <div class="one_first">
+        <aside class="widget widget_custom_contact_form_entries">
+            <h2 class="widgettitle">YOUR ACCOUNT</h2>
+
+
+            <a href="">Messages ( 0 new )</a>
+            <br/>
+            <a href="">Account Setting</a>
+
+            <br/>
+            <br/>
+
+            <p>
+                CREDIT REMAINING
+                <br/>
+                0 profile views <a href="">(see visited profiles)</a>
+                <br/>
+                <a href="">Upgrade for more credits</a>
+            </p>
+
+
+            <p>YOUR SUBSCRIPTION
+                <br/>
+                Free User <a href="" class="button">Subscribe</a>
+            </p>
+
+        </aside>
+    </div>
+
+    <div class="one_first">
+        <aside class="widget widget_links">
+            <h2 class="widgettitle">HELP ARTICLES</h2>
+
+            <p>
+                <a href="">Global Search</a>
+                <br/>
+                <span style="font-size: 10px">Search for companies, products, and more</span>
+            </p>
+
+            <p>
+                <a href="">Contacting Companies</a>
+                <br/>
+                <span style="font-size: 10px">Powerful customs data search</span>
+            </p>
+
+            <p>
+                <a href="">Account And FAQs</a>
+                <br/>
+                <span style="font-size: 10px">General information about Stradetegy</span>
+            </p>
+
+
+        </aside>
+    </div>
+
+{% endblock %}
+
+{% block style %}
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/hover/css/hoveralls.css') }}" type="text/css" rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/wrapping/wrap-ribbon.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap-tour.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <style>
+        .nav-tabs > li .close {
+            margin: -3px 0 0 10px;
+            font-size: 18px;
+            padding: 5px 0;
+            float: right;
+        }
+
+        .nav-tabs > li a[data-toggle=tab] {
+            float: left !important;
+        }
+    </style>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <script src="{{ asset('bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap-tour/bootstrap-tour.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/jqBootstrapValidation.js') }}"
+            type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('ajax_member_cache_group_searching', {category: 'importer',s_cache:'{{ app.request.get('s_cache') }}'}),
+                beforeSend: function () {
+                    $('#importer').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+                    $('#importer').html(data);
+                }
+            })
+        })
+    </script>
+    {% block js_call %}
+
+
+
+    {% endblock %}
+
+{% endblock %}

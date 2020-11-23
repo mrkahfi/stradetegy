@@ -1,0 +1,151 @@
+<div class="span6 popresult {% if checkToChoice['exporter_'~res.getTransformed.getSlugShipperName] is defined %}disable-choice{% endif %}">
+    <div class="wrap-ribbon right-edge fork lblue lblue-strade"><span
+                class="strade">Exporter</span>
+    </div>
+    {#<a href="{{ asset('bundles/jariffproject/frontend/images/logo.gif') }}" class="lightbox"#}
+    {#title="Watch Lorde-Royals">#}
+    {#<img#}
+    {#class="popchart-img" alt=""#}
+    {#src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"#}
+    {#width="170" height="170" style="">#}
+    {#</a>#}
+
+    <h1 class="header-search-trade"><img
+                src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/48/'~(res.getTransformed.getSlugCountry|upper)~".png") }}">
+                <span class="imartist">
+                    <a href="javascript:void(0);" style="color: #BC3415" class="j-add-tab-exporter"
+                       data-url="{{ path('member_cache_group_searching',{'category':'exporter','slug' : res.getTransformed.getSlugShipperName,'s_cache':app.request.get('s_cache') }) }}">
+                        {{ res.getTransformed.getShipperName }}
+
+                    </a>
+                </span><br/>
+        <span>Exporter From {{ res.getTransformed.getSlugCountry|twolettercodecountry }}</span>
+
+    </h1>
+             <span class="charts-p">
+                 <span class="imname">
+
+                   <br/>
+                     {#{% if res.getTransformed.getValue.getTotalContainerCount > 0 %}#}
+                     {#{{ res.getTransformed.getValue.getTotalContainerCount }}#}
+                     {#container(s) in#}
+                     {#{% else %}#}
+                     Gross weight {{ res.getTransformed.getTotalWeight|setting_gross_weight(app.user) }} in
+                     {#{% endif %}#}
+
+                     {#{% set key = res.getTransformed.getValue.getCompanyJoin|length - 1 %}#}
+                     {#{% set companyjoin = res.getTransformed.getValue.getCompanyJoin[key] %}#}
+
+                     {{ res.getTransformed.getTotalShipment }}
+                     time(s) exports to {{ res.getTransformed.getConsigneeName }}
+                     {#{%- if res.getTransformed.getValue.getCompanyJoin|length > 1 %}#}
+                     <a href="" style="color: #BC3415;">and more</a>
+                     {#{%- endif %}#}
+                     <br/>
+
+                     {#{% for sort in res.getTransformed.getValue.getDateGroup|sort|keys %}#}
+                     {#{% for companyjoin in res.getTransformed.getValue.getCompanyJoin %}#}
+                     {#{% if sort == companyjoin.getArrivalDate %}#}
+
+                     from {{ res.getTransformed.getSlugCountryOriConsignee|twolettercodecountry }}
+                     : {{ res.getTransformed.getActualArrivalDate|date("d-m-Y")|compare_dates }}
+                     {#{% if res.getTransformed.getValue.getTotalContainerCount > 1 %}#}
+                     {#, Container to {{ companyjoin.getForeignPort }}#}
+                     {#{% endif %}#}
+
+
+                     {#{% endif %}#}
+                     {#{% endfor %}#}
+                     {#{% endfor %}#}
+
+
+
+                </span>
+            </span>
+        <span class="image_rollover">
+            <a href="javascript:void(0)" class="j-add-tab-export"></a>
+            <a target="_blank"
+               href="{{ path('member_exporter_detail',{'slug':res.getTransformed.getSlugShipperName}) }}"></a>
+        </span>
+
+</div>
+
+{#{% if countryCheck is empty %}#}
+    {#<script type="text/javascript">#}
+        {#$(document).ready(function () {#}
+            {#$('.j-country-exporter').html('' +#}
+
+                    {#'{% for terms in facetCountryExport %}' +#}
+                    {#'{% for country in terms['terms'] %}' +#}
+
+                    {#'<div class="check_parent">' +#}
+                    {#'<input type="checkbox" name="check_export[]" id="check_export_{{ country['term'] }}" class="j-check-country-export"' +#}
+                    {#'value="{{ country['term'] }}">' +#}
+
+                    {#'<label for="check_export_{{ country['term'] }}">' +#}
+                    {#'<img style="position: absolute;"' +#}
+                    {#'src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/16/'~(country['term']|twolettercodeslug)['code']~".png") }}">' +#}
+                    {#'<span style="margin-left: 20px">{{ (country['term']|twolettercodeslug)['country'] }}</span>' +#}
+                    {#'</label>' +#}
+                    {#'<span class="total-in-country code">{{ country['count']|ribuan }}</span>' +#}
+                    {#'</div>' +#}
+                    {#'{% endfor %}' +#}
+                    {#'{% endfor %}');#}
+
+            {#toAjaxCountryExport();#}
+        {#})#}
+    {#</script>#}
+{#{% endif %}#}
+
+{#<script type="text/javascript">#}
+    {#var pageImages = [];#}
+    {#var pageNum = 1;#}
+    {#/**#}
+     {#* Reset numbering on tab buttons#}
+     {#*/#}
+    {#function reNumberPagesExporter(at) {#}
+        {#pageNum = 1;#}
+        {#var test = [];#}
+        {#var tabCount = $('#pageTab > li').length;#}
+        {#$('#pageTab > li').each(function () {#}
+            {#var pageId = $(this).children('a').attr('href');#}
+            {#test[pageId] = pageId;#}
+
+        {#});#}
+
+        {#if (at == 'exporter') {#}
+            {#if (!test['#exporter']) {#}
+                {#$('#pageTab').append(#}
+                        {#$('<li><a href="#exporter" id="exporters" data-title="Exporter">' +#}
+                                {#'Exporter' +#}
+                                {#'<button class="close" type="button" ' +#}
+                                {#'title="Remove this page" data-url="{{ path('member_cache_group_searching_remove',{'category':'exporter'}) }}">×</button>' +#}
+                                {#'</a></li>'));#}
+
+
+                {#$('#pageTabContent').append(#}
+                        {#$('<div class="tab-pane" id="exporter' +#}
+                                {#'"></div>'));#}
+            {#}#}
+        {#}#}
+    {#}#}
+
+    {#$(document).ready(function () {#}
+        {#/**#}
+         {#* Add a Tab#}
+         {#*/#}
+        {#$('.j-add-tab-export').on('click', function () {#}
+
+            {#reNumberPagesExporter('exporter');#}
+            {#$.ajax({#}
+                {#type: 'GET',#}
+                {#url: $(this).parent('.image_rollover').siblings('.header-search-trade').children('.imartist').children('.j-add-tab-exporter').attr('data-url'),#}
+                {#success: function (data) {#}
+                    {#$('#exporter').html(data);#}
+                {#}#}
+            {#})#}
+            {#$(this).parent('.image_rollover').parent('.popresult').addClass('disable-choice');#}
+            {#$('#exporters').tab('show');#}
+        {#});#}
+    {#});#}
+{#</script>#}

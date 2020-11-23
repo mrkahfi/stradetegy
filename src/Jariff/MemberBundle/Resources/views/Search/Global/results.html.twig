@@ -1,0 +1,648 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:layout_form_global.html.twig' %}
+{% form_theme formAppend 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+
+    {% block top_inner %}
+        <header id="header" class="sticky-style-2">
+
+            <div class="container clearfix">
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo">
+                    <a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"
+                                alt="stradetegy Logo"></a>
+                    <a href="#" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo@2x.png') }}"
+                                alt="stradetegy Logo"></a>
+                </div>
+                <!-- #logo end -->
+
+                <ul class="header-extras">
+                    <li>
+                        <i class="i-plain icon-email3 nomargin"></i>
+
+                        <div class="he-text">
+                            Drop an Email
+                            <span>info@stradetegy.com</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="i-plain icon-call nomargin"></i>
+
+                        <div class="he-text">
+                            Get in Touch
+                            <span>555-666-777</span>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="header-wrap">
+
+                <!-- Primary Navigation
+                ============================================= -->
+                <nav id="primary-menu" class="style-2 sub-title">
+                    <div class="container clearfix">
+                        {#<form action="{{ path('demo_global_search_submit') }}" method="POST">#}
+
+                            {#{{ form_row(form.q,{attr: {style:'margin-top: 6px' }}) }}#}
+
+
+                            {#<div class="col-sm-2" style="margin-top: 6px">#}
+                                {#<button class="btn-lg btn-primary">Find Now</button>#}
+                            {#</div>#}
+
+                            {#{{ form_row(form.category,{attr: {style:'display: none' }}) }}#}
+                            {#&#123;&#35;  <div class="col-sm-8" style="margin-top: 6px">#}
+
+
+                                 {#<input type="text" class="form-control input-lg" id="exampleInputAmount" placeholder="TYPE AND HIT ENTER">#}
+
+                             {#</div> &#35;&#125;#}
+                            {#{{ form_rest(form) }}#}
+
+                        {#</form>#}
+                    </div>
+                </nav>
+                <!-- #primary-menu end -->
+
+
+            </div>
+
+        </header>
+    {% endblock top_inner %}
+{% block middle_content %}
+
+
+
+    <section id="content">
+
+    <div class="content-wrap">
+    <div class="container clearfix">
+
+        <form action="{{ path('member_search_global_submit') }}" method="POST">
+
+            {{ form_row(form.q,{attr: {style:'margin-top: 6px' }}) }}
+
+
+            <div class="col-sm-2" style="margin-top: 6px">
+                <button class="btn-lg btn-primary">Search</button>
+            </div>
+
+            {{ form_row(form.category,{attr: {style:'display: none' }}) }}
+            {#  <div class="col-sm-8" style="margin-top: 6px">
+
+
+                 <input type="text" class="form-control input-lg" id="exampleInputAmount" placeholder="TYPE AND HIT ENTER">
+
+             </div> #}
+            {{ form_rest(form) }}
+
+
+            {#<a href="#" class="add_filter_link btn btn-info">Add Criteria <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></a>#}
+
+            {{ form_start(formAppend) }}
+
+            {% set pro = form_widget(formAppend.condition.vars.prototype)|e ~ form_widget(formAppend.collect.vars.prototype)|e ~ form_widget(formAppend.q.vars.prototype)|e %}
+
+            <div class="j-show" data-prototype='{{ pro|raw }}'>
+
+
+                {% for i in 0..(formAppend.collect|length-1) %}
+
+                    {#{% if(i == 0) %}#}
+
+                        {#{{ form_widget(form.q[i]) }}#}
+                        {#&#123;&#35;<div class="form-group">&#35;&#125;#}
+                        {#&#123;&#35;<div class="col-md-1">&#35;&#125;#}
+                        {#&#123;&#35;<input type="submit" class="button button-search j-tour-button-submit" value="Search">&#35;&#125;#}
+
+                        {#&#123;&#35;</div>&#35;&#125;#}
+                        {#&#123;&#35;</div>&#35;&#125;#}
+                        {#<button type="submit" class="btn col-md-3 btn-primary">Search</button>#}
+
+                    {#{% endif %}#}
+
+                    {% if(i >= 0) %}
+                        {% if formAppend.condition[i] is defined %}
+                            <div class="j-is-remove">
+
+                                {{ form_widget(formAppend.condition[i]) }}
+                                {{ form_widget(formAppend.collect[i]) }}
+                                {{ form_widget(formAppend.q[i]) }}
+                                <div class="form-group">
+                                    <div class="col-md-1">
+                                        <a href="#" class="j-different-remove col-md-1 btn btn-danger"
+                                           aria-hidden="true"
+                                           style="font-size: 16px;"
+                                           title="Delete This Filter"> <span class="glyphicon glyphicon-remove"
+                                                                             style="line-height: 2"></span> remove </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                <div style="clear: both;margin-top: 10px"></div>
+                <div class="j-add-filter"></div>
+            </div>
+            {{ form_end(formAppend) }}
+        </form>
+
+
+        <div class="col-md-12" style="margin-top:30px">
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" {% if category == 'globals' %}class="active"{% endif %}>
+                <li role="presentation" {% if category == 'buyers' %}class="active"{% endif %}>
+                    <a href="javascript:void(0)" data-url="
+                            {#{%- if buyers_url is defined %}#}
+                                {#{{- buyers_url }}#}
+                                {#{%- else %}#}
+                                {{- path('member_buyers_res',{s_cache: s_cache}) -}}
+                            {#{%- endif %}#}
+                            "
+                            data-url-window="
+                            {#{%- if buyers_url_window is defined %}#}
+                            {#{{- buyers_url_window }}#}
+                            {#{%- else %}#}
+                            {{- path('member_search_big_picture_result',{category:'buyers',s_cache: s_cache}) -}}
+                        {#{%- endif %}#}
+                        " class="j-choice-category" data-value="buyers">Buyers <span
+                                class="badge j-total-buyers"><img
+                                    src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></li>
+
+                <li role="presentation"
+                    {% if category == 'suppliers' %}class="active"{% endif %}><a
+                            href="javascript:void(0)" data-url-window="
+                            {#{%- if suppliers_url_window is defined %}#}
+                                {#{{- suppliers_url_window }}#}
+                                {#{%- else %}#}
+                                {{- path('member_search_big_picture_result',{category:'suppliers',s_cache: s_cache}) -}}
+                            {#{%- endif %}#}
+                            " data-url="
+                            {#{%- if suppliers_url is defined %}#}
+                            {#{{- suppliers_url }}#}
+                            {#{%- else %}#}
+                            {{- path('member_suppliers_res',{s_cache: s_cache}) -}}
+                        {#{%- endif %}#}
+                        " class="j-choice-category" data-value="suppliers">Suppliers <span
+                                class="badge j-total-suppliers"><img
+                                    src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></li>
+                <li role="presentation"
+                    {% if category == 'logistics' %}class="active"{% endif %}><a
+                            href="javascript:void(0)"
+                            data-url-window="{{ path('member_search_global_result',{category:'logistics',s_cache: s_cache}) }}"
+                            data-url="{{ path('member_logistics_res',{s_cache: s_cache}) }}"
+                            class="j-choice-category" data-value="logistics">Logistics <span
+                                class="badge j-total-logistics"><img
+                                    src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></li>
+                <li role="presentation"><a href="{{ path('member_search_shipments_result_us_imports',{s_cache: s_cache_for_shipments}) }}" target="_blank">Shipments</a></li>
+
+            </ul>
+
+
+            {#   <div class="pull-right">
+                  <a href=""><span class="glyphicon glyphicon-th"></span></a>
+              </div> #}
+
+        </div>
+
+        <div class="col-md-12">
+            <hr/>
+        </div>
+
+        {#  <div class="col-md-3">
+
+             <div data-toggle="buttons">
+               <label class="btn btn-primary col-md-12 active">
+                 <input type="checkbox" autocomplete="off" checked> Buyers ( 2500 )
+             </label>
+             <div class="cl"></div>
+             <label class="btn btn-primary col-md-12">
+                 <input type="checkbox" autocomplete="off"> Suppliers ( 3500 )
+             </label>
+             <div class="cl"></div>
+             <label class="btn btn-primary col-md-12">
+                 <input type="checkbox" autocomplete="off"> Logistics ( 4500 )
+             </label>
+             <div class="cl"></div>
+             <label class="btn btn-primary col-md-12">
+                 <input type="checkbox" autocomplete="off"> Shipments
+             </label>
+         </div>
+     </div> #}
+        <div class="j-all">
+            <div class="j-content-result-buyers"
+                 {% if category not in 'buyers' %}style="display:none"{% endif %}>
+
+                <div class="col-md-9">
+                    <div style="margin-top:20px;text-align: center">
+                        <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                        <h5 style="margin-top: 15px">Loading...</h5>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="j-modal-save"  data-toggle="modal"
+                       data-target="#modalSave"><span class="glyphicon glyphicon-time"></span> Alert or Save</a>&nbsp;&nbsp;
+                    {#<a href="#" class="j-save"><span class="glyphicon glyphicon-star-empty"></span>#}
+                        {#Save</a>&nbsp;&nbsp;#}
+                    <a href="#" class="j-modal-exports" data-toggle="modal"
+                       data-target="#modalSave"><span class="glyphicon glyphicon-save"></span> Export</a>
+
+                    <hr/>
+
+                    <h5>Filter Country</h5>
+
+                    <div class="j-form-country-buyers">
+                        <div style="margin-top:20px;text-align: center">
+                            <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                            <h5 style="margin-top: 15px">Loading...</h5>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="j-content-result-suppliers"
+                 {% if category not in 'suppliers' %}style="display:none"{% endif %}>
+
+                <div class="col-md-9">
+                    <div style="margin-top:20px;text-align: center">
+                        <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                        <h5 style="margin-top: 15px">Loading...</h5>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="j-modal-save"  data-toggle="modal"
+                       data-target="#modalSave"><span class="glyphicon glyphicon-time"></span> Alert or Save</a>&nbsp;&nbsp;
+                    {#<a href="#" class="j-save"><span class="glyphicon glyphicon-star-empty"></span>#}
+                    {#Save</a>&nbsp;&nbsp;#}
+                    <a href="#" class="j-modal-exports" data-toggle="modal"
+                       data-target="#modalSave"><span class="glyphicon glyphicon-save"></span> Export</a>
+                    <hr/>
+
+                    <h5>Filter Country</h5>
+
+                    <div class="j-form-country-suppliers">
+                        <div style="margin-top:20px;text-align: center">
+                            <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                            <h5 style="margin-top: 15px">Loading...</h5>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="j-content-result-logistics"
+                 {% if category not in 'logistics' %}style="display:none"{% endif %}>
+                <div class="col-md-12">
+
+                    <div style="margin-top:20px;text-align: center">
+                        <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                        <h5 style="margin-top: 15px">Loading...</h5>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+
+
+
+    </div>
+    </div>
+    </section>
+
+    <div id="modalSave" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content modal-lg">
+                <div class="modal-body st-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.j-choice-category').on('click', function () {
+                var value = $(this).attr('data-value');
+                var data_url = $(this).attr('data-url');
+                var data_url_window = $(this).attr('data-url-window');
+
+                $('.j-choice-category').parent('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+
+                window.history.pushState("object or string", "Title", data_url_window);
+
+                var totalCategory = $('#search_global_form_type_category').children('label').children(' input').length - 1;
+                $('#search_global_form_type_category').children('label').children('input').removeAttr('checked');
+                for (var i = 0; i < totalCategory; i++) {
+                    $('.j-all').children('div').attr("style", "display:none");
+                    if ($('#search_global_form_type_category').children('label').children('input').eq(i).val() == value) {
+                        $('#search_global_form_type_category').children('label').children('input').eq(i).click();
+
+                        $('.j-content-result-' + value).removeAttr("style");
+
+                        $.ajax({
+                            type: 'GET',
+                            url: data_url,
+                            // beforeSend: function () {
+                            //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                            // },
+                            success: function (data) {
+                                var res = JSON.parse(data);
+
+                                if (res.success) {
+                                    if (value != 'logistics') {
+                                        $('.j-content-result-' + value).children(".col-md-9").html(res.html_string);
+                                    } else {
+                                        $('.j-content-result-' + value).html(res.html_string);
+                                    }
+
+                                    $('.j-total-' + value).html(res.total_results);
+
+                                }
+                            }
+                        });
+
+                        break;
+                    }
+
+
+                }
+            })
+
+            var tabArr = ["buyers", "suppliers", "logistics"];
+
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('member_' + '{{ category }}' + '_res', {'s_cache': '{{ s_cache }}' }),
+                // beforeSend: function () {
+                //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                // },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        if ('{{ category }}' != 'logistics') {
+                            $('.j-content-result-' + '{{ category }}').children(".col-md-9").html(res.html_string);
+
+                            $.ajax({
+                                type: 'GET',
+                                url: Routing.generate('member_' + '{{ category }}' + '_show_filter_country_res', {s_cache: '{{ s_cache }}'}),
+                                // beforeSend: function () {
+                                //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                                // },
+                                success: function (data) {
+                                    var res = JSON.parse(data);
+
+                                    if (res.success) {
+
+
+                                        $('.j-content-result-' + '{{ category }}').children(".col-md-3").children(".j-form-country-" + '{{ category }}').html(res.html_string);
+
+
+                                    }
+                                }
+                            })
+
+                        } else {
+                            $('.j-content-result-' + '{{ category }}').html(res.html_string);
+                        }
+
+
+                        $('.j-total-' + '{{ category }}').html(res.total_results);
+
+
+                    }
+                }
+            })
+
+
+            tabArr.forEach(function (datas) {
+                if (datas != '{{ category }}') {
+                    $.ajax({
+                        type: 'GET',
+                        url: Routing.generate('member_' + datas + '_res', {s_cache: '{{ s_cache }}'
+                        }),
+                        // beforeSend: function () {
+                        //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                        // },
+                        success: function (data) {
+                            var res = JSON.parse(data);
+
+                            if (res.success) {
+                                if (datas != 'logistics') {
+                                    $('.j-content-result-' + datas).children(".col-md-9").html(res.html_string);
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: Routing.generate('member_' + datas + '_show_filter_country_res', {s_cache: '{{ s_cache }}'}),
+                                        // beforeSend: function () {
+                                        //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                                        // },
+                                        success: function (data) {
+                                            var res = JSON.parse(data);
+
+                                            if (res.success) {
+
+
+                                                $('.j-content-result-' + datas).children(".col-md-3").children(".j-form-country-" + datas).html(res.html_string);
+
+
+                                            }
+                                        }
+                                    })
+
+                                } else {
+                                    $('.j-content-result-' + datas).html(res.html_string);
+
+                                }
+
+                                $('.j-total-' + datas).html(res.total_results);
+
+
+                            }
+                        }
+                    })
+
+                }
+            })
+
+            $(".j-subscribe").on("click", function () {
+                $('.bs-example-modal-sm').modal({
+                    show: true
+                })
+            })
+
+            $('.j-modal-save').on('click', function () {
+                var active_category = $('li.active').children('a').attr('data-value');
+
+                $.ajax({
+                    type: 'GET',
+                    url: Routing.generate('member_display_modal_save_shipments',{'slug_country_subscription':'st-globals-'+active_category,'s_cache' : '{{ s_cache }}' }),
+                    beforeSend: function () {
+                        $('.st-content').html('<div class="css3-spinner">' +
+                                '<div class="css3-spinner-bounce1"></div>' +
+                                '<div class="css3-spinner-bounce2"></div>' +
+                                '<div class="css3-spinner-bounce3"></div>' +
+                                '</div>'
+                        );
+                    },
+                    success: function (data) {
+                        var res = JSON.parse(data);
+
+                        if (res.success) {
+                            $('.st-content').html(res.html_string);
+                        }
+                    }
+                })
+            })
+
+        })
+
+        $('.j-modal-exports').on('click', function () {
+            var active_category = $('li.active').children('a').attr('data-value');
+
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('member_display_modal_exports_shipments',{'collection':'st-globals-'+active_category,'s_cache' : '{{ s_cache }}' }),
+                beforeSend: function () {
+                    $('.st-content').html('<div class="css3-spinner">' +
+                            '<div class="css3-spinner-bounce1"></div>' +
+                            '<div class="css3-spinner-bounce2"></div>' +
+                            '<div class="css3-spinner-bounce3"></div>' +
+                            '</div>'
+                    );
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.st-content').html(res.html_string);
+                    }
+                }
+            })
+        })
+
+
+        var $collectionHolder;
+
+        //        $('.j-show').children('div').addClass('form-group');
+
+        // setup an "add a tag" link
+        var $addFilterLink = $('<div class="form-group"><div class="col-md-2">' +
+                ' <a href="#" class="add_filter_link btn btn-info">Add Criteria <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></a></div></div>');
+        var $newLinkLi = $('<div></div>').append($addFilterLink);
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('div.j-show');
+
+            // add a delete link to all of the existing tag form li elements
+            $collectionHolder.find('div.j-add-filter').each(function () {
+                if ($(this).length > 1) {
+                    addTagFormDeleteLink($(this));
+                }
+            });
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addFilterLink.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                var check = $('h5.show');
+
+                if (check.length == 1) {
+                    $("#dialog-message").dialog({
+                        modal: true
+                    });
+                    return false;
+                }
+
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+
+
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            console.log(prototype);
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div><div style="clear: both"></div></div> ').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<div class="form-group">' +
+                    '<div class="col-md-1">' +
+                    '<a href="#" class="j-different-remove btn btn-danger" style="font-size: 16px;"' +
+                    'title="Delete This Filter"> <span class="glyphicon glyphicon-remove" aria-hidden="true"' +
+                    '></span> remove </a>' +
+                    '</div>' +
+                    '</div>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+    </script>
+
+{% endblock %}
+
+{% block style %}
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+{% endblock %}

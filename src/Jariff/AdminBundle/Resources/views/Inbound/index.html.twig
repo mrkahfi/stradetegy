@@ -1,0 +1,23 @@
+{% extends 'JariffProjectBundle::base_admin2.html.twig' %}
+
+{% block content %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Filter
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        {{ grid_search(grid) }}
+      </div>
+    </div>
+  </div>
+  {{ grid(grid, _self) }}
+
+{% endblock %}
+
+{% block grid_filters %}{% endblock %}

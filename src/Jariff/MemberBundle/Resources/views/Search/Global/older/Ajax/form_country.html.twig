@@ -1,0 +1,73 @@
+{% form_theme formCountry 'JariffProjectBundle:Themes:form_checkbox_country.html.twig' %}
+
+<form method="post"
+      class="j-filter-country"
+      action="{{ path('member_search_global_submit_country',{'s_cache' :app.request.get('s_cache')}) }}">
+    {{ form_widget(formCountry) }}
+
+    <a href="#" class="j-country-show-more">Show more...</a>
+    <a href="#" class="j-country-hidden-more" style="display: none">Hidden...</a>
+</form>
+
+<script type="text/javascript">
+    var $ele = $('#country_widget_country').children('.check_parent');
+
+    for (i = 10; i < $ele.length; i++) {
+        $ele.eq(i).hide();
+    }
+
+    $('.j-country-show-more').on('click', function () {
+        $ele.show();
+        $('.j-country-hidden-more').show();
+        $(this).hide();
+        return false;
+    })
+
+    $('.j-country-hidden-more').on('click',function(){
+        for (i = 10; i < $ele.length; i++) {
+            $ele.eq(i).hide();
+        }
+
+        $('.j-country-show-more').show();
+        $(this).hide();
+        return false;
+    })
+
+    $('.j-filter-country').find('input').on('change', function () {
+        var s_cache = getParameterByName('s_cache');
+
+        $.ajax({
+            type: 'POST',
+            url: Routing.generate('member_search_global_submit_country', {'s_cache': s_cache}),
+            data: $('.j-filter-country').serialize(),
+            beforeSend: function () {
+                $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                        '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                        '<h5 style="margin-top: 15px">Loading...</h5>' +
+                        '</div>');
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('#page1').html(res.html_string);
+                    $('.j-total').html(res.total);
+                    $('.j-matching-country').html(res.q_country);
+
+                    window.history.pushState("object or string", "Title", res.urls);
+
+                    return false;
+                }
+
+            }
+        })
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+    })
+
+</script>

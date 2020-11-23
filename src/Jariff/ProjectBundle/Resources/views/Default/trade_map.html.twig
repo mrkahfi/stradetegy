@@ -1,0 +1,207 @@
+{% extends 'JariffProjectBundle::base_landing.html.twig' %}
+
+{% block wrap_headline %}
+
+<div class="wrap_headline">
+    <div class="headline">
+        <div><img class="awan" alt="" src="{{ asset('bundles/jariffproject/frontend/images/img/icon_heading.png') }}"></div>
+        <div><h1>s<strong>TRADE</strong>tegy</h1></div>
+    </div>
+</div>
+<div class="wrap_cont_nav">
+    <div class="cont_nav">
+        <div id="searchfield">
+            <form id="myForm" action="#" method="GET">
+                {{ form_row(formSearchGlobal.q) }}
+
+                <input type="submit" class="button button-search global-button-search" value="FIND"
+                style="margin-top: -48px;">
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="last">
+    <div id="container">
+
+        <div id="center-container">
+            <div id="infovis" align="center"></div>
+        </div>
+        <div id="log"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+<div id="right-container">
+    <div class="tab">
+        <ul class="tabs">
+            <li class="tab-search"><a href="#" class="j-tabs-identify"><span>Companies</span></a></li>
+            <li class="tab-search"><a href="#" class="j-tabs-identify"><span >Node Info</span></a></li>
+        </ul>
+        <div class="tab_content tab-result">
+            <div class="tabs_tab">
+                <div id="search-result">
+                </div>
+            </div>
+            <div class="tabs_tab j-result-supplier">
+                <br>
+                <h6><strong>LEGEND</strong></h6>
+                <div id="map-legend" style='margin-right:10px; margin-top:0px; margin-bottom:10px;'>
+                    <div class='legend-item' style='margin-right:10px; margin-top:5px; margin-bottom:5px;'><div id='red-circle'style='float:left; margin-right:10px; '></div> Buyer</div>
+                    <div class='legend-item' style='margin-right:10px; margin-top:5px; margin-bottom:5px;'><div id='green-circle' style='float:left; margin-right:10px; '></div> Supplier</div>
+                    <div class='legend-item' style='margin-right:10px; margin-top:5px; margin-bottom:5px;'><div id='blue-triangle' style='float:left; margin-right:10px; '></div> On Behalf Of</div>
+                </div>
+                <br>
+                <h6><strong>DETAILS</strong></h6>
+                <div id="inner-details">no company selected</div>
+                <div id="hidden-check"></div>
+                <div id="sidebar-button"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block left_sidebar %}
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/js/Jit/Examples/css/Hypertree.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/css/jquery.contextmenu.css') }}" type="text/css"/>
+<style type="text/css">
+#red-circle {
+    width: 14px;
+    height: 14px;
+    background: #FF3300;    
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#green-circle {
+    width: 14px;
+    height: 14px;
+    background: #66FF33;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#blue-triangle {
+    width: 0;
+    height: 0;
+    width: 0; 
+    height: 0; 
+    border-bottom: 14px solid #68B2E3; 
+    border-left: 7px solid transparent; 
+    border-right: 7px solid transparent; 
+}
+/*#center-container {
+    background-image: url('{{ asset('/bundles/jariffproject/frontend/images/perkamen.gif') }}');
+    background-size: 100%;
+    }*/
+    </style>
+    {% endblock %}
+
+    {% block javascript %}
+
+        <!--[if IE]>
+        <script language="javascript" type="text/javascript"
+        src="{{ asset('/bundles/jariffproject/frontend/js/Jit/Extras/excanvas.js') }}"></script><![endif]-->
+        <script language="javascript" type="text/javascript"
+        src="{{ asset('/bundles/jariffproject/frontend/js/Jit/jit.js') }}"></script>
+        <script language="javascript" type="text/javascript"
+        src="{{ asset('/bundles/jariffproject/frontend/js/jquery.contextmenu.js') }}"></script> 
+        <script language="javascript" type="text/javascript"
+        src="{{ asset('/bundles/jariffproject/frontend/js/html2canvas.js') }}"></script>      
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+        <script type="text/javascript">
+
+        $(function () {
+
+
+            });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#myForm').on('submit', function () {
+                var value = $(this).serialize();
+                var url = Routing.generate('big_picture_search_buyer', {key: value.split("=")[1]});
+                if (value.split("=")[1]) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('ajax_big_picture_buyer_search') }}',
+                        data: {key: value.split("=")[1]},
+                        success: function (data) {
+                            $('#search-result').html(data);
+                            // $('#tabs').tabs({ selected: 0, disabled: [1] }); 
+                            // $( "#tabs" ).tabs( "option", "active", 0 );
+                            $( "#tabs" ).tabs( "select", 2 );
+                        }
+                    });
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('ajax_count_buyer') }}',
+                        data: {key: value.split("=")[1]},
+                        success: function (data) {
+                            $('.count-buyer').html(data);
+
+                        }
+                    });
+
+                } else {
+                    alert("field cannot empty");
+                }
+                return false;
+            });
+
+})
+</script>
+
+<script language="javascript">
+function Clickheretoprint()
+{ 
+    var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+    disp_setting+="scrollbars=yes,width=650, height=600, left=100, top=25"; 
+    // var oriContent = document.getElementsByClassName("content_wrap")[0]; 
+    var contentVal1 = $("#infovis");
+    var companyName = $("#company-name").text();
+    var companyType = $("#company-type").text();
+    var featuredAddress = $("#featured-address").text();
+    var connectionCount = $("#connection-count").text();
+    var showingConnection = $("#showing-connection").text();
+    console.log(featuredAddress);
+    // contentVal2 = contentVal2.add(contentVal1);
+
+    html2canvas(contentVal1, {
+        onrendered: function(canvas) {
+            var img    = canvas.toDataURL("image/png");
+            var docprint=window.open("","",disp_setting);
+            docprint.document.open(); 
+            docprint.document.write('</head><body onLoad="self.print()"><center>');      
+            docprint.document.write('<div class="print-header"><img src="/bundles/jariffproject/frontend/images/logo.png" width="190" height="69" alt=""><h1>s<strong>TRADE</strong>tegy</h1></div>');  
+            docprint.document.write('<div id="node-header"><p><h2>' + companyName + '</h2></p><strong>Company Type</strong>: ' + companyType + ' | <strong>Featured Address</strong> : ' + featuredAddress + ' | <strong>Total Connections</strong> : ' + connectionCount + ' | <strong>Showing Connections</strong> : ' + showingConnection);
+            docprint.document.write('<img src="'+img+'"/>');
+            docprint.document.write('</center></body></html>'); 
+            docprint.document.close(); 
+            docprint.focus(); 
+        }
+    });
+}
+</script>
+
+<script language="javascript" type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/loadTreeBuyer.js') }}"></script>
+<script type="text/javascript">
+window.onload = init('{{ slug }}', 0);
+</script>
+{% endblock %}
+

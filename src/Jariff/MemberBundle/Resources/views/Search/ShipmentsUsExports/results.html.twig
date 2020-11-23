@@ -1,0 +1,879 @@
+{% extends 'JariffProjectBundle::base_member.html.twig' %}
+
+{% form_theme form 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+    {% form_theme formCustom 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+        {% form_theme formCustomCountry 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+            {% form_theme formDateRange 'JariffProjectBundle:Themes:bootstrap_3_layout.html.twig' %}
+
+                {% block content %}
+
+                    <div style="clear: both"></div>
+                    {% block menu_search_shipments %}
+                        {{ knp_menu_render('menu_member_search', {'currentClass' : 'active', 'id' : 'navigation','template': 'JariffProjectBundle:Menu:knp_menu_frontend.html.twig'}) }}
+                    {% endblock %}
+                    <div class="panel panel-default" style="margin-top:41px">
+                      <div class="panel-body">
+                        <div class="alert alert-info j-show-subscrib"></div>
+                        <div class="j-form-change" style="margin-top: 28px;">
+
+
+
+                            <form id="sform" action="{{ path('member_search_shipments_submit') }}" method="POST" class="form-inline " isajax="true">
+
+                                {{ form_widget(formDateRange) }}
+
+                                {{ form_widget(formCustom) }}
+
+                                {{ form_widget(formCustomCountry) }}
+
+                                {{ form_start(form) }}
+
+                                {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+                                    <div class="j-show" data-prototype='{{ pro|raw }}'>
+
+
+                                        {% for i in 0..(form.collect|length) %}
+
+                                            {% if(i == 0) %}
+                                                {{ form_widget(form.collect[i]) }}
+                                                {{ form_widget(form.q[i]) }}
+
+                                                <button type="submit" class="btn btn-primary col-md-1">Search</button>
+
+                                            {% endif %}
+
+                                            {% if(i > 0) %}
+
+                                                {% if form.collect[i] is defined %}
+
+                                                    <div class="j-is-remove">
+                                                        <div style="clear:both"></div>
+                                                        
+                                                        {{ form_widget(form.condition[(i - 1)]) }}
+                                                        
+                                                        {{ form_widget(form.collect[i]) }}
+                                                        {{ form_widget(form.q[i]) }}
+                                                        <div class="form-group">
+                                                            <div class="col-md-1">
+                                                                <a href="#" class="j-different-remove btn btn-danger" aria-hidden="true"
+                                                                style="font-size: 16px;"
+                                                                title="Delete This Filter"> <span class="glyphicon glyphicon-remove"
+                                                                ></span> remove </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        <div style="clear: both"></div>
+                                        <div class="j-add-filter"></div>
+                                    </div>
+                                    {{ form_end(form) }}
+
+
+                                </form>
+
+                            </div>
+
+                            <div class="j-keywords">
+
+                            </div>
+
+                            <div>
+                             {#  <a href="{{ path('member_search_shipments') }}" class="btn btn-default btn-sm" role="button">Search</a> #}
+
+
+                             <div class="btn-group">
+                                <button type="button" data-toggle="modal"
+                                class="btn btn-default btn-sm j-modal-save" data-url="{{ path('member_display_modal_save_shipments',{'slug_country_subscription':'us-exports','s_cache' : app.request.get('s_cache')}) }}" data-backdrop="static">
+                                Save Search
+                            </button>
+
+
+
+                            <a href="javascript:void(0)" class="btn btn-default btn-sm j-flexi-table" role="button"><span class="glyphicon glyphicon-th"></span> Modify Display Fields</a>
+
+                            <a href="javascript:void(0)" data-toggle="modal" class="j-modal-exports btn btn-sm btn-default"
+                            data-target="#modalSave" data-url="{{ path('member_display_modal_exports_shipments',{'collection':'us-exports','s_cache' : app.request.get('s_cache')}) }}" data-backdrop="static">Export/Email
+                            Report</a>
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modalSave" data-url="{{ path('member_search_result_contact_company_us_exports',{'company_as':'shipper_name','s_cache' : app.request.get('s_cache')}) }}" data-backdrop="static"
+                            class="j-modal-contact-company btn btn-default btn-sm" role="button">Contact
+                            Company</a>
+                        </div>
+
+
+
+                        <div class="trade-table" style="display:none">
+                            <table class="table table-bordered table-responsive j-column">
+                                <tbody>
+                                    {% for cn in columnNameFilter  %}
+                                        {% if (loop.index % 6) == 1 %}
+
+                                            <tr>
+
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                          <input type="checkbox" class="j-column-checkbox" value="{{cn}}" checked="checked"> {{cn|us_exports_column_view}}
+                                                      </label>
+                                                  </div>
+                                              </td>
+                                              {% else %}
+                                              <td><div class="checkbox">
+                                                <label>
+                                                   <input type="checkbox" class="j-column-checkbox" value="{{cn}}" checked="checked"> {{cn|us_exports_column_view}}
+                                               </label>
+                                           </div></td>
+                                       {% endif %}
+
+                                       {% if (loop.index / 6) == 1 %}
+                                       </tr>
+                                   {% endif %}
+                               {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+
+                   {# MODAL #}
+                   <div class="modal fade" id="modalSave" role="dialog"
+                   aria-labelledby="exampleModalLabel"
+                   aria-hidden="true" backdrop="static">
+                   <div class="modal-dialog modal-lg">
+                    <div class="modal-content st-content">
+
+                        <div class="modal-body">
+                            <div class="css3-spinner">
+                                <div class="css3-spinner-bounce1"></div>
+                                <div class="css3-spinner-bounce2"></div>
+                                <div class="css3-spinner-bounce3"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            {# ENDMODAL #}
+
+
+
+
+            <div class="row">
+
+
+                <table id="flex1" style="display:none"></table>
+            </div></div>
+        </div>
+
+
+    {% endblock %}
+
+    {% block javascript %}
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+        <script src="{{ asset('bundles/jariffproject/flexigrid/js/flexigrid.js') }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+
+        <script src="{{ asset('/bundles/jariffmember/js/search/trade-index-1.0.js')}}"></script>
+
+
+        <script type="text/javascript">
+
+
+
+            $("#flex1").flexigrid({
+                url: "{{ path('member_search_shipments_result_us_exports_ajax_jsonp',{'s_cache' : app.request.get('s_cache')}) }}",
+                dataType: 'json',
+                colModel : [
+                {% for cn in columnName %}
+                
+                {display: '{{cn|us_exports_column_view}}', name : '{{cn}}', width : '{{(cn|us_exports_column_style)["width"]}}', sortable : true, align: '{{(cn|us_exports_column_style)["align"]}}'},
+                
+                {% endfor %}
+                ],
+                sortname: "iso",
+                sortorder: "asc",
+                usepager: true,
+                useRp: true,
+                rp: 15,
+                height: 350,
+                preProcess: function(data){
+                    if(data.url_change != "")
+                        window.history.pushState("object or string", "Title", data.url_change);
+
+
+                    if(data.errors){
+                     var itsMe = $(this);
+                     var btn = [];
+
+                     jQuery.each(data.buttons,function(i,val){
+                        btn[i] = {
+                            label: val.label,
+                            action: function(dialog) {
+                              window.location = val.action;
+                          }
+                      };
+                  });
+
+                     BootstrapDialog.show({
+                        title: data.title,
+                        message: data.message,
+                        buttons: btn
+                    });
+                 }else{
+                    if(data.url_change != null)
+                    {
+                        $('.j-modal-save').attr('data-url',data.url_save);
+                        $('.j-modal-contact-company').attr('data-url',data.url_contact_company);
+                        $('.j-modal-exports').attr('data-url',data.url_export);
+                    }
+                    
+                    return data;
+                }
+            },
+            onSuccess: function(data){
+
+                    // console.log(data.preProcess);
+                    $('.j-modal-company-one-shipments').on('click', function () {
+
+                        var itsMe = $(this);
+
+                        BootstrapDialog.show({
+                            title: itsMe.attr('data-whatever'),
+                            size: BootstrapDialog.SIZE_WIDE,
+                            message: function(dialog) {
+                                var $message = $('<div></div>');
+                                var pageToLoad = dialog.getData('pageToLoad');
+
+                                $message.load(pageToLoad);
+
+                                return $message;
+                            },
+                            data: {
+                                'pageToLoad': $(this).attr('data-url')
+                            }
+                        });
+                    })
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('member_value_subscribe') }}',
+                        success: function (data) {
+                            var res = JSON.parse(data);
+
+                            if(res.limit){
+                                window.location.href = res.redirect;
+                            }else{
+                                $(".j-show-subscrib").html(res.rawdata);
+                            }
+
+                        }
+                    })
+                }
+            }); 
+
+
+
+//This function adds paramaters to the post of flexigrid. You can add a verification as well by return to false if you don't want flexigrid to submit           
+// function addFormData(){
+//     //passing a form object to serializeArray will get the valid data from all the objects, but, if the you pass a non-form object, you have to specify the input elements that the data will come from
+//     var dt = $('#sform').serializeArray();
+//     $("#flex1").flexOptions({params: dt});
+//     return true;
+// }
+
+$('#sform').submit(function (){
+    
+        if($(this).attr('isajax') == 'true'){
+            $.ajax({
+                type: 'post',
+                url: '{{path("member_search_shipments_result_submit_ajax_us_exports")}}',
+                data: $('#sform').serialize(),
+                success: function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    $('#flex1').flexOptions({url:obj.url,newp: 1}).flexReload();
+
+                    if(obj.url_change != null)
+                    {
+                        $('.j-modal-save').attr('data-url',obj.url_save);
+                        $('.j-modal-contact-company').attr('data-url',obj.url_contact_company);
+                        $('.j-modal-exports').attr('data-url',obj.url_export);
+
+                        window.history.pushState("object or string", "Title", obj.url_change);
+                    }
+                    return false;
+                }
+            });
+            return false;
+
+
+        }
+
+   
+    
+});
+
+var visible = false;
+$('.j-column-checkbox').click(function () {
+
+    var check = $(this).val();
+    var nameColumn = $(this).val();
+    showColumn('#flex1', nameColumn, $(this).prop('checked'));
+});
+
+// you can put this in a separate javascript library
+function showColumn(tbl, columnName, visible) {
+
+  var grd = $(tbl).closest('.flexigrid');
+  var colHeader = $('th[abbr=' + columnName + ']', grd)
+
+  var colIndex = $(colHeader).attr('axis').replace(/col/, "");
+
+  $('.togCol').eq(colIndex).click();
+
+}
+
+$('.j-flexi-table').on('click',function(){
+    $('.trade-table').toggle();
+})
+
+$('.j-modal-save').on('click', function () {
+    var itsMe = $(this);
+
+    BootstrapDialog.show({
+        title: 'Save Search',
+        size: BootstrapDialog.SIZE_WIDE,
+        message: function(dialog) {
+            var $message = $('<div></div>');
+            var pageToLoad = dialog.getData('pageToLoad');
+
+            $message.load(pageToLoad);
+
+            return $message;
+        },
+        data: {
+            'pageToLoad': itsMe.attr('data-url')
+        }
+    });
+})
+
+$('.j-modal-exports').on('click', function () {
+    $.ajax({
+        type: 'GET',
+        url: $(this).attr('data-url'),
+        beforeSend: function () {
+            $('.st-content').html('<div class="modal-body" style="min-height:120px"><div class="css3-spinner">' +
+                '<div class="css3-spinner-bounce1"></div>' +
+                '<div class="css3-spinner-bounce2"></div>' +
+                '<div class="css3-spinner-bounce3"></div>' +
+                '</div></div>'
+                );
+        },
+        success: function (data) {
+            var res = JSON.parse(data);
+
+            if (res.success) {
+                $('.st-content').html(res.html_string);
+            }
+        }
+    })
+})
+
+$('.j-modal-contact-company').on('click', function () {
+    $.ajax({
+        type: 'GET',
+        url: $(this).attr('data-url'),
+        beforeSend: function () {
+            $('.st-content').html('<div class="modal-body" style="min-height:120px"><div class="css3-spinner">' +
+                '<div class="css3-spinner-bounce1"></div>' +
+                '<div class="css3-spinner-bounce2"></div>' +
+                '<div class="css3-spinner-bounce3"></div>' +
+                '</div></div>'
+                );
+        },
+        success: function (data) {
+            var res = JSON.parse(data);
+
+            if (res.success) {
+                $('.st-content').html(res.html_string);
+                $('.j-count-seleted').html(res.totalSelect);
+            }
+        }
+    })
+})
+
+</script>
+
+
+<script type="text/javascript">
+
+
+//     var $collectionHolder;
+
+//     //        $('.j-show').children('div').addClass('form-group');
+
+//     // setup an "add a tag" link
+//     var $addFilterLink = $('<div class="form-group"><div class="col-md-2">' +
+//         ' <a href="#" class="add_filter_link btn btn-info">Add Criteria <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span></a></div></div>');
+//     var $newLinkLi = $('<div></div>').append($addFilterLink);
+
+//     jQuery(document).ready(function () {
+//         // Get the ul that holds the collection of tags
+//         $collectionHolder = $('div.j-show');
+
+
+
+//         // add a delete link to all of the existing tag form li elements
+//         $collectionHolder.find('div.j-add-filter').each(function () {
+//             if ($(this).length > 1) {
+//                 addTagFormDeleteLink($(this));
+//             }
+//         });
+
+//         // add the "add a tag" anchor and li to the tags ul
+//         $collectionHolder.append($newLinkLi);
+
+//         // count the current form inputs we have (e.g. 2), use that as the new
+//         // index when inserting a new item (e.g. 2)
+//         $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+//         $addFilterLink.on('click', function (e) {
+//             // prevent the link from creating a "#" on the URL
+//             e.preventDefault();
+
+//             var check = $('h5.show');
+
+//             if (check.length == 1) {
+//                 $("#dialog-message").dialog({
+//                     modal: true
+//                 });
+//                 return false;
+//             }
+
+//             // add a new tag form (see next code block)
+//             addTagForm($collectionHolder, $newLinkLi);
+//         });
+
+
+//     });
+
+//     function addTagForm($collectionHolder, $newLinkLi) {
+//         // Get the data-prototype explained earlier
+//         var prototype = $collectionHolder.data('prototype');
+
+//         // get the new index
+//         var index = $collectionHolder.data('index');
+
+//         // Replace '__name__' in the prototype's HTML to
+//         // instead be a number based on how many items we have
+//         var newForm = prototype.replace(/__name__/g, index);
+
+//         // increase the index with one for the next item
+//         $collectionHolder.data('index', index + 1);
+
+//         // Display the form in the page in an li, before the "Add a tag" link li
+//         var $newFormLi = $('<div><div style="clear: both"></div></div> ').append(newForm);
+//         $newLinkLi.before($newFormLi);
+
+//         // add a delete link to the new form
+//         addTagFormDeleteLink($newFormLi);
+//     }
+
+//     function addTagFormDeleteLink($tagFormLi) {
+//         var $removeFormA = $('<div class="form-group">' +
+//             '<div class="col-md-1">' +
+//             '<a href="#" class="j-different-remove btn btn-danger" style="font-size: 16px;"' +
+//             'title="Delete This Filter"> <span class="glyphicon glyphicon-remove" aria-hidden="true"' +
+//             '></span> remove </a>' +
+//             '</div>' +
+//             '</div>');
+//         $tagFormLi.append($removeFormA);
+
+//         $removeFormA.on('click', function (e) {
+//             // prevent the link from creating a "#" on the URL
+//             e.preventDefault();
+
+//             // remove the li for the tag form
+//             $tagFormLi.remove();
+//         });
+//     }
+
+//     $('.j-different-remove').on('click', function () {
+//         $(this).parent('.col-md-1').parent('.form-group').parent('.j-is-remove').remove();
+//     })
+
+//     $('.j-choice-country').on("change", function () {
+
+//         var company_as = $(".j-choice-as").val();
+//         var country = $(this).val();
+
+//         $.ajax({
+//             type: 'POST',
+//             url: Routing.generate('member_search_shipments_' + country + '_' + company_as + '_field'),
+//             data: $('.j-form-change').children("form").serialize(),
+//             beforeSend: function () {
+//                 $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+//                     '<div class="modal-body" style="height: 100px">' +
+//                     '<div class="css3-spinner">' +
+//                     '<div class="css3-spinner-bounce1"></div>' +
+//                     '<div class="css3-spinner-bounce2"></div>' +
+//                     '<div class="css3-spinner-bounce3"></div>' +
+//                     '</div>' +
+//                     '</div>' +
+//                     '</div>');
+
+//                 $('#modalLoadingClick').modal('show');
+//             },
+//             success: function (data) {
+//                 var res = JSON.parse(data);
+//                 var letterCode;
+//                 if (res.success) {
+//                     $('.j-form-change').html(res.html_string);
+
+//                     var countryOption = $(".j-choice-country").children('option');
+//                     countryOption.removeAttr('disabled');
+//                     for (letterCode in res.country_list) {
+//                         for (var i = 0; i < countryOption.length; i++) {
+//                             if (countryOption.eq(i).val() == letterCode) {
+//                                 countryOption.eq(i).attr('disabled', 'disabled');
+//                             }
+//                         }
+
+//                     }
+//                     $('#modalLoadingClick').modal('hide');
+//                 } else {
+//                     $('#modalLoadingClick').children('.modal-dialog').html(res.html_string);
+//                     $('.j-form-change').html(res.html_callback);
+//                 }
+
+
+//             }
+//         })
+//     })
+
+//     $('.j-choice-as').on("change", function () {
+
+//         $('#sform').removeAttr('isajax');
+
+//         var company_as = $(this).val();
+//         var country = $('.j-choice-country').val();
+
+//         $.ajax({
+//             type: 'POST',
+//             url: Routing.generate('member_search_shipments_' + country + '_' + company_as + '_field'),
+//             data: $('.j-form-change').children("form").serialize(),
+//             beforeSend: function () {
+//                 $('#modalLoadingClick').children('.modal-dialog').html('<div id="chart_div">' +
+//                     '<div class="modal-body" style="height: 100px">' +
+//                     '<div class="css3-spinner">' +
+//                     '<div class="css3-spinner-bounce1"></div>' +
+//                     '<div class="css3-spinner-bounce2"></div>' +
+//                     '<div class="css3-spinner-bounce3"></div>' +
+//                     '</div>' +
+//                     '</div>' +
+//                     '</div>');
+
+//                 $('#modalLoadingClick').modal('show');
+//             },
+//             success: function (data) {
+//                 var res = JSON.parse(data);
+//                 var letterCode;
+//                 if (res.success) {
+//                     $('.j-form-change').html(res.html_string);
+
+//                     var countryOption = $(".j-choice-country").children('option');
+//                     countryOption.removeAttr('disabled');
+//                     for (letterCode in res.country_list) {
+//                         for (var i = 0; i < countryOption.length; i++) {
+//                             if (countryOption.eq(i).val() == letterCode) {
+//                                 countryOption.eq(i).attr('disabled', 'disabled');
+//                             }
+//                         }
+
+//                     }
+//                     $('#modalLoadingClick').modal('hide');
+//                 } else {
+//                     $('#modalLoadingClick').children('.modal-dialog').html(res.html_string);
+//                     $('.j-form-change').html(res.html_callback);
+//                 }
+
+
+//             }
+//         })
+//     })
+
+// //     $(function () {
+
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    $('#demo_search_date_to').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        endDate: new Date()
+
+    });
+    $('#demo_search_date_from').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd',
+        endDate: new Date()
+    });
+
+    // var checkout = $('#demo_search_date_to').datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     maxDate: new Date(),
+    //     numberOfMonths: 1,
+    //     minDate: "-{{ app.getUser.getLastSubscription.getHistoryValue }}m",
+    //     onClose: function (selectedDate) {
+    //         $("#demo_search_date_from").datepicker("option", "maxDate", selectedDate);
+    //     }
+    // }
+    // );
+
+    // var chk_in = $('#demo_search_date_from').datepicker({
+    //     dateFormat: 'yy-mm-dd',
+    //     maxDate: new Date(),
+    //     numberOfMonths: 1,
+    //     minDate: "-{{ app.getUser.getLastSubscription.getHistoryValue }}m",
+    //     onClose: function (selectedDate) {
+    //         $("#demo_search_date_to").datepicker("option", "minDate", selectedDate);
+    //     }
+    // });
+</script>
+
+{% include "@JariffMember/Search/Shipments/Add/Form/loading.html.twig" %}
+{% endblock %}
+
+{% block style %}
+  <style type="text/css">
+      #demo_search .form-group label{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    #demo_search .form-group #demo_search_marked_master{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    #demo_search .form-group #demo_search_marked_master .checkbox label input{
+        position: absolute;
+        margin-left: -20px;
+        padding-left: 10px;
+    }
+
+    #demo_search .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+        margin-left: 10px
+    }
+
+    #search_data_custom {
+        margin-top: 10px;
+    }
+
+    #search_data_custom .form-group label{
+        padding-right: 10px;
+        padding-left: 10px;
+        
+    }
+
+    #search_data_custom .form-group #demo_search_marked_master{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    #search_data_custom .form-group select{
+
+        width: 413px;
+    }
+
+    #search_data_custom .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+        margin-left: 10px
+    }
+
+    #custom_country_shipments {
+        margin-top: 10px;
+    }
+
+    #custom_country_shipments .form-group label{
+        padding-right: 10px;
+        padding-left: 10px;
+        
+    }
+
+    #custom_country_shipments .form-group #demo_search_marked_master{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    #custom_country_shipments .form-group select{
+
+        width: 403px;
+    }
+
+    #custom_country_shipments .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+        margin-left: 10px
+    }
+
+    #demo_search_shipments_embed_collect_0 {
+        margin-left: -5px;
+        margin-top: 10px;
+    }
+
+    #demo_search_shipments_embed_q_0 .form-group input{
+        width: 500px;
+    }
+
+    .add_filter_link {
+        margin-top: 10px;
+        margin-left: -5px;
+    }
+
+    div[id^=demo_search_shipments_embed_condition] {
+        margin-top: 10px;
+        margin-left: -5px;
+    }
+    
+    div[id^=demo_search_shipments_embed_q] .form-group input {
+        width:500px;
+    }
+
+    .j-column {
+        position: absolute;
+        z-index: 2;
+        border-bottom: 1px solid #ccc;
+        background: #fafafa;
+        margin-top: 25px;
+    }
+
+    @media screen and (max-width: 767px) {
+        .trade-table .table-responsive {
+            width: 87%;
+            margin-bottom: 15px;
+
+        }
+    }
+
+    .trade-table .table{
+        width: 94.8%;
+        max-width: 94.8%;
+    }
+
+    .j-column tr td div.checkbox {
+        position: relative;
+        display: block;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .j-column tr td div.checkbox label { 
+        font-size: 10px;
+    }
+
+    .j-column tr td div.checkbox label input[type="checkbox"] {
+        margin: 0px -20px 0;
+    }
+
+    #flex1 tr td div strong {
+        color:red;
+    }
+
+    .modal {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    @-webkit-keyframes progress-bar-stripes {
+      from {
+        background-position: 40px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0;
+}
+to {
+    background-position: 0 0;
+}
+}
+.progress {
+  overflow: hidden;
+  height: 20px;
+  margin: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.progress-bar {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+}
+.progress-striped .progress-bar {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.progress.active .progress-bar {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+.progress-bar-success {
+  background-color: #5cb85c;
+}
+.progress-striped .progress-bar-success {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.progress-bar-info {
+  background-color: #5bc0de;
+}
+.progress-striped .progress-bar-info {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.progress-bar-warning {
+  background-color: #f0ad4e;
+}
+.progress-striped .progress-bar-warning {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+.progress-bar-danger {
+  background-color: #d9534f;
+}
+.progress-striped .progress-bar-danger {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+
+</style>  
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/jariffproject/flexigrid/css/flexigrid.css') }}">
+{% endblock %}

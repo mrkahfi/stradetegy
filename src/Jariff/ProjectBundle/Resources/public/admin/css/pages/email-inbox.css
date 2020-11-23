@@ -1,0 +1,24 @@
+/*!
+ * Social - Premium Responsive Admin Template
+ * Version: v1.3.1
+ * Included: Extra Section Styles
+ *
+ * Copyright: 2013 CesarLab.com
+ * License: http://themeforest.net/licenses
+ */
+#compose-form.form-horizontal .control-label {
+  width: 70px;
+}
+#compose-form.form-horizontal .controls {
+  margin-left: 110px;
+}
+#compose-form.form-horizontal .controls .tagsinput {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+#compose-form.form-horizontal .controls .tagsinput .tag {
+  padding: 0px 5px 1px 4px;
+}
+#compose-form.form-horizontal .controls .tagsinput input {
+  width: 100%!important;
+}

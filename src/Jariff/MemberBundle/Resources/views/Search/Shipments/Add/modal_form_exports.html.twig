@@ -1,0 +1,203 @@
+{% form_theme formExportsShipments 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+
+
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" id="exampleModalLabel">Shipments Search Export/Email Report Tool</h2>
+
+        </div>
+
+
+        {#<ul class="nav nav-tabs" role="tablist" id="myTab">#}
+        {#<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">#}
+        {#Exports</a></li>#}
+        {#<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">History Download</a>#}
+        {#</li>#}
+
+        {#</ul>#}
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+
+
+                <div class="alert alert-info">
+                    <p class="j-mess">{{ message }}</p>
+                </div>
+
+                
+            <div class="progress" style="display:none">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+                0%
+            </div>
+
+        </div>
+
+        <div class="j-message"></div>
+
+        <form action="{{ path('member_display_modal_exports_shipments_submit',{'collection':formExportsShipments.collection.vars.value,'s_cache' : s_cache}) }}"
+        class="j-submit-exports-shipments" method="post">
+
+        <div class="modal-body">
+            {{ form_widget(formExportsShipments) }}
+
+        </div>
+        <div style="clear: both;margin-bottom:20px"></div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Nervermind</button>
+            <button type="submit" class="btn btn-primary ">Generate</button>
+        </div>
+    </form>
+
+
+</div>
+
+{#<div role="tabpanel" class="tab-pane" id="profile">#}
+{#<div class="modal-body">#}
+{#<table class="table" style="margin-top: 10px">#}
+{#<thead>#}
+{#<tr>#}
+{#<th>Actions</th>#}
+{#<th>Description</th>#}
+{#<th>Status</th>#}
+{#<th>Date Request</th>#}
+{#</tr>#}
+{#</thead>#}
+{#<tbody>#}
+{#{% for res in historyDownload %}#}
+{#<tr>#}
+{#<td>{% if res.getProcess %}Processing{% else %}#}
+{#<a href="{{ asset('convert/'~res.getFileName~'.'~res.getFileType) }}"><span class="glyphicon glyphicon-export"></span> </a>#}
+{#{% endif %}</td>#}
+{#<td>{{ res.getDescription }}</td>#}
+{#<td>{% if res.getProcess %}Processing{% else %}Finished{% endif %}</td>#}
+{#<td>{{ res.getDateCreate|date('Y-m-d') }}</td>#}
+{#</tr>#}
+{#{% endfor %}#}
+{#</tbody>#}
+
+{#</table>#}
+{#</div>#}
+{#<div style="clear: both"></div>#}
+{#<div class="modal-footer">#}
+{#<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>#}
+
+{#</div>#}
+{#</div>#}
+</div>
+
+<style type="text/css">
+    .radio + .radio,
+    .checkbox + .checkbox {
+     margin-top: 10px; 
+ }
+</style>
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#myTab a:first').tab('show')
+    })
+
+    $('#exports_search_shipments_send_mail_0').on('change',function(){
+        $('.j-email-showing').parent('.col-md-12').parent('.form-group').show();
+    })
+
+    $('#exports_search_shipments_send_mail_1').on('change',function(){
+        $('.j-email-showing').parent('.col-md-12').parent('.form-group').hide();
+    })
+
+    $('.j-submit-exports-shipments').on('submit', function () {
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $('.j-submit-exports-shipments').css('opacity', '0.666');
+                $('.progress').show();
+                $('.modal-footer').children('.modal-footer').children('button').attr('disabled','disabled');
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+               
+
+                if (res.success == false) {
+                    $('.j-message').html("<div class='alert alert-danger'>" + res.message + "</div>");
+
+
+                }else{
+                    if(res.download_now){
+                        refreshModal(res.message);
+                    }else{
+                        (function worker() {
+                            $.get(Routing.generate('member_display_modal_exports_shipments_download_now_interval',{"file_name" : res.file_name}), function(data) {
+    // Now that we've completed the request schedule the next one.
+                            var res = JSON.parse(data);
+                            if(res.success){
+                                window.location.href = res.link;
+                                refreshModal(res.message);
+                            }else{
+                                if(res.codes == 100){
+                                    var values = res.process;
+
+                                    
+                                    $('.progress-bar').css('width', values+'%').css('min-width', (0.72*values)+'em').attr('aria-valuenow', values); 
+                                    $('.progress-bar').html(values+'%');
+                                    setTimeout(worker, 1000);
+                                }
+                            }                         
+                            });
+                        })();
+                      
+                  }
+
+
+              }
+          }
+      })
+
+        return false;
+    })
+
+    function refreshModal(mess) {
+        $.ajax({
+            type: 'GET',
+            url: '{{ path('member_display_modal_exports_shipments',{'collection':formExportsShipments.collection.vars.value,'s_cache' : app.request.get('s_cache')}) }}',
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('.st-content').html(res.html_string);
+                    $('.j-message').html("<div class='alert alert-success'>" + mess + "</div>");
+
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('member_value_subscribe') }}',
+                        success: function (data) {
+                            var res = JSON.parse(data);
+
+                            if(res.limit){
+                                window.location.href = res.redirect;
+                            }else{
+                                $(".j-show-subscrib").html(res.rawdata);
+                            }
+
+                        }
+                    })
+
+                }
+            }
+        })
+    }
+
+</script>
+
+{% block style %}
+  <style type="text/css">
+
+  </style>  
+{% endblock %}

@@ -1,0 +1,179 @@
+<div class="ovh">
+    <a href="#">You are here : Search </a> <span class="glyphicon glyphicon-me glyphicon-chevron-right"></span> <a
+            href="#">By Buyers</a> <span class="glyphicon glyphicon-me glyphicon-chevron-right"></span> {{ q }}
+    <p class="header-revealing">Revealing : {{ totalBuyer }} matching by buyers</p>
+    <section id="middle_content" style="margin-top: -22px;">
+        <div class="entry">
+            <section class="portfolio_container four_blocks">
+                <article class="portfolio format-album" data-category="design corporate">
+
+                    <p><strong>By Country</strong></p>
+
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes">
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_1" id="check_1" value="I Agree!">
+                                <label for="check_1">China</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_2" id="check_2" value="Yes">
+                                <label for="check_2">India</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_3" id="check_3" value="No">
+                                <label for="check_3">Paskistan</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <a href="#">Show me more</a>
+
+                </article>
+                <article class="portfolio format-slider" data-category="design corporate">
+
+                    <p><strong>By additional Info</strong></p>
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes">
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_1" id="check_1" value="I Agree!">
+                                <label for="check_1">Certified</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_2" id="check_2" value="Yes">
+                                <label for="check_2">Email</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_3" id="check_3" value="No">
+                                <label for="check_3">Product Photo</label>
+                                <span class="total-in-country code">30</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <a href="#">Show me more</a>
+                </article>
+                <article class="portfolio format-album" data-category="business corporate">
+
+                    <p><strong>By Last Treading Activity</strong></p>
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes">
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_1" id="check_1" value="I Agree!">
+                                <label for="check_1">Whitin last 6 month</label>
+
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_2" id="check_2" value="Yes">
+                                <label for="check_2">Within 1 year</label>
+
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_3" id="check_3" value="No">
+                                <label for="check_3">Whitin 2 year</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">Show me everything</a>
+                </article>
+                <article class="portfolio format-video" data-category="photography">
+
+                    <p><strong>Apply more filter to the search</strong></p>
+                    <a href="#">Location</a><br/>
+                    <a href="#">Ship to</a><br/>
+                    <a href="#">Available information</a><br/>
+                    <a href="#">Shipments Counts</a><br/>
+                    <a href="#">Weight Counts</a>
+                </article>
+
+
+            </section>
+        </div>
+    </section>
+</div>
+<div class="divider"></div>
+<div class="content_wrap" style="margin-top: -32px;">
+    <section id="content">
+
+        {% for res in resultBuyer %}
+
+            <div class="ovh">
+                <header class="entry-header">
+                    <div class="cmsms_title">
+                        <h5 class="entry-title"><a href=""><strong>{{ res.value.getConsigneeName }}</strong></a></h5>
+                    </div>
+                    <div class="cmsms_post_info">
+                                <span class="user_name"><img
+                                            class="flag flag-{{ res.value.getCountryOfOrigin | twolettercode }}"
+                                            src="{{ asset('bundles/jariffproject/frontend/images/blank.gif') }}"
+                                            alt="{{ res.value.getCountryOfOrigin }}"> <a href="#">
+                                        {{ res.value.getCountryOfOrigin }} </a></span>&nbsp;&nbsp;/&nbsp;&nbsp;
+                        <span>({{ res.value.shipment }}) <a href="#" class="cmsms_comments">shipments total</a>
+                        &nbsp;&nbsp;/&nbsp;&nbsp;
+
+                            <i class="livicon"
+                               alt="Making Tooltips has never been easier, now there's no excuse to leave them out."
+                               data-name="check-circle-alt" data-s="14" data-color="#e6e6e6" data-hovercolor="#33bee5" data-op="1"></i>
+                        </span>
+
+
+
+
+                    </div>
+                </header>
+                <div class="cl"></div>
+                <div class="entry-content">
+
+                    <p>{{ res.value.getProductDescription | readmore}} </p>
+                </div>
+
+                <footer class="entry-meta">
+                    <ul class="cmsms_tags">
+                        <li>Supplier:</li>
+                        {% for supplier in res.value.getShipperName %}
+                            <li><a href="">{{ supplier }}</a>,</li>
+
+                        {% endfor %}
+                    </ul>
+                </footer>
+            </div>
+            <div class="divider"></div>
+
+
+        {% endfor %}
+
+
+        {#{% if resultBuyer is not empty %}#}
+            {#{{ knp_pagination_render(resultBuyer) }}#}
+        {#{% endif %}#}
+    </section>
+    <section id="sidebar">
+
+        <div class="one_first">
+            <aside class="widget widget_custom_advertising_entries">
+                <h2 class="widgettitle">Advertising</h2>
+                <ul>
+                    <li><a href="#"><img src="images/img/advertising_img_1.jpg" alt=""/></a></li>
+                    <li><a href="#"><img src="images/img/advertising_img_2.jpg" alt=""/></a></li>
+                    <li><a href="#"><img src="images/img/advertising_img_3.jpg" alt=""/></a></li>
+                    <li><a href="#"><img src="images/img/advertising_img_4.jpg" alt=""/></a></li>
+                </ul>
+            </aside>
+        </div>
+
+    </section>
+</div>
+
+
+{% block addJava %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.tooltip1').HoverAlls({tooltip:true,starts:"0px,50px",ends:"120px,-55px",returns:"0px,50px",bg_class:"tooltip1background",text_class:"tooltip1text",speed_in:1000,speed_out:380,effect_in:"easeOutBack",effect_out:"easeInSine",bg_width:"250px",bg_height:"135px"});
+        })
+    </script>
+{% endblock %}

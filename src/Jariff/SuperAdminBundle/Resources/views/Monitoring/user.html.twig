@@ -1,0 +1,63 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+<div id="content"></div>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ asset('bundles/jariffadmin/css/timeline.css') }}" />
+<style type="text/css">
+#timeline{
+	background:none;
+}
+
+/* The individual events in the slider */
+.slider .slider-container-mask .slider-container{
+	background:none;
+}
+
+/* Setting a custom background image */
+#timeline div.navigation{
+	background: url('/bundles/jariffadmin/css/img/timeline_bg.jpg') repeat;
+	border-top:none;
+}
+</style>
+{% endblock %}
+{% block wraper %}
+<!-- BEGIN SIDEBAR -->
+<aside class="social-sidebar sidebar-full">
+	{% block social_sidebar %}
+	{% include "JariffProjectBundle:Component:sidebar.html.twig" %}
+	{% endblock %}
+</aside>
+<!-- END SIDEBAR -->
+<header>
+	<!-- BEGIN NAVBAR -->
+	{% block navbar_header %}
+	{% include "JariffProjectBundle:Component:navbar_simple.html.twig" %}
+	{% endblock %}
+	<!-- END NAVBAR -->
+</header>
+<!-- BEGIN MAIN CONTAINER -->
+<div id="main">
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script type="text/javascript">
+var url = Routing.generate('super_admin_monitoring_time_entry_json');
+$.getJSON(url,function(result){
+	for (var i = result.length - 1; i >= 0; i--) {
+		$("#main" ).append("<img src='" + result[i].thumbnail_url + "' />");
+	};
+});
+</script>
+<script src="{{ asset('bundles/jariffadmin/js/timeline-min.js') }}"></script>
+<!-- <script src="{{ asset('bundles/jariffadmin/js/script.js') }}"></script> -->
+
+
+{% endblock %}

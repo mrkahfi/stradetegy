@@ -1,0 +1,15 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+    <div id="content">
+        <section id="middle_content" style="min-height: 750px;z-index: 101;position: static">
+            <div class="entry">
+			    <h1>Activate user {{ entity.firstName }} {{ entity.lastName }}</h1>
+
+			    {{ form(form) }}
+
+            </div>
+        </section>
+
+    </div>
+{% endblock %}

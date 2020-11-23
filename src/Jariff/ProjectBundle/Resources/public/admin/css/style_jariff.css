@@ -1,0 +1,10 @@
+div.body input,
+div.body select {
+    width:90%;
+}
+div.body .table th {
+	text-align: left;
+}
+div.body .table td {
+	min-width: 50px;
+}

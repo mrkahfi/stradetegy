@@ -1,0 +1,130 @@
+<table class="table table-bordered bgcolorwhite" style="table-layout: auto;">
+    <thead>
+    <tr role="row">
+
+
+        <th>Select</th>
+        <th>Company Name</th>
+
+    </tr>
+    </thead>
+
+
+    <tbody aria-relevant="all" aria-live="polite" role="alert">
+    {% for res in resHybird %}
+        <tr class="odd" id="{{ loop.index }}">
+        <tr class="odd" id="{{ loop.index }}">
+            <td class="">
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="j-add-contact-company"
+                               data-company-name="{{ res.getHit["_source"][company_as] }}"
+                               data-company-as="{{ company_as }}"
+                               data-country-type="us-imports"
+                               data-s-cache="{{ s_cache }}"
+                                {% if checklist[res.getHit["_source"]['slug_'~company_as]] is defined %}
+                                    {{ checklist[res.getHit["_source"]['slug_'~company_as]] }}
+                                {% endif %}
+                               value="{{ res.getHit["_source"]['slug_'~company_as] }}">
+                    </label>
+                </div>
+            </td>
+
+            <td class="">
+                {{ res.getHit["_source"][company_as] }}
+
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<div class="jariff-pagination">
+    {{ pagination|raw }}
+</div>
+
+<script type="text/javascript">
+
+
+    $('.pagination li a').on('click', function () {
+
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            beforeSend: function () {
+                $('.j-show-contact-company').html('<div style="text-align: center">' +
+                        '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                        '<h5 style="margin-top: 15px">Loading...</h5>' +
+                        '</div>'
+                )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-show-contact-company').html(res.html_string);
+
+
+                }
+
+            }
+        });
+
+        return false;
+
+    })
+
+    $('.j-add-contact-company').on('change', function () {
+
+
+        if ($(this).is(':checked')) {
+            $.ajax({
+                type: 'post',
+                url: '{{ path('member_search_add_contact_company_us_imports') }}',
+                data: {'company_as': $(this).attr('data-company-as'), 'company_name': $(this).attr('data-company-name'), 'country_type': $(this).attr('data-country-type'), 's_cache': $(this).attr('data-s-cache'), 'slug': $(this).val()},
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        $('.j-show-selected-company').html(res.html_string);
+
+
+                    }
+
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'post',
+                url: '{{ path('member_search_delete_contact_company_us_imports') }}',
+                data: {'company_as': $(this).attr('data-company-as'), 'company_name': $(this).attr('data-company-name'), 'country_type': $(this).attr('data-country-type'), 's_cache': $(this).attr('data-s-cache'), 'slug': $(this).val()},
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        $('.j-show-selected-company').html(res.html_string);
+
+
+                    }
+
+                }
+            });
+        }
+
+
+
+        return false;
+
+    })
+
+
+</script>

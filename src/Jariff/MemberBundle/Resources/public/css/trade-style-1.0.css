@@ -1,0 +1,126 @@
+ #demo_search .form-group label{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#demo_search .form-group #demo_search_marked_master{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#demo_search .form-group #demo_search_marked_master .checkbox label input{
+    position: absolute;
+    margin-left: -20px;
+    padding-left: 10px;
+}
+
+#demo_search .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+    margin-left: 10px
+}
+
+#search_data_custom {
+    margin-top: 10px;
+}
+
+#search_data_custom .form-group label{
+    padding-right: 10px;
+    padding-left: 10px;
+    
+}
+
+#search_data_custom .form-group #demo_search_marked_master{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#search_data_custom .form-group select{
+
+    width: 413px;
+}
+
+#search_data_custom .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+    margin-left: 10px
+}
+
+#custom_country_shipments {
+    margin-top: 10px;
+}
+
+#custom_country_shipments .form-group label{
+    padding-right: 10px;
+    padding-left: 10px;
+    
+}
+
+#custom_country_shipments .form-group #demo_search_marked_master{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#custom_country_shipments .form-group select{
+
+    width: 403px;
+}
+
+#custom_country_shipments .form-group #demo_search_marked_master .checkbox:nth-child(2) label{
+    margin-left: 10px
+}
+
+#demo_search_shipments_embed_collect_0 {
+    margin-left: -5px;
+    margin-top: 10px;
+}
+
+#demo_search_shipments_embed_q_0 .form-group input{
+    width: 500px;
+}
+
+.add_filter_link {
+    margin-top: 10px;
+    margin-left: -5px;
+}
+
+div[id^=demo_search_shipments_embed_condition] {
+    margin-top: 10px;
+    margin-left: -5px;
+}
+
+div[id^=demo_search_shipments_embed_q] .form-group input {
+    width:500px;
+}
+
+.j-column {
+    position: absolute;
+    z-index: 2;
+    border-bottom: 1px solid #ccc;
+    background: #fafafa;
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 767px) {
+    .trade-table .table-responsive {
+        width: 87%;
+        margin-bottom: 15px;
+
+    }
+}
+
+.trade-table .table{
+    width: 94.8%;
+    max-width: 94.8%;
+}
+
+.j-column tr td div.checkbox {
+    position: relative;
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.j-column tr td div.checkbox label { 
+    font-size: 10px;
+}
+
+.j-column tr td div.checkbox label input[type="checkbox"] {
+    margin: 0px -20px 0;
+}

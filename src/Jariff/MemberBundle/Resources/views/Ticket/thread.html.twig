@@ -1,0 +1,136 @@
+{% extends 'JariffProjectBundle::base_right_sidebar.html.twig' %}
+
+{% block content %}
+<div class="entry">
+	<h3>{{ (inbound.description|split('<br>Message :'))[0] }}</h3>
+
+	<aside id="comments">
+		<ol class="commentlist">
+			<li>
+				<div class="comment-body">
+					<div class="comment-authorinfo">
+						
+						<abbr class="published fr" title="By {{ inbound.dateCreate|date('M d, Y h:m') }} ">By {{ inbound.dateCreate|date('M d, Y h:m') }}</abbr>
+						<h5>{{ app.user.profile.firstName }}</h5>
+					</div>
+					<div class="comment-content">
+						{{ (inbound.description|split('<br>Message :'))[1] }}
+						<div class="cl"></div>
+					</div>
+					<div class="cl"></div>
+				</div>
+			</li>
+		</ol>
+	</aside>
+	<div class="cmsms-form-builder">
+		<div class="box success_box" style="display:none;">
+			<table>
+				<tr>
+					<td>&nbsp;</td>
+					<td>Thank You!<br>Your message has been sent successfully.</td>
+				</tr>
+			</table>
+		</div>
+		{% for label, flashes in app.session.flashbag.all %}
+		{% for flash in flashes %}
+		<div class="alert alert-{{ label }}">
+			{{ flash }}
+		</div>
+		{% endfor %}
+		{% endfor %}
+		<form action="{{ path('support_reply') }}" method="post" {{ form_enctype(form) }} id="support_form">
+			<div class="form_info cmsms_input">
+				{{ form_row(form.message, { 'attr': {'oninvalid': "setCustomValidity('Please give me a nice message')"} }) }}
+			</div>
+			<div>
+				<input href="" class="button" type="submit" value="Send Reply" id="support_form_formsend" tabindex="8"></input>
+				<div class="loading"></div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
+{% block right_sidebar %}
+<div class="one_first">
+	<aside class="widget widget_custom_advertising_entries">
+		<h2 class="widgettitle">MY TICKET</h2>
+	</aside>
+</div>
+<div class="one_first">
+	<aside class="widget widget_custom_advertising_entries">
+		<h2 class="widgettitle">IT'S LIMITED ACCESS</h2>
+
+		<p>
+			You have limited access to Stradetegy's search, company profiles, shipment data, and more.
+		</p>
+
+		<p>
+			Let us show you what you can do with a Stradetegy subscription — sign up for a free demo today.
+		</p>
+
+		<a href="#" class="button">
+			Request a demo
+		</a>
+
+		or
+
+		<a href="">see plans.</a>
+	</aside>
+</div>
+
+<div class="one_first">
+	<aside class="widget widget_custom_contact_form_entries">
+		<h2 class="widgettitle">YOUR ACCOUNT</h2>
+
+
+		<a href="">Messages ( 0 new )</a>
+		<br/>
+		<a href="">Account Setting</a>
+
+		<br/>
+		<br/>
+
+		<p>
+			CREDIT REMAINING
+			<br/>
+			0 profile views <a href="">(see visited profiles)</a>
+			<br/>
+			<a href="">Upgrade for more credits</a>
+		</p>
+
+
+		<p>YOUR SUBSCRIPTION
+			<br/>
+			Free User <a href="" class="button">Subscribe</a>
+		</p>
+
+	</aside>
+</div>
+
+<div class="one_first">
+	<aside class="widget widget_links">
+		<h2 class="widgettitle">HELP ARTICLES</h2>
+
+		<p>
+			<a href="">Global Search</a>
+			<br/>
+			<span style="font-size: 10px">Search for companies, products, and more</span>
+		</p>
+
+		<p>
+			<a href="">Contacting Companies</a>
+			<br/>
+			<span style="font-size: 10px">Powerful customs data search</span>
+		</p>
+
+		<p>
+			<a href="">Account And FAQs</a>
+			<br/>
+			<span style="font-size: 10px">General information about Stradetegy</span>
+		</p>
+
+
+	</aside>
+</div>
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% form_theme formBillTypeCode 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+{% form_theme formTopConsigneeName 'JariffProjectBundle:Themes:form_checkbox_split.html.twig' %}
+{% form_theme formTopShipperName 'JariffProjectBundle:Themes:form_checkbox_split.html.twig' %}
+{% form_theme formCountry 'JariffProjectBundle:Themes:form_checkbox_country.html.twig' %}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+    <h2 class="modal-title" id="exampleModalLabel">Advance Filter</h2>
+
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-4">
+        <form class="j-submit-bill-of-lading"
+              action="{{ path('member_filter_bill_type_code_submit',{'country_type':country_type,'s_cache' : app.request.get('s_cache')}) }}"
+              method="POST">
+            <h5>Bill Type Code</h5>
+
+            {{ form_widget(formBillTypeCode) }}
+            <br/>
+        </form>
+    </div>
+        <div class="col-md-8">
+            <form class="j-submit-top-importer"
+                  action="{{ path('member_top_importer_submit',{'country_type':country_type,'s_cache' : app.request.get('s_cache')}) }}" method="POST">
+                <h5>Top Importer</h5>
+                {{ form_widget(formTopConsigneeName) }}
+                <br/>
+            </form>
+        </div>
+
+
+    <div class="col-md-4">
+        <form class="j-submit-country"
+              action="{{ path('member_country_submit',{'country_type':country_type,'s_cache' : app.request.get('s_cache')}) }}" method="POST">
+            <h5>Country Shipper</h5>
+            {{ form_widget(formCountry) }}
+            <br/>
+        </form>
+    </div>
+
+
+
+
+
+    <div class="col-md-8">
+        <form class="j-submit-top-exporter"
+              action="{{ path('member_top_exporter_submit',{'country_type':country_type,'s_cache' : app.request.get('s_cache')}) }}" method="POST">
+            <h5>Top Exporter</h5>
+            {{ form_widget(formTopShipperName) }}
+            <br/>
+        </form>
+    </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Nervermind</button>
+
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        $('.j-submit-bill-of-lading').find('input').on('change', function () {
+
+            $.ajax({
+                type: 'POST',
+                url: $('.j-submit-bill-of-lading').attr('action'),
+                data: $('.j-submit-bill-of-lading').serialize(),
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        window.location = res.urls;
+                    }
+                }
+            });
+
+
+        })
+
+        $('.j-submit-country').find('input').on('change', function () {
+
+            $.ajax({
+                type: 'POST',
+                url: $('.j-submit-country').attr('action'),
+                data: $('.j-submit-country').serialize(),
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        window.location = res.urls;
+                    }
+                }
+            });
+
+
+        })
+
+        $('.j-submit-top-importer').find('input').on('change', function () {
+
+            $.ajax({
+                type: 'POST',
+                url: $('.j-submit-top-importer').attr('action'),
+                data: $('.j-submit-top-importer').serialize(),
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        window.location = res.urls;
+                    }
+                }
+            });
+        })
+
+        $('.j-submit-top-exporter').find('input').on('change', function () {
+
+            $.ajax({
+                type: 'POST',
+                url: $('.j-submit-top-exporter').attr('action'),
+                data: $('.j-submit-top-exporter').serialize(),
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        window.location = res.urls;
+                    }
+                }
+            });
+        })
+
+
+    });
+</script>

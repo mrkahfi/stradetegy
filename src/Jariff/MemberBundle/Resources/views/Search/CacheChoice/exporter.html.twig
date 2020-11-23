@@ -1,0 +1,127 @@
+<div class="menu-cache">
+
+    <div id="noti_Container">
+        <a href="{{ path('member_compare_detail',{'category':'exporter'}) }}">
+            <img src="{{ asset('bundles/jariffproject/frontend/images-old/document-copy-icon.png') }}"/>
+
+            <div class="noti_bubble">{{ countHistory }}</div>
+        </a>
+    </div>
+    {#<div id="historys">#}
+    {#<a href="">#}
+    {#<img src="{{ asset('bundles/jariffproject/frontend/images/History-Folder-Blue-icon.png') }}"/>#}
+    {#</a>#}
+    {#</div>#}
+    {#<div id="keep-data">#}
+    {#<a href="">#}
+    {#<img src="{{ asset('bundles/jariffproject/frontend/images/keep-icon.png') }}"/>#}
+    {#</a>#}
+    {#</div>#}
+</div>
+<div style="clear: both"></div>
+{% for resData in data %}
+
+    <div class="span6 popresult cache-show
+     {% if check[loop.index - 1].getIsCompare %}disable-cache{% endif %}"
+            >
+        <div class="wrap-ribbon right-edge fork lblue lblue-strade"><span
+                    class="strade">Exporter</span>
+        </div>
+        {#<a href="{{ asset('bundles/jariffproject/frontend/images/logo.gif') }}" class="lightbox"#}
+        {#title="Watch Lorde-Royals"><img#}
+        {#class="popchart-img" alt=""#}
+        {#src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"#}
+        {#width="170" height="170" style=""></a>#}
+
+        <h1 class="header-search-trade"><img
+                    src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/48/'~(resData.getSlugCountry|upper)~".png") }}">
+                <span class="imartist">
+                    <a href="javascript:void(0);" style="color: #BC3415" class="j-add-tab-exporter">
+                        {{ resData.getShipperName }}
+                    </a>
+                </span><br/>
+            <span>Exporter From {{ (resData.getSlugCountry) }}</span>
+
+        </h1>
+             <span class="charts-p">
+                 <span class="imname">
+
+                   <br/>
+                     Gross weight {{ resData.getTotalWeight|setting_gross_weight(app.user) }} in
+
+
+                     {{ resData.getTotalShipment }}
+                     time(s) imports from {{ resData.getShipperName }}
+                     {%- if resData.getTotalCompany > 1 %}
+                         <a href="" style="color: #BC3415;">and more</a>
+                     {%- endif %}
+                     <br/>
+
+                from {{ (resData.getSlugCountryOriConsignee) }}
+                     : {{ (resData.getActualArrivalDate|date("Y-m-d"))|compare_dates }}
+
+                </span>
+            </span>
+
+        <span class="image_rollover">
+             <a href="javascript:void(0)" class="j-remove-exporter-remove"
+                data-url="{{ path('member_cache_group_searching_remove',{'category':'exporter','slug':resData.getSlugShipperName}) }}"></a>
+            <a href="javascript:void(0)"
+               data-url="{{ path('member_cache_group_is_compare',{'category':'exporter','slug':resData.getSlugShipperName}) }}"
+               class="j-add-compare"></a>
+            <a href="{{ path('member_importer_detail',{'slug':resData.getSlugShipperName}) }}"></a>
+        </span>
+    </div>
+{% endfor %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.j-remove-exporter-remove').on('click', function () {
+            var nThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    ajaxResultData($('.j-searching').serialize());
+                    $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                    nThis.parent('.image_rollover').parent('.cache-show').remove();
+                }
+            })
+        })
+
+        $('.j-add-compare').on('click', function () {
+            var nThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    $(nThis).parent('.image_rollover').parent('.cache-show').addClass('disable-cache');
+                    $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                }
+            })
+        })
+
+        function ajaxResultData(formSubmit) {
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('member_search_global_result_ajax',{s_cache:'{{ app.request.get('s_cache') }}'}),
+
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('#page1').html(res.html_string);
+
+                        return false;
+                    }
+                }
+            });
+        }
+    })
+</script>

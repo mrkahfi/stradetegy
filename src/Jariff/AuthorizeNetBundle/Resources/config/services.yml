@@ -1,0 +1,9 @@
+parameters:
+   jariff_authorize_net.api_login_id:
+   jariff_authorize_net.api_transaction_key:
+   jariff_authorize_net.sandbox:
+
+services:
+    jariff_authorize_net_arb:
+        class: AuthorizeNet\API\ARB
+        arguments: [%jariff_authorize_net.api_login_id%, %jariff_authorize_net.api_transaction_key%]

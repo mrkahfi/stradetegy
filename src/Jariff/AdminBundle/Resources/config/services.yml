@@ -1,0 +1,64 @@
+parameters:
+#    jariff_admin.example.class: Jariff\AdminBundle\Example
+
+services:
+    jariff_type_subscription_term:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionPaymentTermType
+        tags:
+            - { name: form.type, alias: subscription_term }
+    jariff_type_cc:
+        class: Jariff\AdminBundle\Form\CustomType\JariffCCType
+        tags:
+            - { name: form.type, alias: jariff_cc }
+    jariff_type_payment:
+        class: Jariff\AdminBundle\Form\CustomType\JariffPaymentType
+        tags:
+            - { name: form.type, alias: jariff_payment }
+    jariff_type_salutation:
+        class: Jariff\AdminBundle\Form\CustomType\JariffSalutationType
+        tags:
+            - { name: form.type, alias: jariff_salutation }
+    jariff_type_country:
+        class: Jariff\AdminBundle\Form\CustomType\JariffCountryType
+        tags:
+            - { name: form.type, alias: jariff_country }
+    jariff_type_subscription_month:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionMonthType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: subscription_month }
+    jariff_type_subscription_bigPicture:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionBigPictureType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: subscription_bigPicture }
+    jariff_type_subscription_download:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionDownloadType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: subscription_download }
+    jariff_type_subscription_history:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionHistoryType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: subscription_history }
+    jariff_type_subscription_search:
+        class: Jariff\AdminBundle\Form\CustomType\SubscriptionSearchType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: subscription_search }
+    jariff_type_hidden_member:
+        class: Jariff\AdminBundle\Form\CustomType\HiddenMemberType
+        arguments: [ @doctrine.orm.entity_manager ]
+        tags:
+            - { name: form.type, alias: hidden_member }
+    jariff_admin_security_provider:
+        class: Jariff\AdminBundle\Security\UserProvider
+        calls:
+          - [ setEm, [ @doctrine.orm.entity_manager ] ]
+          - [ setContainer, [ @service_container ] ]
+    jariff_super_admin_security_provider:
+        class: Jariff\SuperAdminBundle\Security\UserProvider
+        calls:
+          - [ setEm, [ @doctrine.orm.entity_manager ] ]
+          - [ setContainer, [ @service_container ] ]

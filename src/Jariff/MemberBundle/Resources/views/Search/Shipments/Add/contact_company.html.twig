@@ -1,0 +1,532 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+        aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="exampleModalLabel">Contact Companies</h2>
+
+    </div>
+    <div class="modal-body">
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Contact
+                    Companies</a></li>
+                    <li role="presentation"><a href="#profile" class="j-click-show-history" aria-controls="profile" role="tab" data-toggle="tab">Contact
+                        History</a></li>
+
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content ">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="j-content-primary">
+                                <p style="text-align: center;margin-top: 20px">Select from the list of companies you would like to
+                                    contact.
+                                    We will find you the selected companies contact information
+                                    and e-mail you the results within <strong>24-48</strong> hours.</p>
+
+                                    <div class="row">
+                                        <div class="col-md-7">
+
+                                            <figure class="highlight"
+                                            style="background: linear-gradient(to bottom,#fafafa 0,#ecedef 100%)">
+                                            <form class="form-inline form-search-contact-company"
+                                            action="{{ path('member_search_contact_company_us_imports',{'s_cache':s_cache}) }}"
+                                            style="margin-bottom:0px">
+                                            <div class="form-group">
+                                                <label class="checkbox-inline">
+                                                    <input type="radio" id="inlineCheckbox1" name="company_as" class="to-change"
+                                                    value="consignee_name" checked> Consignee
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="radio" id="inlineCheckbox2" class="to-change" name="company_as"
+                                                    value="shipper_name">
+                                                    Shipper
+                                                </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                                <input type="text" class="form-control" name="q_search"
+                                                id="search" autocomplete="off" 
+                                                placeholder="Instant Search">
+                                            </div>
+
+                                            
+                                        </form>
+                                    </figure>
+
+                                    <div class="j-show-contact-company" style="position: relative; clear:both;">
+                                        <table id="example" class="table table-bordered paginated" style="table-layout: auto;">
+                                            <thead>
+                                                <tr>
+
+
+                                                    <th>Select</th>
+                                                    <th>Company Name</th>
+
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+                                                {% for res in resHybird %}
+                                                    <tr>
+                                                        <td class="">
+
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" class="j-add-contact-company"
+                                                                    data-company-name="{{ res['key'] }}"
+                                                                    data-company-as="{{ company_as }}"
+                                                                    data-country-type="us-imports"
+                                                                    data-s-cache="{{ s_cache }}"
+                                                                    {% if checklist[res['key']] is defined %}
+                                                                        {{ checklist[res['key']] }}
+                                                                    {% endif %}
+                                                                    value="{{ res['key'] }}">
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="">
+                                                            {{ res['key'] }}
+
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+
+                                        </table>
+                                        <div class="jariff-pagination">
+                                            {# {{ pagination|raw }} #}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-5">
+                                    <figure class="highlight" style="height: 40px;">
+                                        <h4 style="color:white">Total Companies Selected: <span class="badge j-count-seleted">0</span></h4>
+                                    </figure>
+                                    <div class="bs j-show-selected-company" data-example-id="bordered-table"
+                                    style="height: 300px;overflow: auto">
+                                    <table class="table table-bordered">
+
+                                        <tbody>
+                                            {% for row in entities %}
+                                                <tr>
+                                                    <td><a href="javascript:void(0)"
+                                                       data-s-cache="{{ s_cache }}"
+                                                       data-slug="{{ row.getSlug }}"
+                                                       class="j-delete-selected-company"><span class="icon-remove"></span>
+                                                   </a></td>
+                                                   <td>{{ row.getCompanyName }}</td>
+                                               </tr>
+                                           {% endfor %}
+                                       </tbody>
+                                   </table>
+                               </div>
+                               <figure class="highlight">
+                                <a href="javascript:void(0)" data-s-cache="{{ s_cache }}"
+                                class="btn btn-large btn-warning btn-big-style j-submit-selected">Submit</a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="j-content-success" style="display: none" style="text-align: center">
+                    <h5 style="margin-top: 20px">Your selected contact companies has been successfully submitted.</h5>
+                    <br/>
+                    <a href="javascript:void(0)" class="j-submit-again btn btn-large btn-warning">Submit Again?</a>
+
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="row">
+                    <div class="col-md-12 " style="height:500px">
+
+                        <figure class="highlight"
+                        style="margin-top:20px;background: linear-gradient(to bottom,#fafafa 0,#ecedef 100%)">
+                        <form class="form-inline form-search-contact-history-company"
+                        action="{{ path('member_search_submit_contact_history_company_us_imports',{'s_cache':s_cache}) }}"
+                        style="margin-bottom:0px">
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="radio" id="inlineCheckbox1" name="company_as" class="to-change-history"
+                                value="consignee_name" checked> Consignee
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="radio" id="inlineCheckbox2" class="to-change-history" name="company_as"
+                                value="shipper_name">
+                                Shipper
+                            </label>
+                        </div>
+
+                    </form>
+                </figure>
+
+                <div class="j-show-contact-company-history">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<style type="text/css">
+    div.pager {
+        text-align: center;
+        margin: 1em 0;
+    }
+
+    div.pager span {
+        display: inline-block;
+        width: 1.8em;
+        height: 1.8em;
+        line-height: 1.8;
+        text-align: center;
+        cursor: pointer;
+        background: #000;
+        color: #fff;
+        margin-right: 0.5em;
+    }
+
+    div.pager span.active {
+        background: #c00;
+    }
+
+    table#example > tbody > tr > td > div {
+        margin-top: -5px;
+        margin-bottom: -5px;
+    }
+
+</style>
+
+
+<script type="text/javascript">
+
+    $("#search").on("keyup", function() {
+        var value = $(this).val();
+
+        $("table.paginated tr").each(function(index) {
+            if (index !== 0) {
+
+                $row = $(this);
+
+                var id = jQuery.trim($row.find("td").eq(1).text().replace(/[\n\r]/g, ''));
+
+                if (id.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            }
+        });
+
+        if(value !== '')
+            $('.pager').remove();
+        else{
+            $('.pager').remove();
+            reloadPaging();            
+        }
+
+
+    });
+
+
+
+    this.reloadPaging();
+
+    function reloadPaging(){
+        $('table.paginated').each(function() {
+            var currentPage = 0;
+            var numPerPage = 10;
+            var $table = $(this);
+            $table.bind('repaginate', function() {
+                $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();
+            });
+            $table.trigger('repaginate');
+            var numRows = $table.find('tbody tr').length;
+            var numPages = Math.ceil(numRows / numPerPage);
+            var $pager = $('<div class="pager"></div>');
+            for (var page = 0; page < numPages; page++) {
+                $('<span class="page-number"></span>').text(page + 1).bind('click', {
+                    newPage: page
+                }, function(event) {
+                    currentPage = event.data['newPage'];
+                    $table.trigger('repaginate');
+                    $(this).addClass('active').siblings().removeClass('active');
+                }).appendTo($pager).addClass('clickable');
+            }
+            $pager.insertAfter($table).find('span.page-number:first').addClass('active');
+        });
+    }
+    
+
+
+
+    // $('.pagination li a').on('click', function () {
+
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: $(this).attr('href'),
+    //         beforeSend: function () {
+    //             $('.j-show-contact-company').html('<div style="text-align: center">' +
+    //                     '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+    //                     '<h5 style="margin-top: 15px">Loading...</h5>' +
+    //                     '</div>'
+    //             )
+    //             ;
+    //         },
+    //         success: function (data) {
+    //             var res = JSON.parse(data);
+
+    //             if (res.success) {
+
+    //                 $('.j-show-contact-company').html(res.html_string);
+
+
+    //             }
+
+    //         }
+    //     });
+
+    //     return false;
+
+    // })
+
+    $('.form-search-contact-company').on('submit', function () {
+
+        $.ajax({
+            type: 'post',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $('.j-show-contact-company').html('<div style="text-align: center">' +
+                    '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                    '<h5 style="margin-top: 15px">Loading...</h5>' +
+                    '</div>'
+                    )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-show-contact-company').html(res.html_string);
+
+                }
+
+            }
+        });
+
+        return false;
+
+    })
+
+    $('.to-change').on('change', function () {
+
+        $.ajax({
+            type: 'post',
+            url: $('.form-search-contact-company').attr('action'),
+            data: $('.form-search-contact-company').serialize(),
+            beforeSend: function () {
+                $('.j-show-contact-company').html('<div style="text-align: center">' +
+                    '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                    '<h5 style="margin-top: 15px">Loading...</h5>' +
+                    '</div>'
+                    )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-show-contact-company').html(res.html_string);
+
+                }
+
+            }
+        });
+
+        return false;
+
+    })
+
+    $('.j-add-contact-company').on('change', function () {
+
+
+        if ($(this).is(':checked')) {
+            $.ajax({
+                type: 'post',
+                url: '{{ path('member_search_add_contact_company_us_imports') }}',
+                data: {'company_as': $(this).attr('data-company-as'), 'company_name': $(this).attr('data-company-name'), 'country_type': $(this).attr('data-country-type'), 's_cache': $(this).attr('data-s-cache'), 'slug': $(this).val()},
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        $('.j-show-selected-company').html(res.html_string);
+                        $('.j-count-seleted').html(res.totalSelect);
+
+
+                    }
+
+                }
+            });
+        } else {
+            $.ajax({
+                type: 'post',
+                url: '{{ path('member_search_delete_contact_company_us_imports') }}',
+                data: {'company_as': $(this).attr('data-company-as'), 'company_name': $(this).attr('data-company-name'), 'country_type': $(this).attr('data-country-type'), 's_cache': $(this).attr('data-s-cache'), 'slug': $(this).val()},
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        $('.j-show-selected-company').html(res.html_string);
+                        $('.j-count-seleted').html(res.totalSelect);
+
+                    }
+
+                }
+            });
+        }
+
+
+        return false;
+
+    })
+
+    $('.j-delete-selected-company').on('click', function () {
+
+        var slug = $(this).attr('data-slug');
+        var thisis = $(this);
+        $.ajax({
+            type: 'post',
+            url: '{{ path('member_search_delete_contact_company_us_imports') }}',
+            data: {'s_cache': $(this).attr('data-s-cache'), 'slug': $(this).attr('data-slug')},
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    thisis.parent('td').parent('tr').remove();
+
+                    var showTotalChoice = $('.j-add-contact-company').length;
+
+                    for (var i = 0; i < showTotalChoice; i++) {
+                        if ($('.j-add-contact-company').eq(i).val() == slug) {
+                            $('.j-add-contact-company').eq(i).attr('checked', false);
+                        }
+                    }
+
+                    $('.j-count-seleted').html(res.totalSelect);
+
+                }
+
+            }
+        });
+    })
+
+    $('.j-submit-selected').on('click', function () {
+
+        var slug = $(this).attr('data-slug');
+        $.ajax({
+            type: 'post',
+            url: '{{ path('member_search_submit_selected_company_us_imports') }}',
+            data: {'s_cache': $(this).attr('data-s-cache')},
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+
+                    $('.j-content-primary').attr('style', 'display:none');
+                    $('.j-content-success').attr('style', 'display:block');
+                    $('.j-show-selected-company').children('table').remove();
+                    $('.j-add-contact-company').attr('checked', false);
+                }
+
+            }
+        });
+    })
+
+    $('.j-submit-again').on('click', function () {
+        $('.j-content-success').attr('style', 'display:none');
+        $('.j-content-primary').attr('style', 'display:block');
+
+        return false;
+    })
+
+    $('.to-change-history').on('change', function () {
+
+        $.ajax({
+            type: 'post',
+            url: $('.form-search-contact-history-company').attr('action'),
+            data: $('.form-search-contact-history-company').serialize(),
+            beforeSend: function () {
+                $('.j-show-contact-company-history').html('<div style="text-align: center">' +
+                    '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                    '<h5 style="margin-top: 15px">Loading...</h5>' +
+                    '</div>'
+                    )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-show-contact-company-history').html(res.html_string);
+
+                }
+
+            }
+        });
+
+        return false;
+
+    })
+
+    $('.j-click-show-history').on('click', function () {
+
+        $.ajax({
+            type: 'post',
+            url: $('.form-search-contact-history-company').attr('action'),
+            data: $('.form-search-contact-history-company').serialize(),
+            beforeSend: function () {
+                $('.j-show-contact-company-history').html('<div style="text-align: center">' +
+                    '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                    '<h5 style="margin-top: 15px">Loading...</h5>' +
+                    '</div>'
+                    )
+                ;
+            },
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('.j-show-contact-company-history').html(res.html_string);
+
+                }
+
+            }
+        });
+
+
+
+    })
+</script>

@@ -1,0 +1,7 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+    <div id="content">
+        {% include 'JariffAdminBundle:Pending:show-detail.html.twig' with {'entity': entity} %}
+    </div>
+{% endblock %}

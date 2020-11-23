@@ -1,0 +1,263 @@
+<section class="blog">
+<article class="post hentry format-standard">
+
+    <div class="ovh">
+        <header class="entry-header">
+
+            <div style="position: absolute">
+                <img alt=""
+                     src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"
+                     width="100" height="100" style="">
+            </div>
+
+            <div class="cmsms_title" style="margin-left: 100px">
+                <h2 class="entry-title"><a href="openpost.html">
+                        {{ data.getValue.getConsigneeName }}</a></h2>
+                <img alt=""
+                     src="{{ asset('bundles/jariffproject/frontend/images/importer.png') }}"
+                     width="90" height="30" style="float: right;margin-top: -35px;">
+            </div>
+            <div class="cmsms_post_info" style="margin-left: 100px">
+                        <span class="user_name">
+
+                            <a href="#">http://www.recycleamerica.com/</a></span>
+
+            </div>
+        </header>
+        <div class="entry-content" style="margin-top: 50px">
+            {#<div class="one_half">#}
+
+            {#<p>Waste Management, Inc. is a waste management, comprehensive waste, and environmental services#}
+            {#company in North America. Founded in 1971, the company is headquartered in the First City#}
+            {#Tower in Houston, Texas.</p>#}
+            {#</div>#}
+            <div class="one">
+                <div id="map-canvas" style="height: 150px"></div>
+            </div>
+
+            <div style="clear: both"></div>
+            <div class="tour_content" style="margin-top: 20px">
+
+                <ul class="tour">
+                    <li class="current">
+                        <a href="#">
+                            Customer Service
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            Import History
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            Exporters Detail
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            Company Detail
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            The Big Picture
+                        </a>
+                    </li>
+                </ul>
+                <div class="tour_box" style="display: block;">
+                    <div class="tour_box_inner" style="min-width: 518px">
+
+                        <address>
+                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                        </address>
+                    </div>
+                </div>
+                <div class="tour_box" style="display: none;">
+                    <div class="tour_box_inner" style="min-width: 518px">
+                        <table class="table table-border">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Total Import</th>
+
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            {% for key,total in data.getValue.getDateGroup %}
+                                <tr>
+                                    <td>
+                                        {{ key|date("m/d/Y") }}
+                                    </td>
+                                    <td>
+                                        {{ total }}
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tour_box" style="display: none;">
+                    <div class="tour_box_inner" style="min-width: 500px">
+                        <table class="table table-border">
+                            <thead>
+                            <tr>
+                                <th>Exporter Name</th>
+                                <th>Exporter Address</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            {% for exporter in data.getValue.getShipper %}
+                                <tr>
+                                    <td>
+                                        {{ exporter.getShipperName }}
+                                    </td>
+                                    <td>
+                                        {{ exporter.getShipperAddress }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tour_box" style="display: none;">
+                    <div class="tour_box_inner">
+                        <h5>Professional look</h5>
+
+                        <p>Mauris dictum aliquam nisi, vitae elementum magna rhoncus et. Class aptent taciti
+                            sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+
+                        <p>Vestibulum vulputate aliquam risus. Praesent consequat scelerisque velit eu
+                            elementum. Praesent posuere tortor sed mi ullamcorper sodales. Cras porta purus in.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut justo nec arcu
+                            molestie molestie non quis magna. Mauris dictum aliquam nisi, vitae elementum magna
+                            rhoncus et.</p>
+                    </div>
+                </div>
+                <div class="tour_box" style="display: none;">
+                    <div class="tour_box_inner">
+                        <h5>Full responsiveness</h5>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut justo nec arcu
+                            molestie molestie non quis magna. Mauris dictum aliquam nisi, vitae elementum magna
+                            rhoncus et. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                            inceptos himenaeos. Vestibulum vulputate aliquam risus. Praesent consequat
+                            scelerisque velit eu elementum. Praesent posuere tortor sed mi ullamcorper sodales.
+                            Cras porta purus in. <a href="#">Lorem ipsum dolor</a> sit amet, consectetur
+                            adipiscing elit. Aenean ut justo nec arcu molestie molestie non quis magna. Mauris
+                            dictum aliquam nisi, vitae elementum magna rhoncus et.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {#<div id="stack">#}
+        {#<div class="trigger"><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/heart-64x64.png" alt="share" /></div>#}
+        {#<ul>#}
+        {#<li><a href="http://twitter.com/"><span class="title">Twitter</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/twitter-32x32.png" alt="Twitter"></a></li>#}
+        {#<li><a href="http://digg.com/"><span class="title">Digg</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/digg-32x32.png" alt="Digg"></a></li>#}
+        {#<li><a href="http://www.facebook.com/"><span class="title">Facebook</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/facebook-32x32.png" alt="Facebook"></a></li>#}
+        {#<li><a href="http://reddit.com/"><span class="title">Reddit</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/reddit-32x32.png" alt="Reddit"></a></li>#}
+        {#<li><a href="http://stumbleupon.com/"><span class="title">StumbleUpon</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/stumbleupon-32x32.png" alt="StumbleUpon"></a></li>#}
+        {#<li><a href="http://delicious.com/"><span class="title">Delicious</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/delicious-32x32.png" alt="Delicious"></a></li>#}
+        {#<li><a href="http://flickr.com/"><span class="title">Flickr</span><img src="http://moronicbajebus.com/blog/jstackmenu/files/icons/flickr-32x32.png" alt="Flickr"></a></li>#}
+        {#</ul>#}
+
+        {#</div>#}
+
+    </div>
+
+</article>
+<div class="footer">
+    <div class="trigger-rewrite"><img
+                src="{{ asset('bundles/jariffproject/frontend/images/alert-icon.png') }}" alt="alert"/>
+    </div>
+    <div id="stack" class="trigger-rewrite">
+        <div class="trigger"><img
+                    src="{{ asset('bundles/jariffproject/frontend/images/export-icon.png') }}"
+                    alt="export"/></div>
+        <ul>
+            <li><a href="http://icons.iconarchive.com/icons/treetog/i/32/Folder-Downloads-icon.png"><span
+                            class="title">Download</span><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/img/Download-icon.png') }}"
+                            alt="Twitter"></a></li>
+            <li><a href="http://digg.com/"><span class="title">Save</span><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/img/dropbox-icon.png') }}"
+                            alt="Digg"></a></li>
+            <li><a href="http://www.facebook.com/"><span class="title">Email</span><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/img/mail-icon.png') }}"
+                            alt="Facebook"></a></li>
+            <li><a href="http://reddit.com/"><span class="title">Colaborate</span><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/img/group-icon.png') }}"
+                            alt="Reddit"></a></li>
+            <li><a href="http://stumbleupon.com/"><span class="title">Print</span><img
+                            src="{{ asset('bundles/jariffproject/frontend/images/img/print-icon.png') }}"
+                            alt="StumbleUpon"></a></li>
+
+        </ul>
+    </div>
+    <div class="trigger-rewrite"><img
+                src="{{ asset('bundles/jariffproject/frontend/images/save-icon.png') }}" alt="save"/>
+    </div>
+</div>
+</section>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var geocoder;
+        var map;
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 2,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+            codeAddress();
+
+        }
+
+        function codeAddress() {
+            geocoder.geocode({ 'address': '{{ data.getValue.getCountryOfOrigin }}'}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        animation: google.maps.Animation.DROP,
+                        map: map
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    });
+</script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-1.3.2.js') }}"></script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-ui-1.7.2.custom.js') }}"></script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-animate-css-rotate-scale.js') }}"></script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jquery-css-transform.js') }}"></script>
+<script src="{{ asset('bundles/jariffproject/frontend/js/jstackmenu/jstackmenu.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var stack = $('#stack ul').stackmenu();
+        $('#stack .trigger').click(function () {
+            stack.stackmenu('toggle');
+        });
+
+
+    });
+</script>

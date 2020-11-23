@@ -1,0 +1,374 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+    <h1>Pending edit</h1>
+    <p>
+        Total Price (with PIF discount, with custom discount)
+        <span class="price">$</span>
+        <span class="price" id="total_payment">200</span>
+    </p>
+    <p>
+        Total PIF discount
+        <span class="price">$</span>
+        <span class="price" id="total_discount">0</span>
+    </p>
+    <hr/>
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_pending_index') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
+
+
+{% block javascript %}
+	{{ parent() }}
+    <script type="text/javascript" src="/bundles/jariffproject/frontend/js/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+
+
+
+$(document).ready(function(){
+
+    $("#pending_everythingPlan:checkbox").change(function(){
+        if($(this).is(':checked')) 
+            everything();
+        else 
+            custom();
+        updatePrice();
+    });
+
+    $("#pending_customPlan:checkbox").change(function(){
+        if($(this).is(':checked')) 
+            custom();
+        else 
+            everything();
+        updatePrice();
+    });
+          
+});
+        // amex 4 angka lainnya 3
+        $("#pending_secureCode").mask("999?9");
+        // amex 15 saja lainnya 16
+        $("#pending_number").mask("9999-9999-9999-999?9");
+
+        $('#pending_discount').on('change', function () {
+            updatePrice();
+        })
+        $('#pending_history').on('change', function () {
+            updatePrice();
+            custom();
+        })
+        $('#pending_search').on('change', function () {
+            updatePrice();
+            custom();
+        })
+        $('#pending_download').on('change', function () {
+            updatePrice();
+            custom();
+        })
+        $('#pending_bigPicture').on('change', function () {
+            updatePrice();
+            custom();
+        })
+        $('#pending_month').on('change', function () {
+            updatePrice();
+        })
+        $('#pending_paymentTerm').on('change', function () {
+            updatePrice();
+            validatePIF();
+        })
+        $('#pending_submit').on('click', function (e) {
+            if( $('#pending_payment').val() == "cc") {
+                validateCC(e);
+                validateCcNumber(e);
+                validateCcSecureCode
+            }
+        })
+
+        // payment type (paypal, cc, check, bankwire)
+        $('#pending_payment').on('change', function () {
+            updateCC();
+            validatePIF();
+            validateBankwire();
+            validateCheck();
+        })
+
+        function updateCC(){
+            var value_payment = $('#pending_payment').val();
+            // ngurusi tampilan CC atau tidaknya
+            if( value_payment != "cc") {
+                $('#pending_number').parent().hide();
+                $('#pending_secureCode').parent().hide();
+                $('#pending_expired').parent().hide();
+                $('#pending_ccType').parent().hide();
+            } else {
+                $('#pending_number').parent().show();
+                $('#pending_secureCode').parent().show();
+                $('#pending_expired').parent().show();
+                $('#pending_ccType').parent().show();
+            }
+            if(value_payment == "check" || value_payment == "bankwire" ){
+                $('#bankwire_help').show();
+            } else {
+                $('#bankwire_help').hide();
+            }
+        }
+        function validateCC(e){
+
+            // jika paypal dan mtm maka tidak bisa,
+            // kasih opsi untuk bayar PIF atau CC
+            if(
+                $('#pending_payment').val() == "cc" &&
+                (
+                    $('#pending_number').val() == "" ||
+                    $('#pending_secureCode').val() == "" 
+                )
+                ) {
+                    $( "#dialog-confirm-cc" ).dialog({
+                        resizable: false,
+                        height:300,
+                        width:500,
+                        modal: true,
+                        buttons: {
+                            "OK": function() {
+                                $('#pending_number').focus();
+                                e.preventDefault();
+                                $( this ).dialog( "close" );
+                            },
+                        }
+                    });
+            }
+        }
+        function validatePIF(){
+
+            // jika paypal dan mtm maka tidak bisa,
+            // kasih opsi untuk bayar PIF atau CC
+            if(
+                $('#pending_payment').val() == "paypal" ||
+                $('#pending_payment').val() == "check" ||
+                $('#pending_payment').val() == "bankwire" 
+                ) {
+                if ($('#pending_paymentTerm').val() == 'mtm' ) {
+                    $( "#dialog-confirm" ).dialog({
+                        resizable: false,
+                        height:300,
+                        width:500,
+                        modal: true,
+                        buttons: {
+                            "Change term to PIF": function() {
+                                $('#pending_paymentTerm').val("pif");
+                                updatePrice();
+                                $( this ).dialog( "close" );
+                                validateBankwire();
+                            },
+                            "Pay with CC": function() {
+                                $('#pending_payment').val("cc");
+                                $('#pending_number').show();
+                                $('#pending_secureCode').show();
+                                $('#pending_expired').parent().show();
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        function validateBankwire(){
+            if($('#pending_payment').val() == "bankwire") {
+                $( "#dialog-confirm-bankwire" ).dialog({
+                    resizable: false,
+                    height:300,
+                    width:500,
+                    modal: true,
+                    buttons: {
+                        "Ok": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
+        }
+
+        function validateCheck(){
+            if($('#pending_payment').val() == "check") {
+                $( "#dialog-confirm-check" ).dialog({
+                    resizable: false,
+                    height:300,
+                    width:500,
+                    modal: true,
+                    buttons: {
+                        "Ok": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
+        }
+
+        function validateCcNumber(e){
+
+            var number = $('#pending_number').val();
+            var type = $('#pending_ccType').val();
+
+            if ( type == 'american express' &&
+                 number.length != 15 &&
+                 number.substring(0,1) != '3'
+             ) {
+                alert('Your AmEx credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'visa' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '4'
+             ) {
+                alert('Your Visa credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'mastercard' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '5'
+             ) {
+                alert('Your Mastercards credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'discover' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '6'
+             ) {
+                alert('Your Discover credit card number is invalid.');
+                e.preventDefault();
+            }
+        }
+
+        function validateCcSecureCode(e){
+
+            var secureCode = $('#pending_secureCode').val();
+            var type = $('#pending_ccType').val();
+
+            if ( type == 'american express' && secureCode.length != 4 ) {
+                alert('Your AmEx credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'visa' && secureCode.length != 3 ) {
+                alert('Your Visa credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'mastercards' && secureCode.length != 3 ) {
+                alert('Your Mastercards credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'discover' && secureCode.length != 3 ) {
+                alert('Your Discover credit card secure code is invalid.');
+                e.preventDefault();
+            }
+        }
+
+        function updatePrice(){
+            // update payment term
+            var paymentTerm    = $('#pending_paymentTerm').val();
+            if (paymentTerm == 'mtm' ) {
+                $('#pending_month').parent().hide();
+                $('#total_payment_text').text("Per month");
+                $('#total_price_text').attr("title", "Monthly payment auto charged to your credit card.");
+            } else if(paymentTerm == 'pif') {
+                $('#pending_month').parent().show();
+                $('#total_payment_text').text("One time payment due today");
+                $('#total_price_text').attr("title", "This is just one time payment to activate your account. Your account will auto suspended after selected period expired except you contact us to extend your membership.");
+            }
+
+            // calculate custom price 
+            var pending_history    = parseInt($('#pending_history').val());
+            var pending_search     = parseInt($('#pending_search').val());
+            var pending_download   = parseInt($('#pending_download').val());
+            var pending_bigPicture = parseInt($('#pending_bigPicture').val());
+            var price_custom       = pending_history + pending_search + pending_download + pending_bigPicture;
+            $('#price_custom').text( price_custom );
+// alert(price_custom);
+            // calculate PIF month
+            var pending_month_string = $('#pending_month').val();
+            var pending_month_length = 1;
+
+            // calculate monthly price
+            var price = 0;
+            if($('#pending_everythingPlan:checkbox').is(':checked')) {
+                var price = 200;
+            } 
+
+            if($('#pending_customPlan:checkbox').is(':checked')) {
+                var price = price_custom;   
+            }
+
+            // calculate discount based on pif / mtm
+            var paymentTerm    = $('#pending_paymentTerm').val();
+            var total_discount = 0;
+            if (paymentTerm == 'mtm' ) {
+                var total_discount = 0;
+            } else if(paymentTerm == 'pif') {
+                if (pending_month_string == '20' ) {
+                    var pending_month_length = 12;
+                }
+                if (pending_month_string == '15' ) {
+                    var pending_month_length = 6;
+                }
+                if (pending_month_string == '10' ) {
+                    var pending_month_length = 3;
+                }
+                var pending_month_percent = parseInt(pending_month_string) / 100;
+                var total_discount        = Math.ceil(price * pending_month_percent * pending_month_length);
+            }
+
+            var discount    = parseInt($('#pending_discount').val());
+
+            // update total price
+            $('#total_discount').text( total_discount );
+            $('#total_payment').text( price * pending_month_length - total_discount - discount);
+        }
+
+        // show everything pricing table
+        function everything(){
+            $('#pending_history').attr("disabled", "disabled");
+            $('#pending_search').attr("disabled", "disabled");
+            $('#pending_download').attr("disabled", "disabled");
+            $('#pending_bigPicture').attr("disabled", "disabled");
+            $('#pending_customPlan:checkbox').attr('checked',false);   
+        }
+
+        // show custom pricing table
+        function custom(){
+            $('#pending_search').removeAttr("disabled");
+            $('#pending_history').removeAttr("disabled");
+            $('#pending_download').removeAttr("disabled");
+            $('#pending_bigPicture').removeAttr("disabled");
+            $('#pending_everythingPlan:checkbox').attr('checked',false);   
+        }
+        // end update pricing
+
+        // hide CC expired day
+    	$('#pending_expired_day').hide();
+
+        // urusi tampilan jquery setelah submit error
+        {% if entity.everythingPlan == "true" %}
+            updatePrice();
+            validatePIF();
+            updateCC();
+            validateBankwire();
+            everything();
+        {% endif %}
+        {% if entity.customPlan == "true" %}
+            updatePrice();
+            validatePIF();
+            updateCC();
+            validateBankwire();
+            custom();
+        {% endif %}
+
+
+    </script>
+{% endblock javascript %}

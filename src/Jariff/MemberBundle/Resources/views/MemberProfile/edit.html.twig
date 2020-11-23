@@ -1,0 +1,12 @@
+{% extends 'JariffProjectBundle::base_member_setting.html.twig' %}
+
+{% form_theme edit_form 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+{% block header_title %}My Profile{% endblock %}
+
+{% block content %}
+
+
+    {{ form(edit_form) }}
+
+
+{% endblock %}

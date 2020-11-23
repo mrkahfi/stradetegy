@@ -1,0 +1,116 @@
+  <div id="content">
+    <div class="body">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Client Info</a></li>
+        <li><a href="#payment" data-toggle="tab">Payment</a></li>
+        <li><a href="#plan" data-toggle="tab">Plan</a></li>
+      </ul>
+
+      <div id="myTabContent" class="tab-content">
+        <h1>{{ entity.salutation }} {{ entity.firstName }}, {{ entity.lastName }}</h1>
+        <div class="tab-pane fade in active" id="home">
+
+          <table class="record_properties">
+            <tbody>
+              <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+              </tr>
+
+              <tr>
+                <th>Company Name</th>
+                <td>{{ entity.companyName }}</td>
+              </tr>
+
+              <tr>
+                <th>Country</th>
+                <td>{{ entity.country }}</td>
+              </tr>
+
+              <tr>
+                <th>Phone</th>
+                <td>{{ entity.phone }}</td>
+              </tr>
+
+              <tr>
+                <th>Date Registration</th>
+                <td>{{ entity.dateRegistration|date('Y-m-d H:i:s') }}</td>
+              </tr>
+
+              <tr>
+                <th>Payment</th>
+                <td>{{ entity.payment }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane fade" id="payment">
+          <table class="record_properties">
+            <tbody>
+
+              {% if entity.payment == 'cc' %}
+                  <tr>
+                    <th>Pay with</th>
+                    <td>{{ entity.ccType }} Credit Card</td>
+                  </tr>
+              {% endif %}
+
+              <tr>
+                <th>Payment term</th>
+                <td>{{ entity.paymentTermString }}</td>
+              </tr>
+
+              {% if entity.paymentTerm == 'pif' %}
+                  <tr>
+                    <th>Months</th>
+                    <td>{{ entity.monthValue }} Months</td>
+                  </tr>
+              {% endif %}
+
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tab-pane fade" id="plan">
+          <table class="record_properties">
+            <tbody>
+
+              {% if entity.everythingPlan %}
+                  <tr>
+                    <th>Type</th>
+                    <td>Everything Plan</td>
+                  </tr>
+              {% endif %}
+              {% if entity.customPlan %}
+                  <tr>
+                    <th>Type</th>
+                    <td>Custom Plan</td>
+                  </tr>
+                  <tr>
+                    <th>History</th>
+                    <td>{{ entity.historyValue }} months</td>
+                  </tr>
+                  <tr>
+                    <th>Search</th>
+                    <td>{{ entity.searchValue }} times</td>
+                  </tr>
+                  <tr>
+                    <th>Download</th>
+                    <td>{{ entity.downloadValue }} times</td>
+                  </tr>
+                  <tr>
+                    <th>Big Picture</th>
+                    <td>{% if entity.bigPictureValue %}On{% else %}Off{% endif %}</td>
+                  </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{# <script src="/bundles/jariffadmin/js/history.js"></script> #}

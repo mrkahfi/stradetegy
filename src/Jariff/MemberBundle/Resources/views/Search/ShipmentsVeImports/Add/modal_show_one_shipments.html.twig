@@ -1,0 +1,72 @@
+<div class="j-print">
+    <table class="table table-hover">
+        <tbody>
+        {% for key,text in 'st_show_field'|ve_imports_column_view %}
+            {% if entity[key] is defined %}
+                <tr>
+                    <th scope="row" style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;text-align: left;">{{ text }}</th>
+                    {% if key == 'date' %}
+                        <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|date('Y-m-d') }}</td>
+                    {% else %}
+                        {% if key == 'product' %}
+                            <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|raw }}</td>
+
+
+                        {% else %}
+                            {% if key == 'gross_weight' %}
+                                <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|setting_gross_weight('KG',app.user.id) }}</td>
+                            {% else %}
+                                <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key] }}</td>
+                            {% endif %}
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="javascript:void(0)" class="btn btn-primary j-save-bol" target="">Print</a>
+    <a href="{{ path('company_render_display_one_shipments',{'folder':'ShipmentsVeImports','index': params['index'],'type' : params['type'],'objId' : params['id'] }) }}"
+       class="btn btn-info" target="_blank">Save</a>
+    <span class="j-show-loading"></span>
+</div>
+
+<div class="cl"></div>
+
+<script type="text/javascript">
+    $('.j-save-bol').on('click', function () {
+
+
+        var divContents = $(".j-print").html();
+        var printWindow = window.open();
+        printWindow.document.write('<html><head><title>{{ entity['importer'] }}</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write('<img src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"  alt="stradetegy Logo"> <h3 style="text-align:center">{{ entity['importer'] }}</h3><br/>'+divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+
+        return false;
+    })
+
+</script>

@@ -1,0 +1,9 @@
+parameters:
+#    jariff_admin.example.class: Jariff\SuperAdminBundle\Example
+
+services:
+    jariff_super_admin_security_provider:
+        class: Jariff\SuperAdminBundle\Security\UserProvider
+        calls:
+          - [ setEm, [ @doctrine.orm.entity_manager ] ]
+          - [ setContainer, [ @service_container ] ]

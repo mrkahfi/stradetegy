@@ -1,0 +1,211 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block style %}
+<style type="text/css">
+#timeline{
+	background:none;
+}
+
+/* The individual events in the slider */
+.slider .slider-container-mask .slider-container{
+	background:none;
+}
+
+/* Setting a custom background image */
+#timeline div.navigation{
+	background: url('/bundles/jariffadmin/css/img/timeline_bg.jpg') repeat;
+	border-top:none;
+}
+</style>
+{% endblock %}
+{% block wraper %}
+<!-- BEGIN SIDEBAR -->
+<aside class="social-sidebar sidebar-full">
+	{% block social_sidebar %}
+	{% include "JariffProjectBundle:Component:sidebar.html.twig" %}
+	{% endblock %}
+</aside>
+<!-- END SIDEBAR -->
+<header>
+	<!-- BEGIN NAVBAR -->
+	{% block navbar_header %}
+	{% include "JariffProjectBundle:Component:navbar_simple.html.twig" %}
+	{% endblock %}
+	<!-- END NAVBAR -->
+</header>
+<!-- BEGIN MAIN CONTAINER -->
+<div id="main">
+	<!-- BEGIN CONTENT CONTANER -->
+	<div class="container-fluid">
+
+		<div class="row-fluid">
+			{% block flashes %}
+			{% for flashMessage in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Well done!</strong> {{ flashMessage }}.
+			</div>
+			{% endfor %}
+			{% for flashMessage in app.session.flashbag.get('error') %}
+			<div class="alert alert-error">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Oh snap!</strong> {{ flashMessage }}.
+			</div>
+			{% endfor %}
+			{% endblock flashes %}
+		</div>
+		<div class="row-fluid">
+			{% block shortcut %}
+
+			{% endblock %}
+		</div>
+
+		<div class="row-fluid">
+			{% block content %}
+			<div class="span12">
+				<h3 class="page-title">
+					Overview
+				</h3>
+				<!-- BEGIN BREADCRUMBS -->
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home"></i>
+						<a href="../dashboard.html">Dashboard</a>
+						<span class="icon-angle-right"></span>
+					</li>
+					<li><a href="#">Monitoring</a>
+						<span class="icon-angle-right"></span>
+					</li>
+					<li><a href="basic.html">Revenue Detail</a>
+					</li>
+
+				</ul>
+				<!-- END BREADCRUMBS -->
+			</div>
+			{% endblock %}
+		</div>
+
+		<div class="row-fluid">
+			<!-- BEGIN DESULT STYLES TABLES EXAMPLE -->
+			<div class="span6">
+				<div class="social-box">
+					<div class="header">
+						<h4>Fixed Rate</h4>
+					</div>
+					<div class="body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th style="text-align: left;">Income</th>
+									<th style="text-align: left;"></th>
+									<th style="text-align: left;">Monthly</th>
+									<th style="text-align: left;">Quarterly</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								{% for i in "now"|date('m').."now"|date('m')-(earnings|length-1) %}
+								<tr id="row{{ loop.index0 }}">
+									<td>20000</td>
+									<td>{% if i < 0 %} 
+										{{ date('2012-' ~ (12 + i) ~ '-01') |date('M') }}
+										{% else %}
+										{{ date('2012-' ~ i ~ '-01') |date('M') }}
+										{% endif %}</td>
+									<td id="week-worktime{{ loop.index0 }}">
+									{{ earnings[loop.index0].monthly }}
+								</td>
+									<td id="month-worktime{{ loop.index0 }}">
+									{{ earnings[loop.index0].quarterly }}
+								</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- END DESULT STYLES TABLES EXAMPLE -->
+			<!-- BEGIN ZEBRA-STRIPING TABLE EXAMPLE -->
+			<div class="span6">
+				<div class="social-box">
+					<div class="header">
+						<h4>Monthly Earning</h4>
+					</div>
+					<div class="body">
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th style="text-align: left;">Achievement</th>
+									<th style="text-align: left;">Target</th>
+									<th style="text-align: left;">End Of</th>
+									<th style="text-align: left;">Paid Amount</th>
+									<th style="text-align: left;">Corp Earning</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% set total = 0 %}
+								{% for i in "now"|date('m').."now"|date('m')-(earnings|length-1) %}
+								<tr>
+									<td>{{ user.subscription|length }}</td>
+									<td>{% if user.subscription|length >= 80 %}
+											Yes
+										{% else %}
+											No
+										{% endif %}
+									</td>
+									<td>
+										{% if i <= 0 %} 
+										{{ date('2012-' ~ (12+i) ~ '-01') |date('M') }}
+										{% else %}
+										{{ date('2012-' ~ i ~ '-01') |date('M') }}
+										{% endif %}
+									</td>
+									<td>{{ earnings[loop.index0].paid }}
+									</td>
+									<td>{% for subscription in user.subscription %}}
+											{% set total = subscription.total + total %}
+										{% endfor %}
+										${{ total }}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+			<!-- END ZEBRA-STRIPING TABLE EXAMPLE -->
+		</div>
+	</div>
+
+
+
+	<!-- END CONTENT CONTAINER -->
+	<!-- BEGIN PAGE FOOTER -->
+	<footer id="footer">
+		{% block footer %}
+		<div class="container-fluid">
+			2014 © <em>sTRADEtegy - Your trade strategy</em> by <a href="http://stradetegy.com/" target="_blank">ST</a>.
+		</div>
+		{% endblock %}
+	</footer>
+	<!-- END PAGE FOOTER -->
+</div>
+<!-- END MAIN CONTAINER -->
+{% endblock %}
+
+{% block javascript %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script type="text/javascript">
+
+</script>
+<script src="{{ asset('bundles/jariffadmin/js/timeline-min.js') }}"></script>
+<!-- <script src="{{ asset('bundles/jariffadmin/js/script.js') }}"></script> -->
+
+
+{% endblock %}

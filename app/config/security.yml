@@ -1,0 +1,76 @@
+security:
+    encoders:
+        Jariff\MemberBundle\Entity\Member:
+            id: jariff_password_encoder
+        Jariff\AdminBundle\Entity\Admin:
+            id: jariff_password_encoder
+        Jariff\SuperAdminBundle\Entity\SuperAdmin:
+            id: jariff_password_encoder
+
+    role_hierarchy:
+        ROLE_MEMBER: ROLE_USER
+        ROLE_DEMO: ROLE_USER
+        ROLE_ADMIN: ROLE_USER
+        ROLE_CSO: [ROLE_ADMIN, ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_USER]
+
+    providers:
+        super_admin:
+            id: jariff_super_admin_security_provider
+        admin:
+            id: jariff_admin_security_provider
+        member:
+            id: jariff_member_security_provider
+
+    firewalls:
+        main:
+            provider: member
+            pattern: ^/member/
+            form_login: 
+                check_path: member_login_check
+                login_path: /login
+                # always_use_default_target_path: true
+                default_target_path: /member/
+                use_referer: true
+            logout:
+                path:   /member/logout
+
+        admin:
+            provider: admin
+            pattern: ^/admin/
+            form_login:
+                check_path: /admin/login_check
+                login_path: /admin-login
+                always_use_default_target_path: true
+                default_target_path: /admin/
+            logout: 
+                path:   /admin/logout
+                target: /admin-login
+
+        super_admin:
+            provider: super_admin
+            pattern: ^/super-admin/
+            form_login:
+                check_path: /super-admin/login_check
+                login_path: /super-admin-login
+                always_use_default_target_path: true
+                default_target_path: /super-admin/
+            logout: 
+                path:   /super-admin/logout
+                target: /super-admin-login
+
+        public:
+            pattern: ^/
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin-login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/signup-save, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reset, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/super-admin/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/member/, role: ROLE_MEMBER }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }

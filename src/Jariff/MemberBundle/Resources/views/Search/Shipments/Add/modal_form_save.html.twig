@@ -1,0 +1,43 @@
+
+    <form action="{{ path('member_display_modal_save_shipments_submit',{'s_cache' : s_cache}) }}"
+    class="j-submit-save-shipments" method="post">
+   
+        {{ form_widget(formSaveShipments) }}
+
+       
+   
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nervermind</button>
+        <button type="submit" class="btn btn-primary">Save Search</button>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $('.j-submit-save-shipments').on('submit', function () {
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            beforeSend: function () {
+                $('.bootstrap-dialog-message').html('<div class="modal-body" style="min-height:120px"><div class="css3-spinner">' +
+                    '<div class="css3-spinner-bounce1"></div>' +
+                    '<div class="css3-spinner-bounce2"></div>' +
+                    '<div class="css3-spinner-bounce3"></div>' +
+                    '</div></div>'
+                    );
+            },
+            success: function (data) {
+                // var res = JSON.parse(data);
+
+                // if (res.success) {
+
+                    $('.bootstrap-dialog-message').html(data);
+
+                // }
+            }
+        })
+
+        return false;
+    })
+
+</script>

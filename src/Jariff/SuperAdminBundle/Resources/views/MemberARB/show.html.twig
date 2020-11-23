@@ -1,0 +1,17 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+    <h1>{{ entity.profile.firstName }}</h1>
+    <div id="content">
+      <div id="grid_paging" data-id="{{ entity.id }}"></div>
+    </div>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block javascript %}
+    <script src="/bundles/jariffadmin/js/grid-arb.js"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}

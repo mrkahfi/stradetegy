@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MemberSetting</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ entity.language }}</td>
+            </tr>
+            <tr>
+                <th>Currency</th>
+                <td>{{ entity.currency }}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{{ entity.weight }}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{{ entity.distance }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('membersetting') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('membersetting_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

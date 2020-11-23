@@ -1,0 +1,67 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MemberSubscription list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Active</th>
+                <th>Bigpicture</th>
+                <th>Bigpicturevalue</th>
+                <th>Dateactivation</th>
+                <th>Datecanceled</th>
+                <th>Datesuspended</th>
+                <th>Download</th>
+                <th>Downloadvalue</th>
+                <th>History</th>
+                <th>Historyvalue</th>
+                <th>Number</th>
+                <th>Search</th>
+                <th>Searchvalue</th>
+                <th>Training</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('subscription_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.active }}</td>
+                <td>{{ entity.bigPicture }}</td>
+                <td>{{ entity.bigPictureValue }}</td>
+                <td>{% if entity.dateActivation %}{{ entity.dateActivation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.cancelDate %}{{ entity.cancelDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateSuspended %}{{ entity.dateSuspended|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.download }}</td>
+                <td>{{ entity.downloadValue }}</td>
+                <td>{{ entity.history }}</td>
+                <td>{{ entity.historyValue }}</td>
+                <td>{{ entity.number }}</td>
+                <td>{{ entity.search }}</td>
+                <td>{{ entity.searchValue }}</td>
+                <td>{{ entity.training }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('subscription_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('subscription_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('subscription_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

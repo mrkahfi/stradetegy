@@ -1,0 +1,16 @@
+<div class="modal-content">
+		<div class="modal-header">			
+			<h4 class="modal-title j-modal-title" id="myModalLabel">
+				 {{ title|raw }}
+			</h4>
+		</div>
+		<div class="modal-body j-content">
+				<p class="text-danger">{{ message|raw }}</p>
+		</div>
+		<div class="modal-footer">
+			{% for btn in button %}
+				{{ btn|raw }}
+			{% endfor %}
+
+		</div>
+	</div>

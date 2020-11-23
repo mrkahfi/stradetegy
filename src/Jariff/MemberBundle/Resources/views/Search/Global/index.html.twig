@@ -1,0 +1,236 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:layout_form_global.html.twig' %}
+
+{#{% block menu_search_shipments %}#}
+{#{% endblock %}#}
+
+{% block middle_content %}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                {% block flashes %}
+                    {% for flashMessage in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success" role="alert">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+                {% endblock flashes %}
+
+                <form action="{{ path('member_search_global_submit') }}" method="POST">
+
+                    {# <div class="center bottommargin btn-group col-sm-8" role="group">
+
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default btn-lg j-btn-choice-search" data-value="buyers">Buyers</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default btn-lg j-btn-choice-search" data-value="suppliers">Suppliers</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default btn-lg j-btn-choice-search" data-value="logistics">Logistics</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-default btn-lg j-btn-choice-search" data-value="shipments">Shipments</button>
+                        </div>
+                    </div> #}
+
+                    {{ form_row(form.category, {attr: {class: 'center bottommargin btn-group col-sm-8','data-toggle': 'buttons','style':"display:none" }}
+                    ) }}
+
+                    {{ form_row(form.q) }}
+
+                    {{ form_rest(form) }}
+
+                    <div class="clear"></div>
+                    <div class="col-sm-8">
+
+                        <span id="helpBlock" class="help-block">
+                            Example : <a href="javascript:void(0)" class="j-ex-key">Plastic</a>, <a href="javascript:void(0)" class="j-ex-key">Apple</a>
+                        </span>
+                    </div>
+
+                </form>
+
+            </div>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </section>
+{% endblock %}
+
+{#{% form_theme form 'JariffProjectBundle:Themes:form_demo.html.twig' %}#}
+{#{% block menu %}#}
+{#{% endblock %}#}
+
+{#{% block wrap_headline %}#}
+
+{#<div class="wrap_cont_nav">#}
+{#<div class="cont_nav">#}
+{#<form action="{{ path('demo_global_search_submit') }}" method="POST" class="form-inline">#}
+
+{#<h1>Search global trade data</h1>#}
+
+{#<br/>#}
+{#<br/>#}
+{#<br/>#}
+
+{#{{ form_start(form) }}#}
+
+{#{% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}#}
+
+{#<div class="form-group j-show" data-prototype='<h5 class="show" style="margin-left: 15%;margin-top: 2%;">Advanced search is available for <strong>subscribers only</strong>. <a href="/app_dev.php/signup"><strong>See#}
+{#plans now#}
+{#»</strong></a></h5>#}
+{#<div id="demo_search_embed_condition_4"><label style="display:none" for="demo_search_embed_condition_4_collect">Collect</label><select id="demo_search_embed_condition_4_collect" disabled="disabled" class="col-md-1" style="margin-right:3px"><option value="and">AND</option><option value="or">OR</option><option value="not">NOT</option></select></div>#}
+{#<div id="demo_search_embed_collect_4"><label style="display:none" for="demo_search_embed_collect_4_collect" class="required">Collect</label><select id="demo_search_embed_collect_4_collect" class="col-md-2" disabled="disabled"><option value="all">All</option><option value="consignee_name">Importer Name</option><option value="consignee_address">Importer Address</option><option value="shipper_name">Exporter Name</option><option value="shipper_address">Exporter Address</option><option value="product_description">Product</option></select></div>#}
+{#<div id="demo_search_embed_q_4"><label style="display:none" for="demo_search_embed_q_4_q" class="required">Q</label><input type="text" id="demo_search_embed_q_4_q" required="required" style="margin: 0px 3px 3px 3px;" disabled="disabled" class="col-md-8" placeholder="Enter a keyword"></div>#}
+{#'>#}
+
+
+{#{% for tag in form.collect %}#}
+{#{{ form_row(tag.collect) }}#}
+{#{% endfor %}#}
+
+{#{% for tagq in form.q %}#}
+{#{{ form_row(tagq.q) }}#}
+{#{% endfor %}#}
+
+{#<input type="submit" class="button button-search j-tour-button-submit" value="Search">#}
+
+{#<div class="j-add-filter"></div>#}
+{#</div>#}
+{#{{ form_end(form) }}#}
+
+{#<br/>#}
+
+
+{#<div style="clear: both"></div>#}
+
+{#</form>#}
+
+
+{#</div>#}
+{#</div>#}
+{#{% endblock %}#}
+
+{#{% block style %}#}
+{#<link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"#}
+{#rel="stylesheet"#}
+{#media="screen"/>#}
+
+{#<div id="dialog-message" title="Advance Search">#}
+{#<p>#}
+{#<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>#}
+{#Advanced search is available for <strong>subscribers only</strong>. <a href="{{ path('signup') }}"><strong>See#}
+{#plans now#}
+{#»</strong></a>#}
+{#</p>#}
+
+{#</div>#}
+{#{% endblock %}#}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.j-ex-key').on('click',function(){
+                $('#search_global_form_type_q').val($(this).html());
+            })
+        })
+
+
+    </script>
+    {#<script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"#}
+    {#type="text/javascript"></script>#}
+
+    {#<script type="text/javascript">#}
+    {#var $collectionHolder;#}
+
+    {#// setup an "add a tag" link#}
+    {#var $addFilterLink = $('<br/><a href="#" class="add_filter_link col-md-12">Add Filter Search <span class="glyphicon glyphicon-circle-arrow-down"></span></a>');#}
+    {#var $newLinkLi = $('<div class="j-add-filter"></div>').append($addFilterLink);#}
+
+    {#jQuery(document).ready(function () {#}
+    {#// Get the ul that holds the collection of tags#}
+    {#$collectionHolder = $('div.j-show');#}
+
+    {#// add a delete link to all of the existing tag form li elements#}
+    {#$collectionHolder.find('div.j-add-filter').each(function () {#}
+    {#if ($(this).length > 1) {#}
+    {#addTagFormDeleteLink($(this));#}
+    {#}#}
+    {#});#}
+
+    {#// add the "add a tag" anchor and li to the tags ul#}
+    {#$collectionHolder.append($newLinkLi);#}
+
+    {#// count the current form inputs we have (e.g. 2), use that as the new#}
+    {#// index when inserting a new item (e.g. 2)#}
+    {#$collectionHolder.data('index', $collectionHolder.find(':input').length);#}
+
+    {#$addFilterLink.on('click', function (e) {#}
+    {#// prevent the link from creating a "#" on the URL#}
+    {#e.preventDefault();#}
+
+    {#var check = $('h5.show');#}
+
+    {#if (check.length == 1) {#}
+    {#$("#dialog-message").dialog({#}
+    {#modal: true#}
+    {#});#}
+    {#return false;#}
+    {#}#}
+
+    {#// add a new tag form (see next code block)#}
+    {#addTagForm($collectionHolder, $newLinkLi);#}
+    {#});#}
+
+
+    {#});#}
+
+    {#function addTagForm($collectionHolder, $newLinkLi) {#}
+    {#// Get the data-prototype explained earlier#}
+    {#var prototype = $collectionHolder.data('prototype');#}
+
+    {#console.log(prototype);#}
+
+    {#// get the new index#}
+    {#var index = $collectionHolder.data('index');#}
+
+    {#// Replace '__name__' in the prototype's HTML to#}
+    {#// instead be a number based on how many items we have#}
+    {#var newForm = prototype.replace(/__name__/g, index);#}
+
+    {#// increase the index with one for the next item#}
+    {#$collectionHolder.data('index', index + 1);#}
+
+    {#// Display the form in the page in an li, before the "Add a tag" link li#}
+    {#var $newFormLi = $('<div style="clear:both"></div> ').append(newForm);#}
+    {#$newLinkLi.before($newFormLi);#}
+
+    {#// add a delete link to the new form#}
+    {#addTagFormDeleteLink($newFormLi);#}
+    {#}#}
+
+    {#function addTagFormDeleteLink($tagFormLi) {#}
+    {#var $removeFormA = $('<a href="#" style="font-size: 16px;" title="Delete This Filter"><span class="glyphicon glyphicon-remove" style="line-height: 2"></span> </a>');#}
+    {#$tagFormLi.append($removeFormA);#}
+
+    {#$removeFormA.on('click', function (e) {#}
+    {#// prevent the link from creating a "#" on the URL#}
+    {#e.preventDefault();#}
+
+    {#// remove the li for the tag form#}
+    {#$tagFormLi.remove();#}
+    {#});#}
+    {#}#}
+    {#</script>#}
+{% endblock %}

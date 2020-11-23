@@ -1,0 +1,33 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        {% if entity.category == 'subscription' %}
+          <a href="{{ path('admin_member_subscription_show', { 'id' : member.id }) }}">Subscription History</a>
+        {% endif %}
+        {% if entity.category == 'payment' %}
+          <a href="{{ path('admin_member_invoice_show', { 'id' : member.id }) }}">Payment History</a>
+        {% endif %}
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        New {{ entity.category }} attachment
+    </li>
+{% endblock %}
+
+{% block content %}
+    <h1>New {{ entity.category }} attachment</h1>
+
+    {{ form(form) }}
+{% endblock %}

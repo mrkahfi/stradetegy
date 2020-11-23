@@ -1,0 +1,578 @@
+<!-- Modal Export/Email Report -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+<div class="modal-dialog" style="width: 800px;">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Global Search Export/Email Report Tool</h4>
+</div>
+<div class="modal-body">
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#home" data-toggle="tab">Create New Export</a></li>
+    {#<li><a href="#profile" data-toggle="tab">Download / Email an Export</a></li>#}
+    <li><a href="#downloadList" data-toggle="tab" class="j-export-history">Export History</a></li>
+
+</ul>
+
+<div class="tab-content">
+<div class="tab-pane active" id="home">
+
+{#<form action="{{ path('member_export_tools') }}" method="post"#}
+      {#id="exportTools" style="margin-top: 10px">#}
+
+{#<div class="form_info cmsms_input range-group">#}
+    {#<div class="j-message"></div>#}
+    {#<div class="alert alert-info">You have {{ maxDownload|ribuan }} maximal download</div>#}
+{#</div>#}
+{#<div class="form_info cmsms_input range-group">#}
+    {#<label for="contact_name">Format</label>#}
+    {#<a href="#" style="position: absolute;margin-top: 5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+       {#title="Format file download"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+
+    {#<div class="form_info cmsms_select">#}
+        {#<select name="file_format">#}
+            {#<option value="xls">Excel</option>#}
+            {#<option value="csv">CSV</option>#}
+
+        {#</select>#}
+
+    {#</div>#}
+
+
+{#</div>#}
+{#<div class="cl"></div>#}
+{#<div class="form_info cmsms_input range-group" style="margin-top: 10px">#}
+    {#<label for="contact_name">Category</label>#}
+    {#<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+       {#title="first tooltip"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+
+
+    {#<div class="row" style="margin-left: 120px;margin-top: -17px">#}
+
+        {#<div class="col-md-3">#}
+            {#<div class="checkbox">#}
+                {#<label class="checkbox-inline">#}
+                    {#<input type="checkbox" class="j-check-cat-modal" name="file_category[]"#}
+                           {#checked#}
+                           {#value="importer">#}
+                    {#<span>Importer <span class="j-total-modal-importer code"></span> </span>#}
+                {#</label>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="col-md-3">#}
+            {#<div class="checkbox">#}
+                {#<label class="checkbox-inline">#}
+                    {#<input type="checkbox" class="j-check-cat-modal" name="file_category[]"#}
+                           {#checked#}
+                           {#value="exporter">#}
+                    {#<span>Exporter <span class="j-total-modal-exporter code"></span></span>#}
+                {#</label>#}
+            {#</div>#}
+        {#</div>#}
+
+        {#<div class="col-md-3">#}
+            {#<div class="checkbox">#}
+                {#<label class="checkbox-inline">#}
+                    {#<input type="checkbox" class="j-check-cat-modal" name="file_category[]"#}
+                           {#checked#}
+                           {#value="product">#}
+                    {#<span>Product <span class="j-total-modal-product code"></span></span>#}
+                {#</label>#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+{#</div>#}
+{#<div class="cl"></div>#}
+{#<div class="form_info cmsms_input cl-br range-group">#}
+    {#<label for="contact_email">File Name</label>#}
+    {#<a href="#" style="position: absolute;margin-top: 5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+       {#title="first tooltip"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+    {#<input type="text" name="file_name" id="file_name"#}
+           {#placeholder="{{ q[0]~"_"~"now"|date("mdYHis") }}" size="22" tabindex="4"#}
+           {#style="margin-left: 6.8%"/>#}
+    {#<span class="db">(Optional)</span>#}
+    {#<input type="hidden" name="file_name_empty" id="file_name_empty"#}
+           {#value="{{ q[0]~"_"~"now"|date("mdYHis") }}" size="22" tabindex="4"#}
+           {#style="margin-left: 5%"/>#}
+
+{#</div>#}
+{#<div class="cl"></div>#}
+{#<div class="form_info cmsms_input range-group" style="margin-top: 12px">#}
+    {#<label>Country Filter</label>#}
+    {#<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+       {#title="first tooltip"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+
+    {#<div class="row" style="margin-left: 110px;margin-top: -17px;">#}
+        {#{% for country in facetCountry %}#}
+            {#<div class="checkbox col-md-4">#}
+                {#<label class="checkbox-inline">#}
+                    {#<input type="checkbox" name="check_country_import_modal[]"#}
+                           {#id="check_country_import_modal_{{ country['term'] }}"#}
+
+                           {#value="{{ country['term'] }}">#}
+                    {#<img style="position: absolute;"#}
+                         {#src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/16/'~(country['term']|twolettercodeslug)['code']~".png") }}">#}
+                    {#<span style="margin-left: 20px">{{ (country['term']|twolettercodeslug)['country'] }}</span>#}
+                    {#<span class="code">{{ country['count']|ribuan }}</span>#}
+                {#</label>#}
+            {#</div>#}
+        {#{% endfor %}#}
+    {#</div>#}
+{#</div>#}
+{#<div class="cl"></div>#}
+{#<div class="form_info cmsms_radio cl-br range-group" style="margin-top: 16px">#}
+    {#<label for="contact_message">Export Range</label>#}
+    {#<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+       {#title="first tooltip"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+
+    {#<div class="row">#}
+        {#<div class="col-md-9 j-modal-range-importer" style="margin-left: 15%;margin-top: -3%">#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_importer" id="optionsRadiosImporter" value="1"#}
+                           {#checked>#}
+                    {#All Result <span class="j-all-export-result">(All Category Importer)</span>#}
+
+                    {#&#123;&#35;<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover"&#35;&#125;#}
+                    {#&#123;&#35;data-toggle="tooltip"&#35;&#125;#}
+                    {#&#123;&#35;title="Cannot download all result, you have {{ maxDownload|ribuan }} maximal download"><img&#35;&#125;#}
+                    {#&#123;&#35;src="{{ asset('bundles/jariffproject/frontend/images/alert-icon-modal.png') }}"> </a>&#35;&#125;#}
+
+                {#</label>#}
+            {#</div>#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_importer" id="optionsRadiosImporter" value="0">#}
+                    {#Custom Range#}
+
+                {#</label>#}
+
+                {#<div class="form-inline">#}
+                    {#<div class="form-group range-group">#}
+                        {#<label for="start">Start From</label>#}
+                        {#<input type="text" name="file_start_importer" id="start" value="1" size="22"#}
+                               {#tabindex="4" style="width: 10%;"/>#}
+                        {#<label for="to">up To</label>#}
+                        {#<input type="text" name="file_end_importer" id="to" value="1" size="22"#}
+                               {#tabindex="4"#}
+                               {#style="width: 10%;"/>#}
+                    {#</div>#}
+                    {#<input type="hidden" name='file_total_importer'#}
+                           {#value="{%- if facetCategory[0]['term'] is defined -%}#}
+                                            {#{%- if facetCategory[0]['term'] == 'importer' -%}#}
+                                                {#{{- facetCategory[0]['count'] -}}#}
+                                                {#{%- endif -%}#}
+                                                {#{%- else -%}#}
+                                                   {#0#}
+                                                {#{%- endif -%}">#}
+                    {#<input type="hidden" name='file_total_exporter'#}
+                           {#value="{%- if facetCategory[0]['term'] is defined -%}#}
+                                            {#{%- if facetCategory[1]['term'] is defined -%}#}
+                                            {#{%- if facetCategory[1]['term'] == 'exporter' or facetCategory[0]['term'] == 'exporter' -%}#}
+                                                {#{{- facetCategory[1]['count'] -}}#}
+                                                {#{%- endif -%}#}
+                                                {#{%- elseif facetCategory[0]['term'] is defined -%}#}
+                                                    {#{%- if facetCategory[0]['term'] == 'exporter' -%}#}
+                                                       {#{{- facetCategory[0]['count'] -}}#}
+                                                    {#{%- else -%}#}
+                                                        {#0#}
+                                                    {#{%- endif -%}#}
+                                                {#{%- endif -%}#}
+                                                {#{%- endif -%}#}
+                                                {#">#}
+                    {#<input type="hidden" name='file_total_product' class="j-tot-val-product"#}
+                           {#value="">#}
+                {#</div>#}
+
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-md-9 j-modal-range-exporter" style="margin-left: 15%;margin-top: 2%">#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_exporter" id="optionsRadiosExporter" value="1"#}
+                           {#checked>#}
+                    {#All Result <span class="j-all-export-result">(All Category Exporter)</span>#}
+                    {#&#123;&#35;<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover"&#35;&#125;#}
+                    {#&#123;&#35;data-toggle="tooltip"&#35;&#125;#}
+                    {#&#123;&#35;title="Cannot download all result, you have {{ maxDownload|ribuan }} maximal download"><img&#35;&#125;#}
+                    {#&#123;&#35;src="{{ asset('bundles/jariffproject/frontend/images/alert-icon-modal.png') }}"> </a>&#35;&#125;#}
+                {#</label>#}
+            {#</div>#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_exporter" id="optionsRadiosExporter" value="0">#}
+                    {#Custom Range#}
+
+                {#</label>#}
+
+                {#<div class="form-inline">#}
+                    {#<div class="form-group range-group">#}
+                        {#<label for="start">Start From</label>#}
+                        {#<input type="text" name="file_start_exporter" id="start" value="1" size="22"#}
+                               {#tabindex="4" style="width: 10%;"/>#}
+                        {#<label for="to">up To</label>#}
+                        {#<input type="text" name="file_end_exporter" id="to" value="1" size="22"#}
+                               {#tabindex="4"#}
+                               {#style="width: 10%;"/>#}
+                    {#</div>#}
+
+                {#</div>#}
+
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-md-9 j-modal-range-product" style="margin-left: 15%;margin-top: 2%">#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_product" id="optionsRadiosProduct" value="1"#}
+                           {#checked>#}
+                    {#All Result <span class="j-all-export-result">(All Category Product)</span>#}
+                    {#&#123;&#35;<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover"&#35;&#125;#}
+                    {#&#123;&#35;data-toggle="tooltip"&#35;&#125;#}
+                    {#&#123;&#35;title="Cannot download all result, you have {{ maxDownload|ribuan }} maximal download"><img&#35;&#125;#}
+                    {#&#123;&#35;src="{{ asset('bundles/jariffproject/frontend/images/alert-icon-modal.png') }}"> </a>&#35;&#125;#}
+                {#</label>#}
+            {#</div>#}
+            {#<div class="radio">#}
+                {#<label>#}
+                    {#<input type="radio" name="file_result_product" id="optionsRadiosProduct" value="0">#}
+                    {#Custom Range#}
+
+                {#</label>#}
+
+                {#<div class="form-inline">#}
+                    {#<div class="form-group range-group">#}
+                        {#<label for="start">Start From</label>#}
+                        {#<input type="text" name="file_start_product" id="start" value="1" size="22"#}
+                               {#tabindex="4" style="width: 10%;"/>#}
+                        {#<label for="to">up To</label>#}
+                        {#<input type="text" name="file_end_product" id="to" value="1" size="22"#}
+                               {#tabindex="4"#}
+                               {#style="width: 10%;"/>#}
+                    {#</div>#}
+
+                {#</div>#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+{#</div>#}
+{#<div class="cl"></div>#}
+{#<div class="form_info cmsms_input range-group" style="margin-top: 10px">#}
+{#<label>Column</label>#}
+{#<a href="#" style="position: absolute;margin-top: -5px;" class="toolti" data-trigger="hover" data-toggle="tooltip"#}
+   {#title="first tooltip"><img src="{{ asset('bundles/jariffproject/frontend/images/help.png') }}"> </a>#}
+
+{#<div class="row" style="margin-left: 110px;margin-top: -17px;">#}
+
+{#<div class="col-md-3 j-modal-range-importer">#}
+    {#<label>Category Importer</label>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#checked#}
+                   {#value="Importer Name">#}
+            {#<span>Importer Name</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#checked#}
+                   {#value="Importer Address">#}
+            {#<span>Importer Address</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#checked#}
+                   {#value="Total All Shipment">#}
+            {#<span>Total All Shipment</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Last Imports - From" checked>#}
+            {#<span>Last Imports - From</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Last Imports - Country" checked>#}
+            {#<span>Last Imports - Country</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Last Imports - Contents" checked>#}
+            {#<span>Last Imports - Contents</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Last Imports - Weight(Kg)" checked>#}
+            {#<span>Last Imports - Weight(Kg)</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="From Port" checked>#}
+            {#<span>From Port</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Via Port" checked>#}
+            {#<span>Via Port</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_importer[]"#}
+                   {#value="Last Imports - Marks" checked>#}
+            {#<span>Last Imports - Marks</span>#}
+        {#</label>#}
+    {#</div>#}
+{#</div>#}
+{#<div class="col-md-3 j-modal-range-exporter">#}
+    {#<label>Category Exporter</label>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+
+                   {#value="Exporter Name" checked>#}
+            {#<span>Exporter Name</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+
+                   {#value="Exporter Address" checked>#}
+            {#<span>Exporter Address</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#checked#}
+                   {#value="Total All Shipment">#}
+            {#<span>Total All Shipment</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Last Exports - From" checked>#}
+            {#<span>Last Exports - From</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Last Exports - Country" checked>#}
+            {#<span>Last Exports - Country</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Last Exports - Contents" checked>#}
+            {#<span>Last Exports - Contents</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Last Exports - Weight(Kg)" checked>#}
+            {#<span>Last Exports - Weight(Kg)</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="From Port" checked>#}
+            {#<span>From Port</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Via Port" checked>#}
+            {#<span>Via Port</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_exporter[]"#}
+                   {#value="Last Exports - Marks" checked>#}
+            {#<span>Last Exports - Marks</span>#}
+        {#</label>#}
+    {#</div>#}
+
+{#</div>#}
+{#<div class="col-md-3 j-modal-range-product">#}
+    {#<label>Category Product</label>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+
+                   {#value="Product Description">#}
+            {#<span>Product Description</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Arrival Date">#}
+            {#<span>Arrival Date</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Shipper">#}
+            {#<span>Shipper</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Consignee">#}
+            {#<span>Consignee</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Quantity">#}
+            {#<span>Quantity</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Weight (Kg)">#}
+            {#<span>Weight (Kg)</span>#}
+        {#</label>#}
+    {#</div>#}
+
+    {#<div class="checkbox">#}
+        {#<label class="checkbox-inline">#}
+            {#<input type="checkbox" name="column_product[]"#}
+                   {#checked#}
+                   {#value="Marks & Numbers">#}
+            {#<span>Marks & Numbers</span>#}
+        {#</label>#}
+    {#</div>#}
+
+{#</div>#}
+{#</div>#}
+
+{#</div>#}
+
+{#<div class="cl"></div>#}
+
+{#<div class="form_info cmsms_input cl-br">#}
+
+    {#<div class="checkbox range-group">#}
+        {#<label for="me_alert" style="margin-left: 5%">Notify</label>#}
+
+        {#<input type="checkbox" id="me_alert" name="notify" style="margin-left: 9%">#}
+        {#Email Me when done#}
+
+    {#</div>#}
+    {#<input style="margin-left: 18.8%" type="text"#}
+           {#placeholder="{{ app.user.username }}"#}
+           {#name="email" id="email" value="" size="22" tabindex="4"/>#}
+    {#<span class="db">(Optional)</span>#}
+
+
+{#</div>#}
+
+
+{#<div class="cl-br">#}
+    {#<input type="submit" style="margin-left: 0%" class="btn btn-success"#}
+           {#id="contact_form_formsend" tabindex="8" value="Generate Export">#}
+
+    {#<div class="loading"></div>#}
+{#</div>#}
+{#</form>#}
+
+
+</div>
+{#<div class="tab-pane" id="profile">#}
+{##}
+{#</div>#}
+<div class="tab-pane" id="downloadList">
+    <table class="table" style="margin-top: 10px">
+        <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Date Request</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+</div>
+
+</div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    {#<button type="button" class="btn btn-primary">Save changes</button>#}
+</div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

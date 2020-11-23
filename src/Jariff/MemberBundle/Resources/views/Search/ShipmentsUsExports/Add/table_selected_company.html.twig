@@ -1,0 +1,49 @@
+<table class="table table-bordered">
+
+    <tbody>
+
+    {% for row in entities %}
+        <tr>
+            <td><a href="javascript:void(0)"
+                   data-s-cache="{{ s_cache }}"
+                   data-slug="{{ row.getSlug }}"
+                   class="j-delete-selected-company"><span class="icon-remove"></span> </a></td>
+            <td>{{ row.getCompanyName }}</td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $('.j-delete-selected-company').on('click', function () {
+
+        var slug = $(this).attr('data-slug');
+        var thisis = $(this);
+        $.ajax({
+            type: 'post',
+            url: '{{ path('member_search_delete_contact_company_us_imports') }}',
+            data: {'s_cache': $(this).attr('data-s-cache'), 'slug': $(this).attr('data-slug')},
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    thisis.parent('td').parent('tr').remove();
+                    var showTotalChoice = $('.j-add-contact-company').length;
+
+                    for (var i = 0; i < showTotalChoice; i++) {
+                        if ($('.j-add-contact-company').eq(i).val() == slug) {
+                            $('.j-add-contact-company').eq(i).attr('checked', false);
+                        }
+                    }
+
+                    $('.j-count-seleted').html(res.totalSelect);
+                }
+
+            }
+        });
+    })
+</script>

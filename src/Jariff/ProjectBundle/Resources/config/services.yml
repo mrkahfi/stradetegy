@@ -1,0 +1,123 @@
+parameters:
+#    jariff_project.example.class: Jariff\ProjectBundle\Example
+
+services:
+     mail_helper:
+        class:        Jariff\ProjectBundle\Service\Mailer
+        arguments: ['@mailer']
+
+     jariff_password_encoder:
+        class: Jariff\ProjectBundle\Security\PasswordEncoder
+
+     jariff_twig_string_extension:
+             class: Jariff\ProjectBundle\Twig\StringExtension
+             tags:
+                 - { name: twig.extension }
+
+     jariff_twig_string_two_extension:
+             class: Jariff\ProjectBundle\Twig\StringTwoExtension
+             tags:
+                 - { name: twig.extension }
+             calls:
+                  - [ setEd, [ @event_dispatcher ] ]
+                  - [ setSc, [ @security.context ] ]
+                  - [ setEm, [ @doctrine.orm.entity_manager ] ]
+                  - [ setSession, [ @session ] ]
+
+     #menu-sidebar
+     jariff_project.menu_sidebar.builder:
+         class: Jariff\ProjectBundle\Menu\Builder
+         arguments: ["@knp_menu.factory"]
+         calls:
+             - [ setEd, [ @event_dispatcher ] ]
+             - [ setSc, [ @security.context ] ]
+             - [ setEm, [ @doctrine.orm.entity_manager ] ]
+             - [ setSession, [ @session ] ]
+
+     jariff_project.menu_sidebar:
+         class: Knp\Menu\MenuItem # the service definition requires setting the class
+         factory_service: jariff_project.menu_sidebar.builder
+         factory_method: createSidebarMenu
+         arguments: ["@request"]
+         scope: request # needed as we have the request as a dependency here
+         tags:
+             - { name: knp_menu.menu, alias: menu_sidebar } # The alias is what is used to retrieve the menu
+
+
+ #menu-Frontend
+     jariff_project.menu_frontend.builder:
+         class: Jariff\ProjectBundle\Menu\Builder
+         arguments: ["@knp_menu.factory"]
+         calls:
+             - [ setEd, [ @event_dispatcher ] ]
+             - [ setSc, [ @security.context ] ]
+             - [ setEm, [ @doctrine.orm.entity_manager ] ]
+             - [ setSession, [ @session ] ]
+
+     jariff_form_extension:
+            class: Jariff\ProjectBundle\Twig\FormExtension
+            tags: 
+                - { name: twig.extension }
+
+     jariff_project.menu_frontend:
+         class: Knp\Menu\MenuItem # the service definition requires setting the class
+         factory_service: jariff_project.menu_frontend.builder
+         factory_method: createMenuFrontend
+         arguments: ["@request"]
+         scope: request # needed as we have the request as a dependency here
+         tags:
+             - { name: knp_menu.menu, alias: menu_frontend } # The alias is what is used to retrieve the menu
+
+     jariff_project.menu_member_search.builder:
+         class: Jariff\ProjectBundle\Menu\Builder
+         arguments: ["@knp_menu.factory"]
+         calls:
+             - [ setEd, [ @event_dispatcher ] ]
+             - [ setSc, [ @security.context ] ]
+             - [ setEm, [ @doctrine.orm.entity_manager ] ]
+             - [ setSession, [ @session ] ]
+
+     jariff_project.menu_member_search:
+          class: Knp\Menu\MenuItem # the service definition requires setting the class
+          factory_service: jariff_project.menu_member_search.builder
+          factory_method: createMenuMemberSearch
+          arguments: ["@request"]
+          scope: request # needed as we have the request as a dependency here
+          tags:
+              - { name: knp_menu.menu, alias: menu_member_search } # The alias is what is used to retrieve the menu
+
+     jariff_project.menu_member_account.builder:
+         class: Jariff\ProjectBundle\Menu\Builder
+         arguments: ["@knp_menu.factory"]
+         calls:
+             - [ setEd, [ @event_dispatcher ] ]
+             - [ setSc, [ @security.context ] ]
+             - [ setEm, [ @doctrine.orm.entity_manager ] ]
+             - [ setSession, [ @session ] ]
+
+     jariff_project.menu_member_account:
+          class: Knp\Menu\MenuItem # the service definition requires setting the class
+          factory_service: jariff_project.menu_member_account.builder
+          factory_method: createMenuMemberAccount
+          arguments: ["@request"]
+          scope: request # needed as we have the request as a dependency here
+          tags:
+              - { name: knp_menu.menu, alias: menu_member_account } # The alias is what is used to retrieve the menu
+
+     jariff_project.menu_member_cs.builder:
+         class: Jariff\ProjectBundle\Menu\Builder
+         arguments: ["@knp_menu.factory"]
+         calls:
+             - [ setEd, [ @event_dispatcher ] ]
+             - [ setSc, [ @security.context ] ]
+             - [ setEm, [ @doctrine.orm.entity_manager ] ]
+             - [ setSession, [ @session ] ]
+
+     jariff_project.menu_member_cs:
+         class: Knp\Menu\MenuItem # the service definition requires setting the class
+         factory_service: jariff_project.menu_member_cs.builder
+         factory_method: createMenuMemberCs
+         arguments: ["@request"]
+         scope: request # needed as we have the request as a dependency here
+         tags:
+             - { name: knp_menu.menu, alias: menu_member_cs } # The alias is what is used to retrieve the menu

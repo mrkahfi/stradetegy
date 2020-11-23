@@ -1,0 +1,9 @@
+{% form_theme formCategory 'JariffProjectBundle:Themes:form_checkbox_category.html.twig' %}
+
+<form class="j-see-submit"
+        action="{{ path('widget_category_submit',{'keyword':keyword,'s_cache' : app.request.get('s_cache')}) }}"
+        method="POST">
+    {{ form_row(formCategory.category) }}
+</form>
+
+

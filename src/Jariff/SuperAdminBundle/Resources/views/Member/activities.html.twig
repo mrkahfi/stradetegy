@@ -1,0 +1,159 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ entity.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Member #{{ entity.number }}
+    </li>
+{% endblock %}
+
+{% block content %}
+<div>
+	<img src="/bundles/jariffproject/admin/img/icons/flag/red.png" data-toggle="tooltip" data-placement="right" title="" data-original-title="DONT CONTINUE, Cannot move forward without completing required tasks">
+    <a class="btn" href="{{ path('admin_member_subscription_new', {'id' : entity.id}) }}">
+		New Subscription
+    </a>
+    <a class="btn" href="{{ path('admin_member_profile_edit', {'id' : member.id}) }}">
+		Update Profile
+    </a>
+    {#<a class="btn" href="#">
+		Update Payment
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_cancel_request', {'id' : member.id}) }}">
+		Cancel Request
+    </a>
+    {#<a class="btn disabled" href="#">
+		Add Users
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_reset_password', {'id' : member.id}) }}">
+		Reset Password
+    </a>
+    <a class="btn" href="{{ path('admin_member_email_new', {'id' : member.id}) }}">
+		Send email
+    </a>
+</div>
+
+<br/>
+<br/>
+
+<div id="content">
+    <div class="body">
+      <h1>{{ entity.profile.salutation }} {{ entity.profile.firstName }}, {{ entity.profile.lastName }}</h1>
+      <ul id="myTab" class="nav nav-tabs">
+		<li><a href="{{ path('admin_member_profile_show', { 'id' : entity.id }) }}">Client Info</a></li>
+		<li class="active"><a href="{{ path('admin_member_activities', { 'id' : entity.id }) }}">Activities</a></li>
+		<li><a href="{{ path('admin_member_subscription_show', { 'id' : entity.id }) }}">Subscription History</a></li>
+		<li><a href="{{ path('admin_member_invoice_show', { 'id' : entity.id }) }}">Invoice History</a></li>
+		<li><a href="{{ path('admin_member_history_show', { 'id' : entity.id }) }}">Client History</a></li>
+		<li><a href="{{ path('admin_member_representative_history_show', { 'id' : entity.id }) }}">Representative History</a></li>
+		<li><a href="{{ path('admin_lead_history_show', { 'id' : entity.id }) }}">Lead History</a></li>
+      </ul>
+	</div>
+</div>
+
+
+<div class="row-fluid">
+	<div class="span12">
+                              <div class="social-box">
+                                <div class="header">
+                                  <h4>Client Info</h4>
+                                </div>
+                                <div class="body">
+                                  <table class="table">
+                                    <tbody>
+										<tr>
+										    <td>Account Number</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Lead Converted To Client</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Current Status</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Password</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Account Owner</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Account Owner Email</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Account Owner Phone</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Account Owner Location</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Primary User Name</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Primary User Email</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Primary User Phone</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Bill To</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Ship To</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Salesperson</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Additional Sales Persons</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Account Manager</td>
+										    <td>...</td>
+										</tr>
+										<tr>
+										    <td>Current Subscription</td>
+										    <td>...</td>
+										</tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var member_id = {{ entity.id }};
+        $(function () {
+          $("[data-toggle='tooltip']").tooltip();
+        });    
+    </script>
+    {# <script src="/bundles/jariffadmin/js/grid-lead-activity.js"></script> #}
+{% endblock %}

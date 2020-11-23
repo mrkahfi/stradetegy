@@ -1,0 +1,363 @@
+<table class="table table-hover">
+<tbody>
+{% for key,text in 'st_show_field'|us_column_view %}
+{% if entity[key] is defined %}
+<tr>
+    <th scope="row">{{ text }}</th>
+    {% if key == 'actual_arrival_date' %}
+        <td>{{ entity[key]|date('Y-m-d') }}</td>
+    {% else %}
+        {% if key == 'product_desc' %}
+            <td>{{ entity[key]|raw }}</td>
+        {% else %}
+            {% if key == 'weight' %}
+                <td>{{ entity[key]|setting_gross_weight(app.user.id) }}</td>
+            {% else %}
+                <td>{{ entity[key] }}</td>
+            {% endif %}
+        {% endif %}
+
+    {% endif %}
+
+
+</tr>
+{% endif %}
+{% endfor %}
+{#<tr>#}
+{#<th scope="row">Arrival Date</th>#}
+{#<td>{{ entity['actual_arrival_date']|date('Y-m-d') }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Consignee Name</th>#}
+
+{#<td>{{ entity['consignee_name'] }}</td>#}
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Shipper Name</th>#}
+{#<td>{{ entity['shipper_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Quantity</th>#}
+{#<td>{{ entity['quantity']|ribuan }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Weight</th>#}
+{#<td>{{ entity['weight']|setting_gross_weight(app.user.id) }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Product Description</th>#}
+{#<td>{{ entity['product_desc']|raw }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Marks & Numbers</th>#}
+{#<td>{{ entity['marks_and_numbers'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Estimate Arrival Date</th>#}
+{#<td>{{ entity['estimate_arrival_date']|date('Y-m-d') }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Bill of Lading</th>#}
+{#<td>{{ entity['bill_of_lading'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Master Bill of Lading</th>#}
+{#<td>{{ entity['master_bill_of_lading'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Bill Type Code</th>#}
+{#<td>{{ entity['bill_type_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Carrier Sasc Code</th>#}
+{#<td>{{ entity['carrier_sasc_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Vessel Country Code</th>#}
+{#<td>{{ entity['vessel_country_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Vessel Code</th>#}
+{#<td>{{ entity['vessel_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Vessel Name</th>#}
+{#<td>{{ entity['vessel_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Voyage</th>#}
+{#<td>{{ entity['voyage'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Inbond Type</th>#}
+{#<td>{{ entity['inbond_type'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Manifest No</th>#}
+{#<td>{{ entity['manifest_no'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Mode of Transportation</th>#}
+{#<td>{{ entity['mode_of_transportation'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Loading Port</th>#}
+{#<td>{{ entity['loading_port'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Last Vist Foreign Port</th>#}
+{#<td>{{ entity['last_vist_foreign_port'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">US Clearing District</th>#}
+{#<td>{{ entity['us_clearing_district'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Unloading Port</th>#}
+{#<td>{{ entity['unloading_port'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Place Of Receipt</th>#}
+{#<td>{{ entity['place_of_receipt'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">country</th>#}
+{#<td>{{ entity['country'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">Country Sure Level</th>#}
+{#<td>{{ entity['country_sure_level'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">weight_in_kg</th>#}
+{#<td>{{ entity['weight_in_kg'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">teu</th>#}
+{#<td>{{ entity['teu'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">weight_unit</th>#}
+{#<td>{{ entity['weight_unit'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">measure_in_cm</th>#}
+{#<td>{{ entity['measure_in_cm'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">quantity_unit</th>#}
+{#<td>{{ entity['quantity_unit'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">measure</th>#}
+{#<td>{{ entity['measure'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">measure_unit</th>#}
+{#<td>{{ entity['measure_unit'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_id</th>#}
+{#<td>{{ entity['container_id'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_size</th>#}
+{#<td>{{ entity['container_size'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_type</th>#}
+{#<td>{{ entity['container_type'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_desc_code</th>#}
+{#<td>{{ entity['container_desc_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_load_status</th>#}
+{#<td>{{ entity['container_load_status'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_type_of_service</th>#}
+{#<td>{{ entity['container_type_of_service'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">shipper_address</th>#}
+{#<td>{{ entity['shipper_address'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">container_load_status</th>#}
+{#<td>{{ entity['container_load_status'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_name</th>#}
+{#<td>{{ entity['raw_shipper_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_address_1</th>#}
+{#<td>{{ entity['raw_shipper_addr1'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_address_2</th>#}
+{#<td>{{ entity['raw_shipper_addr2'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_address_3</th>#}
+{#<td>{{ entity['raw_shipper_addr3'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_address_4</th>#}
+{#<td>{{ entity['raw_shipper_addr4'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_shipper_address_others</th>#}
+{#<td>{{ entity['raw_shipper_addr_others'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">consignee_address</th>#}
+{#<td>{{ entity['consignee_address'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_consignee_name</th>#}
+{#<td>{{ entity['raw_consignee_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_consignee_address_1</th>#}
+{#<td>{{ entity['raw_consignee_addr1'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_consignee_address_2</th>#}
+{#<td>{{ entity['raw_consignee_addr2'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_consignee_address_3</th>#}
+{#<td>{{ entity['raw_consignee_addr3'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_consignee_address_4</th>#}
+{#<td>{{ entity['raw_consignee_addr4'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">notify_party_name</th>#}
+{#<td>{{ entity['notify_party_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_name</th>#}
+{#<td>{{ entity['raw_notify_party_name'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_address_1</th>#}
+{#<td>{{ entity['raw_notify_party_addr1'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_address_2</th>#}
+{#<td>{{ entity['raw_notify_party_addr2'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_address_3</th>#}
+{#<td>{{ entity['raw_notify_party_addr3'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_address_4</th>#}
+{#<td>{{ entity['raw_notify_party_addr4'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">raw_notify_party_address_others</th>#}
+{#<td>{{ entity['raw_notify_party_addr_others'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">hs_code_sure_level</th>#}
+{#<td>{{ entity['hs_code_sure_level'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">hs_code</th>#}
+{#<td>{{ entity['hs_code'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">cif</th>#}
+{#<td>{{ entity['cif'] }}</td>#}
+
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">indicator_of_true_supplier</th>#}
+{#<td>{{ entity['indicator_of_true_supplier'] }}</td>#}
+
+{#</tr>#}
+{#</tr>#}
+{#<tr>#}
+{#<th scope="row">end</th>#}
+{#<td>{{ entity['end'] }}</td>#}
+
+{#</tr>#}
+
+
+</tbody>
+</table>
+
+<div>
+    <a href="{{ path('company_render_display_one_shipments',
+    {'index': params['index'],'type' : params['type'],'objId' : params['id'] }) }}" class="btn btn-primary" target="">Print</a>
+    <a href="" class="btn btn-info" target="_blank">Save</a>
+</div>
+
+<div class="cl"></div>

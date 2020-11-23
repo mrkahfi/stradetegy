@@ -1,0 +1,32 @@
+#infovis-canvaswidget {
+  margin:25px 0 0 25px;
+}
+
+#inner-details, #sidebar-button, #map-legend {
+    font-size:0.8em;
+    list-style:none;
+    margin:0px;
+}
+/*
+#inner-details {
+    font-size:0.8em;
+    list-style:none;
+    margin:7px;
+}*/
+
+#log {
+    position:absolute;
+    top:10px;
+    font-size:1.0em;
+    font-weight:bold;
+    color:#23A4FF;
+}
+
+
+#infovis {
+    position:relative;
+    height:600px;
+    margin:auto;
+    overflow:hidden;
+}
+

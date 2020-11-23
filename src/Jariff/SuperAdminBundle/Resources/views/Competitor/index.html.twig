@@ -1,0 +1,197 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block style %}
+<style type="text/css">
+.green-triangle {
+    width: 0;
+    height: 0;
+    width: 0; 
+    height: 0; 
+    border-bottom: 14px solid #66FF33; 
+    border-left: 7px solid transparent; 
+    border-right: 7px solid transparent; 
+}
+
+.red-triangle {
+    width: 0;
+    height: 0;
+    width: 0; 
+    height: 0; 
+    border-top: 14px solid #FF3300; 
+    border-left: 7px solid transparent; 
+    border-right: 7px solid transparent; 
+}
+
+</style>
+{% endblock %}
+
+{% block content -%}
+From: <input style="vertical-align:initial; margin-right: 20px; margin-left: 10px" type="text" id="from_datepicker">
+To: <input style="vertical-align:initial; margin-right: 20px; margin-left: 10px" type="text" id="to_datepicker">
+<input style="vertical-align:initial; padding: 4px 15px;" id="viewchart_btn" type="button" value="View Chart" onclick="callJson();" />
+<div id="container" style="min-width: 310px; height: 400px; margin: 4 auto"></div>
+<div id="relative_position">
+    <br>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+
+<script src="{{ asset('/bundles/jariffproject/admin/js/highcarts/js/highcharts.js') }}"></script>
+<script src="{{ asset('/bundles/jariffproject/admin/js/highcarts/js/modules/exporting.js') }}"></script>
+<script type="text/javascript">
+var fullDate1;
+var fullDate2;
+var categories;
+$(function() {
+    $( "#from_datepicker" ).datepicker({ 
+        dateFormat: "dd MM yy",
+        onSelect: function(){
+            var day1 = $("#from_datepicker").datepicker('getDate').getDate();                 
+            var month1 = $("#from_datepicker").datepicker('getDate').getMonth() + 1;             
+            var year1 = $("#from_datepicker").datepicker('getDate').getFullYear();
+            fullDate = year1 + "-" + month1 + "-" + day1;
+        }
+    });
+    $( "#to_datepicker" ).datepicker({ 
+        dateFormat: "dd MM yy",
+        onSelect: function(){
+            var day2 = $("#to_datepicker").datepicker('getDate').getDate();                 
+            var month2 = $("#to_datepicker").datepicker('getDate').getMonth() + 1;             
+            var year2 = $("#to_datepicker").datepicker('getDate').getFullYear();
+            fullDate2 = year2 + "-" + month2 + "-" + day2;
+        }
+    });
+});
+
+function callJson() {
+    var url = Routing.generate('competitor_chart_json', {from: fullDate, to: fullDate2});
+    $.getJSON(url,function(result){
+        var series = result['series'];
+        var categories = result['categories'];
+        var chart = new Highcharts.Chart({
+            chart: {
+                type: 'spline',
+                events: {
+                    load: function(event) {
+                    }
+                },
+                renderTo: 'container'
+            },
+            title: {
+                text: 'Competitors View'
+            },
+            subtitle: {
+                text: 'Daily Alexa Ranks of sTRADEtegy and Competitors'
+            },
+            xAxis: {
+                categories: categories
+            },
+            yAxis: {
+                reversed: true,
+                title: {
+                    text: 'Alexa rank (reversed)'
+                },
+                min: {{ min }}
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            legend: {
+                enabled: true,
+                useHTML: true
+            },
+            series: series,
+
+        });
+    });
+}
+
+function loadChart() {
+
+    console.log("loadChart");
+    var series = {{ series|json_encode|raw }};
+    categories = {{ categories|json_encode|raw }};
+    var lastDayDiffHtmls = {{ lastDayDiffHtmls|json_encode|raw }};
+    var lastDayDiffs = {{ lastDayDiffs|json_encode|raw }};
+    var lastWeekDiffHtmls = {{ lastWeekDiffHtmls|json_encode|raw }};
+    var lastWeekDiffs = {{ lastWeekDiffs|json_encode|raw }};
+    var lastMonthDiffHtmls = {{ lastMonthDiffHtmls|json_encode|raw }};
+    var lastMonthDiffs = {{ lastMonthDiffs|json_encode|raw }};
+    var lastThreeMonthsDiffHtmls = {{ lastThreeMonthsDiffHtmls|json_encode|raw }};
+    var lastThreeMonthsDiffs = {{ lastThreeMonthsDiffs|json_encode|raw }};
+
+    var arrow = "<div class='legend-item' style='margin-right:10px; margin-top:5px; margin-bottom:5px;'><div id='green-triangle' style='float:left; margin-right:10px; '></div>";
+
+    var chart = new Highcharts.Chart({
+        chart: {
+            type: 'spline',
+            events: {
+                load: function(event) {
+                    // $('#relative_position').last().append('<br/><div style="width:200px"><hr/> <span style="float:left"> Total </span><span style="float:right">ok</span> </div>')
+                }
+            },
+            renderTo: 'container'
+        },
+        title: {
+            text: 'Competitors View'
+        },
+        subtitle: {
+            text: 'Daily Alexa Ranks of sTRADEtegy and Competitors'
+        },
+        xAxis: {
+            categories: categories
+        },
+        yAxis: {
+            reversed: true,
+            title: {
+                text: 'Alexa rank (reversed)'
+            },
+            min: {{ min }}
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        legend: {
+            enabled: true,
+            useHTML: true
+        },
+        series: series,
+
+    }, function(chart){
+        $('<table id="relative_position_table"><thead><tr><th>Domain</th><th></th><th><span style="font-weight:bold">Last Day</span></th><th></th><th>Last Week</th><th></th><th>Last Month</th><th></th><th>Last 3 Months</th></tr></thead></table>').appendTo('#relative_position');
+
+        $(chart.series).each(function(i, serie){
+            console.log(serie.name);
+            $('<tr style="color: '+serie.color+'"><td style="padding-bottom:10px; padding-left:10px; padding-right:10px">'+serie.name+'</td style="padding-left:10px;"><td>'+ lastDayDiffHtmls[i] +'</td><td><span style="font-weight:bold">' + lastDayDiffs[i] +'</span></td><td style="padding-left:10px;">'+ lastWeekDiffHtmls[i] +'</td><td>' + lastWeekDiffs[i] + '</td><td style="padding-left:10px;">'+ lastMonthDiffHtmls[i] +'</td><td>' + lastMonthDiffs[i] + '</td><td style="padding-left:10px;">'+ lastThreeMonthsDiffHtmls[i] +'</td><td>' + lastThreeMonthsDiffs[i] + '</td></tr>').click(function(){
+                serie.visible ? serie.hide() : serie.show();
+            }).appendTo('#relative_position_table');
+        });
+        // $('</table>').appendTo('#relative_position');
+    });
+}
+
+loadChart();
+
+function dump(obj) {
+    var out = '';
+    for (var i in obj) {
+        out += i + ": " + obj[i] + "\n";
+    }
+    out = out + "\n\n"
+
+    console.log(out);
+
+    var pre = document.createElement('pre');
+    pre.innerHTML = out;
+    document.body.appendChild(pre)
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,236 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+
+                <div class="panel panel-info" id="tour-chart">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Download History</h3>
+                    </div>
+                    {#<div class="panel-body">#}
+                    {#<div id="j-chart-sell"></div>#}
+                    {#<div id="j-chart-employee"></div>#}
+
+                    {#</div>#}
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Request Download</th>
+                        {#<th>Timezone</th>#}
+
+                        {#<th>Filter Country</th>#}
+                        <th>Query Search</th>
+                        <th>Total Row Download</th>
+                        <th>Email Me When Done</th>
+                        <th>File Download</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                        {#{% set res = data.getQuery|jsondecode %}#}
+
+
+                        <tr>
+                            <td>{{ row.getRequestAt|date("d M Y") }}</td>
+                            {#<td>{{ row.getTimezone }}</td>#}
+
+                            <td>
+                                {% set search = row.getQuery|decrypted_query|jsondecode %}
+
+                                Your search of Data for : <br/>
+
+
+                                {% if search.search is defined %}
+                                    {% for key in search.search %}
+
+                                        {% if key.condition is not empty %}
+                                            <br/>
+                                            {{ key.condition|upper }}
+                                        {% endif %}
+
+                                        {% if  key.collect == 'buyers' or  key.collect == 'suppliers' or  key.collect == 'logistics' %}
+
+                                        {% else %}
+                                            {#{% if key.collect|globalfield is defined %}#}
+                                                {#{{ key.collect|globalfield }}#}
+                                            {#{% else %}#}
+                                            {{ key.collect|globalfield(search.type.custom_country~'_'~search.type.custom_data) }}
+                                            {#{% endif %}#}
+                                        {% endif %}
+                                        <span class="code">{{ key.q }}</span>
+
+                                    {% endfor %}
+
+                                    <br/>
+                                    {% if search.country is defined %}
+                                        And Filter by Countries
+                                        {% for key in search.country %}
+                                            {{ key|twolettercodecountry|capitalize }},
+                                        {% endfor %}
+
+                                    {% endif %}
+                                {% endif %}
+
+                                <br/>
+                                <span class="label label-default">
+                                    {%- if search.search[0].condition is not empty or search.search[0].collect == 'all' -%}
+                                        {{ search.type.custom_country|twolettercodecountry|capitalize }} {{ search.type.custom_data }}
+                                    {%- else -%}
+                                        {{ search.search[0].collect|capitalize }} Search
+                                    {%- endif -%}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ row.getDownloadTo - (row.getDownloadFrom - 1) }}
+                            </td>
+                            <td>
+                                {% if row.getSendMail %}
+                                    Yes, send notifications to {{ row.getEmail }}
+                                {% else %}
+                                    No
+                                {% endif %}
+
+                            </td>
+                            {#<td>{% set search = row.getQuery|jsondecode %}#}
+                            {#Your search of Data for : <br/>#}
+                            {#{% for key in search.q %}#}
+
+                            {#{% if search.condition[loop.index - 2] is defined %}#}
+                            {#<br/>#}
+                            {#{{ search.condition[loop.index - 2]|upper }}#}
+                            {#{% endif %}#}
+
+                            {#{{ search.collect[loop.index - 1]|changecollections }}#}
+                            {#<span class="code">{{ key }}</span>#}
+
+                            {#{% endfor %}</td>#}
+                            {#<td>#}
+                            {#{% set search = row.getCategory|jsondecode %}#}
+
+                            {#{% if search.importer is defined %}#}
+                            {#Importer :#}
+                            {#{% if search.importer.all > 0 %}#}
+                            {#{{ search.importer.all }}<br/>#}
+                            {#{% else %}#}
+                            {#{{ search.importer.end - search.importer.start }}<br/>#}
+                            {#{% endif %}#}
+                            {#{% endif %}#}
+
+                            {#{% if search.exporter is defined %}#}
+                            {#Exporter :#}
+                            {#{% if search.exporter.all > 0 %}#}
+                            {#{{ search.exporter.all }}<br/>#}
+                            {#{% else %}#}
+                            {#{{ search.exporter.end - search.exporter.start }}<br/>#}
+                            {#{% endif %}#}
+                            {#{% endif %}#}
+
+                            {#{% if search.product is defined %}#}
+                            {#Product :#}
+                            {#{% if search.product.all > 0 %}#}
+                            {#{{ search.product.all }}<br/>#}
+                            {#{% else %}#}
+                            {#{{ search.product.end - search.product.start }}<br/>#}
+                            {#{% endif %}#}
+                            {#{% endif %}#}
+                            {#</td>#}
+                            <td>
+                                {% if row.getProcess %}
+                                    <img src="{{ asset('bundles/jariffproject/frontend/images-old/301_12.GIF') }}"> Processing Export
+                                {% else %}
+
+                                    <a href="{{ asset('convert/'~row.getFileName~'.'~row.getFileType) }}"
+                                       class="btn btn-info btn-mini">{{ row.getFileName~'.'~row.getFileType }}</a>
+
+                                {% endif %}
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    {#<tfoot>#}
+                    {#<tr>#}
+                    {#<th>Table Footer here ...</th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#<th></th>#}
+                    {#</tr>#}
+                    {#</tfoot>#}
+                </table>
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}
+
+{#{% block javascript %}#}
+    {#<script type="text/javascript" src="https://www.google.com/jsapi"></script>#}
+    {#<script type="text/javascript">#}
+        {#google.load("visualization", "1", {packages: ["corechart"]});#}
+        {#google.setOnLoadCallback(drawChart);#}
+
+        {#function drawChart() {#}
+
+            {#var dataSell = google.visualization.arrayToDataTable([#}
+                {#['Date', 'Total'],#}
+                {#['15 Jan 2014', 4]#}
+
+            {#]);#}
+
+            {#var dataEmployee = google.visualization.arrayToDataTable([#}
+                {#['Year', 'Karyawan 1', 'Karyawan 2'],#}
+                {#['Jan', 1000, 400],#}
+                {#['Feb', 1170, 460],#}
+                {#['Mar', 660, 1120],#}
+                {#['Apr', 1030, 540],#}
+                {#['Mei', 1030, 540],#}
+                {#['Jun', 1030, 540],#}
+                {#['Jul', 1030, 540],#}
+                {#['Agu', 1030, 540],#}
+                {#['Sep', 1030, 540],#}
+                {#['Okt', 1030, 540],#}
+                {#['Nop', 1030, 540],#}
+                {#['Des', 1030, 540]#}
+            {#]);#}
+
+            {#var optionsEmployee = {#}
+                {#title: 'Title',#}
+                {#'width': 480,#}
+                {#'height': 300,#}
+                {#hAxis: { titleTextStyle: {color: 'red'}}#}
+            {#};#}
+
+            {#var optionsSell = {#}
+                {#title: 'Charts Search Per Day',#}
+                {#'width': 750,#}
+                {#'height': 300,#}
+                {#hAxis: { titleTextStyle: {color: 'red'}}#}
+            {#};#}
+
+            {#var jsonData = $.ajax({#}
+                {#url: '{{ path('member_search_history_total') }}',#}
+                {#dataType: "json",#}
+                {#async: false#}
+            {#}).responseText;#}
+
+            {#var obj = jQuery.parseJSON(jsonData);#}
+
+            {#var dataline = google.visualization.arrayToDataTable(obj);#}
+
+{#//            var chartEmployee = new google.visualization.ColumnChart(document.getElementById('j-chart-employee'));#}
+            {#var chartSell = new google.visualization.ColumnChart(document.getElementById('j-chart-sell'));#}
+{#//            chartEmployee.draw(dataEmployee, optionsEmployee);#}
+            {#chartSell.draw(dataline, optionsSell);#}
+        {#}#}
+    {#</script>#}
+{#{% endblock %}#}

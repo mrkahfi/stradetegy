@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: sf_stradetegysql
+    database_user: root
+    database_password: jangkrik
+    mailer_transport: smtp
+    mailer_host: smtp.mandrillapp.com
+    mailer_user: mail@upulsa.com
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt

@@ -1,0 +1,247 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+    <section class="blog">
+
+        <article class="post hentry format-standard">
+
+            <div class="ovh">
+                <div>
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" {% if active_on == 'buyers' %}class="active"{% endif %}><a href="#home"
+                                                                                                           aria-controls="home"
+                                                                                                           role="tab" data-toggle="tab">Buyers</a>
+                        </li>
+                        <li role="presentation" {% if active_on == 'suppliers' %}class="active"{% endif %}><a href="#profile"
+                                                                                                              aria-controls="profile"
+                                                                                                              role="tab"
+                                                                                                              data-toggle="tab">Suppliers</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+
+                        {% if mess is defined and  active_on == 'buyers' %}
+                            <div class="alert alert-info" role="alert" style="margin-top: 20px;">{{ mess }}</div>
+                        {% endif %}
+                        <div role="tabpanel" class="tab-pane {% if active_on == 'buyers' %}active{% endif %}" id="home">
+                            <div class="list-group" style="margin-top: 20px;">
+
+                                {% for res in entityBuyer %}
+                                    <div class="list-group-item {% if res.getIsCompare %}active{% endif %}">
+                                        <h4 class="list-group-item-heading">{{ res.getNameCompany }}
+                                            <p class="pull-right" style="font-size: 11px;margin-left: 14px;{% if res.getIsCompare %}display:none{% endif %}">
+                                                <a class="j-add-company-compare-buyers-on-modal" href="javascript:void(0)"
+                                                   data-url="{{ path('member_compare_company',{'slug_company' : res.getSlugCompany,'category':'buyers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-ok"></span> Compare
+                                                </a>
+                                            </p>
+
+                                            <p class="pull-right" style="font-size: 11px;margin-left: 14px;{% if res.getIsCompare %}display:block{% else %}display:none{% endif %}">
+                                                <a class="j-delete-company-compare-buyers-on-modal" href="javascript:void(0)"
+                                                   data-url="{{ path('member_delete_compare_company',{'slug_company' : res.getSlugCompany,'category':'buyers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-remove"></span> Delete Compare
+                                                </a>
+                                            </p>
+
+                                            <p class="pull-right" style="font-size: 11px;">
+                                                <a class="j-delete-company-buyers-on-modal" data-toggle="modal"
+                                                   data-target="#modalSave" href="javascript:void(0)"
+                                                   data-url="{{ path('member_delete_company',{'slug_company' : res.getSlugCompany,'category':'buyers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-star-empty"></span> Delete Company</a>
+                                            </p>
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            Importer from {{ res.getCountryOrigin }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+                            <br/>
+                            <a href="{{ path('member_compare_detail',{'category':'buyers'}) }}" target="_blank" class="btn btn-info">Show Compare</a>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane {% if active_on == 'suppliers' %}active{% endif %}" id="profile">
+
+                            {% if mess is defined and  active_on == 'suppliers' %}
+                                <div class="alert alert-info" role="alert" style="margin-top: 20px;">{{ mess }}</div>
+                            {% endif %}
+
+                            <div class="list-group" style="margin-top: 20px;">
+
+                                {% for res in entitySupplier %}
+                                    <div class="list-group-item {% if res.getIsCompare %}active{% endif %}">
+                                        <h4 class="list-group-item-heading">{{ res.getNameCompany }}
+                                            <p class="pull-right" style="font-size: 11px;margin-left: 14px;{% if res.getIsCompare %}display:none{% endif %}">
+                                                <a class="j-add-company-compare-suppliers-on-modal" href="javascript:void(0)"
+                                                   data-url="{{ path('member_compare_company',{'slug_company' : res.getSlugCompany,'category':'suppliers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-ok"></span> Compare
+                                                </a>
+                                            </p>
+
+                                            <p class="pull-right" style="font-size: 11px;margin-left: 14px;{% if res.getIsCompare %}display:block{% else %}display:none{% endif %}">
+                                                <a class="j-delete-company-compare-suppliers-on-modal" href="javascript:void(0)"
+                                                   data-url="{{ path('member_delete_compare_company',{'slug_company' : res.getSlugCompany,'category':'suppliers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-remove"></span> Delete Compare
+                                                </a>
+                                            </p>
+
+                                            <p class="pull-right" style="font-size: 11px;">
+                                                <a class="j-delete-company-suppliers-on-modal" data-toggle="modal"
+                                                   data-target="#modalSave" href="#"
+                                                   data-url="{{ path('member_delete_company',{'slug_company' : res.getSlugCompany,'category':'suppliers','name_index':'st','country_origin' :res.getCountryOrigin,'name_company':res.getNameCompany}) }}"
+                                                        ><span class="glyphicon glyphicon-star-empty"></span> Delete Company</a>
+                                            </p>
+                                        </h4>
+                                        <p class="list-group-item-text">
+                                            Exporter from {{ res.getCountryOrigin }}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+
+
+                            </div>
+
+                            <br/>
+
+                            <a href="{{ path('member_compare_detail',{'category':'suppliers'}) }}" target="_blank" class="btn btn-info">Show Compare</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $('.j-delete-company-buyers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').remove();
+//                    $('.j-choice-category').eq(0).click();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+        $('.j-delete-company-suppliers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').remove();
+//                    $('.j-choice-category').eq(1).click();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+        $('.j-add-company-compare-suppliers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').attr('class','list-group-item active');
+                        isThis.parents('p').siblings('p').children('.j-delete-company-compare-suppliers-on-modal').parents('p').show();
+                        isThis.parents('p').hide();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+        $('.j-delete-company-compare-suppliers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').attr('class','list-group-item');
+                        isThis.parents('p').siblings('p').children('.j-add-company-compare-suppliers-on-modal').parents('p').show();
+                        isThis.parents('p').hide();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+        $('.j-add-company-compare-buyers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').attr('class','list-group-item active');
+                        isThis.parents('p').siblings('p').children('.j-delete-company-compare-buyers-on-modal').parents('p').show();
+                        isThis.parents('p').hide();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+        $('.j-delete-company-compare-buyers-on-modal').on('click', function () {
+
+            var isThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        isThis.parents('.list-group-item').attr('class','list-group-item');
+                        isThis.parents('p').siblings('p').children('.j-add-company-compare-buyers-on-modal').parents('p').show();
+                        isThis.parents('p').hide();
+                    }
+                }
+            })
+
+            return false;
+        })
+
+    </script>
+{% endblock %}

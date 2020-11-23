@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html dir="ltr" lang="en-US" class="ie6"><![endif]-->
+<!--[if IE 7]>
+<html dir="ltr" lang="en-US" class="ie7"><![endif]-->
+<!--[if IE 8]>
+<html dir="ltr" lang="en-US" class="ie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html dir="ltr" lang="en-US"><!--<![endif]-->
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+    <meta name="description" content="TRADEtegy | The Importat Service for Your Business"/>
+    <meta name="keywords" content="html5, css3, template, responsive, adaptive"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
+    {% block head_style %}
+
+        {% stylesheets
+
+        'bundles/jariffproject/frontend/css-old/style.css'
+        'bundles/jariffproject/frontend/css-old/style_jariff.css'
+        'bundles/jariffproject/frontend/css-old/style_jariff_icon.css'
+
+        'bundles/jariffproject/frontend/css-old/styles/fonts.css'
+        'bundles/jariffproject/frontend/css-old/styles/jackbox.css'
+
+        'bundles/jariffproject/frontend/revolution/css/captions-original.css'
+        'bundles/jariffproject/frontend/revolution/css/captions.css'
+        'bundles/jariffproject/frontend/revolution/css/settings.css'
+
+        'bundles/jariffproject/frontend/css-old/styles/jquery.jPlayer.css'
+        'bundles/jariffproject/frontend/css-old/token-input-facebook.css'
+        'bundles/jariffproject/frontend/css-old/jquery.qtip.min.css'
+        'bundles/jariffproject/frontend/css-old/prettyPhoto.css'
+        'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/themes/base/jquery-ui.css'
+        'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/themes/base/jquery.ui.dialog.css'
+
+
+        filter='cssrewrite' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+        {#{{ form_stylesheet(form) }}#}
+        {% endstylesheets %}
+
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" type="text/css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" type="text/css"/>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Headland+One" type="text/css"/>
+
+
+
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/css-old/styles/ie.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/jariffproject/frontend/css-old/styles/ie_css3.css') }}"
+              type="text/css" media="screen"/>
+        <![endif]-->
+
+
+
+        {% block style %}
+
+        {% endblock %}
+
+    {% endblock head_style %}
+
+    <title>{% block title %}TRADEtegy - The Important Service For Your Business{% endblock title %}</title>
+</head>
+<body style="overflow:auto">
+<!-- BEGIN LivePerson Monitor. -->
+<script type="text/javascript"> window.lpTag=window.lpTag||{};if(typeof window.lpTag._tagCount==='undefined'){window.lpTag={site:'47200450'||'',section:lpTag.section||'',autoStart:lpTag.autoStart===false?false:true,ovr:lpTag.ovr||{},_v:'1.5.1',_tagCount:1,protocol:location.protocol,events:{bind:function(app,ev,fn){lpTag.defer(function(){lpTag.events.bind(app,ev,fn);},0);},trigger:function(app,ev,json){lpTag.defer(function(){lpTag.events.trigger(app,ev,json);},1);}},defer:function(fn,fnType){if(fnType==0){this._defB=this._defB||[];this._defB.push(fn);}else if(fnType==1){this._defT=this._defT||[];this._defT.push(fn);}else{this._defL=this._defL||[];this._defL.push(fn);}},load:function(src,chr,id){var t=this;setTimeout(function(){t._load(src,chr,id);},0);},_load:function(src,chr,id){var url=src;if(!src){url=this.protocol+'//'+((this.ovr&&this.ovr.domain)?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site;}var s=document.createElement('script');s.setAttribute('charset',chr?chr:'UTF-8');if(id){s.setAttribute('id',id);}s.setAttribute('src',url);document.getElementsByTagName('head').item(0).appendChild(s);},init:function(){this._timing=this._timing||{};this._timing.start=(new Date()).getTime();var that=this;if(window.attachEvent){window.attachEvent('onload',function(){that._domReady('domReady');});}else{window.addEventListener('DOMContentLoaded',function(){that._domReady('contReady');},false);window.addEventListener('load',function(){that._domReady('domReady');},false);}if(typeof(window._lptStop)=='undefined'){this.load();}},start:function(){this.autoStart=true;},_domReady:function(n){if(!this.isDom){this.isDom=true;this.events.trigger('LPT','DOM_READY',{t:n});}this._timing[n]=(new Date()).getTime();},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],ev:lpTag.ev||[]};lpTag.init();}else{window.lpTag._tagCount+=1;} </script>
+<!-- END LivePerson Monitor. -->
+<div id="hv_overlay" class="" style="display: none;"></div>
+
+<div class="topmenu">
+    <div class="tile">
+        {# <div class="callus">+1 622 716 78678</div> #}
+        <div class="language">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+            <ul class="lang_block">
+                <li>
+                    <a href="{{ path('dashboard_member') }}">
+                        <span class="glyphicon glyphicon-home"></span> myTRADEtegy
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="j-show-help">
+                        <span class="glyphicon glyphicon-question-sign"></span> HELP
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('member_change_locale', { '_locale' : 'en'}) }}">
+                        <img alt="English" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/US.png') }}" title="English">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('member_change_locale', { '_locale' : 'es'}) }}">
+                        <img alt="Spanish" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/ES.png') }}" title="Spanish">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('member_change_locale', { '_locale' : 'fr'}) }}">
+                        <img alt="French" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/FR.png') }}" title="French">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('member_change_locale', { '_locale' : 'cn'}) }}">
+                        <img alt="Chinese" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/CN.png') }}" title="Chinese">
+                    </a>
+                </li>
+            </ul>
+
+            {% else %}
+
+            <ul class="lang_block">
+                <li>
+                    <a href="{{ path('dashboard', { '_locale' : 'en'}) }}">
+                        <img alt="English" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/US.png') }}" title="English">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('dashboard', { '_locale' : 'es'}) }}">
+                        <img alt="Spanish" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/ES.png') }}" title="Spanish">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('dashboard', { '_locale' : 'fr'}) }}">
+                        <img alt="French" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/FR.png') }}" title="French">
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('dashboard', { '_locale' : 'cn'}) }}">
+                        <img alt="Chinese" src="{{ asset('/bundles/jariffproject/frontend/images-old/flags-iso/shiny/32/CN.png') }}" title="Chinese">
+                    </a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- __________________________________________________ Start Page -->
+{% block start_page %}
+    <section id="page" {% block css_page %}{% endblock %}>
+    <a href="#" id="slide_top"></a>
+    <!-- __________________________________________________ Start Header -->
+    {% block header %}
+        <header id="header">
+            <div class="header_inner">
+                <div class="social_block">
+                    <ul>
+
+                        <li>
+                            <a href="#" target="_blank">
+                                <img alt="twitter"
+                                     src="{{ asset('/bundles/jariffproject/frontend/images-old/socicons/twitter.png') }}">
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" target="_blank">
+                                <img alt="linkedin"
+                                     src="{{ asset('/bundles/jariffproject/frontend/images-old/socicons/linkedin.png') }}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img alt="facebook"
+                                     src="{{ asset('/bundles/jariffproject/frontend/images-old/socicons/facebook.png') }}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img alt="vimeo"
+                                     src="{{ asset('/bundles/jariffproject/frontend/images-old/socicons/vimeo.png') }}">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">
+                                <img alt="you tube"
+                                     src="{{ asset('/bundles/jariffproject/frontend/images-old/socicons/youtube.png') }}">
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    <a class="social_toggle" href="#"><span></span></a>
+                </div>
+
+                {% block menu %}
+                    <a class="resp_navigation" href="javascript:void(0);" style="z-index: 1000"><span></span></a>
+                    <nav>
+                        {{ knp_menu_render('menu_frontend', {'currentClass' : 'current_page_item', 'id' : 'navigation','template': 'JariffProjectBundle:Menu:knp_menu_frontend.html.twig'}) }}
+                        <div class="cl"></div>
+                    </nav>
+                    <div class="cl"></div>
+                {% endblock %}
+            </div>
+        </header>
+    {% endblock header %}
+    <!-- __________________________________________________ Finish Header -->
+
+    {% block wrap_headline %}
+    {% endblock wrap_headline %}
+
+
+    <div class="container" {% block add_style %}{% endblock %}>
+        <!-- __________________________________________________ Start Top -->
+        {% block container %}
+            <section id="top">
+                <div class="top_inner">
+
+                    {% block flashes %}
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="box success_box">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><p>{{ flashMessage }}</p></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('error') %}
+                            <div class="box error_box">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td><p>{{ flashMessage }}</p></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endfor %}
+                    {% endblock flashes %}
+
+                    {% block top_inner %}
+                    {% endblock top_inner %}
+                </div>
+            </section>
+
+            <!-- __________________________________________________ Finish Top -->
+
+            <!-- __________________________________________________ Start Middle -->
+
+            <section id="middle">
+                <div class="middle_inner" {% block rm_style %}style="margin-top: 30px;"{% endblock %}>
+                    <section id="middle_content" style="min-height: 750px;
+                    /*z-index: 101;*/
+                    /*position: static;*/
+                    margin-top: -30px;">
+                        <div class="entry">
+                            <!-- __________________________________________________ Start Content -->
+                            {% block middle_content %}
+                                {% block content %}
+                                {% endblock content %}
+                            {% endblock middle_content %}
+                            <!-- __________________________________________________ Finish Content -->
+
+                        </div>
+
+                    </section>
+                </div>
+            <span class="disable-content" style="display: none">
+                        </span>
+            </section>
+
+        {% endblock container %}
+
+
+
+
+        <!-- __________________________________________________ Start Bottom -->
+
+        <section id="bottom">
+            <div class="bottom_inner">
+                {% block bottom_inner %}
+                    <div class="one_fourth">
+                        <aside class="widget widget_custom_portfolio_entries">
+
+                            <div class="widget_custom_portfolio_entries_container">
+                                <h2 class="widgettitle">Sliding article</h2>
+                                <ul class="widget_custom_portfolio_entries_slides responsiveContentSlider">
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_1.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_2.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_3.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                    <li>
+                                        <figure>
+                                            <img src="{{ asset('/bundles/jariffproject/frontend/images-old/img/sliding_4.jpg') }}"
+                                                 alt="" class="fullwidth"/>
+                                        </figure>
+                                        <a href="#" class="widget_portfolio_link">Making design with magic</a>
+
+                                        <p>Pellentesque tristique volutpat nunc, id rhoncus augue tristique </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside id="custom-twitter-4" class="widget widget_custom_twitter_entries">
+
+                            <h2 class="widgettitle">Twitter</h2>
+
+                            <div id="custom-twitter-4_tweets"></div>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside class="widget widget_links">
+                            <h2 class="widgettitle">List widget</h2>
+                            <ul>
+                                <li><a href="#">Styling options</a></li>
+                                <li><a href="#">Theme options</a></li>
+                                <li><a href="#">Sidebars &amp; widgets</a></li>
+                                <li><a href="#">Shortcodes</a></li>
+                                <li><a href="#">Blogs &amp; posts</a></li>
+                                <li><a href="#">Sliders &amp; slides</a></li>
+                                <li><a href="#">Contact form builder</a></li>
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="one_fourth">
+                        <aside class="widget widget_custom_contact_form_entries">
+                            <h2 class="widgettitle" id="contact-form">Contact Form</h2>
+
+                            <div class="cmsms-form-builder">
+                                <div class="widgetinfo">Thank you! <br/>Your message has been sent successfully.</div>
+
+                                <form action="#" method="post" id="form_contact_form_widget_001">
+                                    <div class="form_info cmsms_input">
+                                        <label for="field_003">Email *</label>
+                                        <input type="text" name="wemail" id="field_003" size="22" tabindex="11"
+                                               class="validate[required,custom[email]]"/>
+                                    </div>
+                                    <div class="form_info cmsms_textarea">
+                                        <label for="field_004">Message *</label>
+                                        <textarea name="wmessage" id="field_004" cols="28" rows="6" tabindex="13"
+                                                  class="validate[required,minSize[3]]"></textarea>
+                                    </div>
+                                    <div class="loading"></div>
+                                    <div><input type="hidden" name="contact_form_widget_001_wurl"
+                                                id="contact_form_widget_001_wurl"
+                                                value="http://magique-html.cmsmasters.net/php/sendmail.php"/></div>
+                                    <!-- Here you need to set the path to the sendmail file -->
+                                    <div><a href="#" id="contact_form_widget_001_wformsend" class="button"
+                                            tabindex="14"><span>Submit</span></a></div>
+                                </form>
+                            </div>
+                        </aside>
+                    </div>
+                {% endblock bottom_inner %}
+            </div>
+        </section>
+        <!-- __________________________________________________ Finish Bottom -->
+
+    </div>
+    </section>
+{% endblock start_page %}
+<!-- __________________________________________________ Finish Page -->
+
+
+<!-- __________________________________________________ Start Footer -->
+{% block footer %}
+    <footer id="footer">
+        <div class="footer_inner">
+            <span>Increase &copy; 2013 All rights reserved</span>
+
+            <div class="fr">
+                <ul id="footer_nav" class="footer_nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
+<!-- __________________________________________________ Finish Footer -->
+
+
+{% javascripts
+'bundles/jariffproject/frontend/js-old/modernizr.custom.all.js'
+'bundles/jariffproject/frontend/js-old/jquery.min.js'
+'bundles/jariffproject/frontend/icon/js/raphael-min.js'
+
+
+'bundles/jariffproject/frontend/js-old/jquery.easing.js'
+
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.min.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.plugins.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.tokeninput.js'
+
+'bundles/jariffproject/frontend/js-old/jackbox.js'
+'bundles/jariffproject/frontend/js-old/jquery.script.js'
+'bundles/jariffproject/frontend/js-old/jackbox-lib.js'
+
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine.js'
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine-lang.js'
+'bundles/jariffproject/frontend/js-old/jquery.jtweetsanywhere.js'
+'bundles/jariffproject/frontend/js-old/respond.js'
+'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/ui/jquery-ui.js'
+'bundles/jariffproject/frontend/js-old/jquery-ui-1.10.1/ui/jquery.ui.dialog.js'
+'bundles/jariffproject/frontend/js-old/jquery.autocomplete.js'
+'bundles/jariffproject/frontend/js-old/jquery.qtip.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.prettyPhoto.js'
+'bundles/jariffproject/frontend/hover/js/jquery.easing.1.3.min.js'
+'bundles/jariffproject/frontend/hover/js/jquery.hoveralls.js'
+
+
+
+combine=false %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+<!--[if lt IE 8]>
+<script src="{{ asset('bundles/jariffproject/frontend/icon/js/json2.min.js') }}"></script>
+<![endif]-->
+
+
+{% endjavascripts %}
+{#{{ form_javascript(form) }}#}
+
+{% block javascript %}
+    {#
+    Untuk jquery object pakai notasi standard tanda dolar $
+    kita pakai satu library saja yaitu jQuery
+    kalau mau pakai lib yg lain kayak mootol prototype dll
+    maka no conflict tetap harus di resolve ke tanda dolar $
+    soalnya script2 awal yg sudah jadi pakai tanda dolar semua
+    tentunya yg datang belakangan jangan mengganggu yg di awal
+    #}
+    <script type="text/javascript">
+    </script>
+{% endblock javascript %}
+
+
+
+</body>
+</html>

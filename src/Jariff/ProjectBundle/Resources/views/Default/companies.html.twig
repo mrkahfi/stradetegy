@@ -1,0 +1,92 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block top_inner %}
+{% endblock top_inner %}
+
+{% block middle_content %}
+<section id="middle_content">
+  <div class="entry">
+    <div class="cl"></div>
+    <div class="one_first">
+      <div class="tour_content">
+        <h2>Company Contact Submission Board</h2><br />
+        <ul class="tour">
+          {% for company in companies %}
+          <li id="list_{{ slugs[loop.index0] }}" {% if loop.index == 1 %} class="current" {% endif %}>
+            <a href="#">
+              {{ company }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% for company in companies %}
+        <div class="tour_box" id="box_{{ slugs[loop.index0] }}">
+          <div class="tour_box_inner">
+            <h5>{{ company }}</h5>
+            <p>
+              <form action="" method="post" id="{{ slugs[loop.index0] }}" slug="{{ slugs[loop.index0] }}">
+                <p>
+                  <label for="website">Website <span class="color2">*</span></label>
+                  <input type="text" name="website" id="website" value="" size="22" />
+                </p>
+                <p>
+                  <label for="phone">Phone Number <span class="color2">*</span></label>
+                  <input type="text" name="phone" id="phone" value="" size="22" />
+                </p>
+                <p>
+                 <input type="submit" name="submit" class="button" slug="{{ slugs[loop.index0] }}"  value="Submit" />
+               </p>
+               <div class="cl"></div>
+             </form></p>
+           </div>
+         </div>
+         {% endfor %}
+       </div>
+       <div class="cl"></div>
+     </section>
+     {% endblock %}
+
+     {% block javascript %}
+     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+     <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+     <script type="text/javascript">
+
+     $(function() {
+      $(".button").click(function() {
+
+        $('.error').hide();
+        var website = $("input#website").val();
+        if (website == "") {
+          $("label#website_error").show();
+          $("input#website").focus();
+          return false;
+        }
+        var phone = $("input#phone").val();
+        if (phone == "") {
+          $("label#phone_error").show();
+          $("input#phone").focus();
+          return false;
+        }
+        var url = Routing.generate('add_company_info', { slug: $(this).attr('slug') });
+        var dataString = $('form#'+$(this).attr('slug')).serialize();
+        var slug = $(this).attr('slug');
+        console.log(slug);
+        console.log('ok');
+        console.log(dataString);
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: dataString,
+          success: function() {
+            console.log('#box_'+slug);
+            $('#box_'+ slug).fadeOut(500, function() { $(this).remove(); });
+            $('#list_'+ slug).fadeOut(500, function() { $(this).remove(); });
+            $('#list_{{ compa').attr('class', 'current');
+          }
+        });
+        return false;
+
+      });
+    });
+     </script>
+     {% endblock %}

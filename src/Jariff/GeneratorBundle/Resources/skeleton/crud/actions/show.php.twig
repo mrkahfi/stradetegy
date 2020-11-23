@@ -1,0 +1,24 @@
+
+    /**
+     * Finds and displays a {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/{id}", name="{{ route_name_prefix }}_show")
+     * @Method("GET")
+     * @Template()
+{% endif %}
+     */
+    public function showAction($id)
+    {
+        $entity = $this->repo('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            $this->errorRedirect('Data {{ entity }} tidak valid.');
+        }
+
+{% if 'annotation' == format %}
+        return array(
+            'entity'      => $entity,
+        );
+{% endif %}
+    }

@@ -1,0 +1,35 @@
+{
+	"name": "jquery-ui-touch-punch",
+	"title": "jQuery UI Touch Punch",
+	"description": "Touch Event Support for jQuery UI",
+	"version": "0.2.2",
+	"devDependencies": {
+		"grunt": ">=0.3.15"
+	},
+	"author": {
+		"name": "Dave Furfero",
+		"email": "furf@furf.com"
+	},
+	"contributors": [
+		{
+			"name": "Ariel Schiavoni",
+			"email": "ariel.schiavoni@intel.com"
+		},
+		{
+			"name": "Oliver Kopp",
+			"email": "koppdev@gmail.com"
+		},
+		{
+			"name": "Raymond Julin",
+			"email": "raymond.julin@gmail.com"
+		},
+		{
+			"name": "Sergey",
+			"email": "smiroshnick@gmail.com"
+		},
+		{
+			"name": "Takayuki Shimada",
+			"email": "taka@tsmd.jp"
+		}
+	]
+}

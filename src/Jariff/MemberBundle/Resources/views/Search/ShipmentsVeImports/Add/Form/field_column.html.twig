@@ -1,0 +1,22 @@
+{% form_theme formFieldUsCustom 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+    <h2 class="modal-title" id="exampleModalLabel">Choice Column</h2>
+
+</div>
+<form action="{{ path('member_search_columns_category_submit_ve_imports',{'s_cache' : s_cache}) }}"
+      class="j-submit-save-shipments" method="post">
+    <div class="modal-body">
+        {{ form_widget(formFieldUsCustom) }}
+        <br/>
+        <br/>
+    </div>
+    <div style="clear: both"></div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Nervermind</button>
+        <button type="submit" class="btn btn-primary">Apply Columns</button>
+    </div>
+</form>

@@ -1,0 +1,107 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_subscription_show', {'id' : member.id}) }}">Member #{{ member.number }} Subscription</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        New Subscription
+    </li>
+{% endblock %}
+
+{% block content %}
+
+{{ form_start(form) }}
+
+<fieldset>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="span6">
+            <div class="social-box">
+                <div class="body">
+                    <h1>
+                        Total :
+                        <span class="currency">$</span>
+                        <span class="price" id="total_payment">59</span>
+                        <span class="price" id="total_payment_text" style="font-size:14pt">Per month</span>
+                    </h1>
+                    Already included :
+                    <h1>
+                        Discount :
+                        <span class="currency">$</span>
+                        <span class="price" id="total_discount">0</span>
+                        <span class="price" id="total_payment_text" style="font-size:14pt">PIF Term</span>
+                    </h1>
+                    <h1>
+                        Custom Discount :
+                        <span class="currency">$</span>
+                        <span class="price" id="total_custom_discount">0</span>
+                    </h1>
+                    <br/>
+                    {{ form_row(form.training) }}
+                    {{ form_row(form.customDiscount) }}
+                    {{ form_row(form.member) }}
+                    {{ form_row(form.owner) }}
+                    {{ form_row(form.sales2) }}
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="social-box">
+                <div class="body">
+                    <h1>
+                        Plan Fee :
+                        <span class="currency">$</span>
+                        <span class="price" id="price_custom">59</span>
+                    </h1>
+                    <br/>
+                    <a href="#" id="button_everything" class="btn">Everything Plan</a>
+                    <a href="#" id="button_custom" class="btn">Custom Plan</a>
+                    <br/>
+                    <br/>
+                    {{ form_row(form.everythingPlan) }}
+                    {{ form_row(form.history) }}
+                    {{ form_row(form.download) }}
+                    {{ form_row(form.bigPicture) }}
+                    {{ form_row(form.search) }}
+                    {{ form_row(form.paymentTerm) }}
+                    {{ form_row(form.month) }}
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+{{ form_row(form.member) }}         
+{{ form_row(form._token) }}
+<button type="submit" class="btn btn-primary">Save</button>
+</fieldset>
+</form>
+
+<div id="helper_dialog" style="display:none;">
+    <div id="dialog-confirm" title="Payment Unavailable">
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>This member doesn't have any active CC. You can't pay with PayPal, Check, or Bankwire for Month to Month (MTM) term.<br/>Paypal, Check, and Bankwire payment only available for Paid in Full (PIF) term.</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        var member_cc = {% if member.cc %}{{ member.cc.id }}{% else %}null{% endif %};
+        var member_id = {{ member.id }};
+    </script>
+    <script src="/bundles/jariffadmin/js/subscription-new.js"></script>
+{% endblock %}

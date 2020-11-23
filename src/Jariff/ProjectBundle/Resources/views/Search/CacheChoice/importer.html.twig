@@ -1,0 +1,128 @@
+<div class="menu-cache">
+
+    <div id="noti_Container">
+        <a href="{{ path('member_compare_detail',{'category':'importer'}) }}">
+            <img src="{{ asset('bundles/jariffproject/frontend/images/document-copy-icon.png') }}"/>
+
+            <div class="noti_bubble">{{ countHistory }}</div>
+        </a>
+    </div>
+    {#<div id="historys">#}
+        {#<a href="">#}
+            {#<img src="{{ asset('bundles/jariffproject/frontend/images/History-Folder-Blue-icon.png') }}"/>#}
+        {#</a>#}
+    {#</div>#}
+    {#<div id="keep-data">#}
+        {#<a href="">#}
+            {#<img src="{{ asset('bundles/jariffproject/frontend/images/keep-icon.png') }}"/>#}
+        {#</a>#}
+    {#</div>#}
+</div>
+<div style="clear: both"></div>
+{% for resData in check %}
+    {% set res = resData.getPost|jsondecode %}
+
+    <div class="span6 popresult cache-show {% if resData.getIsCompare %}disable-cache{% endif %}">
+
+        <div class="wrap-ribbon right-edge point lblue lblue-strade"><span class="strade">Importer</span></div>
+        {#<a href="{{ path('member_importer_detail',{'slug':resData.slug}) }}" class="lightbox"#}
+        {#title="Watch Lorde-Royals">#}
+        {#<img#}
+        {#class="popchart-img" alt=""#}
+        {#src="{{ asset('bundles/jariffproject/frontend/images/logo2.png') }}"#}
+        {#width="170" height="170" style=""></a>#}
+
+        <h1 class="header-search-trade"><img
+                    src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/48/'~(res.country|twolettercodeslug)['code']~".png") }}">
+
+        <span class="imartist">
+            <a href="javascript:void(0);" style="color: #BC3415" class="j-add-tab-import">
+                {{ res.company_name }}
+            </a>
+
+
+        </span><br/>
+            <span>Importer From {{ (res.country|twolettercodeslug)['country'] }}</span>
+
+        </h1>
+        <span class="charts-p"><span class="imname">
+
+        <br/>
+                {% if res.container_count > 0 %}
+                    {{ res.container_count }}
+                    container(s) in
+                {% else %}
+                    Gross weight {{ res.totalWeight|ribuan }} KG in
+                {% endif %}
+
+                {{ res.shipment }}
+                time(s) imports from {{ res.company_join_name }}
+                {%- if res.totalCompanyJoin > 1 %}
+                    <a href="" style="color: #BC3415;">and more</a>
+                {%- endif %}
+                <br/>
+                from {{ (res.countryCompanyJoin|twolettercodeslug)['country'] }}
+                : {{ res.arrivalDate|date('Y-m-d')|compare_dates }}
+                {#, Container to {{ res.foreignPort }}#}
+
+        </span>
+        </span>
+
+        <span class="image_rollover">
+             <a href="javascript:void(0)" class="j-remove-imported-remove"
+                data-url="{{ path('member_cache_group_searching_remove',{'category':'importer','slug':resData.slug}) }}"></a>
+            <a href="javascript:void(0)"
+               data-url="{{ path('member_cache_group_is_compare',{'category':'importer','slug':resData.slug}) }}"
+               class="j-add-compare"></a>
+            <a href="{{ path('member_importer_detail',{'slug':resData.slug}) }}"></a>
+        </span>
+
+    </div>
+
+{% endfor %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.j-remove-imported-remove').on('click', function () {
+            var nThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    ajaxResultData($('.j-searching').serialize());
+                    $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                    nThis.parent('.image_rollover').parent('.cache-show').remove();
+                }
+            })
+        })
+
+        $('.j-add-compare').on('click', function () {
+            var nThis = $(this);
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr('data-url'),
+                success: function (data) {
+                    $(nThis).parent('.image_rollover').parent('.cache-show').addClass('disable-cache');
+                    $(nThis).parent('.image_rollover').parent('.cache-show').siblings('.menu-cache').children('#noti_Container').children('a').children('.noti_bubble').html(data);
+                }
+            })
+        })
+
+        function ajaxResultData(formSubmit) {
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('member_search_filter_ajax'),
+                data: formSubmit,
+                beforeSend: function () {
+                    $('#page1').html('<div style="margin-top:20px;text-align: center">' +
+                            '<img src="/bundles/jariffproject/frontend/images-old/301.GIF">' +
+                            '<h5 style="margin-top: 15px">Loading...</h5>' +
+                            '</div>');
+                },
+                success: function (data) {
+                    $('#page1').html(data);
+                }
+            });
+        }
+    })
+</script>

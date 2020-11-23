@@ -1,0 +1,49 @@
+/* CSS Document */ @charset "utf-8";
+/*
+*******************************************************************/
+#tooltip1 {cursor:pointer;}
+.tooltip1background {background:url('../images/tooltip1.png');}
+.tooltip1text {font-family:'Arial';font-size:14px;color:#66635b;line-height:23px;margin-left:20px;padding-top:35px;}
+#tooltip2 {cursor:pointer;}
+.tooltip2background {background:#2ea6ff;border:solid 3px #fff;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;-moz-box-shadow: 3px 3px 5px #CCC;-webkit-box-shadow: 3px 3px 5px #CCC;box-shadow: 3px 3px 5px #CCC;padding:5px;}
+.tooltip2text {font-family:'Arial';font-size:18px;text-align:center;color:#fff;line-height:23px;padding-top:5px;}
+#tooltip3 {cursor:pointer;}
+.tooltip3background {background:#2ea6ff;border:solid 3px #fff;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;-moz-box-shadow: 3px 3px 5px #CCC;-webkit-box-shadow: 3px 3px 5px #CCC;box-shadow: 3px 3px 5px #CCC;padding:5px;overflow:hidden;padding-left:50px;}
+.tooltip3text {font-family:'Arial';font-size:22px;text-align:center;color:#fff;line-height:23px;padding-top:5px; white-space:nowrap;height:35px;}
+#tooltip4 {cursor:pointer;}
+.tooltip4background {background:#fff;border:solid 3px #2ea6ff;-moz-border-radius: 16px;-webkit-border-radius: 16px;border-radius: 16px;-moz-box-shadow: 3px 3px 5px #CCC;-webkit-box-shadow: 3px 3px 5px #CCC;box-shadow: 3px 3px 5px #CCC;padding:5px;overflow:hidden;}
+#tooltiphtml {background-color:#fff;width:400px;height:185px;}
+#map {background:url('../images/map.png');width:150px;height:147px;border:1px solid #d2ccc8; float:left;margin-left:15px;margin-right:20px;margin-top:15px;}
+.maptext {font-family:'Arial';font-size:14px;color:#66635b;line-height:24px;padding-top:15px;padding-right:10px;cursor:default;}
+#lightbox1, #lightbox2, #lightbox3, #lightbox4 {cursor:pointer;}
+.lightbox1container {background:#2ea6ff;border:solid 5px #b2deff;-moz-border-radius: 11px;-webkit-border-radius: 11px;border-radius: 11px;padding:10px;-moz-box-shadow: 3px 3px 5px #DFDEDE;-webkit-box-shadow: 3px 3px 5px #DFDEDE;box-shadow: 3px 3px 5px #DFDEDE;}
+#lightbox1html {width:450px;cursor:pointer;} #lightbox1html .hoveralls_text {cursor:pointer;}
+#slidingpanel1html {width:300px;cursor:pointer;} #slidingpanel1html .hoveralls_text {cursor:pointer;font-family:'Arial';font-size:15px;line-height:32px;color:#66635B;}
+#lightbox2html {width:300px;}
+.lightbox1text, #lightbox1html .hoveralls_text, #code1html .hoveralls_text, #code2html .hoveralls_text {font-family:'Arial';font-size:22px;line-height:32px;width:390px;color:#fff;}
+#code1html .hoveralls_text, #code2html .hoveralls_text {width:655px;}
+.lightbox1overlay {background-color:#fff;}
+#lightbox2html .hoveralls_text {font-family:'ColaborateThinRegular';font-size:32px;line-height:32px;width:390px;color:#66635b;}
+.pure {font-size:100px;font-family:'ColaborateThinRegular';color:#66635b;line-height:36px;margin-left:-5px;}
+.lightbox2container {background:#2ea6ff;border-left:solid 10px #b2deff;border-right:solid 10px #b2deff;-moz-border-radius: 351px;-webkit-border-radius: 351px;border-radius: 351px;padding:10px;-moz-box-shadow: 6px 6px 15px #4aa4e6;-webkit-box-shadow: 6px 6px 15px #4aa4e6;box-shadow: 6px 6px 15px #4aa4e6;}
+.lightbox2text {font-family:'Arial';font-size:18px;letter-spacing:1px;line-height:22px;width:390px;color:#000;}
+.lightbox2overlay {background-color:#2EA6FF;}
+.lightbox3container {background:#fff;border:solid 5px #2ea6ff;-webkit-box-shadow: 5px 5px 5px #CCC;box-shadow: 5px 5px 5px #CCC;-moz-box-shadow: 3px 3px 5px #CCC;}
+#code1html .hoveralls_text, #code2html .hoveralls_text {color:#807C73;}
+.lightbox3overlay {background-color:#fff;}
+#lightbox3html {background:url('../images/lightbox3.png');width:980px;height:333px;}
+#lightbox3html p {background:url('../images/lightbox3title.png'); width:474px; height:181px;cursor:pointer;}
+#catalert {background:url('../images/catalert.png');width:900px;height:100px;}
+.lightbox4container {background:#fff;border:solid 5px #33bee5;-moz-border-radius: 11px;-webkit-border-radius: 11px;border-radius: 11px;padding:10px;-moz-box-shadow: 3px 3px 5px #CCC;-webkit-box-shadow: 3px 3px 5px #CCC;box-shadow: 3px 3px 5px #CCC;}
+#runaway {width:200px;margin-top:-120px;margin-left:565px;}
+#runaway p.hoveralls_text {font-family:'Arial';font-size:36px;color:#000;background-color:#CCC;cursor:pointer;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;text-align:center;padding:7px 10px;}
+#runaway p.hoveralls_text:hover {background-color:#2ea6ff;}
+/*****************************************
+*********** HTML INJECT STYLES ***********
+******************************************/
+#html5inject {padding:0px;height:350px;width:980px;margin:0 auto;cursor:pointer}
+.html5image {background:url('../images/html5logo.png');width:275px;height:275px;float:left;margin-top:35px;cursor:pointer;}
+#html5inject p {font-size:15px;font-family:'Arial';line-height:32px;color:#333;padding-top:95px;cursor:pointer;}
+#html5inject .htmlinjectheader {font-family: 'Arial';font-size: 36px;letter-spacing: -1px;margin-bottom: 10px;color:#000;}
+.html3over {background:url('../images/html3over.png');}
+.censoredrobot {background:url('../images/censored.png');border:0px;}

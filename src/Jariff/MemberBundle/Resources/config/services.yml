@@ -1,0 +1,37 @@
+parameters:
+#    jariff_member.example.class: Jariff\MemberBundle\Example
+
+services:
+    jariff_activation:
+        class: Jariff\MemberBundle\Controller\ActivationController
+        calls:
+            - [ setEm, [ @doctrine.orm.entity_manager ] ]
+            - [ setTemplating, [ @templating ] ]
+            - [ setMailer, [ @mailer ] ]
+            - [ setEncoder, [ @jariff_password_encoder ] ]
+            - [ setSc, [ @security.context ] ]
+    jariff_member_security_provider:
+        class: Jariff\MemberBundle\Security\UserProvider
+        calls:
+          - [ setEm, [ @doctrine.orm.entity_manager ] ]
+          - [ setContainer, [ @service_container ] ]
+    # activity_listener:
+    #     class: Jariff\MemberBundle\Event\ActivityListener
+    #     calls:
+    #       - [ setSc, [ @security.context ] ]
+    #     tags:
+    #         - { name: kernel.event_listener,  method: onKernelRequest, event: kernel.request }
+    timezone_listener:
+        class: Jariff\MemberBundle\Event\TimezoneListener
+        tags:
+            - { name: kernel.event_listener,  method: onKernelRequest, event: kernel.request }
+    locale_listener:
+        class: Jariff\MemberBundle\Event\LocaleListener
+        arguments: ["%kernel.default_locale%"]
+        tags:
+            - { name: kernel.event_subscriber }
+    jariff_pending_validator:
+       class:      Jariff\MemberBundle\Validator\PendingValidator
+       arguments:  [@doctrine.orm.entity_manager]
+       tags:
+            - { name: validator.constraint_validator, alias: jariff_pending_validator }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+  
+
+
+  {% stylesheets
+
+  'bundles/jariffproject/frontend/css-login/style.css'
+
+
+  filter='cssrewrite' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+  {#{{ form_stylesheet(form) }}#}
+  {% endstylesheets %}
+  <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <body>
+    <div class="login">
+        <div class="login-screen">
+            <div class="app-title">
+                <h1>TRADEtegy</h1>
+
+                <hr/>
+                <h3>Sign In to TRADEtegy</h3>
+                <p>Please enter your email and password below to login.</p>
+            </div>
+            <form class="form-login" method="post" action="{{ path('member_login_check') }}">
+                {% if error %}
+                    <div class="alert alert-danger" style="padding-top: 1px;">
+                        <p>{% trans %}Login failed{% endtrans %}</p> {% if error.message == "Cancelled" or error.message == "Suspended" or error.message == "Expired"  %}
+                        <p>{% trans %}Hi! Your subscriptions is no longer active.{% endtrans %}Please click <a href="{{ path('signup') }}">HERE</a> to gain instant access.</p>
+                        <p></p>
+                        {% else %}
+                        <p>{{ error.message }} Please click <a href="{{ path('signup') }}">HERE</a> to gain instant access.</p>
+                    {% endif %}                       
+                </div>
+            {% endif %}
+
+            <div class="login-form">
+                <div class="control-group">
+                    <input type="text" class="input-block-level" placeholder="Email address" autofocus="" id="username" placeholder="username" name="_username" value="{{ last_username }}"/>
+                    
+
+                    {# <input type="text" class="login-field" name="_username" value="" placeholder="email" id="login-name"> #}
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="control-group">
+                    <input class="input-block-level" type="password" id="password" placeholder="password" name="_password"/>
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary btn-large btn-block">login</button>
+                <div class="checkbox">
+                    <label>
+                         <input type="checkbox" value="remember-me"> {% trans %}Remember me{% endtrans %}
+                    </label>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+
+</body>
+</html>

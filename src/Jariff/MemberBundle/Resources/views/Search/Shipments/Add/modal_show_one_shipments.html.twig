@@ -1,0 +1,432 @@
+ <div class="row">
+  <div class="col-md-6">
+    <img src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}" style="width:180px" 
+    alt="stradetegy Logo">
+</div>
+<div class="col-md-6">
+
+    <p>
+        Bill Of lading #: {{ entity['bill_of_lading'] }}</br>
+        Master Bill Of Lading #: {{ entity['master_bill_of_lading'] }}</br>
+        Bill Type Code : {{ entity['bill_type_code'] }}</br>
+        Manifest #: {{ entity['manifest_no'] }}</br>
+        Estimate Arrival Date : {{ entity['estimate_arrival_date']|date("Y-m-d") }}</br>
+        Arrival Date : {{ entity['actual_arrival_date']|date("Y-m-d") }}</br>
+    </p>
+
+</div>
+
+</div>
+<div class="row">
+    <div class="col-md-6">
+
+        <p>
+            <strong>Consignee</strong><br/>
+            {{ entity['consignee_name']|na }}</br>
+            {{ entity['consignee_address']|na }}</br>
+            {# {{ entity['master_bill_of_lading'] }}</br> #}
+
+        </p>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+     <p class="pull-left">
+        <strong>Shipper</strong><br/>
+        {{ entity['shipper_name']|na }}</br>
+        {{ entity['shipper_address']|na }}</br>
+
+    </p>
+</div>
+<div class="col-md-6">
+
+    <p>
+        <strong>Notify Party</strong><br/>
+        {{ entity['notify_party_name']|na }}</br>
+        {{ entity['notify_party_address']|na }}</br>
+
+    </p>
+
+</div>
+<hr/>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+     <p class="">
+        <strong>Container Information</strong><br/>
+        Container #: <span class="text-word-wrap">{{ entity['container_id'] }}</span></br>
+        Container Size : <span class="text-word-wrap">{{ entity['container_size'] }}</span></br>
+        Container Type : <span class="text-word-wrap">{{ entity['container_type'] }}</span></br>
+        Container Description Code : <span class="text-word-wrap">{{ entity['container_desc_code'] }}</span></br>
+        Container Type of Service : <span class="text-word-wrap">{{ entity['container_type_of_service'] }}</span></br>
+        Container Load Status : <span class="text-word-wrap">{{ entity['container_load_status'] }}</span></br>
+        TEU : {{ entity['teu'] }}</br>
+
+        <br/>
+        <p class="pull-left">
+            <strong>Product Information</strong><br/>
+            HS Code #: {{ entity['hs_code'] }}</br>
+            HS Code Description : </br>
+            HS Code Sure Level : {{ entity['hs_code_sure_level'] }}</br>
+            Quantity : {{ entity['quantity'] }} Pcs</br>
+            Weight (LB) : {{ entity['weight']|setting_gross_weight("kg",app.getUser,true) }}</br>
+            Weight (KG) : {{ entity['weight_in_kg'] }}</br>
+            CBM : #</br>
+            Measure : {{ entity['measure'] }} {{ entity['measure_unit'] }}</br>
+
+
+        </p>
+    </p>
+</div>
+<div class="col-md-6">
+
+    <p>
+        <strong>Miscellaneous</strong><br/>
+        US Clearing District : {{ entity['us_clearing_district'] }}</br>
+        Country of Origin : {{ entity['country'] }}</br>
+        Country Sure Level : {{ entity['country_sure_level'] }}</br>
+        CIF : {{ entity['cif'] }}</br>
+        Marks & Numbers : {{ entity['marks_and_numbers']|replace({'<br/>': ','}) }}</br>
+        In-Bond Entry Type : {{ entity['inbond_type'] }}</br>
+        Loading Port : {{ entity['loading_port'] }}</br>
+        Foreign Port : {{ entity['last_vist_foreign_port'] }}</br>
+        Unloading Port : {{ entity['unloading_port'] }}</br>
+        Place of Receipt : {{ entity['place_of_receipt'] }}</br>
+        Voyage #: {{ entity['voyage'] }}</br>
+        Mode of Transportation : {{ entity['mode_of_transportation'] }}</br>
+        Carrier Code : {{ entity['carrier_sasc_code'] }}</br>
+        Vessel Code : {{ entity['vessel_code'] }}</br>
+        Vessel Name : {{ entity['vessel_name'] }}</br>
+        Vessel Country Code : {{ entity['vessel_country_code'] }}</br>
+
+    </p>
+
+</div>
+{# <div class="col-md-6" style="margin-top:-180px">
+
+    
+
+</div> #}
+<div class="col-md-12 text-justify" style="margin-top: -30px;">
+    <span>Product Description : {{ entity['product_desc']|replace({'<br/>': ','}) }}</br>
+    </div>
+
+</div>
+
+<br/>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-md-4">
+        <a href="">TRADEtegy.com</a>
+    </div>
+    <div class="col-md-4">
+        <p style="text-align:center;color: #1ABC9C;">+1 405-421-9501</p>
+    </div>
+    <div class="col-md-4">
+        <a href="" class="pull-right">info@TRADEtegy.com</a>
+    </div>
+</div>
+
+
+
+
+<div class="modal-footer">
+     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <a href="javascript:void(0)" class="btn btn-primary j-save-bol" target="">Print</a>
+    <a href="{{ path('company_render_display_one_shipments',{'folder':'Shipments','index': params['index'],'type' : params['type'],'objId' : params['id'] }) }}"
+    class="btn btn-info" target="_blank">Save</a>
+    <span class="j-show-loading"></span>
+</div>
+
+
+<div class="j-print" style="display:none">
+
+    <!DOCTYPE html>
+    <html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <title>{{ entity['shipper_name'] }}</title>
+        <style type="text/css">
+
+            .row {
+                margin-left: -15px;
+                margin-right: -15px;
+            }
+
+
+            .col-md-6 {
+                width: 50%;
+            }
+
+
+
+            .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                float: left;
+            }
+
+            .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+                position: relative;
+                min-height: 1px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .col-md-12 {
+                width: 100%;
+            }
+
+            .col-md-4 {
+                width: 33.33333333%;
+            }
+
+            .text-word-wrap{
+                word-wrap: break-word;      /* IE 5.5-7 */
+                white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
+                white-space: pre-wrap;      /* current browsers */
+            }
+
+            .text-justify{
+                text-align: justify;
+            }
+
+            
+        </style>
+
+    </head>
+    <body>
+
+        <table style="table-layout: fixed; width: 100%"> 
+            <tr>
+                <td style="height:0px">
+                    <img src="http://stradetegy.com/bundles/jariffproject/frontend/images/logo.png" style="" 
+                    alt="stradetegy Logo">
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>Bill Of lading #: {{ entity['bill_of_lading'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Master Bill Of Lading #: {{ entity['master_bill_of_lading'] }}</td>           
+            </tr>
+            <tr>
+                <td></td>
+                <td> Bill Type Code : {{ entity['bill_type_code'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Manifest #: {{ entity['manifest_no'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Estimate Arrival Date : {{ entity['estimate_arrival_date']|date("Y-m-d") }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Arrival Date : {{ entity['actual_arrival_date']|date("Y-m-d") }}</td>
+
+            </tr>
+            <tr>
+                <td><strong>Consignee</strong></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{ entity['consignee_name']|na }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{ entity['consignee_address']|na }}</td>
+                <td></td>
+            </tr>
+
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td><strong>Shipper</strong></td>
+                <td><strong>Notify Party</strong></td>
+            </tr>
+            <tr>
+                <td>{{ entity['shipper_name']|na }}</td>
+                <td>{{ entity['notify_party_name']|na }}</td>
+            </tr>
+            <tr>
+                <td>{{ entity['shipper_address']|na }}</td>
+                <td>{{ entity['notify_party_address']|na }}</td>
+            </tr>
+            <tr><td><hr/></td><td><hr/></td></tr>
+
+
+            <tr>
+                <td><strong>Container Information</strong></td>
+                <td><strong>Miscellaneous</strong></td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container #: <span>{{ entity['container_id'] }}</span></td>
+                <td>US Clearing District : {{ entity['us_clearing_district'] }}</td>
+            </tr>
+            <tr>
+                <td  class="text-word-wrap">Container Size : <span>{{ entity['container_size'] }}</span></td>
+                <td>Country of Origin : {{ entity['country'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container Tyoe : <span >{{ entity['container_type'] }}</span></td>
+                <td>Country Sure Level : {{ entity['country_sure_level'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container Description Code : <span>{{ entity['container_desc_code'] }}</span></td>
+                <td>CIF : {{ entity['cif'] }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container Tyoe of Service : <span>{{ entity['container_type_of_service'] }}</span></td>
+                <td>Marks & Numbers : {{ entity['marks_and_numbers']|replace({'<br/>': ','}) }}</td>
+            </tr>
+            <tr>
+                <td class="text-word-wrap">Container Load Status : <span>{{ entity['container_load_status'] }}</span></td>
+                <td>In-Bond Entry Type : {{ entity['inbond_type'] }}</td>
+            </tr>
+            <tr>
+                <td>TEU : {{ entity['teu'] }}</td>
+                <td>Loading Port : {{ entity['loading_port'] }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Foreign Port : {{ entity['last_vist_foreign_port'] }}</td>
+            </tr>
+            <tr>
+                <td><strong>Product Information</strong></td>
+                <td>Unloading Port : {{ entity['unloading_port'] }}</td>
+            </tr>
+            <tr>
+                <td>HS Code #: {{ entity['hs_code'] }}</td>
+                <td>Place of Receipt : {{ entity['place_of_receipt'] }}</td>
+            </tr>
+            <tr>
+                <td>HS Code Description : </td>
+                <td>Voyage : #{{ entity['voyage'] }}</td>
+            </tr>
+            <tr>
+                <td>HS Code Sure Level : {{ entity['hs_code_sure_level'] }}</td>
+                <td>Mode of Transportation : {{ entity['mode_of_transportation'] }}</td>
+            </tr>
+            <tr>
+                <td>Quantity : {{ entity['quantity'] }}</td>
+                <td>Carrier Code : {{ entity['carrier_sasc_code'] }}</td>
+            </tr>
+            <tr>
+                <td>Weight (LB) : {{ entity['weight'] }}</td>
+                <td>Vessel Code : {{ entity['vessel_code'] }}</td>
+            </tr>
+            <tr>
+                <td>Weight (KG) : {{ entity['weight_in_kg'] }}</td>
+                <td>Vessel Name : {{ entity['vessel_name'] }}</td>
+            </tr>
+            <tr>
+                <td>CBM : #</td>
+                <td>Vessel Country Code : {{ entity['vessel_country_code'] }}</td>
+            </tr>
+            <tr>
+                <td>Measure : {{ entity['measure'] }} {{ entity['measure_unit'] }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-justify"><span >Product Description : {{ entity['product_desc']|replace({'<br/>': ','}) }}</td>
+
+            </tr>
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;">sTRADEtegy.com</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="text-align:center;color: #1ABC9C;">+1 405-421-9501</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p style="color: #1ABC9C;text-align:right">info@sTRADEtegy.com</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+</div>
+
+
+   {#  <table class="table table-hover">
+        <tbody>
+        {% for key,text in 'st_show_field'|us_column_view %}
+            {% if entity[key] is defined %}
+                <tr>
+                    <th scope="row" style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;text-align: left;">{{ text }}</th>
+                    {% if key == 'actual_arrival_date' %}
+                        <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|date('Y-m-d') }}</td>
+                    {% else %}
+                        {% if key == 'product_desc' %}
+                            <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|raw }}</td>
+                        {% elseif key == 'mode_of_transportation' %}
+                                <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|us_column_code_transportation }}</td>
+                        {% else %}
+                            {% if key == 'weight' %}
+                                <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key]|setting_gross_weight(entity['weight_unit'],app.user.id) }}</td>
+                            {% else %}
+                                <td style="padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;">{{ entity[key] }}</td>
+                            {% endif %}
+                        {% endif %}
+
+                    {% endif %}
+
+
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table> #}
+
+
+    <div class="cl"></div>
+
+    <script type="text/javascript">
+        $('.j-save-bol').on('click', function () {
+
+
+            var divContents = $(".j-print").html();
+            var printWindow = window.open();          
+            printWindow.document.write(divContents);
+            printWindow.document.close();
+            printWindow.print();
+
+            return false;
+        })
+
+    </script>
+

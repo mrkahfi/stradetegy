@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="SemiColonWeb"/>
+    {% block head_style %}
+
+        {% stylesheets
+        'bundles/jariffproject/frontend/css/fonts.googlelapis.com.css'
+        'bundles/jariffproject/frontend/css/bootstrap.css'
+        'bundles/jariffproject/frontend/css/style.css'
+        'bundles/jariffproject/frontend/css/style_search.css'
+        'bundles/jariffproject/frontend/css/dark.css'
+        'bundles/jariffproject/frontend/css/font-icons.css'
+        'bundles/jariffproject/frontend/css/animate.css'
+        'bundles/jariffproject/frontend/css/magnific-popup.css'
+        'bundles/jariffproject/frontend/css/responsive.css'
+        'bundles/jariffproject/frontend/css/subpages.css'
+        'bundles/jariffproject/frontend/css/datepicker.css'
+        'bundles/jariffproject/frontend/css/responsive.css'
+        'bundles/jariffproject/frontend/css/jquery-ui.css'
+
+
+        filter='cssrewrite' %}
+        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+        {#{{ form_stylesheet(form) }}#}
+        {% endstylesheets %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+        {% block style %}
+
+        {% endblock %}
+
+    {% endblock head_style %}
+    <!-- External JavaScripts
+    ============================================= -->
+
+
+    <!-- Document Title
+    ============================================= -->
+    <title>{% block title %}Stradetegy - The Important Service For Your Business{% endblock title %}</title>
+
+</head>
+
+<body class="stretched subpages">
+
+{% block navbar_search %}
+
+{% endblock %}
+
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+
+    <!-- Header
+    ============================================= -->
+    <header id="header" class="full-header">
+
+        <div id="header-wrap">
+
+            <div class="container clearfix">
+
+                <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo">
+                    <a href="{{ path("dashboard_member") }}" class="standard-logo"
+                       data-dark-logo="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"
+                                alt="TRADEtegy Logo"></a>
+                    <a href="{{ path("dashboard_member") }}" class="retina-logo"
+                       data-dark-logo="{{ asset('/bundles/jariffproject/frontend/images/logo-dark@2x.png') }}"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo-dark@2x.png') }}"
+                                alt="TRADEtegy Logo"></a>
+                </div>
+                <!-- #logo end -->
+
+
+                <!-- Top Search
+                ============================================= -->
+                {#<div id="top-search">#}
+                {#<a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>#}
+                {#<form action="search.html" method="get">#}
+                {#<input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">#}
+                {#</form>#}
+                {#</div><!-- #top-search end -->#}
+
+
+                <!-- Primary Navigation
+                ============================================= -->
+
+                <nav id="primary-menu" class="style-2 sub-title">
+                    <div class="container clearfix">
+                        <ul>
+                            <li><a href="{{ path("dashboard_member") }}">
+                                    <div>Home</div>
+                                </a></li>
+                            <li><a href="{{ path("member_search_shipments") }}">
+                                    <div>Search</div>
+                                </a></li>
+                            <li><a href="{{ path("profile_edit") }}">
+                                    <div>My Account</div>
+                                </a></li>
+                            <li><a href="{{ path("support_ticket_inbound_form") }}">
+                                    <div>Customer Service</div>
+                                </a></li>
+                            <li><a href="{{ path("member_logout") }}">
+                                    <div>Logout</div>
+                                </a></li>
+
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- #primary-menu end -->
+
+            </div>
+
+        </div>
+
+
+    </header>
+    <!-- #header end -->
+
+    <!-- Page Title
+    ============================================= -->
+
+    <section id="page-title" style="padding: 15px 0;">
+
+        <div class="container">
+            <h5 class="pull-right j-show-subscrib">
+            </h5>
+
+        </div>
+
+    </section>
+    <!-- #page-title end -->
+
+    <section id="content" style="margin-top: 10px;overflow: visible">
+
+        <div class="container" style="width: 100%">
+            {% block menu_search_shipments %}
+                {{ knp_menu_render('menu_member_search', {'currentClass' : 'active', 'id' : 'navigation','template': 'JariffProjectBundle:Menu:knp_menu_frontend.html.twig'}) }}
+            {% endblock %}
+            <div class="clearfix"></div>
+            <hr/>
+
+            {% block flashes %}
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            {% endblock flashes %}
+
+
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+
+    </section>
+
+    {% block middle_content %}
+
+    {% endblock %}
+
+
+    <!-- #page-title end -->
+
+    <!-- Content
+        ============================================= -->
+
+
+    <!-- Content
+    ============================================= -->
+
+
+    {#<section id="content">#}
+        {#<div class="content-wrap">#}
+            {#<div class="container clearfix">#}
+
+                {#<!-- Posts#}
+                {#============================================= -->#}
+                {#<div id="posts" class="post-grid clearfix">#}
+
+
+                {#</div>#}
+                {#<!-- #posts end -->#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</section>#}
+    <!-- #content end -->
+
+    <!-- Sub footer -->
+
+
+    <!-- Footer
+    ============================================= -->
+
+
+</div>
+<!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+<!-- Footer Scripts
+'bundles/jariffproject/frontend/js/jquery.js'
+'bundles/jariffproject/frontend/js/plugins.js'
+'bundles/jariffproject/frontend/js/functions.js'
+'bundles/jariffproject/frontend/js/bootstrap-datepicker.js'
+'bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js'
+============================================= -->
+{% javascripts
+
+'bundles/jariffproject/frontend/js/jquery.js'
+'bundles/jariffproject/frontend/js/jquery-ui.js'
+'bundles/jariffproject/frontend/js/plugins.js'
+'bundles/jariffproject/frontend/js/functions.js'
+'bundles/jariffproject/frontend/js/jquery-ui-timepicker-addon.js'
+'bundles/jariffproject/frontend/js/jquery.ba-outside-events.min.js'
+
+
+'bundles/jariffproject/frontend/icon/js/raphael-min.js'
+
+
+'bundles/jariffproject/frontend/js-old/jquery.easing.js'
+
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.min.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.plugins.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.tokeninput.js'
+
+'bundles/jariffproject/frontend/js-old/jackbox.js'
+'bundles/jariffproject/frontend/js-old/jquery.script.js'
+'bundles/jariffproject/frontend/js-old/jackbox-lib.js'
+
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine.js'
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine-lang.js'
+'bundles/jariffproject/frontend/js-old/jquery.jtweetsanywhere.js'
+'bundles/jariffproject/frontend/js-old/respond.js'
+'bundles/jariffproject/frontend/js-old/jquery.autocomplete.js'
+'bundles/jariffproject/frontend/js-old/jquery.prettyPhoto.js'
+'bundles/jariffproject/frontend/hover/js/jquery.easing.1.3.min.js'
+'bundles/jariffproject/frontend/hover/js/jquery.hoveralls.js'
+
+combine=false %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+{#{{ form_javascript(form) }}#}
+
+{% block javascript %}
+    {#
+    Untuk jquery object pakai notasi standard tanda dolar $
+    kita pakai satu library saja yaitu jQuery
+    kalau mau pakai lib yg lain kayak mootol prototype dll
+    maka no conflict tetap harus di resolve ke tanda dolar $
+    soalnya script2 awal yg sudah jadi pakai tanda dolar semua
+    tentunya yg datang belakangan jangan mengganggu yg di awal
+    #}
+
+{% endblock %}
+
+<script type="text/javascript">
+    $(window).bind("load", function () {
+        $.ajax({
+            type: 'GET',
+            url: '{{ path('member_value_subscribe') }}',
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if(res.limit){
+                    window.location.href = res.redirect;
+                }else{
+                    $(".j-show-subscrib").html(res.rawdata);
+                }
+
+            }
+        })
+    });
+
+    //    var nowTemp = new Date();
+    //    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+    //
+    //    var checkin = $('#demo_search_date_from').datepicker({
+    //        onRender: function (date) {
+    //            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    //        }
+    //    }).on('changeDate',function (ev) {
+    //        if (ev.date.valueOf() > checkout.date.valueOf()) {
+    //            var newDate = new Date(ev.date)
+    //            newDate.setDate(newDate.getDate() + 1);
+    //            checkout.setValue(newDate);
+    //        }
+    //        checkin.hide();
+    //        $('#demo_search_date_to')[0].focus();
+    //    }).data('datepicker');
+    //    var checkout = $('#demo_search_date_to').datepicker({
+    //        onRender: function (date) {
+    //            return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+    //        }
+    //    }).on('changeDate',function (ev) {
+    //        checkout.hide();
+    //    }).data('datepicker');
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'JariffProjectBundle::base_right_sidebar.html.twig' %}
+
+{% block content %}
+<div class="entry">
+	<h2>Support Ticket</h2>
+	<div class="cmsms-form-builder">
+		<div class="box success_box" style="display:none;">
+			<table>
+				<tr>
+					<td>&nbsp;</td>
+					<td>Thank You!<br>Your message has been sent successfully.</td>
+				</tr>
+			</table>
+		</div>
+		{% for label, flashes in app.session.flashbag.all %}
+		{% for flash in flashes %}
+		<div class="alert alert-{{ label }}">
+			{{ flash }}
+		</div>
+		{% endfor %}
+		{% endfor %}
+		<form action="{{ path('contact_submit_inbound') }}" method="post" {{ form_enctype(form) }} id="contact_form">
+
+
+			<div class="cl"></div>
+			<div class="form_info cmsms_input">
+				{{ form_row(form.name, { 'attr': {'oninvalid': "setCustomValidity('Please give me a nice name')"} }) }}
+			</div>
+			<div class="cl"></div>
+			<div class="form_info cmsms_input">
+				{{ form_row(form.email, { 'attr': {'oninvalid': "setCustomValidity('Please give me a nice email')"} }) }}
+			</div>
+			<div class="cl"></div>
+			<div class="form_info cmsms_input">
+				{{ form_row(form.subject, { 'attr': {'oninvalid': "setCustomValidity('Please give me a nice subject')"} }) }}
+			</div>
+			<div class="form_info cmsms_input">
+				{{ form_row(form.message, { 'attr': {'oninvalid': "setCustomValidity('Please give me a nice message')"} }) }}
+			</div>
+			<div>
+				<input href="" class="button" type="submit" value="Request for contact" id="contact_form_formsend" tabindex="8"></input>
+				<div class="loading"></div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

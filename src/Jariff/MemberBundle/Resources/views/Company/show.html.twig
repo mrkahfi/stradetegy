@@ -1,0 +1,76 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content -%}
+    <h1>Company</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Billtoname</th>
+                <td>{{ entity.billToName }}</td>
+            </tr>
+            <tr>
+                <th>Billtoadress</th>
+                <td>{{ entity.billToAdress }}</td>
+            </tr>
+            <tr>
+                <th>Billtoemail</th>
+                <td>{{ entity.billToEmail }}</td>
+            </tr>
+            <tr>
+                <th>Billtophone</th>
+                <td>{{ entity.billToPhone }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{{ entity.dateCreate|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Invoicetype</th>
+                <td>{{ entity.invoiceType }}</td>
+            </tr>
+            <tr>
+                <th>Payment</th>
+                <td>{{ entity.payment }}</td>
+            </tr>
+            <tr>
+                <th>Shiptoname</th>
+                <td>{{ entity.shipToName }}</td>
+            </tr>
+            <tr>
+                <th>Shiptoadress</th>
+                <td>{{ entity.shipToAdress }}</td>
+            </tr>
+            <tr>
+                <th>Shiptoemail</th>
+                <td>{{ entity.shipToEmail }}</td>
+            </tr>
+            <tr>
+                <th>Shiptophone</th>
+                <td>{{ entity.shipToPhone }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('company') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('company_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

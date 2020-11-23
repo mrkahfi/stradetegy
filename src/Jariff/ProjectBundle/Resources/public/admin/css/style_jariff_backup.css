@@ -1,0 +1,87 @@
+
+ul.accordion-group{
+    list-style-type: none;
+    margin-left: 0px;
+}
+
+.social-sidebar .menu .accordion-group .accordion-heading.active {
+    background-color: #252831;
+}
+
+.social-sidebar .menu .accordion-group .accordion-heading.active a:after {
+    height: 0;
+    width: 0;
+    font-size: 0;
+    line-height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #e9eaed;
+    content: '';
+    right: 0;
+    position: absolute;
+    margin-top: 3px;
+}
+
+.form-search td{
+    width: 255px;
+}
+
+.form-search td.search{
+    width: 100px;
+}
+
+.form-search td.to-date{
+    width: 6px;
+
+}
+
+.form-search td.to-date p{
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.search input[type="text"] {
+
+    min-width: 105px;
+    max-width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    background: url("img/icon_date.png") no-repeat 95% center;
+}
+
+.custom-fields{
+    margin-left: 200px;
+}
+
+.j-tables thead th{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#header-fixed {
+    position: fixed;
+    top: 0px; display:none;
+    background-color:white;
+    z-index: 1;
+}
+.table th {
+    text-align: right;
+    width:200px;
+}
+.table th,
+.table td {
+  padding: 3px;
+  border-top: 0;
+}
+span.price{
+    font-size:28pt;
+}
+
+.social-box .body {
+float: left;
+display: block;
+width: 100%;
+}
+div.body input {
+    width:90%;
+}

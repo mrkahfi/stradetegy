@@ -1,0 +1,74 @@
+<div class="col-md-9">
+    <p>{{ total_results }} results matching <strong>{{ keyword }}</strong></p>
+
+    {% for res in resHybird %}
+        {% if res.getHit["_source"]['company_as'] == 'importer' %}
+            <h4 style="margin-bottom:-4px"><a href="">{{ res.getHit["_source"]['consignee_name_pr'] }}</a> <button class="col-md-2 pull-right btn btn-info">Buyers</button></h4>
+            <p>Importer from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}</p>
+            <p style="margin-top:-22px">
+                Gross weight {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }} in {{ res.getHit["_source"]['total_shipment']  }} time(s) imports from a {{ res.getHit["_source"]['shipper_name_pr']  }} {%- if res.getHit["_source"]['total_company'] > 1 %}
+                <a href="">and more</a>
+            {%- endif %}
+            <br/>
+            from {{ res.getHit["_source"]['slug_country_ori_shipper']|twolettercodecountry }}
+            : {{ res.getHit["_source"]['actual_arrival_date']|date("d-m-y")|compare_dates }}
+
+        </p>
+        <hr/>
+        {% elseif res.getHit["_source"]['company_as'] == 'exporter' %}
+        <h4 style="margin-bottom:-4px"><a href="">{{ res.getHit["_source"]['shipper_name_pr'] }}</a> <button class="col-md-2 pull-right btn btn-success">Suppliers</button></h4>
+        <p>Importer from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}</p>
+        <p style="margin-top:-22px">
+            Gross weight {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }} in {{ res.getHit["_source"]['total_shipment']  }} time(s) exports from a {{ res.getHit["_source"]['consignee_name_pr']  }} {%- if res.getHit["_source"]['total_company'] > 1 %}
+            <a href="">and more</a>
+        {%- endif %}
+        <br/>
+        to {{ res.getHit["_source"]['slug_country_ori_consignee']|twolettercodecountry }}
+        : {{ res.getHit["_source"]['actual_arrival_date']|date("d-m-y")|compare_dates }}
+    </p>
+    <hr/>
+    {% elseif res.getHit["_source"]['company_as'] == 'product' %}
+    <h4 style="margin-bottom:-4px"><a href="">Costco Wholesale</a> <button class="col-md-2 pull-right btn btn-warning">Products</button></h4>
+    <p>Importer from United States</p>
+    <p style="margin-top:-22px">
+        Gross weight 1.2222 Kg in 8999 time(s) imports from a company and more
+
+    </p>
+{% endif %}
+{% endfor %}
+
+
+</div>
+<div class="col-md-3">
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-time"></span> Alert</a>&nbsp;&nbsp;
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span> Save</a>&nbsp;&nbsp;
+    <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>
+
+    <hr/>
+
+    <p>Filter Country</p>
+
+    <form>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Indonesia
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Hongkong
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Malaysia
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Thailand
+            </label>
+        </div>
+    </form>
+
+</div>

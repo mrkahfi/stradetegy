@@ -1,0 +1,11 @@
+{% extends 'JariffProjectBundle::base_member.html.twig' %}
+
+ {% block menu %}
+     {{ knp_menu_render('menu_member_cs', {'currentClass' : 'active', 'id' : 'navigation','template': 'JariffProjectBundle:Menu:knp_menu_frontend.html.twig'}) }}
+     <div class="clearfix"></div>
+     <hr/>
+ {% endblock menu %}
+
+{% block content %}
+
+{% endblock %}

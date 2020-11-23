@@ -1,0 +1,142 @@
+<div class="floatThead-wrapper" style="position: relative; clear:both;">
+    <table class="table table-bordered bgcolorwhite" style="table-layout: auto; min-width: 1170px;">
+        <thead>
+        <tr role="row">
+            <th></th>
+            {% for col in column %}
+                <th>{{ col|uy_exports_column_view }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <colgroup>
+            <col style="width: 18px;">
+            {% for col in column %}
+                <col style="width: auto;">
+            {% endfor %}
+        </colgroup>
+
+        <tbody aria-relevant="all" aria-live="polite" role="alert">
+        {% for res in resHybird %}
+            <tr class="odd" id="{{ loop.index }}">
+                <td class="">
+                    <a href="#" data-whatever="{{ res.getHit["_source"]['exporter'] }}"
+                       class="j-modal-company-one-shipments" data-toggle="modal" data-target="#myModal"
+                       data-url="{{ path('company_display_one_shipments_uy_exports',
+                       {'index': res.getHit['_index'],'type' : res.getHit['_type'],'objId' : res.getHit['_id'] }) }}">
+                        <span class="icon-search3" aria-hidden="true"></span>
+                    </a>
+
+                </td>
+                {% for col in column %}
+                    <td class="">
+
+                        {% if col == 'product' %}
+                            {% if col == 'product' and res.getHit["highlight"] is defined and res.getHit["highlight"] is not empty %}
+                                {% set match = res.getHit["highlight"] %}
+                                {{ match['product'][0]|descProduct|raw }}
+                            {% endif %}
+                        {% else %}
+                            {% if col == 'gross_weight' %}
+                                {{ res.getHit["_source"][col]|setting_gross_weight(app.user.id)|raw }}
+                            {% else %}
+                                {{ res.getHit["_source"][col]|raw }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+        <fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;">
+            <fthrow style="display:table-row;border-spacing:0;height:0;border-collapse:collapse">
+                <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+                {% for col in column %}
+                    <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+                {% endfor %}
+            </fthrow>
+        </fthfoot>
+    </table>
+    <div style="overflow: hidden; padding-left: 0px; padding-right: 0px; position: absolute; margin-top: 0px; top: 0px; z-index: 1001; left: 0px; width: 1170px;"
+         class="floatThead-container">
+        <table class="table table-striped floatThead-table test"
+               style="background: #fff;border-collapse: collapse; border: 0px none rgb(128, 128, 128); display: table; margin: 0px; table-layout: auto; width: 1170px;">
+            <colgroup>
+                <col style="width: 18px;">
+                {% for col in column %}
+                    <col style="width: auto;">
+                {% endfor %}
+            </colgroup>
+        </table>
+    </div>
+</div>
+<div class="jariff-pagination">
+    {{ pagination|raw }}
+</div>
+
+{#<script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/jquery.floatThead.js') }}"></script>#}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+<script type="text/javascript">
+    $("table.table").floatThead();
+
+    $('.pagination li a').on('click', function () {
+
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            beforeSend: function () {
+                $('#page').html('<div style="text-align: center">' +
+                        '<img src="/bundles/jariffproject/frontend/images/301.GIF">' +
+                        '<h5 style="margin-top: 15px">Loading...</h5>' +
+                        '</div>'
+                )
+                ;
+            },
+            success: function(data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+
+                    $('#page').html(res.html_string);
+
+                }
+
+            }
+        });
+
+        var urlSearch = Routing.generate('member_search_shipments_result_uy_exports');
+        var url = document.URL.split('?');
+        var page = $(this).attr('href').split('/');
+
+        if (parseInt(page[page.length - 1]))
+            page = page[page.length - 1];
+        else
+            page = 1;
+
+        window.history.pushState("object or string", "Title", urlSearch + '/' + page + '?' + url[1]);
+
+
+
+        return false;
+
+    })
+
+    $('.j-modal-company-one-shipments').on('click', function () {
+        var nameCompany = $(this).attr('data-whatever');
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('data-url'),
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('.j-modal-title').html(nameCompany);
+                    $('.show-shipments-one').html(res.html_string);
+                }
+            }
+        })
+    })
+</script>

@@ -1,0 +1,283 @@
+{% extends 'JariffProjectBundle::landing_member.html.twig' %}
+
+{% block middle_content %}
+<section id="content">
+<div class="content-wrap">
+
+    <div class="container clearfix">
+        <div class="entry">
+
+
+            <div class="one_third">
+                <p><span class="dropcap2">S</span>earch for any term that would appear in customs shipment records.</p>
+            </div>
+            <div class="one_third">
+                <p><span class="dropcap2">T</span>rack Competitors. Find your competitors and track their shipment activity.
+                </p>
+            </div>
+            <div class="one_third last">
+                <p><span class="dropcap2">C</span>ontact Companies. Find and get in touch with buyers and suppliers.</p>
+            </div>
+            <div class="divider"></div>
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">We Miss Your Preference
+                        <button type="button" class="close j-close" aria-hidden="true">&times;</button>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p style="color: #a94442">
+                        We noticed that you have not saved the account setup properly. In order to serve you the best
+                        possible
+                        way, you will have to tell us a little bit information about what you want to see, such as your
+                        language, your
+                        metric, your currency, etc. !!<br/><br/>
+                        Would you like to do this now?
+                    </p>
+                </div>
+
+                <div class="btn-group btn-group-justified" style="width: 100.3%;">
+                    <a class="btn btn-default" role="button" style="border-color: #ebccd1">Yes, let’s do it now.</a>
+
+                    <a class="btn btn-default" role="button" style="border-color: #ebccd1">No, remind me later.</a>
+                </div>
+
+
+            </div>
+            <br>
+
+            <div class="cl"></div>
+            <h5>Activity Feed</h5>
+
+            <div class="divider"></div>
+        </div>
+
+        {% endblock %}
+
+        {% block right_sidebar %}
+        <div class="one_first">
+            <aside class="widget widget_custom_advertising_entries">
+                <h2 class="widgettitle">IT'S LIMITED ACCESS</h2>
+
+                <p>
+                    You have limited access to Stradetegy's search, company profiles, shipment data, and more.
+                </p>
+
+                <p>
+                    Let us show you what you can do with a Stradetegy subscription — sign up for a free demo today.
+                </p>
+
+                <a href="#" class="button">
+                    Request a demo
+                </a>
+
+                or
+
+                <a href="">see plans.</a>
+            </aside>
+        </div>
+
+        <div class="one_first">
+            <aside class="widget widget_custom_contact_form_entries">
+                <h2 class="widgettitle">YOUR ACCOUNT</h2>
+
+
+                <a href="">Messages ( 0 new )</a>
+                <br/>
+                <a href="">Account Setting</a>
+
+                <br/>
+                <br/>
+
+                <p>
+                    CREDIT REMAINING
+                    <br/>
+                    0 profile views <a href="">(see visited profiles)</a>
+                    <br/>
+                    <a href="">Upgrade for more credits</a>
+                </p>
+
+
+                <p>YOUR SUBSCRIPTION
+                    <br/>
+                    Free User <a href="" class="button">Subscribe</a>
+                </p>
+
+            </aside>
+        </div>
+
+        <div class="one_first">
+            <aside class="widget widget_links">
+                <h2 class="widgettitle">HELP ARTICLES</h2>
+
+                <p>
+                    <a href="">Global Search</a>
+                    <br/>
+                    <span style="font-size: 10px">Search for companies, products, and more</span>
+                </p>
+
+                <p>
+                    <a href="">Contacting Companies</a>
+                    <br/>
+                    <span style="font-size: 10px">Powerful customs data search</span>
+                </p>
+
+                <p>
+                    <a href="">Account And FAQs</a>
+                    <br/>
+                    <span style="font-size: 10px">General information about Stradetegy</span>
+                </p>
+
+
+            </aside>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock %}
+
+{% block style %}
+<link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap.css') }}" type="text/css"
+rel="stylesheet"
+media="screen"/>
+
+<link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap-tour.css') }}" type="text/css"
+rel="stylesheet"
+media="screen"/>
+{% endblock %}
+
+
+
+{% block javascript %}
+<script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap/bootstrap.js') }}"
+type="text/javascript"></script>
+
+<script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap-tour/bootstrap-tour.js') }}"
+type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    var tour = new Tour({
+        template: "<div class='popover tour'>" +
+        "<div class='arrow'></div>" +
+        "<h3 class='popover-title'></h3>" +
+        "<div class='popover-content'></div>" +
+        "<div class='popover-navigation'>" +
+        "<button class='btn btn-default' data-role='prev'>« Back</button>" +
+        "" +
+        "<button class='btn btn-default' data-role='next'>Next »</button>" +
+        "<button class='btn btn-default' data-role='end'>Skip</button>" +
+        "</div>" +
+        "</div>"
+    });
+
+    tour.addSteps([
+    {
+        title: "Welcome to sTRADEtegy !!",
+        content: "Congratulations, you’ve made it here. On behalf of the sTRADEtegy Team, we" +
+        "welcome your first visit with this brief introductory tour. Please navigate further by clicking on the" +
+        "Next / Back button.",
+        backdrop: true,
+        orphan: true,
+        duration: '6000',
+        template: "<div class='popover tour'>" +
+        "<div class='arrow'></div>" +
+        "<h3 class='popover-title'></h3>" +
+        "<div class='popover-content'></div>" +
+//                            "<div class='checkbox' style='margin-left: 17px;'>" +
+//                            "<label>" +
+//                            "<input type='checkbox'> Don’t show me this welcome screen in the future" +
+//                            "</label>" +
+//                            "</div>" +
+"<div class='popover-navigation'>" +
+"<button class='btn btn-default' data-role='prev'>« Back</button>" +
+"" +
+"<button class='btn btn-default' data-role='next'>Next »</button>" +
+"<button class='btn btn-default' data-role='end'>Skip this, I got it</button>" +
+"</div>" +
+
+
+"</div>"
+},
+{
+    element: ".j-tour-dashboard",
+    placement: "bottom",
+    title: "This is your dashboard",
+    content: "Everything important to you, your business, and your accounts will be shown here.",
+    duration: '6000'
+},
+{
+    element: ".j-tour-search",
+    placement: "bottom",
+    title: "This is your Search area",
+    content: "Start searching for anything you would like to do from this menu.",
+    duration: '6000'
+},
+{
+    element: ".j-tour-groups",
+    placement: "bottom",
+    title: "This is your Groups area",
+    content: "Everything important that you grouped from your previous search results is always available here until you delete it.",
+    duration: '6000'
+},
+{
+    element: ".j-tour-stats",
+    placement: "bottom",
+    title: "This is your Stats area",
+    content: "Everything important that you grouped from your previous search results is always available here until you delete it.",
+    duration: '6000'
+},
+{
+    backdrop: true,
+    orphan: true,
+    title: "That's the overview on this page",
+    content: "That's the overview on this page, now I'm out of here and if you need me again, please just click the question mark button in the top corner to call me back.",
+    template: "<div class='popover tour'>" +
+    "<div class='arrow'></div>" +
+    "<h3 class='popover-title'></h3>" +
+    "<div class='popover-content'></div>" +
+//                            "<div class='checkbox' style='margin-left: 17px;'>" +
+//                            "<label>" +
+//                            "<input type='checkbox'> Don’t show me this welcome screen in the future" +
+//                            "</label>" +
+//                            "</div>" +
+"<div class='popover-navigation'>" +
+"<button class='btn btn-default' data-role='prev'>« Back</button>" +
+"" +
+//                            "<button class='btn btn-default' data-role='next'>Next »</button>" +
+"<button class='btn btn-default' data-role='end'>Ok, I got it</button>" +
+"</div>" +
+
+
+"</div>"
+}
+
+]);
+
+// Initialize the tour
+tour.init();
+
+// Start the tour
+tour.start();
+
+$('.j-show-help').on('click', function () {
+    tour.restart();
+})
+
+$('.j-close').on('click', function () {
+    $(this).parent('.panel-title').parent('.panel-heading').parent('.panel-danger').remove();
+})
+
+
+})
+
+
+        // script by Josh Fraser (http://www.onlineaspect.com)
+
+
+        </script>
+
+
+        {% endblock %}

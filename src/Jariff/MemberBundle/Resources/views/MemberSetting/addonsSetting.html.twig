@@ -1,0 +1,76 @@
+{% extends 'JariffProjectBundle::base_member_setting.html.twig' %}
+
+{% form_theme edit_form 'JariffProjectBundle:Themes:form_checkbox_country_subs.html.twig' %}
+{% form_theme form_history 'JariffProjectBundle:Themes:form_checkbox_subs.html.twig' %}
+{% form_theme form_number_of_searches 'JariffProjectBundle:Themes:form_checkbox_subs.html.twig' %}
+{% form_theme form_number_of_downloads 'JariffProjectBundle:Themes:form_checkbox_subs.html.twig' %}
+    {% form_theme form_tbp 'JariffProjectBundle:Themes:form_checkbox_subs.html.twig' %}
+{% block header_title %}Search Setting{% endblock %}
+
+{% block content %}
+
+<h4>Countries</h4>
+{# <div class="crow"> #}
+<form action="{{ path('member_addons_setting_edit') }}" method="get" id="contactform">
+    {{ form_widget(edit_form) }}
+{# <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <button class="button" id="contact_form_formsend" tabindex="8"><span>Save Changes</span></button>
+
+    </div>
+</div> #}
+</form>
+{# </div> #}
+<div class="clear"></div>
+<br/>
+
+<h4>History</h4>
+{{ form_widget(form_history) }}
+
+<div class="clear"></div>
+<br/>
+
+<h4>Number Of Searches</h4>
+{{ form_widget(form_number_of_searches) }}
+
+<div class="clear"></div>
+<br/>
+
+<h4>Number Of Downloads</h4>
+{{ form_widget(form_number_of_downloads) }}
+
+<div class="clear"></div>
+<br/>
+
+<h4 class="col-md-2">The Big Picture</h4>
+{{ form_widget(form_tbp) }}
+
+{% endblock %}
+
+{% block javascript %}
+{#{{ parent() }}#}
+{#<script type="text/javascript">#}
+{#$(document).ready(function () {#}
+    {#var addonSubscription = "{{ lastSubscription.addons }}";#}
+    {#var limit = 1;#}
+    {#if (addonSubscription == 1) {#}
+        {#limit = 1;#}
+        {#console.log("limit 1");#}
+    {#} else if (addonSubscription == 2) {#}
+        {#limit = 3;#}
+        {#console.log("limit 3");#}
+    {#} else {#}
+        {#limit = 20;#}
+        {#console.log("limit 20");#}
+    {#}#}
+
+    {#$("input[type='checkbox']").on('change', function(evt) {#}
+        {#console.log("check " + $("input:checked").length + " limit " + limit);#}
+        {#if($("input:checked").length > limit) {#}
+            {#this.checked = false;#}
+            {#console.log("check false " + $("input:checked").length);#}
+        {#}#}
+    {#});#}
+{#});#}
+{#</script>#}
+{% endblock %}

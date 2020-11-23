@@ -1,0 +1,17 @@
+{% block form_label %}
+    {% spaceless %}
+            <label {% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                <img style="position: absolute;" src="{{ asset('/bundles/jariffproject/frontend/images/flags-iso/shiny/16/'~(label|preg_country[0]|trans({}, translation_domain))|upper~".png") }}">
+                <span style="margin-left: 20px">{{ label }}</span>
+            </label>
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block checkbox_widget %}
+    {% spaceless %}
+        <div class="check_parent">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            
+        </div>
+    {% endspaceless %}
+{%- endblock checkbox_widget %}

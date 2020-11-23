@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="author" content="SemiColonWeb"/>
+
+    <!-- Stylesheets
+    ============================================= -->
+
+    {% block head_style %}
+
+    {% stylesheets
+
+    'bundles/jariffproject/frontend/css/fonts.googlelapis.com.css'
+    'bundles/jariffproject/frontend/css/bootstrap.css'
+    'bundles/jariffproject/frontend/css/style.css'
+    'bundles/jariffproject/frontend/css/dark.css'
+    'bundles/jariffproject/frontend/css/font-icons.css'
+    'bundles/jariffproject/frontend/css/animate.css'
+    'bundles/jariffproject/frontend/css/magnific-popup.css'
+    'bundles/jariffproject/frontend/css/responsive.css'
+    'bundles/jariffproject/frontend/css/jquery-ui.css'
+
+    filter='cssrewrite' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+
+    {#{{ form_stylesheet(form) }}#}
+    {% endstylesheets %}
+
+        <!--[if lt IE 9]>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js') }}"></script>
+        <![endif]-->
+
+        {% block style %}
+
+        {% endblock %}
+
+        {% endblock head_style %}
+
+        {#<script type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/jquery.js') }}"></script>#}
+        {#<script type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/jquery-ui.js') }}"></script>#}
+        {#<script type="text/javascript" src="{{ asset('/bundles/jariffproject/frontend/js/plugins.js') }}"></script>#}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+        <title>TRADEtegy | International Trade Research Made Easy</title>
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+
+
+    <body class="stretched">
+    <!-- BEGIN LivePerson Monitor. -->
+    {#<script type="text/javascript"> window.lpTag=window.lpTag||{};if(typeof window.lpTag._tagCount==='undefined'){window.lpTag={site:'47200450'||'',section:lpTag.section||'',autoStart:lpTag.autoStart===false?false:true,ovr:lpTag.ovr||{},_v:'1.5.1',_tagCount:1,protocol:location.protocol,events:{bind:function(app,ev,fn){lpTag.defer(function(){lpTag.events.bind(app,ev,fn);},0);},trigger:function(app,ev,json){lpTag.defer(function(){lpTag.events.trigger(app,ev,json);},1);}},defer:function(fn,fnType){if(fnType==0){this._defB=this._defB||[];this._defB.push(fn);}else if(fnType==1){this._defT=this._defT||[];this._defT.push(fn);}else{this._defL=this._defL||[];this._defL.push(fn);}},load:function(src,chr,id){var t=this;setTimeout(function(){t._load(src,chr,id);},0);},_load:function(src,chr,id){var url=src;if(!src){url=this.protocol+'//'+((this.ovr&&this.ovr.domain)?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site;}var s=document.createElement('script');s.setAttribute('charset',chr?chr:'UTF-8');if(id){s.setAttribute('id',id);}s.setAttribute('src',url);document.getElementsByTagName('head').item(0).appendChild(s);},init:function(){this._timing=this._timing||{};this._timing.start=(new Date()).getTime();var that=this;if(window.attachEvent){window.attachEvent('onload',function(){that._domReady('domReady');});}else{window.addEventListener('DOMContentLoaded',function(){that._domReady('contReady');},false);window.addEventListener('load',function(){that._domReady('domReady');},false);}if(typeof(window._lptStop)=='undefined'){this.load();}},start:function(){this.autoStart=true;},_domReady:function(n){if(!this.isDom){this.isDom=true;this.events.trigger('LPT','DOM_READY',{t:n});}this._timing[n]=(new Date()).getTime();},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],ev:lpTag.ev||[]};lpTag.init();}else{window.lpTag._tagCount+=1;} </script>#}
+    <!-- END LivePerson Monitor. -->
+    {% block body %}
+
+<!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+<!-- Top Bar
+    ============================================= -->
+    <div id="top-bar">
+        <div class="container clearfix">
+            <div class="col_half nobottommargin">
+
+            <!-- Top Links
+            ============================================= -->
+            <div class="top-links">
+                <ul>
+                    <li><a href="{{ url('demo_global_search') }}">Buyers</a></li>
+                    <li><a href="{{ url('demo_global_search') }}">Suppliers</a></li>
+                    <!--<li><a href="{{ url('member_login') }}">Logistics</a></li>-->
+                    <li><a href="{{ url('member_login') }}">Login</a>
+
+                        <div class="top-link-section">
+                            <form id="top-login" role="form">
+                                <div class="input-group" id="top-login-username">
+                                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                                    <input type="email" class="form-control" placeholder="Email address" required="">
+                                </div>
+                                <div class="input-group" id="top-login-password">
+                                    <span class="input-group-addon"><i class="icon-key"></i></span>
+                                    <input type="password" class="form-control" placeholder="Password" required="">
+                                </div>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="remember-me"> Remember me
+                                </label>
+                                <button class="btn btn-danger btn-block" type="submit">Sign in</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- .top-links end -->
+
+        </div>
+
+        <div class="col_half fright col_last nobottommargin">
+
+            <!-- Top Social
+            ============================================= -->
+            <div id="top-social">
+                <ul>
+                    <li><a href="#" class="si-linkedin"><span class="ts-icon"><i class="icon-linkedin"></i></span><span
+                        class="ts-text">LinkedIn</span></a>
+                    </li>
+                    <li><a href="https://facebook.com/stradetegy" class="si-facebook"><span class="ts-icon"><i class="icon-facebook"></i></span><span
+                        class="ts-text">Facebook</span></a>
+                    </li>
+                    <li><a href="https://twitter.com/stradetegy" class="si-twitter"><span class="ts-icon"><i class="icon-twitter"></i></span><span
+                        class="ts-text">Twitter</span></a></li>
+                    <!--<li><a href="#" class="si-dribbble"><span class="ts-icon"><i class="icon-dribbble"></i></span><span class="ts-text">Dribbble</span></a></li>
+                    <li><a href="#" class="si-github"><span class="ts-icon"><i class="icon-github-circled"></i></span><span class="ts-text">Github</span></a></li>
+                    <li><a href="#" class="si-pinterest"><span class="ts-icon"><i class="icon-pinterest"></i></span><span class="ts-text">Pinterest</span></a></li>
+                    <li><a href="#" class="si-instagram"><span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span></a></li>
+                    <li><a href="tel:+91.11.85412542" class="si-call"><span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+91.11.85412542</span></a></li> -->
+                </ul>
+            </div>
+            <!-- #top-social end -->
+
+        </div>
+
+    </div>
+
+</div>
+<!-- #top-bar end -->
+
+<!-- Header
+    ============================================= -->
+    {% block top_inner %}
+    <header id="header" class="sticky-style-2">
+
+        <div class="container clearfix">
+
+        <!-- Logo
+        ============================================= -->
+        <div id="logo">
+            <a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img
+                src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}" alt="TRADEtegy Logo"></a>
+                <a href="#" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img
+                    src="{{ asset('/bundles/jariffproject/frontend/images/logo@2x.png') }}"
+                    alt="TRADEtegy Logo"></a>
+                </div>
+                <!-- #logo end -->
+
+                <ul class="header-extras">
+                    <li>
+                        <i class="i-plain icon-email3 nomargin"></i>
+
+                        <div class="he-text">
+                            Drop an Email
+                            <span>info@tradetegy.com</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="i-plain icon-call nomargin"></i>
+
+                        <div class="he-text">
+                            Get in Touch
+                            <span>555-666-777</span>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="header-wrap">
+
+            <!-- Primary Navigation
+            ============================================= -->
+            <nav id="primary-menu" class="style-2 sub-title">
+
+                <div class="container clearfix">
+
+                    <div id="primary-menu-trigger" class="background-image:none !important"><i class="icon-reorder"></i>
+                    </div>
+
+                    <!-- Top Search
+                    ============================================= -->
+                    <div id="top-search">
+                        <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+
+                        <form id="myForm" action="#" method="get">
+                            <input type="text" name="q" class="form-control" value=""
+                            placeholder="Type &amp; Hit Enter..">
+                        </form>
+                    </div>
+                    <!-- #top-search end -->
+
+                </div>
+
+            </nav>
+            <!-- #primary-menu end -->
+
+        </div>
+
+    </header>
+    {% endblock top_inner %}
+    <!-- #header end -->
+
+    {% block middle_content %}
+
+    {% endblock %}
+
+<!-- Footer
+    ============================================= -->
+    <footer id="footer" class="dark">
+
+        <div class="container">
+
+        <!-- Footer Widgets
+        ============================================= -->
+        <div class="footer-widgets-wrap clearfix">
+
+            <div class="col_two_third">
+
+                <div class="col_one_third">
+
+                    <div class="widget widget_links clearfix">
+
+                        <h4>Buyers</h4>
+
+                        <ul>
+                            <!--<li><a href="#">Benefits</a></li>-->
+                            <li><a href="{{ url('signup') }}">Plans &amp; Pricing </a></li>
+                            <!--li><a href="#">Clients</a></li>-->
+                            <!--<li><a href="#">Buyer Directory</a></li>-->
+                        </ul>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col_one_third">
+
+                    <div class="widget widget_links clearfix">
+
+                        <h4>Suppliers</h4>
+
+                        <ul>
+                            <!--<li><a href="#">Benefits</a></li>-->
+                            <li><a href="{{ url('signup') }}">Plans &amp; Pricing </a></li>
+                            <!--<li><a href="#">Create Your Profile</a></li>-->
+                            <!--<li><a href="#">Supplier Directory</a></li>-->
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="col_one_third col_last">
+
+                    <div class="widget widget_links clearfix">
+
+                        <h4>TRADEtegy</h4>
+
+                        <ul>
+                            <!--<li><a href="#">What's New</a></li>
+                            <li><a href="#">Intelligence Platform</a></li>
+                            <li><a href="#">Behind The Scenes</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Referral Program</a></li>-->
+                            <li><a href="{{ url('contact') }}">Contact Us</a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col_one_third col_last">
+
+                <div class="widget clearfix">
+
+                    <img src="{{ asset('/bundles/jariffproject/frontend/images/footer-widget-logo.png') }}" alt=""
+                    class="footer-logo">
+
+                    <div style="background: url('images/world-map.png') no-repeat center center; background-size: 100%;">
+                        <address>
+                            <strong>Headquarters:</strong><br>
+                            1PO BOX _____, Newalla, OK 74857<br>
+                            
+                        </address>
+                        <abbr title="Phone Number"><strong>Phone:</strong></abbr> +1 405-421-9501<br>
+                        <!--<abbr title="Fax"><strong>Fax:</strong></abbr> (00) 12345 6789<br> -->
+                        <abbr title="Email Address"><strong>Email:</strong></abbr> info@tradetegy.com
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- .footer-widgets-wrap end -->
+
+    </div>
+
+    <!-- Copyrights
+    ============================================= -->
+    <div id="copyrights">
+
+        <div class="container clearfix">
+
+            <div class="col_half">
+                Copyrights &copy; 2016 All Rights Reserved by TRADEtegy Inc.<br>
+
+                <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+            </div>
+
+            <div class="col_half col_last tright">
+                <div class="fright clearfix">
+                    <a href="https://www.facebook.com/stradetegy/" class="social-icon si-small si-borderless si-facebook">
+                        <i class="icon-facebook"></i>
+                        <i class="icon-facebook"></i>
+                    </a>
+
+                    <a href="https://twitter.com/stradetegy" class="social-icon si-small si-borderless si-twitter">
+                        <i class="icon-twitter"></i>
+                        <i class="icon-twitter"></i>
+                    </a>
+
+                </div>
+
+                <div class="clear"></div>
+
+                <i class="icon-envelope2"></i> info@tradetegy.com <span class="middot">&middot;</span> 
+                <i class="icon-headphones"></i> +91-55-6666-7777 <span class="middot">&middot;</span> 
+                <!--<i class="icon-skype2" ></i>-->
+                <!--<div class="skypechat" style="display: inline-block !important; margin: 0 !important; padding: 0 !important;">
+                <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                <div id="SkypeButton_Call_stradetegyOnSkype_1">
+                 <script type="text/javascript">
+                 Skype.ui({
+                 "name": "chat",
+                 "element": "SkypeButton_Call_stradetegyOnSkype_1",
+                 "participants": ["stradetegyOnSkype"]
+                 });
+                 </script>
+                </div>
+                </div>-->
+                
+                <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
+                <a onclick="Skype.tryAnalyzeSkypeUri('chat', '0');" href="skype:stradetegyOnSkype?chat"><i class="icon-skype2" ></i></a>
+               
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- #copyrights end -->
+
+</footer>
+<!-- #footer end -->
+
+</div>
+<!-- #wrapper end -->
+
+<!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- Footer Scripts
+    ============================================= -->
+
+{% endblock body %}
+
+
+
+
+{% javascripts
+'bundles/jariffproject/frontend/js/jquery.js'
+'bundles/jariffproject/frontend/js/jquery-ui.js'
+'bundles/jariffproject/frontend/js/plugins.js'
+'bundles/jariffproject/frontend/js/functions.js'
+'bundles/jariffproject/frontend/js/jquery-ui-timepicker-addon.js'
+'bundles/jariffproject/frontend/js/jquery.ba-outside-events.min.js'
+
+
+'bundles/jariffproject/frontend/icon/js/raphael-min.js'
+
+
+'bundles/jariffproject/frontend/js-old/jquery.easing.js'
+
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.revolution.min.js'
+'bundles/jariffproject/frontend/revolution/js/jquery.themepunch.plugins.min.js'
+'bundles/jariffproject/frontend/js-old/jquery.tokeninput.js'
+
+'bundles/jariffproject/frontend/js-old/jackbox.js'
+'bundles/jariffproject/frontend/js-old/jquery.script.js'
+'bundles/jariffproject/frontend/js-old/jackbox-lib.js'
+
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine.js'
+'bundles/jariffproject/frontend/js-old/jquery.validationEngine-lang.js'
+'bundles/jariffproject/frontend/js-old/jquery.jtweetsanywhere.js'
+'bundles/jariffproject/frontend/js-old/respond.js'
+'bundles/jariffproject/frontend/js-old/jquery.autocomplete.js'
+'bundles/jariffproject/frontend/js-old/jquery.prettyPhoto.js'
+'bundles/jariffproject/frontend/hover/js/jquery.easing.1.3.min.js'
+'bundles/jariffproject/frontend/hover/js/jquery.hoveralls.js'
+
+
+combine=false %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+
+{% endjavascripts %}
+
+{% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% block addJava %}
+
+    {% endblock %}
+
+
+    {#{% set pathActive = app.request.attributes.get('_route') %}#}
+    {#<script type="text/javascript">#}
+    {#$(document).ready(function () {#}
+
+    {#{% if pathActive == 'global_search_buyer' %}#}
+    {#$('.tab-search').eq(2).children('a').click();#}
+    {#{% endif %}#}
+
+    {#{% if pathActive == 'global_search_supplier' %}#}
+    {#$('.tab-search').eq(1).children('a').click();#}
+    {#{% endif %}#}
+
+    {#$('.j-tabs-identify').on("click", function () {#}
+    {#var qActive = $('.j-q').html();#}
+    {#var tabActive = $(this).children('span').html();#}
+    {#var url;#}
+
+    {#if (tabActive == 'By Suppliers') {#}
+    {#url = Routing.generate('global_search_supplier', {key: qActive});#}
+    {#}#}
+
+    {#if (tabActive == 'By Buyers') {#}
+    {#url = Routing.generate('global_search_buyer', {key: qActive});#}
+    {#}#}
+
+    {#window.history.pushState("object or string", "Title", url);#}
+    {#})#}
+
+    {#})#}
+    {#</script>#}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            {#var value = $('.global-search').val();#}
+
+            {#if (value != '') {#}
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_count_supplier') }}',#}
+            {#data: {key: value},#}
+            {#success: function (data) {#}
+            {#$('.count-supplier').html(data);#}
+
+            {#}#}
+            {#});#}
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_count_buyer') }}',#}
+            {#data: {key: value},#}
+            {#success: function (data) {#}
+            {#$('.count-buyer').html(data);#}
+
+            {#}#}
+            {#});#}
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_global_buyer_search') }}',#}
+            {#data: {key: value},#}
+            {#success: function (data) {#}
+            {#$('.j-result-buyer').html(data);#}
+
+            {#}#}
+            {#});#}
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_global_supplier_search') }}',#}
+            {#data: {key: value},#}
+            {#success: function (data) {#}
+            {#$('.j-result-supplier').html(data);#}
+
+            {#}#}
+            {#});#}
+            {#}#}
+
+            {#$('#myForm').on('submit', function () {#}
+
+
+            {#var value = $(this).serialize();#}
+            {#var url = Routing.generate('global_search_supplier', {key: value.split("=")[1]});#}
+
+            {#if (value.split("=")[1]) {#}
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_global_supplier_search') }}',#}
+            {#data: {key: value.split("=")[1]},#}
+            {#success: function (data) {#}
+            {#$('.j-result-supplier').html(data);#}
+
+            {#}#}
+            {#});#}
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_global_buyer_search') }}',#}
+            {#data: {key: value.split("=")[1]},#}
+            {#success: function (data) {#}
+            {#$('.j-result-buyer').html(data);#}
+
+            {#}#}
+            {#});#}
+
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_count_supplier') }}',#}
+            {#data: {key: value.split("=")[1]},#}
+            {#success: function (data) {#}
+            {#$('.count-supplier').html(data);#}
+
+            {#}#}
+            {#});#}
+
+            {#$.ajax({#}
+            {#type: 'GET',#}
+            {#url: '{{ path('ajax_count_buyer') }}',#}
+            {#data: {key: value.split("=")[1]},#}
+            {#success: function (data) {#}
+            {#$('.count-buyer').html(data);#}
+
+            {#}#}
+            {#});#}
+
+
+            {#window.history.pushState("object or string", "Title", url);#}
+
+
+            {#return false;#}
+
+            {#} else {#}
+            {#alert("field cannot empty");#}
+            {#}#}
+            {#return false;#}
+            {#});#}
+
+//            $('#myForm').HoverAlls({alertbox: true, speed_in: 1400, speed_out: 500, bg_width: "900px", bg_height: "100px", target_container: "#catalert", overlay_class: "lightbox1overlay", container_class: "lightbox4container", html_mode: "#runaway"});
+
+
+<<<<<<< HEAD
+})
+</script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-44324345-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+=======
+        })
+    </script>
+>>>>>>> 6ff85772bf21e1d28bf6a71871dbc4fe3df017c4
+{% endblock %}
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var $_Tawk_API={},$_Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/5707cb65289ff9316e7b3f6e/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    </body>
+</html>

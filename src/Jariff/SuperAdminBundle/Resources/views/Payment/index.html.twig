@@ -1,0 +1,19 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block content %}
+    <div id="content">
+      <a href="{{ path('admin_payment_new') }}" class="btn btn-large btn-primary ajax" type="button">Add payment</a><br/>
+      <div id="grid_paging"></div>
+    </div>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block javascript %}
+	<script src="/bundles/jariffadmin/js/grid-payment.js"></script>
+    <script type="text/javascript">
+        $(function () {
+        });    
+    </script>
+{% endblock %}

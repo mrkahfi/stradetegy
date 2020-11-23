@@ -1,0 +1,84 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_email_show', {'id' : member.id}) }}">Member #{{ member.number }} Email</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        {% if entity.id %}
+        Edit Email
+        {% else %}
+        New Email
+        {% endif %}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+
+{{ form_start(form) }}
+
+<fieldset>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="social-box">
+            <div class="body">
+                {{ form_errors(form.subject) }}
+                <h1>Subject :</h1>
+                {{ form_widget(form.subject) }}
+                <h1>Html Message :</h1>
+                {{ form_widget(form.body) }}
+                <h1>Text message :</h1>
+                {{ form_widget(form.altbody) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ form_row(form.member) }}         
+{{ form_row(form._token) }}
+<button type="submit" class="btn btn-primary">Save</button>
+</fieldset>
+</form>
+
+
+{% if entity.id %}
+    <a href="{{ path('admin_member_email_send', {'id' : entity.id}) }}">Send this email</a>
+{% endif %}
+{% endblock %}
+
+{% block style %}
+    <link href="/bundles/jariffproject/admin/plugins/bootstrap.wysihtml5/bootstrap-wysihtml5.css" type="text/css" rel="stylesheet" media="screen"/>
+{% endblock %}
+
+{% block javascript %}
+	<script type="text/javascript" src="/bundles/jariffproject/admin/plugins/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+	tinymce.init({
+        mode : "specific_textareas",
+        editor_selector : "tinymce",
+	    theme: "modern",
+	    plugins: [
+		    "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+		    "searchreplace wordcount visualblocks visualchars code fullscreen",
+		    "insertdatetime media nonbreaking save table contextmenu directionality paste textcolor"
+	   ],
+	   toolbar1: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
+	   toolbar2: "sizeselect fontselect fontsizeselect | forecolor backcolor link image",
+	   font_formats: "Arial=arial,helvetica,sans-serif;Amiri=Amiri",
+	   fontsize_formats: "8pt 12pt 18pt",
+	 }); 
+    </script>
+{% endblock %}

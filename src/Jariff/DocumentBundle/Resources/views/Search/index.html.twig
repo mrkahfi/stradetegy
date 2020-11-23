@@ -1,0 +1,345 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Searching{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="#">Searching</a>
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div class="span12">
+        <!-- BEGIN DYNAMIC TABLE EXAMPLE -->
+
+        <div class="social-box">
+
+            <div class="header">
+
+                <div class="btn-group hidden-phone">
+                    {#<a class="btn btn-primary" id="add-row" href="#"><i class="icon-pencil"></i> Add</a>#}
+
+                    <h3>Total Data In Server : <strong class='j-count'></strong></h3>
+                </div>
+
+                <!-- BEGIN TABLE TOOLS -->
+                <div class="tools">
+                    {#<button class="btn btn-success" data-toggle="collapse" data-target="#advanced-search"><i#}
+                    {#class="icon-filter"></i> Advanced Search#}
+                    {#</button>#}
+                    <div class="btn-group">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i></button>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="#">Print</a></li>
+                            <li><a href="#">Save as PDF</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Export to Excel</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- END TABLE TOOLS -->
+
+            </div>
+            <!-- BEGIN TABLE BODY -->
+            <div class="body">
+                <!-- BEGIN ADVANCED SEARCH EXAMPLE -->
+
+                <div id="advanced-search">
+                    <table cellpadding="0" cellspacing="0" border="0" class="table table-condensed well">
+                        <thead>
+                        <tr>
+                            <th>Target</th>
+                            <th>Search text</th>
+                            <th>Date Range</th>
+                            <th>Custom Record Fields</th>
+
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="filter_global" class="form-search">
+                            <form action="" method="get" id="myForm" data-url="{{ path('ajax_search') }}">
+                                <td align="center">
+                                    {{ form_row(form.collect) }}
+
+                                </td>
+
+                                <td align="center">{{ form_row(form.q) }}</td>
+                                <td class="search">
+                                    {{ form_row(form.range) }}
+                                    {{ form_row(form.review) }}
+
+
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn dropdown-toggle" data-toggle="dropdown"><i
+                                                    class="icon-cog"></i></button>
+
+                                    </div>
+                                </td>
+                                <td align="center">
+                                    <button class="btn btn-info btn-small">Search</button>
+                                </td>
+                            </form>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="j-filter-fields custom-fields">
+                        {% include 'JariffDocumentBundle:Search:filter_fields.html.twig' %}
+                    </div>
+                </div>
+
+
+                <div class="j-result">
+                    {% if total is not empty %}
+                        <h5>Total Result <span class="label label-important">{{ total }}</span></h5>
+                    {% endif %}
+                    <!-- END ADVANCED SEARCH EXAMPLE -->
+                    <!-- BEGIN TABLE DATA -->
+
+                    <select class="span1 j-load-result" tabindex="1">
+                        <option value="10" {% if review is defined %}{% if review == 10 %}selected="true"{% endif %}{% endif %}>10</option>
+                        <option value="25" {% if review is defined %}{% if review == 25 %}selected="true"{% endif %}{% endif %}>25</option>
+                        <option value="50" {% if review is defined %}{% if review == 50 %}selected="true"{% endif %}{% endif %}>50</option>
+                        <option value="100" {% if review is defined %}{% if review == 100 %}selected="true"{% endif %}{% endif %}>100</option>
+                    </select>
+
+                    <table class="table table-striped table-bordered j-tables"
+                           id="searchTable" width="100%">
+                        <!-- BEGIN -->
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Consignee Name</th>
+                            <th>Consignee Address</th>
+                            <th>Notify Name</th>
+                            {#<th>Berat</th>#}
+
+                            <th>Notify Address</th>
+                            <th>Shipper Name</th>
+                            <th>Shipper Address</th>
+                            <th>Container Number</th>
+                            <th>Product Description</th>
+                            <th>Carrier</th>
+                            <th>Arrival Date</th>
+                            <th>Ship Registered In</th>
+                            <th>Vassel</th>
+                            <th>Voyage</th>
+                            <th>Us Port</th>
+                            <th>Foreign Port</th>
+                            <th>Country Of Origin</th>
+                            <th>Place Of Receipt</th>
+                            <th>Bill Of Landing</th>
+                        </tr>
+                        </thead>
+                        <!-- END -->
+                        <!-- BEGIN -->
+                        <tbody>
+                        {% for res in result %}
+                            <tr>
+                                <td><a href="" style="text-decoration: none">
+                                        <i class="icon-search"></i>
+                                    </a></td>
+                                <td>{{ res.getConsigneeName }}</td>
+                                <td>{{ res.getConsigneeAddress }}</td>
+                                <td>{{ res.getNotifyName }}</td>
+                                {#<td>{{ res.getWeight }}</td>#}
+                                <td>{{ res.getNotifyAddress }}</td>
+                                <td>{{ res.getShipperName }}</td>
+                                <td>{{ res.getShipperAddress }}</td>
+                                <td>{{ res.getContainerNumber }}</td>
+                                <td>{{ res.getProductDescription }}</td>
+                                <td>{{ res.getcarrier }}</td>
+                                <td>{{ res.getArrivalDate | date('Y-m-d') }}</td>
+                                <td>{{ res.getShipRegisteredIn }}</td>
+                                <td>{{ res.getVessel }}</td>
+                                <td>{{ res.getVoyage }}</td>
+                                <td>{{ res.getUsPort }}</td>
+                                <td>{{ res.getForeignPort }}</td>
+                                <td>{{ res.getCountryOfOrigin }}</td>
+                                <td>{{ res.getPlaceOfReceipt }}</td>
+                                <td>{{ res.getBillOfLading }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                        <!-- END -->
+                    </table>
+
+
+
+
+                    {% if result is not empty %}
+                        {{ knp_pagination_render(result) }}
+                    {% endif %}
+                </div>
+
+
+                <!-- END TABLE DATA -->
+            </div>
+
+
+            <!-- END TABLE BODY -->
+        </div>
+        <!-- END DYNAMIC TABLE EXAMPLE -->
+    </div>
+
+
+{% endblock %}
+{% block css %}
+    <link href="{{ asset('/bundles/jariffproject/admin/plugins/datatables/media/DT_bootstrap.css') }}" rel="stylesheet">
+    <style>
+        .wraper #main {
+            margin-top: 40px;
+        }
+
+
+    </style>
+
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('#myForm').on('submit', function () {
+
+                $.ajax({
+                    type: 'GET',
+                    url: $(this).attr('data-url'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $('.j-result').html(data);
+
+                    }
+                });
+
+                window.history.pushState("object or string", "Title", 'searching?' + $(this).serialize());
+
+                return false;
+            });
+
+        })
+    </script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/js/tables.dynamic.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/js/ColReorderWithResize.js') }}"></script>
+    <!-- BEGIN JAVASCRIPT CODES FOR THE CURRENT PAGE -->
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.avgrund.js/jquery.avgrund.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.gritter/jquery.gritter.min.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/bootstrap.daterangepicker/moment.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/bootstrap.daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.pulsate/jquery.pulsate.min.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.raty/jquery.raty.min.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.chosen/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/bootstrap.switch/bootstrapSwitch.js') }}"></script>
+    <script src="{{ asset('/bundles/jariffproject/admin/plugins/jquery.uniform/jquery.uniform.min.js') }}"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+//            $("#searchTable").width("100%");
+
+            var data = $('#searchTable').dataTable({
+
+                "sScrollX": "500px",
+                'bAutoWidth': true,
+                "bScrollCollapse": true,
+                "bPaginate": false,
+//                "bSort": true,
+                "bFilter": false,
+                "aoColumnDefs": [
+                    { "bVisible": false, "aTargets": [7]},
+                    { "bVisible": false, "aTargets": [8]},
+                    { "bVisible": false, "aTargets": [9]},
+                    { "bVisible": false, "aTargets": [10]},
+                    { "bVisible": false, "aTargets": [11]},
+                    { "bVisible": false, "aTargets": [12]},
+                    { "bVisible": false, "aTargets": [13]},
+                    { "bVisible": false, "aTargets": [14]},
+                    { "bVisible": false, "aTargets": [15]},
+                    { "bVisible": false, "aTargets": [16]},
+                    { "bVisible": false, "aTargets": [17]},
+                    { "bVisible": false, "aTargets": [18]}
+                ],
+                "sDom": "Rlfrtip"
+
+
+            });
+
+
+            setInterval(function () {
+                // Do something every 5 seconds
+                $.ajax({
+                    url: '{{ path('count_data') }}',
+                    success: function (data) {
+                        $('.j-count').html(data);
+                    }
+                });
+            }, 1000);
+
+            $('.j-load-result').on('change', function () {
+
+                $('.j-load-count').val($(this).val());
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('ajax_search') }}',
+                    data: $('#myForm').serialize(),
+                    success: function (data) {
+                        $('.j-result').html(data);
+
+                    }
+                });
+
+                window.history.pushState("object or string", "Title", 'searching?' + $('#myForm').serialize());
+            });
+
+            function fnShowHide(iCol) {
+                /* Get the DataTables object again - this is not a recreation, just a get of the object */
+                var oTable = $('#searchTable').dataTable();
+
+                var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+                oTable.fnSetColumnVis(iCol, bVis ? false : true);
+            }
+
+//            $('.switch').on('click',function(){
+//                $(this).children();
+//            })
+
+            $i = 0;
+            $('.switch-mini').on('click', function () {
+
+
+                if ($(this).parent().attr('class') == 'switch-on')
+                    fnShowHide($(this).parents('.switch').attr('data-order'));
+                else if ($(this).parent().attr('class') == 'switch-off')
+                    fnShowHide($(this).parents('.switch').attr('data-order'));
+            })
+
+
+        });
+
+    </script>
+
+    <script>
+        $(function () {
+            var urlAvatar = "{{ asset('/bundles/jariffproject/admin/img/avatar-55.png') }}";
+            $.fn.raty.defaults.path = "{{ asset('/bundles/jariffproject/admin/plugins/jquery.raty/img') }}";
+            UIElementsGeneral.init({urlAvatar: urlAvatar});
+        });
+    </script>
+    <script src="{{ asset('/bundles/jariffproject/admin/js/ui-elements.general.js') }}"></script>
+
+
+
+
+
+
+{% endblock %}

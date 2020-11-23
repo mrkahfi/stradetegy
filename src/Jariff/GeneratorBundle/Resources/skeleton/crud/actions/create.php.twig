@@ -1,0 +1,38 @@
+
+    /**
+     * Creates a new {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/", name="{{ route_name_prefix }}_create")
+     * 
+     * @Template("{{ bundle }}:{{ entity }}:new.html.twig")
+{% endif %}
+     */
+    public function createAction(Request $request)
+    {
+        if(!$this->isGrantAdmin()){
+        }
+        $entity  = new {{ entity_class }}();
+        $form = $this->createForm(new {{ entity_class }}Type(), $entity);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $this->em()->persist($entity);
+            $this->em()->flush();
+
+            $this->success('New data saved');
+            {% if 'show' in actions -%}
+                return $this->redirectUrl('{{ route_name_prefix }}_show', array('id' => $entity->getId()));
+            {%- else -%}
+                return $this->redirectUrl('{{ route_name_prefix }}');
+            {%- endif %}
+
+        }
+
+{% if 'annotation' == format %}
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+{% endif %}
+    }

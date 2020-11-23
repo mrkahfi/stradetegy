@@ -1,0 +1,27 @@
+
+    /**
+     * Deletes a {{ entity }} entity.
+     *
+{% if 'annotation' == format %}
+     * @Route("/delete/{id}", name="{{ route_name_prefix }}_delete")
+     * @Method("GET")
+{% endif %}
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        if(!$this->isGrantAdmin()){
+        }
+
+        $entity = $this->repo('{{ bundle }}:{{ entity }}')->find($id);
+
+        if (!$entity) {
+            $this->errorRedirect('Data {{ entity }} tidak valid.');
+        }
+
+        $this->em()->remove($entity);
+        $this->em()->flush();
+
+        throw $this->successRedirect('Data {{ entity }} berhasil dihapus.');
+
+        return $this->redirectUrl('{{ route_name_prefix }}');
+    }

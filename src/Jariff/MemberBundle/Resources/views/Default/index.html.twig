@@ -1,0 +1,78 @@
+{% extends 'JariffProjectBundle::base_member.html.twig' %}
+
+ {% block content %}
+
+     {% if showSetting %}
+         <div class="panel panel-danger">
+             <div class="panel-heading">
+                 <h3 class="panel-title">We see you haven't selected your search preferences yet. Please do so now.
+
+                 </h3>
+             </div>
+
+
+             <div class="panel-body">
+                 <p style="color: #a94442">
+                     We noticed that you have not saved the account setup properly. In order to serve you the best
+                     possible
+                     way, you will have to tell us a little bit information about what you want to see, such as your
+                     language, your
+                     metric, your currency, etc. !!<br><br>
+                     Would you like to do this now?
+                 </p>
+             </div>
+
+             <div class="btn-group btn-group-justified" style="width: 100.3%;">
+                 <a href="{{ path("change_notify",{"read" : 1, "read_later" : 0}) }}" class="btn btn-default"
+                    role="button"
+                    style="border-color: #ebccd1">Yes, let’s do it now.</a>
+
+                 <a href="{{ path("change_notify",{"read" : 1, "read_later" : 1}) }}" class="btn btn-default"
+                    role="button" style="border-color: #ebccd1">No, remind me later.</a>
+             </div>
+
+
+         </div>
+     {% endif %}
+
+
+     {% if isActive == 0 %}
+         <div class="panel panel-danger">
+             <div class="panel-heading">
+                 <h3 class="panel-title">Subscription Expired
+
+                 </h3>
+             </div>
+
+
+             <div class="panel-body">
+                 <p style="color: #a94442">
+                     We noticed that your subscribtion is <b>expired</b>! Please create new plan to access our premium features<br><br>
+                     Would you like to do this now?
+                 </p>
+             </div>
+
+             <div class="btn-group btn-group-justified" style="width: 100.3%;">
+
+                 <a href="{{ path("member_subscribe") }}" class="btn btn-default"
+                    role="button"
+                    style="border-color: #ebccd1">Yes, let’s do it now.</a>
+
+                 <a href="{{ path("member_subscribe") }}" class="btn btn-default"
+                    role="button" style="border-color: #ebccd1">No, remind me later.</a>
+             </div>
+
+
+         </div>
+     {% endif %}
+
+     <h1 id="overview" class="page-header">My Dashboard</h1>
+
+     {% for row in data %}
+         <p>{{ row.getDescription|raw }}<br/>
+             {{ row.getDateActivity|date("Y-m-d H:i:s")|compare_dates }}</p>
+         <hr>
+     {% else %}
+         <h5>You haven't activity feed</h5>
+     {% endfor %}
+ {% endblock %}

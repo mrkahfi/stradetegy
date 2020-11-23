@@ -1,0 +1,3 @@
+jariff_authorize_net_homepage:
+    path:  /hello/{name}
+    defaults: { _controller: JariffAuthorizeNetBundle:Default:index }

@@ -1,0 +1,22 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block content %}
+
+    <h1>Ok</h1>
+    <h2>New contract sent to your email. Please check your inbox and sign it.<h2>
+    <br/>
+
+    <h1>Your registration data</h1>
+
+    <h5>Email</h5>
+    <p>{{ entity.email }}</p>
+    <h5>Name</h5>
+    <p>{{ entity.salutation }} {{ entity.firstName }} {{ entity.lastName }}</p>
+    <h5>Company name</h5>
+    <p>{{ entity.companyName }}</p>
+    <h5>Country</h5>
+    <p>{{ entity.country }}</p>
+    <h5>Phone</h5>
+    <p>{{ entity.phone }}</p>
+
+{% endblock %}

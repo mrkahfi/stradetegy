@@ -1,0 +1,352 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block menu %}
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="wrap_cont_nav">
+        <div class="cont_nav">
+            <form action="{{ path('demo_search_result') }}" method="get" id="myForm"
+                  data-url="{{ path('demo_search_result') }}" class="j-searching">
+
+
+                <div class="entry-content project_content portfolio_container three_blocks j-content-condition">
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box cmsms_media_box_overwrite">
+                            <div class="form_info cmsms_input">
+                                <select id="search_form_collect" style="width: 123%" name="collect[]"
+                                        required="required" class="j-tour-collect">
+                                    <option value="all" {% if collect[0] is defined and collect[0] == "all" -%}
+                                        selected="selected"
+                                            {% endif -%}>All
+                                    </option>
+                                    <option value="consignee_name"
+                                            {% if collect[0] is defined and collect[0] == "consignee_name" -%}
+                                                selected="selected"
+                                            {% elseif collect[0] is not defined %}
+                                                selected="selected"
+                                            {% endif -%}
+                                            >Importer Name
+                                    </option>
+                                    <option value="consignee_address"
+                                            {% if collect[0] is defined and collect[0] == "consignee_address" -%}
+                                        selected="selected"
+                                            {% endif -%}>Importer Address
+                                    </option>
+                                    <option value="shipper_name"
+                                            {% if collect[0] is defined and collect[0] == "shipper_name" -%}
+                                                selected="selected"
+                                            {% endif -%}
+                                            >Exporter Name
+                                    </option>
+                                    <option value="shipper_address"
+                                            {% if collect[0] is defined and collect[0] == "shipper_address" -%}
+                                        selected="selected"
+                                            {% endif -%}>Exporter Address
+                                    </option>
+                                    <option value="raw_notify_party_name" {% if collect[0] is defined and collect[0] == "raw_notify_party_name" -%}
+                                        selected="selected"
+                                            {% endif -%}>Importer Notify Party
+                                    </option>
+                                    <option value="unloading_port" {% if collect[0] is defined and collect[0] == "unloading_port" -%}
+                                        selected="selected"
+                                            {% endif -%}>US Port Shipment Entered
+                                    </option>
+
+                                    <option value="product_description" {% if collect[0] is defined and collect[0] == "product_description" -%}
+                                        selected="selected"
+                                            {% endif -%}>Product Description
+                                    </option>
+
+                                    <option value="carrier_sasc_code" {% if collect[0] is defined and collect[0] == "carrier_sasc_code" -%}
+                                        selected="selected"
+                                            {% endif -%}>Carrier Code
+                                    </option>
+                                    <option value="vessel_name" {% if collect[0] is defined and collect[0] == "vessel_name" -%}
+                                        selected="selected"
+                                            {% endif -%}>Vessel Name
+                                    </option>
+                                    <option value="loading_port" {% if collect[0] is defined and collect[0] == "loading_port" -%}
+                                        selected="selected"
+                                            {% endif -%}>Foreign Port
+                                    </option>
+                                    {#<option value="value.country" {% if collect[0] is defined and collect[0] == "value.country" -%}#}
+                                    {#selected="selected"#}
+                                    {#{% endif -%}>Origin Of Vessel#}
+                                    {#</option>#}
+                                    <option value="container_id" {% if collect[0] is defined and collect[0] == "container_id" -%}
+                                        selected="selected"
+                                            {% endif -%}>Container Number
+                                    </option>
+                                    <option value="bill_of_lading" {% if collect[0] is defined and collect[0] == "bill_of_lading" -%}
+                                        selected="selected"
+                                            {% endif -%}>Bill Of Lading Number
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box cmsms_media_box_overwrite_1">
+                            <div class="form_info cmsms_input">
+
+                                <input type="text" placeholder="Search" name="q[]" class="input_searching j-tour-q"
+                                       id="field_003" size="10" tabindex="11" required
+                                       value="{% if q[0] is defined %}{{ q[0] }}{% endif %}"
+                                        />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box">
+                            <div class="form_info cmsms_input">
+                                <div class="button_click">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="j-add-condition">
+                    {% if collect is defined %}
+                        {% if collect is not empty and collect|length > 1 %}
+                            {% include 'JariffProjectBundle:Search:append-form-search.html.twig' %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <input type="hidden" placeholder="Search" name="size" class="j-size"
+                       value="{% if size is defined %}{{ size }}{% else %}10{% endif %}"
+                        />
+
+                <input type="hidden" placeholder="Search" name="filter_left_bar" class="j-filter-leftbar"
+                       value="importer or exporter or product"
+                        />
+
+                <input type="hidden" placeholder="Search" name="country_filter" class="j-filter-country"
+                       value=""
+                        />
+
+                <div style="clear: both"></div>
+
+
+                <input type="submit" class="button button-search global-button-search j-tour-button-submit"
+                       value="Search">
+
+                <a class="j-condition add-condition-search"
+                   href="javascript:void(0)">
+                    <span class="livicon j-tour-add-condition" data-name="plus" data-size="32"
+                            ></span></a>
+
+
+            </form>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block content %}
+
+
+
+    {% endblock content %}
+
+{% block left_sidebar %}
+
+{% endblock %}
+
+{% block style %}
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/hover/css/hoveralls.css') }}" type="text/css" rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/wrapping/wrap-ribbon.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/bootstrap-tour.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <div id="dialog-message" title="Advance Search">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Advanced search is available for <strong>subscribers only</strong>. <a href="{{ path('signup') }}"><strong>See
+                    plans now
+                    »</strong></a>
+        </p>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+
+    <script src="{{ asset('/bundles/jariffproject/frontend/icon/js/livicons-1.2.min.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+
+    <script src="{{ asset('/bundles/jariffproject/frontend/js/bootstrap-tour/bootstrap-tour.js') }}"
+            type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var check = $('.input_searching').length;
+
+            if (check > 1)
+                $('.j-condition').attr('style', 'margin-right:100px');
+
+            $('.j-condition').on('click', function () {
+                $('.j-condition').attr('style', 'margin-right:100px');
+                var numItems = $('.j-append-condition').length;
+                if (numItems < 1) {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path('demo_search_fix_append_form') }}',
+                        success: function (data) {
+                            $('.j-add-condition').append(data);
+                        }
+                    })
+                } else {
+//                    alert('Advanced search is available for subscribers only. See plans now »');
+
+                    $("#dialog-message").dialog({
+                        modal: true
+                    });
+
+                }
+
+
+                return false;
+
+            });
+        })
+    </script>
+
+    {% block js_call %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.j-remove-append').on('click', function () {
+                    $(this).parent('.button_click').parent('.form_info').parent('.cmsms_media_box').parent('.cmsms_media').parent('.j-append-condition').remove();
+                })
+            })
+        </script>
+
+        {#<script type="text/javascript">#}
+        {#$(document).ready(function () {#}
+        {#var tour = new Tour({#}
+        {#template: "<div class='popover tour'>" +#}
+        {#"<div class='arrow'></div>" +#}
+        {#"<h3 class='popover-title'></h3>" +#}
+        {#"<div class='popover-content'></div>" +#}
+        {#"<div class='popover-navigation'>" +#}
+        {#"<button class='btn btn-default' data-role='prev'>« Back</button>" +#}
+        {#"" +#}
+        {#"<button class='btn btn-default' data-role='next'>Next »</button>" +#}
+        {#"<button class='btn btn-default' data-role='end'>Skip</button>" +#}
+        {#"</div>" +#}
+        {#"</div>"#}
+        {#});#}
+
+        {#tour.addSteps([#}
+        {#{#}
+        {#title: "Welcome to the search menu!",#}
+        {#content: "This is the place where you search for anything you need. Let’s rock and roll.",#}
+        {#backdrop: true,#}
+        {#orphan: true,#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-collect",#}
+        {#placement: "right",#}
+        {#title: "Is there anything specific ?",#}
+        {#content: "Select anything from this bar that you want us to find in something specific, or just" +#}
+        {#"leave it at “All” for us to find everything that matches your search query.",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-q",#}
+        {#placement: "bottom",#}
+        {#title: "What would you like to find?",#}
+        {#content: "Input your text query here. May be used in conjunction with the specific search" +#}
+        {#"menu in the left and the conditional search format in the right. Refine your search as you please.",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-add-condition",#}
+        {#placement: "bottom",#}
+        {#title: "This is the conditional search format",#}
+        {#content: "Need complex queries? No problem! We have no limits in adding more conditions" +#}
+        {#"to any search commands. Anything you search is always available in your logs so you can pin," +#}
+        {#"flag, or redo any search queries in the future, no matter how complex they are",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-count-search-today",#}
+        {#placement: "bottom",#}
+        {#title: "Your search counts today!",#}
+        {#content: "This shows you how many search you’ve made for today.",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-count-search-value",#}
+        {#placement: "bottom",#}
+        {#title: "Your search quota remaining!",#}
+        {#content: "This shows you how many search you’ve made for today.!",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-button-submit",#}
+        {#placement: "bottom",#}
+        {#title: "The fabulous search button",#}
+        {#content: "After you’ve got your conditions and queries ready, simply hit this button to start" +#}
+        {#"playing with the results.",#}
+        {#duration: '6000'#}
+        {#},#}
+        {#{#}
+        {#element: ".j-tour-condition",#}
+        {#placement: "right",#}
+        {#title: "Thats it !",#}
+        {#content: "It’s just that simple. I’ll be hiding in the question mark button on the top. In case" +#}
+        {#"you need me, just click on it and I’ll be right here. Should I show you around one more time?",#}
+        {#template: "<div class='popover tour'>" +#}
+        {#"<div class='arrow'></div>" +#}
+        {#"<h3 class='popover-title'></h3>" +#}
+        {#"<div class='popover-content'></div>" +#}
+        {#"<div class='popover-navigation'>" +#}
+        {#"<button class='btn btn-default' data-role='prev'>« Replay</button>" +#}
+        {#"<button class='btn btn-default' data-role='end'>OK, I got it!</button>" +#}
+        {#"</div>" +#}
+        {#"</div>"#}
+        {#}#}
+
+        {#]);#}
+
+        {#// Initialize the tour#}
+        {#tour.init();#}
+
+        {#// Start the tour#}
+        {#tour.restart();#}
+        {#})#}
+
+        {#// script by Josh Fraser (http://www.onlineaspect.com)#}
+
+
+        {#</script>#}
+    {% endblock %}
+
+{% endblock %}

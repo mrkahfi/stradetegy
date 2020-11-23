@@ -1,0 +1,13 @@
+mongoexport --host localhost --port 27017 --db stradetegy --collection import_document_importer_finishing --out /diskmongo/mongo-export/import-importer.json
+mongoexport --db stradetegy --collection import_document_exporter_finishing --out /diskmongo/mongo-export/import-exporter.json
+mongoexport --db stradetegy --collection import_document_product_finishing --out /diskmongo/mongo-export/import-product.json
+
+mongoexport --host localhost --port 27017 --db stradetegymongo --collection import_document_importer_finishing --out /home/jariff/import-importer.json
+mongoexport --host localhost --port 27017 --db stradetegymongo --collection import_document_exporter_finishing --out /home/jariff/import-exporter.json
+
+mongoimport --host localhost --port 27017 --db stradetegymongo --collection all_data --file /home/jariff/import-exporter.json
+mongoimport --host localhost --port 27017 --db stradetegymongo --collection all_data --file /home/jariff/import-importer.json
+
+mongoimport --host localhost --port 27017 --collection all_data --db stradetegy --file /diskmongo/mongo-export/import-importer.json
+mongoimport --host localhost --port 27017 --collection all_data --db stradetegy --file /diskmongo/mongo-export/import-exporter.json
+mongoimport --host localhost --port 27017 --collection all_data --db stradetegy --file /diskmongo/mongo-export/import-product.json

@@ -1,0 +1,9 @@
+{% extends 'JariffMemberBundle:Email:base_template_email.html.twig' %}
+{% block title %}{{ subject }}{% endblock %}
+
+	{% block content %}
+		<p>Subject : {{ subject }}</p>
+		<p>Member Name : {{ name }}</p>
+		<p>Member Email : {{ email }}</p>
+		<p>Member Message : {{ message }}</p>
+	{% endblock %}

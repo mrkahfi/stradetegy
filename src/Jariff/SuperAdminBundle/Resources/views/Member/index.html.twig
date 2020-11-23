@@ -1,0 +1,31 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member Index{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Member Index
+    </li>
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+      <div id="grid_paging"></div>
+    </div>
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block javascript %}
+	<script src="/bundles/jariffadmin/js/grid-member.js"></script>
+    <script type="text/javascript">
+        $(function () {
+        });    
+    </script>
+{% endblock %}

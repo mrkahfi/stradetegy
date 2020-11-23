@@ -1,0 +1,196 @@
+{% for r in collect %}
+    {% if loop.index > 1 %}
+        <div class="entry-content project_content portfolio_container three_blocks j-append-condition"
+             style="margin-top: -25px;">
+            <div class="cmsms_media">
+                <div class="cmsms_media_box" style="width: 9%;">
+                    <div class="form_info cmsms_input">
+                        <select id="search_form_collect" name="condition[]" class="j-tour-condition"
+                                required="required">
+                            <option value="and" {% if condition[loop.index - 2] == "and" -%}
+                                selected="selected"
+                                    {% endif -%}>AND
+                            </option>
+                            <option value="or" {% if condition[loop.index - 2] == "or" -%}
+                                selected="selected"
+                                    {% endif -%}>OR
+                            </option>
+                            <option value="not" {% if condition[loop.index - 2] == "not" -%}
+                                selected="selected"
+                                    {% endif -%}>NOT
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box cmsms_media_box_overwrite" style="margin-left: -7%">
+                    <div class="form_info cmsms_input">
+                        <select id="search_form_collect" style="width: 83%" name="collect[]"
+                                required="required">
+                            <option value="all" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "all" -%}
+                                selected="selected"
+                                    {% endif -%}>All
+                            </option>
+                            <option value="consignee_name"
+                                    {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "consignee_name" -%}
+                                        selected="selected"
+                                    {% elseif collect[0] is not defined %}
+                                        selected="selected"
+                                    {% endif -%}
+                                    >Importer Name
+                            </option>
+                            <option value="consignee_address"
+                                    {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "consignee_address" -%}
+                                selected="selected"
+                                    {% endif -%}>Importer Address
+                            </option>
+                            <option value="shipper_name"
+                                    {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "shipper_name" -%}
+                                        selected="selected"
+                                    {% endif -%}
+                                    >Exporter Name
+                            </option>
+                            <option value="shipper_address"
+                                    {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "shipper_address" -%}
+                                selected="selected"
+                                    {% endif -%}>Exporter Address
+                            </option>
+                            <option value="raw_notify_party_name" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "raw_notify_party_name" -%}
+                                selected="selected"
+                                    {% endif -%}>Importer Notify Party
+                            </option>
+                            <option value="unloading_port" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "unloading_port" -%}
+                                selected="selected"
+                                    {% endif -%}>US Port Shipment Entered
+                            </option>
+
+                            <option value="product_description" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "product_description" -%}
+                                selected="selected"
+                                    {% endif -%}>Product Description
+                            </option>
+
+                            <option value="carrier_sasc_code" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "carrier_sasc_code" -%}
+                                selected="selected"
+                                    {% endif -%}>Carrier Code
+                            </option>
+                            <option value="vessel_name" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "vessel_name" -%}
+                                selected="selected"
+                                    {% endif -%}>Vessel Name
+                            </option>
+                            <option value="loading_port" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "loading_port" -%}
+                                selected="selected"
+                                    {% endif -%}>Foreign Port
+                            </option>
+                            {#<option value="value.country" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "value.country" -%}#}
+                                {#selected="selected"#}
+                                    {#{% endif -%}>Origin Of Vessel#}
+                            {#</option>#}
+                            <option value="container_id" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "container_id" -%}
+                                selected="selected"
+                                    {% endif -%}>Container Number
+                            </option>
+                            <option value="bill_of_lading" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "bill_of_lading" -%}
+                                selected="selected"
+                                    {% endif -%}>Bill Of Lading Number
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box cmsms_media_box_overwrite_1" style="margin-left: -6%;">
+                    <div class="form_info cmsms_input">
+
+                        <input type="text" placeholder="Search" name="q[]" class="input_searching"
+                               id="field_003" size="10" tabindex="11" required
+                               value="{% if q[loop.index - 1] is defined %}{{ q[loop.index - 1] }}{% endif %}"
+                                />
+                    </div>
+                </div>
+            </div>
+            <div class="cmsms_media">
+                <div class="cmsms_media_box">
+                    <div class="form_info cmsms_input">
+                        <div class="button_click">
+                            <a class="j-remove-append j-tour-remove-form"
+                               href="javascript:void(0)">
+                                <img class="strip"
+                                     src="{{ asset('bundles/jariffproject/frontend/images/strip.jpg') }}"
+                                     width="18"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% block js_call %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var tour = new Tour();
+
+            tour.addSteps([
+                {
+                    title: "Welcome to Stradetegy....",
+                    content: "Letak text content pembukaan",
+                    backdrop: true,
+                    orphan: true
+                },
+                {
+                    element: ".j-tour-collect",
+                    placement: "right",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-q",
+                    placement: "bottom",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-add-condition",
+                    placement: "bottom",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-count-search-today",
+                    placement: "bottom",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-count-search-value",
+                    placement: "bottom",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-button-submit",
+                    placement: "bottom",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                },
+                {
+                    element: ".j-tour-condition",
+                    placement: "right",
+                    title: "Judul Content",
+                    content: "Keterangan collect"
+                }
+
+            ]);
+
+// Initialize the tour
+            tour.init();
+
+// Start the tour
+            tour.start();
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Invoice</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Billtoname</th>
+                <td>{{ entity.billToName }}</td>
+            </tr>
+            <tr>
+                <th>Billtoadress</th>
+                <td>{{ entity.billToAdress }}</td>
+            </tr>
+            <tr>
+                <th>Billtoemail</th>
+                <td>{{ entity.billToEmail }}</td>
+            </tr>
+            <tr>
+                <th>Billtophone</th>
+                <td>{{ entity.billToPhone }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ entity.type }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ entity.amount }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('invoice') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('invoice_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

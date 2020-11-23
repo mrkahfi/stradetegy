@@ -1,0 +1,26 @@
+{% extends 'JariffProjectBundle::base_member_setting.html.twig' %}
+
+{% form_theme edit_form 'JariffProjectBundle:Themes:bootstrap_3_horizontal_layout_st_search.html.twig' %}
+{% block header_title %}Search Setting{% endblock %}
+
+{% block content %}
+
+
+
+    <form action="{{ path('member_setting_edit') }}"
+          class="form-horizontal" method="post" id="contactform">
+
+        {{ form_widget(edit_form) }}
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="button" id="contact_form_formsend" tabindex="8"><span>Change Setting</span></button>
+
+            </div>
+        </div>
+
+
+    </form>
+
+
+{% endblock %}

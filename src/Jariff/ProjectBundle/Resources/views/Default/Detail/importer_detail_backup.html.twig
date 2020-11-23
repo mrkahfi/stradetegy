@@ -1,0 +1,392 @@
+{% extends 'JariffProjectBundle::base_right_sidebar.html.twig' %}
+
+{% block style %}
+<link href="{{ asset('bundles/jariffproject/frontend/css/flags.css') }}" type="text/css" rel="stylesheet"
+media="screen"/>
+<!-- <link href="{{ asset('bundles/jariffproject/frontend/css/pageviewlimit.css') }}" type="text/css" rel="stylesheet"
+  media="screen"/> -->
+  <link href="{{ asset('bundles/jariffproject/frontend/css/profilev4layout.css') }}" type="text/css" rel="stylesheet"
+  media="screen"/>
+  <link href="{{ asset('bundles/jariffproject/frontend/css/profilev4private.css') }}" type="text/css" rel="stylesheet"
+  media="screen"/>
+  <style type="text/css">
+  .content_wrap:before {
+    position:absolute;
+    top:0;
+    left:60%;
+    display:block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    width:1px;
+    height:100%;
+    background:rgba(0, 0, 0, .1);
+    content:'';
+  }
+
+  #content {
+    position:relative;
+    float:left;
+    overflow:hidden;
+    padding:20px 0;
+    width:58%;
+  }
+
+
+  #sidebar {
+    position:relative;
+    float:right;
+    overflow:hidden;
+    margin-left:0;
+    padding:20px 0;
+    width:38%;
+  }
+
+
+  </style>
+  {% endblock %}
+  {% block wrap_headline %}
+
+  <div class="wrap_headline">
+    <div class="headline">
+      <h1 style="margin: 10px;"><strong>{{ data.getValue.getCompanyName }}</strong></h1>
+    </div>
+  </div><div class="wrap_cont_nav">
+  <div class="cont_nav">
+    <span style="margin: 10px;" class="static-text">See 1 company buying from {{ data.getValue.getCompanyName }} and gain insight into the millions of trading companies.</span>
+  </div>
+  <div class="cont_nav" style="overflow: hidden;">
+    <a href="#" class="button" style="float: left; margin: 10px"><span>Join Now</span></a>
+    <a href="#" class="button" style="float: left; margin: 10px; background-color: black;"><span>Learn More</span></a>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="effect"></div>
+
+<div class="last">
+  <div class="tab">
+
+    <ul class="tabs" style="border-bottom:0px solid rgba(0, 0, 0, .1);">
+      <li><a href="#" class="j-tabs-identify"><span>Summary</span>
+        {#<span class="livicon" data-name="spinner-three" data-c="#c7254e" data-s="14" data-loop="true"></span>#}
+      </a></li>
+      <li><a href="#" class="j-tabs-identify"><span
+        class="cmsms_date_day">Shipments Received</span></a></li>
+        <li><a href="#" class="j-tabs-identify"><span>Suppliers</span></a></li>
+        <li><a href="#" class="j-tabs-identify"><span>Corporate</span></a></li>
+        <li><a href="#" class="j-tabs-identify"><span>Contact</span></a></li>
+      </ul>
+      <div class="tab_content tab-result">
+        <div class="tabs_tab j-result-supplier">
+
+         <div class="grid_8">
+
+          <div class="summary-group">
+            <h2 class="translate">Shipments Received</h2>
+            <div class="right-container">
+
+              <ul class="inline-separated no-vertical-padding translate clearfix">
+                <li class="t2tt" original-title="Total shipments made from July 1, 2007 to December 27, 2013">
+                  <div class="number notranslate"><h1><strong>{{ data.getValue.getShipment }}</strong></h1></div>
+                  <div class="number-label">Shipments Received</div>
+                </li>
+              </ul>
+
+
+              <div class="subsection clear_both">
+                <h3 class="translate">Top product terms <span class="customs-data-label">from U.S. customs import data</span></h3>
+                <div class="shortcode_skill">
+                  <div class="skill_item">
+                    <span>Clork Floor </span>
+                    <div class="skill_item_colored_main_wrap">
+                      <div class="skill_item_colored_wrap" style="width:60%;">
+                        <div class="skill_item_colored" style="background-color:#33bee5;">
+                          <span>80%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skill_item">
+                    <span>Bamboo Installation </span>
+                    <div class="skill_item_colored_main_wrap">
+                      <div class="skill_item_colored_wrap" style="width:90%;">
+                        <div class="skill_item_colored" style="background-color:#33bee5;">
+                          <span>80%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                      <div class="skill_item">
+                    <span>Exotic Wood </span>
+                    <div class="skill_item_colored_main_wrap">
+                      <div class="skill_item_colored_wrap" style="width:45%;">
+                        <div class="skill_item_colored" style="background-color:#33bee5;">
+                          <span>80%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="shipments-graphic" style="margin-top:30px;">
+                  <h3 class="translate"> Shipments Received by Month </h3>
+                  <div class="locked-content-preview sample-shipment-stats-summary-section">
+                    <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this chart</div> 
+                  </div>
+                </div>
+                <a class="see-more-info translate" href="#shipment-tab" onclick="profile_tabs.setActiveTab('shipment-tab'); window.scrollTo(0, 0); ;; return false;">See more shipments received information</a>      </div>
+              </div>
+            </div>
+            <div class="summary-group">
+              <h2 class="translate">Suppliers</h2>
+              <div class="right-container">
+
+                <div class="number-customers count-container">
+                  <span class="count notranslate">510</span>
+                  <span class="count-label">Suppliers</span>
+                </div>
+                <div class="customer-list subsection">
+                  <h3 class="translate">Top 3 Suppliers</h3>
+                  <ol class="notranslate">
+                    <li><div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this supplier</div></li>
+                    <li><div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this supplier</div></li>
+                    <li>
+                      <a href="http://strade.dev/app_dev.php/I-Mei-Foods-Co-Ltd/1499903" title="View the profile of I-Mei Foods Co., Ltd.">I-Mei Foods Co., Ltd.</a>          </li>
+                    </ol>
+                  </div>
+
+                  <a class="see-more-info translate" href="#suppliers-tab" onclick="profile_tabs.setActiveTab('suppliers-tab'); window.scrollTo(0, 0); ;; return false;">See more supplier information</a>      </div>
+                </div>
+                <div class="summary-group">
+                  <h2 class="translate">Corporate</h2>
+                  <div class="right-container">
+                    <div class="subsection">
+                      <table class="simple-line-table corporate-info-table full-width">
+                        <tbody><tr>
+                          <td class="translate">Business Type</td>
+                          <td>
+                            <div class="info-field  data-source-dnb">
+
+                              <span class="info-source-icon t2tt info-source-dnb" title="Provided by Dun &amp; Bradstreet"></span>
+
+                              <div class="field-value">
+                                <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                <div class="clear_both"></div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="translate">Employee Count</td>
+                            <td>
+
+
+                              <div class="info-field  data-source-dnb">
+
+                                <span class="info-source-icon t2tt info-source-dnb" title="Provided by Dun &amp; Bradstreet"></span>
+
+                                <div class="field-value">
+                                  <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                  <div class="clear_both"></div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="translate">Incorporation Date</td>
+                              <td>
+
+
+                                <div class="info-field  data-source-dnb">
+
+                                  <span class="info-source-icon t2tt info-source-dnb" title="Provided by Dun &amp; Bradstreet"></span>
+
+                                  <div class="field-value">
+                                    <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                    <div class="clear_both"></div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody></table>
+                          </div>
+
+                          <a class="see-more-info translate" href="#corporate-tab" onclick="profile_tabs.setActiveTab('corporate-tab'); window.scrollTo(0, 0); ;; return false;">See more corporate information</a>      </div>
+                        </div>
+                        <div class="summary-group">
+                          <h2 class="translate">Contact</h2>
+                          <div class="right-container">
+
+                            <div class="subsection">
+                              <table class="simple-line-table corporate-info-table full-width">
+                                <tbody><tr>
+                                  <td class="translate">Phone</td>
+                                  <td>
+
+
+                                    <div class="info-field  data-source-manual">
+
+                                      <span class="info-source-icon t2tt info-source-manual" title="Gathered by the Stradetegy research team"></span>
+
+                                      <div class="field-value">
+                                        <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                        <div class="clear_both"></div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="translate">Fax</td>
+                                    <td>
+
+
+                                      <div class="info-field  data-source-manual">
+
+                                        <span class="info-source-icon t2tt info-source-manual" title="Gathered by the Stradetegy research team"></span>
+
+                                        <div class="field-value">
+                                          <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                          <div class="clear_both"></div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="translate">Address</td>
+                                      <td>
+
+
+                                        <div class="info-field  data-source-manual">
+
+                                          <span class="info-source-icon t2tt info-source-manual" title="Gathered by the Stradetegy research team"></span>
+
+                                          <div class="field-value">
+                                            <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                            <div class="clear_both"></div>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="translate">Country</td>
+                                        <td>
+
+
+                                          <div class="info-field  data-source-manual">
+
+                                            <span class="info-source-icon t2tt info-source-manual" title="Gathered by the Stradetegy research team"></span>
+
+                                            <div class="field-value">
+                                              <div class="locked-content-message translate"><a href="/supplier_profile/signup">Subscribe</a> to unlock this information</div>      </div>
+                                              <div class="clear_both"></div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      </tbody></table>
+                                    </div>
+
+
+                                    <a class="see-more-info translate" href="#communication-tab" onclick="profile_tabs.setActiveTab('communication-tab'); window.scrollTo(0, 0); ;; return false;">See more contact information</a>      </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <div class="tabs_tab j-result-buyer">
+
+                              </div>
+                              <div class="tabs_tab">
+
+                              </div>
+                              <div class="tabs_tab">
+
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        {% endblock %}
+                        {% block right_sidebar %}
+                        {% block one_first %}
+                        <div class="one_first">
+                          <div class="one" style="text-align: center;">
+                            <h4><span>Subscribe to Access Complete Shipping History for</span></h4>
+                            <span style="color:red; margin-top: 10px;"><h2>{{ data.getValue.getCompanyName }}</h2></span>
+                            <a href="#" class="button" style=""><span>Join Now</span></a>
+                          </div>
+                        </div>
+
+                        <div class="one_first" style="padding-top:40px;">
+                          <h3>Company Location</h3>
+                          <div class="one">
+                            <div id="map-canvas" style="height: 250px"></div>
+                          </div>
+                        </div>
+                        {% endblock %}
+
+                        <div class="one_first">
+                          <div class="one" style="text-align: center;">
+                            <h4><span>Subscribe to Access Complete Shipping History for</span></h4>
+                            <span style="color:red; margin-top: 10px;"><h2>{{ data.getValue.getCompanyName }}</h2></span>
+                            <a href="#" class="button" style=""><span>Join Now</span></a>
+                          </div>
+                        </div>
+
+                        <div class="one_first" style="padding-top:40px;">
+                          <h3>Company Location</h3>
+                          <div class="one">
+                            <div id="map-canvas" style="height: 250px"></div>
+                          </div>
+                        </div>
+                        {% endblock %}
+
+                        {% block javascript %}
+                        {{ parent() }}
+
+                        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+                        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+                        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+                        {% block addJava %}
+
+                        {% endblock %}
+                        <script type="text/javascript">
+                        var geocoder;
+                        var map;
+
+                        window.onload=function(){
+                          var website = {{ data.getValue.getWebsite|json_encode|raw }}; 
+                          var phone = {{ data.getValue.getPhone|json_encode|raw }};   
+                          var slug = {{ data.getValue.getSlugCompany|json_encode|raw }};
+                          var url = Routing.generate('trademango_exporter', {'slug': slug } );
+                          if (website == undefined || phone == undefined) {
+                            $.post(url, function(data) {
+                            });
+                          }     
+                        };
+
+                        function initialize() {
+                          geocoder = new google.maps.Geocoder();
+                          var latlng = new google.maps.LatLng(-34.397, 150.644);
+                          var mapOptions = {
+                            zoom: 2,
+                            center: latlng
+                          }
+                          map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+                          codeAddress();
+
+                        }
+
+                        function codeAddress() {
+                          geocoder.geocode({ 'address': '{{ data.getValue.getCountry }}'}, function (results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                              map.setCenter(results[0].geometry.location);
+                              var marker = new google.maps.Marker({
+                                position: results[0].geometry.location,
+                                animation: google.maps.Animation.DROP,
+                                map: map
+                              });
+                            } else {
+                              alert('Geocode was not successful for the following reason: ' + status);
+                            }
+                          });
+                        }
+
+                        google.maps.event.addDomListener(window, 'load', initialize);
+
+                        </script>
+                        {% endblock %}

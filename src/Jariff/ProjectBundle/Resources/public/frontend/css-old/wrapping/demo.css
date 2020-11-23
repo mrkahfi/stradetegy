@@ -1,0 +1,70 @@
+body {
+	background: #e8e8e8;
+	font: 14px/1.6 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #333;
+}
+
+h1 {
+	font: 42px/1.238 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #333;
+	text-align: center;
+	margin: 20px 0 60px 0;
+}
+
+h2 {
+	font: normal 28px/1.357 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #333;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+section {
+	width: 600px;
+	margin: 0 auto 80px auto;
+	text-align: center;
+}
+
+.group {
+	position: relative;
+	margin-bottom: 60px;
+	background-color: #ffffff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f6f6f6)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #ffffff, #f6f6f6); /* Chrome 10+, Saf5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #ffffff, #f6f6f6); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #ffffff, #f6f6f6); /* IE10 */
+	background-image:      -o-linear-gradient(top, #ffffff, #f6f6f6); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #ffffff, #f6f6f6);
+	-moz-box-shadow:    0 2px 2px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+	box-shadow:         0 2px 2px rgba(0, 0, 0, 0.5);
+	-moz-border-radius:    5px;
+	-webkit-border-radius: 5px;
+	border-radius:         5px;
+	behavior: url(PIE.htc);
+}
+
+section .group:last-of-type {
+	margin-bottom: 0;
+}
+
+.group > div {
+	margin-bottom: 40px;
+}
+
+.group > div:last-of-type {
+	margin-bottom: 0;
+}
+
+/* Micro clearfix hack */
+.group:before, .group:after {
+	content: "";
+	display: table;
+}
+
+.group:after {
+	clear: both;
+}
+
+.group {
+	*zoom: 1;
+}

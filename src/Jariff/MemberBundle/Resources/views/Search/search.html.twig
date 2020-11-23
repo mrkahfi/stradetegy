@@ -1,0 +1,710 @@
+{% extends 'JariffProjectBundle::base_left_sidebar.html.twig' %}
+
+{% block menu %}
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="wrap_cont_nav">
+        <div class="cont_nav">
+            <form action="{{ path('member_search_fix') }}" method="get" id="myForm" data-url="{{ path('member_search_fix') }}" class="j-searchin">
+
+
+                <div class="entry-content project_content portfolio_container three_blocks j-content-condition">
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box cmsms_media_box_overwrite">
+                            <div class="form_info cmsms_input">
+                                <select id="search_form_collect" style="width: 108%" name="collect[]"
+                                        required="required">
+                                    <option value="all" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "all" -%}
+                                        selected="selected"
+                                            {% endif -%}>All
+                                    </option>
+                                    <option value="consignee_name"
+                                            {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "consignee_name" -%}
+                                                selected="selected"
+                                            {% elseif collect[0] is not defined %}
+                                                selected="selected"
+                                            {% endif -%}
+                                            >Importer Name
+                                    </option>
+                                    <option value="consignee_address"
+                                            {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "consignee_address" -%}
+                                        selected="selected"
+                                            {% endif -%}>Importer Address
+                                    </option>
+                                    <option value="shipper_name"
+                                            {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "shipper_name" -%}
+                                                selected="selected"
+                                            {% endif -%}
+                                            >Exporter Name
+                                    </option>
+                                    <option value="shipper_address"
+                                            {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "shipper_address" -%}
+                                        selected="selected"
+                                            {% endif -%}>Exporter Address
+                                    </option>
+                                    <option value="raw_notify_party_name" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "raw_notify_party_name" -%}
+                                        selected="selected"
+                                            {% endif -%}>Importer Notify Party
+                                    </option>
+                                    <option value="unloading_port" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "unloading_port" -%}
+                                        selected="selected"
+                                            {% endif -%}>US Port Shipment Entered
+                                    </option>
+
+                                    <option value="product_description" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "product_description" -%}
+                                        selected="selected"
+                                            {% endif -%}>Product Description
+                                    </option>
+
+                                    <option value="carrier_sasc_code" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "carrier_sasc_code" -%}
+                                        selected="selected"
+                                            {% endif -%}>Carrier Code
+                                    </option>
+                                    <option value="vessel_name" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "vessel_name" -%}
+                                        selected="selected"
+                                            {% endif -%}>Vessel Name
+                                    </option>
+                                    <option value="loading_port" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "loading_port" -%}
+                                        selected="selected"
+                                            {% endif -%}>Foreign Port
+                                    </option>
+                                    {#<option value="value.country" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "value.country" -%}#}
+                                    {#selected="selected"#}
+                                    {#{% endif -%}>Origin Of Vessel#}
+                                    {#</option>#}
+                                    <option value="container_id" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "container_id" -%}
+                                        selected="selected"
+                                            {% endif -%}>Container Number
+                                    </option>
+                                    <option value="bill_of_lading" {% if collect[loop.index - 1] is defined and collect[loop.index - 1] == "bill_of_lading" -%}
+                                        selected="selected"
+                                            {% endif -%}>Bill Of Lading Number
+                                    </option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box cmsms_media_box_overwrite_1">
+                            <div class="form_info cmsms_input">
+
+                                <input type="text" placeholder="Search" name="q[]" class="input_searching"
+                                       id="field_003" size="10" tabindex="11"
+                                       value="{% if q[0] is defined %}{{ q[0] }}{% endif %}"
+                                        />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cmsms_media">
+                        <div class="cmsms_media_box">
+                            <div class="form_info cmsms_input">
+                                <div class="button_click">
+                                    <a class="j-condition"
+                                       href="javascript:void(0)"><span class="livicon" data-name="plus" data-size="32"
+                                                                       data-original-title="morph-s-t-up"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="j-add-condition">
+                    {% if collect is defined %}
+                        {% if collect is not empty and collect|length > 1 %}
+                            {% include 'JariffMemberBundle:Search:append-form-search-show.html.twig' %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+
+                <input type="hidden" placeholder="Search" name="size" class="j-size"
+                       value="{% if size is defined %}{{ size }}{% else %}10{% endif %}"
+                        />
+
+                <input type="hidden" placeholder="Search" name="filter_left_bar" class="j-filter-leftbar"
+                       value=""
+                        />
+
+                <input type="hidden" placeholder="Search" name="country_import" class="j-filter-country-import"
+                       value=""
+                        />
+
+                <input type="hidden" placeholder="Search" name="country_export" class="j-filter-country-export"
+                       value=""
+                        />
+
+                <input type="hidden" placeholder="Search" name="country_product" class="j-filter-country-product"
+                       value=""
+                        />
+
+
+                <div style="clear: both"></div>
+
+
+                <input type="submit" class="button button-search global-button-search" value="Search">
+
+            </form>
+            <br/>
+        </div>
+    </div>
+
+{% endblock %}
+
+    {% block content %}
+
+
+
+        {#<div style="clear: both"></div>#}
+
+
+
+
+        {#<a href="javascript:;" id="btnAddPage" role="button">Add Page</a>#}
+        <ul id="pageTab" class="nav nav-tabs">
+            <li class="active"><a href="#page1" data-toggle="tab">Search Results</a></li>
+            <li><a href="#importer" id="importers" data-title="Importer">Importers</a></li>
+            <li><a href="#exporter" id="exporters" data-title="Exporter">Exporters</a></li>
+            <li><a href="#product" id="products" data-title="Products">Products</a></li>
+        </ul>
+        <div id="pageTabContent" class="tab-content">
+            <div class="tab-pane active" id="page1">
+                <div class="j-result-exporter">
+
+                </div>
+
+                <div class="j-result-importer">
+
+                </div>
+
+                <div class="j-result-product">
+
+                </div>
+            </div>
+
+            <div class="tab-pane" id="importer">
+
+            </div>
+            <div class="tab-pane" id="exporter">Exporter</div>
+            <div class="tab-pane" id="product">Product</div>
+        </div>
+
+        <div id="dialog-confirm" title="Empty the tab?" style="display: none">
+            <p><span class="ui-icon ui-icon-alert"></span>All data in this tab will disappear. Are you sure?</p>
+        </div>
+    {% endblock content %}
+
+{% block left_sidebar %}
+    <section id="sidebar">
+
+        <div class="one_first">
+            <aside class="widget widget_custom_latest_popular_recent_entries">
+                <h2 class="widgettitle" style="display: inline">Show Per Page</h2>
+                <select name="size" class="j-size-per-page">
+                    <option value="10"
+                            {% if size is defined %}{% if size == 10 %}selected="SELECTED"{% endif %}{% endif %}>10
+                    </option>
+                    <option value="50"
+                            {% if size is defined %}{% if size == 50 %}selected="SELECTED"{% endif %}{% endif %}>50
+                    </option>
+                    <option value="100"
+                            {% if size is defined %}{% if size == 100 %}selected="SELECTED"{% endif %}{% endif %}>100
+                    </option>
+                </select>
+            </aside>
+
+
+            <aside class="widget widget_custom_latest_popular_recent_entries">
+                <h2 class="widgettitle">I would like to see</h2>
+
+
+                <div class="tab_content">
+
+                    <div class="cmsms-form-builder">
+                        <div class="form_info cmsms_checkboxes">
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_1" id="check_1" value="importer"
+                                       class="j-filter-see">
+                                <label for="check_1">Importer</label>
+                                <span class="total-in-country code j-total-importer">{{ 0|ribuan }}</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_2" id="check_2" value="exporter"
+                                       class="j-filter-see">
+                                <label for="check_2">Exporter</label>
+                                <span class="total-in-country code j-total-exporter">{{ 0|ribuan }}</span>
+                            </div>
+                            <div class="check_parent">
+                                <input type="checkbox" name="check_3" id="check_3" value="product" class="j-filter-see">
+                                <label for="check_3">Product</label>
+                                <span class="total-in-country code j-total-product">{{ 0|ribuan }}</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </aside>
+
+            {#<aside class="widget widget_custom_latest_popular_recent_entries">#}
+                {#<h2 class="widgettitle">Advanced filter</h2>#}
+
+
+                {#<div class="tab lpr">#}
+                    {#<ul class="tabs">#}
+                        {#<li>#}
+                            {#<a href="#product" id="products" data-title="Products"><span>Importer</span></a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="#exporter" id="exporters" data-title="Exporter"><span>Exporter</span></a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="#importer" id="importers" data-title="Importer"><span>Product</span></a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                    {#<div class="tab_content">#}
+                        {#<div class="tabs_tab" style="display: block;">#}
+                            {#<div class="cmsms-form-builder">#}
+                                {#<div class="form_info cmsms_checkboxes j-country-importer">#}
+
+
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="tabs_tab" style="display: none;">#}
+                            {#<div class="cmsms-form-builder">#}
+                                {#<div class="form_info cmsms_checkboxes j-country-exporter">#}
+
+
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                        {#<div class="tabs_tab" style="display: none;">#}
+                            {#<div class="cmsms-form-builder">#}
+                                {#<div class="form_info cmsms_checkboxes j-country-product">#}
+
+
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+            {#</aside>#}
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block style %}
+
+    {#<link rel="stylesheet"#}
+    {#href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css"/>#}
+    {#<link rel="stylesheet"#}
+    {#href="{{ asset('/bundles/jariffproject/frontend/js/grid/pqgrid.dev.css') }}"#}
+    {#type="text/css"/>#}
+    {#<link rel="stylesheet"#}
+    {#href="{{ asset('/bundles/jariffproject/frontend/js/grid/themes/Office/pqgrid.css') }}"#}
+    {#type="text/css"/>#}
+
+    {#<link href="{{ asset('/bundles/jariffproject/frontend/js/stacky/stacky.css') }}" type="text/css" rel="stylesheet"#}
+    {#media="screen"/>#}
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/hover/css/hoveralls.css') }}" type="text/css" rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/css/wrapping/wrap-ribbon.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <link href="{{ asset('/bundles/jariffproject/frontend/hover/css/hoveralls.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- Include jTable script file. -->
+    {#<script src="{{ asset('/bundles/jariffproject/frontend/js/grid/pqgrid.min.js') }}"#}
+    {#type="text/javascript"></script>#}
+
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script src="{{ asset('bundles/jariffproject/frontend/icon/js/livicons-1.2.min.js') }}"
+            type="text/javascript"></script>
+
+
+
+    <script src="http://junaidbaloch.com/backyard/bootstrap_add_rmove_tabs/libs/twitter-bootstrap/js/bootstrap.js"
+            type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            allResultAjaxForm($('.j-searching').serialize());
+            allTotalResultAjaxForm($('.j-searching').serialize());
+
+            {#$('.j-condition').on('click', function () {#}
+                {#var numItems = $('.j-append-condition').length;#}
+                {#if (numItems < 14) {#}
+                    {#$.ajax({#}
+                        {#type: 'GET',#}
+                        {#url: '{{ path('append_form') }}',#}
+                        {#success: function (data) {#}
+                            {#$('.j-add-condition').append(data);#}
+                        {#}#}
+                    {#})#}
+                {#} else {#}
+                    {#alert('Sorry cannot add condition again');#}
+                {#}#}
+
+
+                {#return false;#}
+
+            {#});#}
+
+            $('.j-searching').on('submit', function () {
+                var url = '{{ path('member_search_trade') }}';
+
+                allResultAjaxForm($(this).serialize());
+                allTotalResultAjaxForm($(this).serialize());
+                window.history.pushState("object or string", "Title", url + "?" + $(this).serialize());
+                return false;
+            });
+
+            $('.j-size-per-page').on('change', function () {
+                var url = '{{ path('member_find') }}';
+                $('.j-size').val($(this).val());
+
+                allResultAjaxForm($('.j-searching').serialize());
+                window.history.pushState("object or string", "Title", url + "?" + $('.j-searching').serialize());
+                return false;
+            });
+
+            $('.j-filter-see').on("click", function () {
+                var total = $('.j-filter-see').length;
+                var data = '';
+                for (var i = 0; i < total; i++) {
+                    if (i < total - 1)
+                        data += $("input.j-filter-see:eq(" + i + "):checked").val() + '-';
+                    else
+                        data += $("input.j-filter-see:eq(" + i + "):checked").val() + '-' + $("input.j-filter-see:checked").length;
+                }
+
+
+                $('.j-filter-leftbar').val(data);
+                allResultAjaxForm($('.j-searching').serialize());
+            });
+
+
+            // digunakan untuk load ketika sudah ada parameter searching
+
+
+        })
+    </script>
+
+    <script type="text/javascript">
+        function allResultAjax() {
+            {% if q is not empty %}
+            var q = [];
+            var collect = [];
+            {% for key in q %}
+            q[{{ loop.index - 1 }}] = '{{ key }}';
+            {% endfor %}
+            {% for coll in collect %}
+            collect[{{ loop.index - 1 }}] = '{{ coll }}';
+            {% endfor %}
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_exporter') }}',
+                data: {q: q, collect: collect},
+                success: function (data) {
+                    $('.j-result-exporter').html(data);
+                }
+            })
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_importer') }}',
+                data: {q: q, collect: collect},
+                success: function (data) {
+                    $('.j-result-importer').html(data);
+                }
+            })
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_product') }}',
+                data: {q: q, collect: collect},
+                success: function (data) {
+                    $('.j-result-product').html(data);
+                }
+            })
+            {% endif %}
+        }
+    </script>
+
+    <script type="text/javascript">
+        function allResultAjaxForm(fromSubmit) {
+//            $('.disable-content').show();
+//            $.when(
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_exporter') }}',
+                data: fromSubmit,
+
+                success: function (data) {
+                    $('.j-result-exporter').html(data);
+                }
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_importer') }}',
+                data: fromSubmit,
+                success: function (data) {
+                    $('.j-result-importer').html(data);
+                }
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_result_product') }}',
+                data: fromSubmit,
+                success: function (data) {
+                    $('.j-result-product').html(data);
+                }
+
+            });
+//                    ).done(function( x ) {
+//                        alert("okey");
+
+//                        $('.disable-content').hide();
+//                    });
+
+
+        }
+
+        function toAjaxCountryExport() {
+            $('.j-check-country-export').on("click", function () {
+                var total = $('.j-check-country-export').length;
+                var data = '';
+                for (var i = 0; i < total; i++) {
+
+                    if ($("input.j-check-country-export:eq(" + i + "):checked").val()) {
+                        if (data != '') {
+                            data += ' or ' + $("input.j-check-country-export:eq(" + i + "):checked").val();
+                        } else {
+                            data += $("input.j-check-country-export:eq(" + i + "):checked").val();
+                        }
+                    }
+                }
+
+                $('.j-filter-country-export').val(data);
+                allResultAjaxForm($('.j-searching').serialize());
+            });
+        }
+
+        function toAjaxCountryImport() {
+            $('.j-check-country-import').on("click", function () {
+                var total = $('.j-check-country-import').length;
+                var data = '';
+                for (var i = 0; i < total; i++) {
+
+                    if ($("input.j-check-country-import:eq(" + i + "):checked").val()) {
+                        if (data != '') {
+                            data += ' or ' + $("input.j-check-country-import:eq(" + i + "):checked").val();
+                        } else {
+                            data += $("input.j-check-country-import:eq(" + i + "):checked").val();
+                        }
+                    }
+                }
+
+                $('.j-filter-country-import').val(data);
+                allResultAjaxForm($('.j-searching').serialize());
+            });
+        }
+
+        function toAjaxCountryProduct() {
+            $('.j-check-country-product').on("click", function () {
+                var total = $('.j-check-country-product').length;
+                var data = '';
+                for (var i = 0; i < total; i++) {
+
+                    if ($("input.j-check-country-product:eq(" + i + "):checked").val()) {
+                        if (data != '') {
+                            data += ' or ' + $("input.j-check-country-product:eq(" + i + "):checked").val();
+                        } else {
+                            data += $("input.j-check-country-product:eq(" + i + "):checked").val();
+                        }
+                    }
+                }
+
+                $('.j-filter-country-product').val(data);
+                allResultAjaxForm($('.j-searching').serialize());
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        var pageImages = [];
+        var pageNum = 1;
+        /**
+         * Reset numbering on tab buttons
+         */
+        function reNumberPages() {
+            pageNum = 1;
+            var tabCount = $('#pageTab > li').length;
+            $('#pageTab > li').each(function () {
+                var pageId = $(this).children('a').attr('href');
+                if (pageId == "#page1") {
+                    return true;
+                }
+
+            });
+        }
+
+        $(document).ready(function () {
+
+            /**
+             * Remove a Tab
+             */
+            $('#pageTab').on('click', ' li a .close', function () {
+                var nThis = $(this);
+                var tabId = $(this).parents('li').children('a').attr('href');
+                var $myDialog = $('<div></div>')
+                        .html('<p><span class="ui-icon ui-icon-alert"></span>All data in this tab will disappear. Are you sure?</p>')
+                        .dialog({
+                            autoOpen: false,
+                            modal: true,
+                            width: 500,
+                            draggable: false,
+                            height: 200,
+                            title: 'Why so serious remove this tab (' + $(nThis).parents('li').children('a').attr('data-title') + ')?',
+                            buttons: {
+                                "OK": function () {
+                                    $(nThis).parents('li').remove('li');
+                                    $(tabId).remove();
+                                    $('#pageTab a:first').tab('show');
+                                    $(this).dialog("close");
+                                    var url = $(nThis).attr('data-url');
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: url,
+                                        success: function (data) {
+                                            return true;
+                                        }
+                                    })
+                                    return true;
+                                },
+                                "Cancel": function () {
+                                    $(this).dialog("close");
+                                    return false;
+                                }
+                            }
+                        });
+
+                return $myDialog.dialog('open');
+
+
+            });
+
+            /**
+             * Click Tab to show its content
+             */
+            $("#pageTab").on("click", "a", function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+    <style>
+        .nav-tabs > li .close {
+            margin: -3px 0 0 10px;
+            font-size: 18px;
+            padding: 5px 0;
+            float: right;
+        }
+
+        .nav-tabs > li a[data-toggle=tab] {
+            float: left !important;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_member_cache_group_searching',{'category':'importer' }) }}',
+                success: function (data) {
+                    $('#importer').html(data);
+                }
+            })
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_member_cache_group_searching',{'category':'exporter' }) }}',
+                success: function (data) {
+                    $('#exporter').html(data);
+                }
+            })
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_member_cache_group_searching',{'category':'product' }) }}',
+                success: function (data) {
+                    $('#product').html(data);
+                }
+            })
+
+
+        })
+    </script>
+
+    <script type="text/javascript">
+        function allTotalResultAjaxForm(fromSubmit) {
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_total_result_importer') }}',
+                data: fromSubmit,
+
+                success: function (data) {
+                    $('.j-total-importer').html(data);
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_total_result_exporter') }}',
+                data: fromSubmit,
+
+                success: function (data) {
+                    $('.j-total-exporter').html(data);
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('ajax_total_result_product') }}',
+                data: fromSubmit,
+
+                success: function (data) {
+                    $('.j-total-product').html(data);
+                }
+            });
+        }
+
+
+
+    </script>
+
+    {% block js_call %}
+
+    {% endblock %}
+
+{% endblock %}

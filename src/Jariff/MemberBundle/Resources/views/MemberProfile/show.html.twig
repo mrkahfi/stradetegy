@@ -1,0 +1,116 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>MemberProfile</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Bill To Name</th>
+                <td>{{ entity.billToName }}</td>
+            </tr>
+            <tr>
+                <th>Bill To Adress</th>
+                <td>{{ entity.billToAdress }}</td>
+            </tr>
+            <tr>
+                <th>Bill To Email</th>
+                <td>{{ entity.billToEmail }}</td>
+            </tr>
+            <tr>
+                <th>Bill To Phone</th>
+                <td>{{ entity.billToPhone }}</td>
+            </tr>
+            <tr>
+                <th>Company Name</th>
+                <td>{{ entity.companyName }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ entity.country }}</td>
+            </tr>{# 
+            <tr>
+                <th>Date Expired</th>
+                <td>{{ entity.dateExpired|date('Y-m-d H:i:s') }}</td>
+            </tr> #}
+            <tr>
+                <th>Date Registration</th>
+                <td>{{ entity.dateRegistration|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td>{{ entity.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>{{ entity.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ entity.phone }}</td>
+            </tr>
+            <tr>
+                <th>Primary</th>
+                <td>{{ entity.primary }}</td>
+            </tr>
+            <tr>
+                <th>Primary Name</th>
+                <td>{{ entity.primaryName }}</td>
+            </tr>
+            <tr>
+                <th>Primary Email</th>
+                <td>{{ entity.primaryEmail }}</td>
+            </tr>
+            <tr>
+                <th>Primary Phone</th>
+                <td>{{ entity.primaryPhone }}</td>
+            </tr>
+            <tr>
+                <th>Salutation</th>
+                <td>{{ entity.salutation }}</td>
+            </tr>
+            <tr>
+                <th>Ship To Name</th>
+                <td>{{ entity.shipToName }}</td>
+            </tr>
+            <tr>
+                <th>Ship To Adress</th>
+                <td>{{ entity.shipToAdress }}</td>
+            </tr>
+            <tr>
+                <th>Ship To Email</th>
+                <td>{{ entity.shipToEmail }}</td>
+            </tr>
+            <tr>
+                <th>Ship To Phone</th>
+                <td>{{ entity.shipToPhone }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ entity.state }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('profile') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('profile_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

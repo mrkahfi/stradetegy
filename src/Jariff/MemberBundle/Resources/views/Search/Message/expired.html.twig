@@ -1,0 +1,40 @@
+{% extends 'JariffProjectBundle::base_search_new.html.twig' %}
+
+{% block content %}
+    <div class="pull-right">
+        <a href="{{ path('member_search_shipments') }}" class="btn btn-default btn-sm" role="button">Search</a>
+
+
+        <a href="#" type="button" class="btn btn-sm btn-default"
+           aria-expanded="false" disabled>
+            Save Search
+        </a>
+
+
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Modify Display Fields</a>
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Export/Email Report</a>
+        <a href="#" class="btn btn-default btn-sm" role="button" disabled>Contact Company</a>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="j-form-change" style="margin-top: 20px">
+        <div class="panel panel-danger">
+            <div class="panel-heading"><h3 class="panel-title">Access Denied</h3></div>
+            <div class="panel-body" style="text-align:center">
+                <h4>Your subscription is expired, please update.</h4>
+                <br/>
+                <br/>
+
+
+                    <a class="btn btn-default" href="{{ path("dashboard_member") }}" role="button"><span class="icon-home"></span> Back to home</a>
+                    <a class="btn btn-default" href="{{ url('signup') }}" role="button"><span class="icon-user"></span> Self Update Subscription</a>
+                    <a class="btn btn-default" href="{{ path("support_ticket_inbound_form") }}" role="button"><span class="icon-info-sign"></span> Get Help</a>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

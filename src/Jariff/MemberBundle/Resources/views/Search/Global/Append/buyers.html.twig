@@ -1,0 +1,41 @@
+
+
+    <p>{{ total_results|ribuan }} results matching <strong>{{ keyword }}</strong></p>
+
+    {% for res in resHybird %}
+
+        {% if loop.index == 5 %}
+            <h3 style="margin-bottom:-4px;text-align: center;padding: 10px 0px 12px 0px;background-color:#777;color: aliceblue;">
+                See all {{ total_results|ribuan }}<br/>
+                <a href="" class="btn btn-warning">Sign Up</a> </h3>
+                <hr/>  
+
+            {% endif %}
+
+            {% if loop.index < 5 %}
+                <h4 style="margin-bottom:-4px"><a href="">{{ res.getHit["_source"]['consignee_name_pr'] }}</a> </h4>
+                <p>Importer from {{ res.getHit["_source"]['slug_country']|twolettercodecountry }}</p>
+                <p style="margin-top:-22px">
+                    Gross weight {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }} in {{ res.getHit["_source"]['total_shipment']  }} time(s) imports from a <strong>{{ res.getHit["_source"]['shipper_name_pr']  }}</strong> {%- if res.getHit["_source"]['total_company'] > 1 %}
+                    <a href="">and more</a>
+                {%- endif %}
+                <br/>
+                from {{ res.getHit["_source"]['slug_country_ori_shipper']|twolettercodecountry }}
+                : {{ res.getHit["_source"]['actual_arrival_date']|date("d-m-y")|compare_dates }}
+                {% else %}
+                <h4><a href=""><span class="label label-info">Sign up to get name company</span></a></h4>
+                <p style="margin-top:-22px">
+                    Gross weight {{ res.getHit["_source"]['total_weight']  }} {{ res.getHit["_source"]['weight_unit']  }} in {{ res.getHit["_source"]['total_shipment']  }} time(s) imports from a <strong>{{ res.getHit["_source"]['shipper_name_pr']  }}</strong> {%- if res.getHit["_source"]['total_company'] > 1 %}
+                    <a href="">and more</a>
+                {%- endif %}
+                <br/>
+                from {{ res.getHit["_source"]['slug_country_ori_shipper']|twolettercodecountry }}
+                : {{ res.getHit["_source"]['actual_arrival_date']|date("d-m-y")|compare_dates }}
+            {% endif %}
+        </p>
+        <hr/>       
+    {% endfor %}
+
+    <div class="jariff-pagination">
+        {{ pagination|raw }}
+    </div>

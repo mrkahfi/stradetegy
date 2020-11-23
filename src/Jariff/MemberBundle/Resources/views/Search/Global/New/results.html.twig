@@ -1,0 +1,447 @@
+{% extends 'JariffProjectBundle::landing.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:layout_form_global.html.twig' %}
+
+    {% block top_inner %}
+        <header id="header" class="sticky-style-2">
+
+            <div class="container clearfix">
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo">
+                    <a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"
+                                alt="stradetegy Logo"></a>
+                    <a href="#" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img
+                                src="{{ asset('/bundles/jariffproject/frontend/images/logo@2x.png') }}"
+                                alt="stradetegy Logo"></a>
+                </div>
+                <!-- #logo end -->
+
+                <ul class="header-extras">
+                    <li>
+                        <i class="i-plain icon-email3 nomargin"></i>
+
+                        <div class="he-text">
+                            Drop an Email
+                            <span>info@stradetegy.com</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="i-plain icon-call nomargin"></i>
+
+                        <div class="he-text">
+                            Get in Touch
+                            <span>555-666-777</span>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="header-wrap">
+
+                <!-- Primary Navigation
+                ============================================= -->
+                <nav id="primary-menu" class="style-2 sub-title">
+                    <div class="container clearfix">
+                        <form action="{{ path('demo_global_search_submit') }}" method="POST">
+
+                            {{ form_row(form.q,{attr: {style:'margin-top: 6px' }}) }}
+
+
+                            <div class="col-sm-2" style="margin-top: 6px">
+                                <button class="btn-lg btn-primary">Find Now</button>
+                            </div>
+
+                            {{ form_row(form.category,{attr: {style:'display: none' }}) }}
+                            {#  <div class="col-sm-8" style="margin-top: 6px">
+
+
+                                 <input type="text" class="form-control input-lg" id="exampleInputAmount" placeholder="TYPE AND HIT ENTER">
+
+                             </div> #}
+                            {{ form_rest(form) }}
+
+                        </form>
+                    </div>
+                </nav>
+                <!-- #primary-menu end -->
+
+
+            </div>
+
+        </header>
+    {% endblock top_inner %}
+{% block middle_content %}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+
+                <div class="col-md-10">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" {% if form.vars.value.category == 'globals' %}class="active"{% endif %}>
+                        <li role="presentation" {% if form.vars.value.category == 'buyers' %}class="active"{% endif %}>
+                            <a href="javascript:void(0)" data-url="
+                            {%- if buyers_url is defined %}
+                                {{- buyers_url }}
+                                {%- else %}
+                                {{ path('demo_buyers_res',{keyword: form.vars.value.q}) }}
+                            {%- endif %}" data-url-window="{%- if buyers_url_window is defined %}
+                            {{- buyers_url_window }}
+                            {%- else %}
+                            {{ path('demo_global_search_res',{category:'buyers',keyword: form.vars.value.q}) }}
+                        {%- endif %}" class="j-choice-category" data-value="buyers">Buyers <span
+                                        class="badge j-total-buyers"><img
+                                            src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></a>
+                        </li>
+
+                        <li role="presentation"
+                            {% if form.vars.value.category == 'suppliers' %}class="active"{% endif %}><a
+                                    href="javascript:void(0)" data-url-window="
+                            {%- if suppliers_url_window is defined %}
+                                {{- suppliers_url_window }}
+                                {%- else %}
+                                {{ path('demo_global_search_res',{category:'suppliers',keyword: form.vars.value.q}) }}
+                            {%- endif %}" data-url="{%- if suppliers_url is defined %}
+                            {{- suppliers_url }}
+                            {%- else %}
+                            {{ path('demo_suppliers_res',{keyword: form.vars.value.q}) }}
+                        {%- endif %}" class="j-choice-category" data-value="suppliers">Suppliers <span
+                                        class="badge j-total-suppliers"><img
+                                            src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></li>
+                        <li role="presentation"
+                            {% if form.vars.value.category == 'logistics' %}class="active"{% endif %}><a
+                                    href="javascript:void(0)"
+                                    data-url-window="{{ path('demo_global_search_res',{category:'logistics',keyword: form.vars.value.q}) }}"
+                                    data-url="{{ path('demo_logistics_res',{keyword: form.vars.value.q}) }}"
+                                    class="j-choice-category" data-value="logistics">Logistics <span
+                                        class="badge j-total-logistics"><img
+                                            src="/bundles/jariffproject/frontend/images-old/301_12.GIF"></span></a></li>
+                        <li role="presentation"><a href="#">Shipments</a></li>
+                        <li role="presentation"><a href="#">More Filters</a></li>
+                    </ul>
+
+
+                    {#   <div class="pull-right">
+                          <a href=""><span class="glyphicon glyphicon-th"></span></a>
+                      </div> #}
+
+                </div>
+                <div class="col-md-2">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-user"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <hr/>
+                </div>
+
+                {#  <div class="col-md-3">
+
+                     <div data-toggle="buttons">
+                       <label class="btn btn-primary col-md-12 active">
+                         <input type="checkbox" autocomplete="off" checked> Buyers ( 2500 )
+                     </label>
+                     <div class="cl"></div>
+                     <label class="btn btn-primary col-md-12">
+                         <input type="checkbox" autocomplete="off"> Suppliers ( 3500 )
+                     </label>
+                     <div class="cl"></div>
+                     <label class="btn btn-primary col-md-12">
+                         <input type="checkbox" autocomplete="off"> Logistics ( 4500 )
+                     </label>
+                     <div class="cl"></div>
+                     <label class="btn btn-primary col-md-12">
+                         <input type="checkbox" autocomplete="off"> Shipments
+                     </label>
+                 </div>
+             </div> #}
+                <div class="j-all">
+                    <div class="j-content-result-buyers"
+                         {% if form.vars.value.category not in 'buyers' %}style="display:none"{% endif %}>
+
+                        <div class="col-md-9">
+                            <div style="margin-top:20px;text-align: center">
+                                <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                                <h5 style="margin-top: 15px">Loading...</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-time"></span> Alert</a>&nbsp;&nbsp;
+                            <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span>
+                                Save</a>&nbsp;&nbsp;
+                            <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>
+
+                            <hr/>
+
+                            <h5>Filter Country</h5>
+
+                            <div class="j-form-country-buyers">
+                                <div style="margin-top:20px;text-align: center">
+                                    <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                                    <h5 style="margin-top: 15px">Loading...</h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="j-content-result-suppliers"
+                         {% if form.vars.value.category not in 'suppliers' %}style="display:none"{% endif %}>
+
+                        <div class="col-md-9">
+                            <div style="margin-top:20px;text-align: center">
+                                <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                                <h5 style="margin-top: 15px">Loading...</h5>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3">
+                            <a href="#" class="" data-toggle="modal"
+                               data-target="#modalSave"><span class="glyphicon glyphicon-time"></span> Alert</a>&nbsp;&nbsp;
+                            <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-star-empty"></span>
+                                Save</a>&nbsp;&nbsp;
+                            <a href="#" class="j-subscribe"><span class="glyphicon glyphicon-save"></span> Export</a>
+
+                            <hr/>
+
+                            <h5>Filter Country</h5>
+
+                            <div class="j-form-country-suppliers">
+                                <div style="margin-top:20px;text-align: center">
+                                    <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                                    <h5 style="margin-top: 15px">Loading...</h5>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="j-content-result-logistics"
+                         {% if form.vars.value.category not in 'logistics' %}style="display:none"{% endif %}>
+                        <div class="col-md-12">
+
+                            <div style="margin-top:20px;text-align: center">
+                                <img src="/bundles/jariffproject/frontend/images-old/301.GIF">
+                                <h5 style="margin-top: 15px">Loading...</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h4><span class="ui-icon ui-icon-circle-check"
+                                      style="float:left; margin:0 7px 50px 0;"></span>
+                                Advanced search is available for <strong>subscribers only</strong>. <a
+                                        style="color:#1ABC9C;" href="{{ path('signup') }}"><strong>See
+                                        plans now
+                                        »</strong></a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.j-choice-category').on('click', function () {
+                var value = $(this).attr('data-value');
+                var data_url = $(this).attr('data-url');
+                var data_url_window = $(this).attr('data-url-window');
+
+                $('.j-choice-category').parent('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+
+                window.history.pushState("object or string", "Title", data_url_window);
+
+                var totalCategory = $('#search_global_form_type_category').children('label').children(' input').length - 1;
+                $('#search_global_form_type_category').children('label').children('input').removeAttr('checked');
+                for (var i = 0; i < totalCategory; i++) {
+                    $('.j-all').children('div').attr("style", "display:none");
+                    if ($('#search_global_form_type_category').children('label').children('input').eq(i).val() == value) {
+                        $('#search_global_form_type_category').children('label').children('input').eq(i).click();
+
+                        $('.j-content-result-' + value).removeAttr("style");
+
+                        $.ajax({
+                            type: 'GET',
+                            url: data_url,
+                            // beforeSend: function () {
+                            //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                            // },
+                            success: function (data) {
+                                var res = JSON.parse(data);
+
+                                if (res.success) {
+                                    if (value != 'logistics') {
+                                        $('.j-content-result-' + value).children(".col-md-9").html(res.html_string);
+                                    } else {
+                                        $('.j-content-result-' + value).html(res.html_string);
+                                    }
+
+                                    $('.j-total-' + value).html(res.total_results);
+
+                                }
+                            }
+                        });
+
+                        break;
+                    }
+
+
+                }
+            })
+
+            var tabArr = ["buyers", "suppliers", "logistics"];
+
+            $.ajax({
+                type: 'GET',
+                url: Routing.generate('demo_' + '{{ form.vars.value.category }}' + '_res', {keyword: '{{ form.vars.value.q }}', 's_cache': '{{ s_cache }}' }),
+                // beforeSend: function () {
+                //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                // },
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+
+                        if ('{{ form.vars.value.category }}' != 'logistics') {
+                            $('.j-content-result-' + '{{ form.vars.value.category }}').children(".col-md-9").html(res.html_string);
+
+                            $.ajax({
+                                type: 'GET',
+                                url: Routing.generate('demo_' + '{{ form.vars.value.category }}' + '_show_filter_country_res', {keyword: '{{ form.vars.value.q }}', s_cache: '{{ s_cache }}'}),
+                                // beforeSend: function () {
+                                //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                                // },
+                                success: function (data) {
+                                    var res = JSON.parse(data);
+
+                                    if (res.success) {
+
+
+                                        $('.j-content-result-' + '{{ form.vars.value.category }}').children(".col-md-3").children(".j-form-country-" + '{{ form.vars.value.category }}').html(res.html_string);
+
+
+                                    }
+                                }
+                            })
+
+                        } else {
+                            $('.j-content-result-' + '{{ form.vars.value.category }}').html(res.html_string);
+                        }
+
+
+                        $('.j-total-' + '{{ form.vars.value.category }}').html(res.total_results);
+
+
+                    }
+                }
+            })
+
+
+            tabArr.forEach(function (datas) {
+                if (datas != '{{ form.vars.value.category }}') {
+                    $.ajax({
+                        type: 'GET',
+                        url: Routing.generate('demo_' + datas + '_res', {keyword: '{{ form.vars.value.q }}'
+                        }),
+                        // beforeSend: function () {
+                        //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                        // },
+                        success: function (data) {
+                            var res = JSON.parse(data);
+
+                            if (res.success) {
+                                if (datas != 'logistics') {
+                                    $('.j-content-result-' + datas).children(".col-md-9").html(res.html_string);
+
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: Routing.generate('demo_' + datas + '_show_filter_country_res', {keyword: '{{ form.vars.value.q }}'}),
+                                        // beforeSend: function () {
+                                        //     $('.j-total-exporter').html('<img src="/bundles/jariffproject/frontend/images-old/301_12.GIF">');
+                                        // },
+                                        success: function (data) {
+                                            var res = JSON.parse(data);
+
+                                            if (res.success) {
+
+
+                                                $('.j-content-result-' + datas).children(".col-md-3").children(".j-form-country-" + datas).html(res.html_string);
+
+
+                                            }
+                                        }
+                                    })
+
+                                } else {
+                                    $('.j-content-result-' + datas).html(res.html_string);
+
+                                }
+
+                                $('.j-total-' + datas).html(res.total_results);
+
+
+                            }
+                        }
+                    })
+
+                }
+            })
+
+            $(".j-subscribe").on("click", function () {
+                $('.bs-example-modal-sm').modal({
+                    show: true
+                })
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}
+
+{% block style %}
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+{% endblock %}

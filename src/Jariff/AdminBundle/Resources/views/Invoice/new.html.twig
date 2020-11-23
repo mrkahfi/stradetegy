@@ -1,0 +1,67 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_lead_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_invoice_show', {'id' : member.id}) }}">Member #{{ member.number }} Invoice</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        New Invoice
+    </li>
+{% endblock %}
+
+{% block content %}
+
+{{ form_start(form) }}
+<fieldset>
+<div class="row-fluid">
+	<div class="span12">
+		<div class="span6">
+		    <div class="social-box">
+				<div class="body">
+					{{ form_row(form.billToName) }}
+					{{ form_row(form.billToAdress) }}
+					{{ form_row(form.billToEmail) }}
+					{{ form_row(form.billToPhone) }}
+				</div>
+			</div>
+		</div>
+		<div class="span6">
+		    <div class="social-box">
+				<div class="body">
+					{{ form_row(form.subscription) }}
+					{# {{ form_row(form.amount) }} #}
+					{{ form_row(form.description) }}
+					{{ form_row(form.sales) }}
+		            <div class="input-append datetimepicker">
+		              {{ form_label(form.date) }}
+		              {{ form_widget(form.date) }}
+		              <span class="add-on">
+		                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+		              </span>
+		            </div>
+				</div>
+		  </div>
+		</div>
+    </div>
+</div>
+
+{{ form_row(form.member) }}         
+{{ form_row(form._token) }}
+<button type="submit" class="btn btn-primary">Save</button>
+</fieldset>
+</form>
+
+    
+{% endblock %}

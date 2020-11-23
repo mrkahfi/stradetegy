@@ -1,0 +1,1578 @@
+{% extends 'JariffProjectBundle::base_member_cs.html.twig' %}
+
+{% block header_title %}Glossary Of Terms{% endblock %}
+
+{% block content %}
+
+    {#<img src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}"  alt="stradetegy Logo">#}
+    <a href="{{ asset('/bundles/jariffproject/frontend/documents/ST_Glossary_of_Terms.pdf') }}" target="_blank" class="pull-right"><span class="icon-download-alt"></span> Download Glossary of Terms</a>
+    <br/>
+    <br/>
+    <table class="table table-hover">
+        <tbody>
+        <tr class="info">
+            <td>Arrival Date</td>
+            <td>The date the shipment arrives within the Customs territory of the country
+            </td>
+
+        </tr>
+        <tr>
+            <td>Attributes</td>
+            <td>Code used at customs to separate goods in products, brands, and descriptions</td>
+
+        </tr>
+        <tr class="info">
+            <td>Bill of Lading Number	</td>
+            <td>The unique number assigned to this particular shipment by the ocean carrier or freight
+                forwarder
+            </td>
+
+        </tr>
+        <tr>
+            <td>Brand</td>
+            <td>The name used to identify and differentiate between goods created by different companies</td>
+
+        </tr>
+        <tr class="info">
+            <td>Brand FOB</td>
+            <td>The cost of each unit for the exact product & brand listex
+            </td>
+
+        </tr>
+        <tr>
+            <td>Brand ID</td>
+            <td>The
+                number
+                used
+                when
+                there
+                are
+                multiple
+                goods
+                of
+                the
+                same
+
+                product
+                ID
+                to
+                differentiate
+                between
+                Brands</td>
+
+        </tr>
+        <tr class="info">
+            <td>Brand
+                Quantity</td>
+            <td>The
+                number
+                of
+                units
+                shipped
+                of
+                the
+                exact
+                product
+                &
+                brand
+
+                listed
+            </td>
+
+        </tr>
+        <tr>
+            <td>Carrier
+                Address
+
+            </td>
+            <td>The
+                address
+                of
+                the
+                company
+                in
+                charge
+                of
+                moving
+                the
+                freight
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Carrier
+                Code
+            </td>
+            <td>The
+                four
+                digit
+                Standard
+                Carrier
+                Alpha
+                Code
+                of
+                the
+                ocean
+
+                carrier
+                or
+                freight
+                forwarder
+                managing
+                the
+                transit
+                of
+                the
+
+                shipment
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Carrier
+                Name
+
+            </td>
+            <td>The
+                name
+                of
+                the
+                company
+                in
+                charge
+                of
+                moving
+                the
+                freight
+
+                from
+                the
+                Shipper
+                to
+                Consignee
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Chapter
+                Code
+            </td>
+            <td>The
+                first
+                two
+                numbers
+                of
+                the
+                HS
+                Code
+                defining
+                the
+                category
+
+                of
+                goods
+                in
+                which
+                the
+                shipment
+                fits
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Chapter
+                Description
+
+            </td>
+            <td>Any
+                defining
+                attributes
+                used
+                to
+                classify
+                a
+                specific
+                chapter      </td>
+
+        </tr>
+        <tr class="info">
+            <td>CIF
+                Cost,
+                Insurance,
+                Freight:
+
+            </td>
+            <td>The
+                combined
+                cost
+                of
+                the
+                Freight
+                on
+                Board,
+                Transportation,
+
+                and
+                Insurance.
+            </td>
+
+        </tr>
+        <tr>
+            <td>Consignee</td>
+            <td>The
+                company
+                importing
+                the
+                shipment
+                into
+                the
+                destination
+
+                country
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Consignee
+                Address
+
+            </td>
+            <td>The
+                address
+                of
+                the
+                company
+                importing
+                the
+                shipment
+                into
+                the
+
+                destination
+                country
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Consignee
+                Email
+            </td>
+            <td>The
+                email
+                address
+                listed
+                on
+                the
+                shipment
+                for
+                the
+                importer
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Consignee
+                Fax
+
+            </td>
+            <td>The
+                fax
+                number
+                listed
+                on
+                the
+                shipment
+                for
+                the
+                importer
+            </td>
+
+        </tr>
+        <tr>
+            <td>Consignee
+                Phone
+            </td>
+            <td>The
+                phone
+                number
+                listed
+                on
+                the
+                shipment
+                for
+                the
+                importer
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Container
+                Number
+
+
+            </td>
+            <td>The
+                unique
+                number
+                assigned
+                to
+                the
+                ocean
+                shipping
+                container
+
+                carrying
+                the
+                shipment
+                in
+                question
+            </td>
+
+        </tr>
+        <tr>
+            <td>Country
+                of
+                Origin
+            </td>
+            <td>The
+                country
+                of
+                the
+                last
+                foreign
+                port
+                the
+                shipment
+                passes
+
+                through
+                before
+                arriving
+                in
+                the
+                destination
+                country
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Customs
+            </td>
+            <td>The
+                Customs
+                Agency
+                responsible
+                for
+                clearing
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Declaration
+
+            </td>
+            <td>The
+                Customs
+                Agency
+                responsible
+                for
+                clearing
+                the
+                shipment	</td>
+
+        </tr>
+        <tr class="info">
+            <td>Declaration
+                Number
+            </td>
+            <td>Number
+                of
+                the
+                customs
+                declaration </td>
+
+        </tr>
+        <tr>
+            <td>Description
+                1	</td>
+            <td>Any
+                further
+                descriptors
+                of
+                the
+                goods
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Description
+                2
+            </td>
+            <td>Any
+                further
+                descriptors
+                of
+                the
+                goods </td>
+
+        </tr>
+        <tr>
+            <td>Description
+                3	</td>
+            <td>Any
+                further
+                descriptors
+                of
+                the
+                goods
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Destination
+                Country
+            </td>
+            <td>The
+                country
+                the
+                shipment
+                is
+                ultimately
+                being
+                sent
+                to
+            </td>
+
+        </tr>
+        <tr>
+            <td>Distribution
+                Port
+            </td>
+            <td>In
+                some
+                cases,
+                imported
+                shipments
+                are
+                not
+                cleared
+                through
+
+                Customs
+                at
+                the
+                port
+                of
+                arrival.
+                Instead,
+                the
+                importer
+                may
+
+                choose
+                to
+                clear
+                them
+                at
+                a
+                different
+                port,
+                known
+                as
+                the
+
+                Distribution
+                Port.
+                Whenever
+                this
+                happens,
+                you'll
+                see
+                that
+                the
+
+                In-­‐Bond
+                Entry
+                Type
+                is
+                listed
+                as
+                a
+                Transportation
+                Entry
+                instead
+
+                of
+                a
+                Consumption
+                Entry
+                because
+                the
+                goods
+                are
+                allowed
+                into
+
+                the
+                physical
+                territory
+                of
+                the
+                country
+                for
+                transportation
+
+                purposes,
+                not
+                consumption
+                (aka
+                sale).
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Embarkation
+
+            </td>
+            <td>Where
+                the
+                shipment
+                has
+                been
+                loaded
+                and
+                sent
+                from
+            </td>
+
+        </tr>
+        <tr>
+            <td>Export
+                Date</td>
+            <td>The
+                date
+                the
+                shipment
+                leaves
+                the
+                country
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>FOB
+                Freight
+                on
+                Board:
+
+
+            </td>
+            <td>The
+                cost
+                of
+                the
+                goods
+                on
+                the
+                shipment
+            </td>
+
+        </tr>
+        <tr>
+            <td>Foreign
+                Port
+                </td>
+            <td>The
+                last
+                port
+                the
+                shipment
+                passes
+                through
+                before
+                arriving
+                in
+
+                the
+                destination
+                country
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Freight
+            </td>
+            <td>The
+                cost
+                of
+                moving
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Gross
+                Weight
+
+            </td>
+            <td>The
+                gross
+                weight
+                of
+                the
+                shipment,
+                excluding
+                the
+                weight
+                of
+                the
+
+                actual
+                container
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>House
+                B/L
+
+            </td>
+            <td>A
+                code
+                used
+                to
+                report
+                individual
+                portions
+                of
+                a
+                consolidated
+
+                shipment
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>House
+                vs
+                Master
+
+
+            </td>
+            <td>The
+                field
+                to
+                differentiate
+                between
+                the
+                House
+                bills
+                of
+                lading
+
+                and
+                Master
+                bills
+                of
+                lading
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>HS
+                Code
+                The
+
+            </td>
+            <td>Harmonized
+                System
+                Code
+                is
+                a
+                number
+                designed
+                to
+                classify
+
+                and
+                describe
+                goods
+            </td>
+
+        </tr>
+        <tr>
+            <td>HS
+                Code
+                Description
+            </td>
+            <td>A
+                description
+                of
+                the
+                goods
+                defined
+                by
+                the
+                HS
+                Code
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Incoterms</td>
+            <td>A
+                series
+                of
+                three-­‐letter
+                trade
+                terms
+                related
+                to
+                the
+                tasks,
+                costs,
+
+                and
+                risks
+                associated
+                with
+                the
+                transportation
+                of
+                the
+                goods
+            </td>
+
+        </tr>
+        <tr>
+            <td>Insurance
+
+            </td>
+            <td>The
+                cost
+                of
+                insuring
+                the
+                commodities
+                involved
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>ISO
+            </td>
+            <td>Intermodal
+                Shipper
+                Owned
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Load
+                Type
+
+
+            </td>
+            <td>Any
+                special
+                characteristics
+                of
+                a
+                shipment
+
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Manifest
+
+            </td>
+            <td>Document
+                that
+                lists
+                in
+                detail
+                all
+                the
+                bills
+                of
+                lading
+                issued
+                by
+                a
+
+                carrier
+                or
+                its
+                agent
+                or
+                master
+                for
+                a
+                specific
+                voyage.
+                A
+                detailed
+
+                summary
+                of
+                the
+                total
+                cargo
+                of
+                a
+                vessel.
+                Used
+                principally
+                for
+
+                Customs
+                purposes.
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Marks
+                &
+                Numbers
+
+
+
+            </td>
+            <td>Any
+                text
+                or
+                numbers
+                appearing
+                on
+                the
+                individual
+                cartons
+
+                inside
+                the
+                ocean
+                containers
+
+
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Master
+                B/L
+
+            </td>
+            <td>A
+                4-character
+                issuer
+                code
+                plus
+                the
+                issuer-assigned
+                sequence
+
+                number,
+                which
+                identifies
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Merchandise
+                State
+
+
+            </td>
+            <td>The
+                status/quality
+                of
+                the
+                goods
+
+
+
+            </td>
+
+        </tr><tr class="info">
+            <td>Net
+                Weight
+
+
+            </td>
+            <td>The
+                weight
+                of
+                the
+                shipment,
+                not
+                including
+                the
+                container
+                or
+
+                packaging
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>No.
+                of
+                Containers
+            </td>
+            <td>The
+                    number
+                    of
+                    containers
+                    used
+                    for
+                    the
+                    shipment
+            </td>
+
+        </tr>
+
+        <tr class="info">
+            <td>Notify
+                Party</td>
+            <td>The
+                party
+                authorized
+                to
+                receive
+                a
+                copy
+                of
+                the
+                bill
+                of
+                lading
+
+                notification</td>
+
+        </tr>
+        <tr>
+            <td>Number
+                of
+                Packages
+            </td>
+            <td>The
+                quantity
+                of
+                packages
+                involved
+                in
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Number
+                of
+                Units
+            </td>
+            <td>The
+                quantity
+                of
+                boxes
+                Customs
+                would
+                find
+                if
+                they
+                were
+                to
+
+                open
+                the
+                shipment
+                for
+                inspection</td>
+
+        </tr>
+        <tr>
+            <td>NVOCC
+
+            </td>
+            <td>Non
+                Vessel
+                Operating
+                Common
+                Carrier
+                NVOCCs
+                are
+                those
+
+                who
+
+                own
+                their
+                own
+                containers
+                but
+                don't
+                own
+                and
+                operate
+                vessels.
+
+                NVOCCs
+                buy
+                container
+                space
+                in
+                vessels
+                from
+                vessel
+                operators
+
+                and
+                in
+                turn
+                sell
+                sea
+                freight
+                service
+                to
+                their
+                customers  </td>
+
+        </tr>
+        <tr class="info">
+            <td>Operation
+                Type
+            </td>
+            <td>The
+                type
+                of
+                shipment
+            </td>
+
+        </tr>
+        <tr>
+            <td>Origin
+                Freight
+            </td>
+            <td>Original
+                Currency
+                used
+                for
+                Freight
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Origin
+                Insurance
+
+            </td>
+            <td>Original
+                Currency
+                used
+                for
+                Insurance
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Package
+                Type
+
+            </td>
+            <td>The
+                type
+                of
+                unit
+                being
+                shipped
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Pay
+                Type
+
+
+            </td>
+            <td>The
+                method
+                of
+                payment
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Physical
+                Quantity
+
+
+            </td>
+            <td>The
+                numbers
+                of
+                units
+                found
+                within
+                a
+                shipment
+
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Place
+                of
+                Delivery
+            </td>
+            <td>Location
+                where
+                cargo
+                enters
+                the
+                care
+                and
+                custody
+                of
+                carrier.
+            </td>
+
+        </tr>
+        <tr>
+            <td>Port
+            </td>
+            <td>The
+                last
+                port
+                the
+                shipment
+                passes
+                through
+                before
+                arriving
+                in
+
+                the
+                destination
+                country	 </td>
+
+        </tr>
+        <tr class="info">
+            <td>Product
+                Description
+
+            </td>
+            <td>The
+                exporter's
+                description
+                of
+                the
+                shipment
+                as
+                it
+                appears
+                on
+
+                the
+                bill
+                of
+                lading
+                or
+                shipping
+                manifest
+            </td>
+
+        </tr>
+        <tr>
+            <td>Product
+                ID
+
+            </td>
+            <td>The
+                number
+                used
+                when
+                multiple
+                goods
+                are
+                sent
+                on
+                the
+                same
+
+                shipment
+                to
+                help
+                sort
+                and
+                differentiate
+                between
+                HS
+                Codes</td>
+
+        </tr>
+        <tr class="info">
+            <td>Quantity
+            </td>
+            <td>The
+                number
+                of
+                units
+                found
+                within
+                the
+                shipment
+            </td>
+
+        </tr>
+        <tr>
+            <td>Remarks
+            </td>
+            <td>Where
+                customs
+                puts
+                additional
+                information
+                for
+                the
+                products
+
+                imported
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Ship
+                Registered
+                In
+
+            </td>
+            <td>The
+                country
+                where
+                the
+                ship
+                is
+                officially
+                registered
+            </td>
+
+        </tr>
+        <tr>
+            <td>Shipper
+
+            </td>
+            <td>The
+                overseas
+                company
+                exporting
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Shipper
+            </td>
+            <td>The
+                overseas
+                company
+                exporting
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Shipper
+                Address
+            </td>
+            <td>The
+                address
+                of
+                the
+                overseas
+                company
+                exporting
+                the
+                shipment
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Shipper
+                Phone
+
+            </td>
+            <td>The
+                phone
+                number
+                listed
+                on
+                the
+                shipment
+                for
+                the
+                exporter
+            </td>
+
+        </tr>
+        <tr>
+            <td>Tax
+                (%)
+
+            </td>
+            <td>The
+                percentage
+                of
+                taxation
+                on
+                a
+                shipment
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>TEU
+
+            </td>
+            <td>Twenty
+                Foot
+                Equivilent
+                Units
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Total Invoice</td>
+            <td>Total
+                value
+                of
+                the
+                invoice
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Transportation
+                Company
+
+
+            </td>
+            <td>The
+                company
+                responsible
+                for
+                delivery
+                of
+                the
+                goods
+            </td>
+
+        </tr>
+        <tr>
+            <td>Transportation
+                Type
+            </td>
+            <td>The
+                method
+                of
+                transport
+                used
+                for
+                the
+                shipping
+                of
+                the
+                goods
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>U.S.
+                Port
+            </td>
+            <td>The
+                U.S.
+                Port
+                where
+                the
+                shipment
+                enters
+                the
+                Customs
+
+                territory
+                of
+                the
+                U.S.
+            </td>
+
+        </tr>
+        <tr>
+            <td>Unit
+
+            </td>
+            <td>The
+                measurement
+                used
+                to
+                describe
+                the
+                Quantity
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Variety
+
+            </td>
+            <td>Any
+                further
+                description
+                of
+                the
+                goods
+                on
+                board
+            </td>
+
+        </tr>
+        <tr>
+            <td>Vessel
+                Name
+
+
+            </td>
+            <td>The
+                name
+                of
+                the
+                ship
+                transporting
+                the
+                shipment
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Volume
+
+
+            </td>
+            <td>The
+                volume
+                of
+                the
+                shipment,
+                generally
+                defined
+                in
+                cubic
+
+                meters
+                or
+                container
+                base
+                measurements
+                (CBM)
+            </td>
+
+        </tr>
+        <tr>
+            <td>Voyage
+                Number
+
+
+
+            </td>
+            <td>A
+                unique
+                code
+                assigned
+                to
+                that
+                particular
+                sailing
+                of
+                the
+                ship
+
+                between
+                two
+                ports
+
+
+            </td>
+
+        </tr>
+        <tr class="info">
+            <td>Zip
+                Code
+
+
+
+            </td>
+            <td>A
+                group
+                or
+                5
+                or
+                9
+                numbers
+                used
+                to
+                assist
+                in
+                sorting
+                of
+                mail
+                for
+
+                delivery
+
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+
+{% endblock %}

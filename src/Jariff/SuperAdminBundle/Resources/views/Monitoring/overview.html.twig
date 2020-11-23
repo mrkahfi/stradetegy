@@ -1,0 +1,254 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block style %}
+<style type="text/css">
+#timeline{
+	background:none;
+}
+
+/* The individual events in the slider */
+.slider .slider-container-mask .slider-container{
+	background:none;
+}
+
+/* Setting a custom background image */
+#timeline div.navigation{
+	background: url('/bundles/jariffadmin/css/img/timeline_bg.jpg') repeat;
+	border-top:none;
+}
+</style>
+{% endblock %}
+{% block wraper %}
+<!-- BEGIN SIDEBAR -->
+<aside class="social-sidebar sidebar-full">
+	{% block social_sidebar %}
+	{% include "JariffProjectBundle:Component:sidebar.html.twig" %}
+	{% endblock %}
+</aside>
+<!-- END SIDEBAR -->
+<header>
+	<!-- BEGIN NAVBAR -->
+	{% block navbar_header %}
+	{% include "JariffProjectBundle:Component:navbar_simple.html.twig" %}
+	{% endblock %}
+	<!-- END NAVBAR -->
+</header>
+<!-- BEGIN MAIN CONTAINER -->
+<div id="main">
+	<!-- BEGIN CONTENT CONTANER -->
+	<div class="container-fluid">
+
+		<div class="row-fluid">
+			{% block flashes %}
+			{% for flashMessage in app.session.flashbag.get('success') %}
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Well done!</strong> {{ flashMessage }}.
+			</div>
+			{% endfor %}
+			{% for flashMessage in app.session.flashbag.get('error') %}
+			<div class="alert alert-error">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Oh snap!</strong> {{ flashMessage }}.
+			</div>
+			{% endfor %}
+			{% endblock flashes %}
+		</div>
+		<div class="row-fluid">
+			{% block shortcut %}
+
+			{% endblock %}
+		</div>
+
+		<div class="row-fluid">
+			{% block content %}
+			<div class="span12">
+				<h3 class="page-title">
+					Overview
+				</h3>
+				<!-- BEGIN BREADCRUMBS -->
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home"></i>
+						<a href="../dashboard.html">Dashboard</a>
+						<span class="icon-angle-right"></span>
+					</li>
+					<li><a href="#">Monitoring</a>
+						<span class="icon-angle-right"></span>
+					</li>
+					<li><a href="basic.html">Overview</a>
+					</li>
+
+				</ul>
+				<!-- END BREADCRUMBS -->
+			</div>
+			{% endblock %}
+		</div>
+
+		<div class="row-fluid">
+			<!-- BEGIN DESULT STYLES TABLES EXAMPLE -->
+			<div class="span6">
+				<div class="social-box">
+					<div class="header">
+						<h4>Time Logged (By Employee)</h4>
+					</div>
+					<div class="body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th style="text-align: left;">User</th>
+									<th style="text-align: left;">Today</th>
+									<th style="text-align: left;">Last 7 Days</th>
+									<th style="text-align: left;">Last 30 Days</th>
+									<th style="text-align: left;">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for user in users %}
+								<tr id="row{{ loop.index0 }}" wsid="{{ user.wsId }}">
+									<td>{{ user.name }}</td>
+									<td><a id="today-worktime{{ loop.index0 }}" href="{{ path('super_admin_monitoring_time_entry', { userId : user.wsId }) }}"><img src="/bundles/jariffproject/admin/img/small-preloader.gif" /> </a></td>
+									<td id="week-worktime{{ loop.index0 }}"><img src="/bundles/jariffproject/admin/img/small-preloader.gif" /> </td>
+									<td id="month-worktime{{ loop.index0 }}"><img src="/bundles/jariffproject/admin/img/small-preloader.gif" /> </td>
+									<td id="col{{ loop.index0 }}"><img src="/bundles/jariffproject/admin/img/small-preloader.gif" /> </td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- END DESULT STYLES TABLES EXAMPLE -->
+			<!-- BEGIN ZEBRA-STRIPING TABLE EXAMPLE -->
+			<div class="span6">
+				<div class="social-box">
+					<div class="header">
+						<h4>Revenue (By User)</h4>
+					</div>
+					<div class="body">
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th style="text-align: left;">Subscription</th>
+									<th style="text-align: left;">Accomplished</th>
+									<th style="text-align: left;">Value</th>
+									<th style="text-align: left;">Total</th>
+									<th style="text-align: left;">Earning</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% set total = 0 %}
+								{% for user in users %}
+								<tr>
+									<td><a href="{{ path('super_admin_monitoring_revenue_detail', {'id' : user.id }) }}">{{ user.subscription|length }}</a></td>
+									<td><a href="{{ path('super_admin_monitoring_revenue_detail', {'id' : user.id }) }}">
+										{% if user.subscription|length >= 80 %}
+											Yes
+										{% else %}
+											No
+										{% endif %}
+									</a>
+									</td>
+									<td>
+										<a href="{{ path('super_admin_monitoring_revenue_detail', {'id' : user.id }) }}">
+										{% for subscription in user.subscription %}
+											{% set total = subscription.total %}
+										{% endfor %}
+										${{ total }}
+									</a>
+									</td>
+									<td><a href="{{ path('super_admin_monitoring_revenue_detail', {'id' : user.id }) }}">
+										{% for subscription in user.subscription %}
+											{% set total = subscription.total + total %}
+										{% endfor %}
+										${{ total }}
+									</a>
+									</td>
+									<td><a href="{{ path('super_admin_monitoring_revenue_detail', {'id' : user.id }) }}">
+										{% for subscription in user.subscription %}
+											{% set total = subscription.total + total %}
+										{% endfor %}
+										${{ total }}
+									</a>
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+			<!-- END ZEBRA-STRIPING TABLE EXAMPLE -->
+		</div>
+	</div>
+
+
+
+	<!-- END CONTENT CONTAINER -->
+	<!-- BEGIN PAGE FOOTER -->
+	<footer id="footer">
+		{% block footer %}
+		<div class="container-fluid">
+			2014 © <em>sTRADEtegy - Your trade strategy</em> by <a href="http://stradetegy.com/" target="_blank">ST</a>.
+		</div>
+		{% endblock %}
+	</footer>
+	<!-- END PAGE FOOTER -->
+</div>
+<!-- END MAIN CONTAINER -->
+{% endblock %}
+
+{% block javascript %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script type="text/javascript">
+var users = {{ users|json_encode() }};
+console.log(users);
+var url = Routing.generate('super_admin_monitoring_user_status_json');
+$.getJSON(url,function(result){
+	console.log("finish");
+	for (var i = 0; i < users.length; i++) {
+		var isFound = false;
+		for (var j = 0; j < result.length; j++) {
+			console.log(result[j].user_id);
+			console.log($("tr#row"+i).attr("wsid"));
+			if (result[j].user_id == $("tr#row"+i).attr("wsid")) {
+				isFound = true;
+				break;
+			};
+		};
+
+		if (isFound) {
+			$("td#col" + i ).html("<span class='label label-success'>Online</span>");
+		} else {
+			$("td#col" + i ).html("<span class='label label-important'>Offline</span>");
+		}
+	}
+	
+	var url = Routing.generate('super_admin_monitoring_user_worktime_json');
+	$.getJSON(url,function(result){
+		console.log("finish");
+		for (var i = 0; i < result.length; i++) {
+			var todayHours = Math.floor(result[i].today / 60); 
+			var todayMinutes = result[i].today%60;
+			var weekHours = Math.floor(result[i].week / 60); 
+			var weekMinutes = result[i].week%60;
+			var monthHours = Math.floor(result[i].month / 60); 
+			var monthMinutes = result[i].month%60;
+			$("a#today-worktime" + i ).html(todayHours + "h " + todayMinutes + "m");
+			$("td#week-worktime" + i ).html(weekHours + "h " + weekMinutes + "m");
+			$("td#month-worktime" + i ).html(monthHours + "h " + monthMinutes + "m");
+		}
+	});
+});
+
+
+</script>
+<script src="{{ asset('bundles/jariffadmin/js/timeline-min.js') }}"></script>
+<!-- <script src="{{ asset('bundles/jariffadmin/js/script.js') }}"></script> -->
+
+
+{% endblock %}

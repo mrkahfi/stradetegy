@@ -1,0 +1,332 @@
+{% extends 'JariffProjectBundle::landing.html.twig' %}
+{% block head_style %}
+{% stylesheets
+  'bundles/jariffproject/frontend/css/fonts.googlelapis.com.css'
+  'bundles/jariffproject/frontend/css/bootstrap.css'
+  'bundles/jariffproject/frontend/css/style.css'
+  'bundles/jariffproject/frontend/css/dark.css'
+  'bundles/jariffproject/frontend/css/font-icons.css'
+  'bundles/jariffproject/frontend/css/animate.css'
+  'bundles/jariffproject/frontend/css/magnific-popup.css'
+  'bundles/jariffproject/frontend/css/responsive.css'
+  'bundles/jariffproject/frontend/css/subpages.css'
+  filter='cssrewrite' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen"/>
+  {#{{ form_stylesheet(form) }}#}
+  {% endstylesheets %}
+  {% block style %}
+  {% endblock %}
+  {% endblock head_style %}
+  {% block body %}
+  <body class="stretched subpages">
+   <!-- Document Wrapper
+   ============================================= -->
+   <div id="wrapper" class="clearfix">
+      <!-- Header
+      ============================================= -->
+      <header id="header" class="full-header">
+       <div id="header-wrap">
+        <div class="container clearfix">
+         <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+               <!-- Logo
+               ============================================= -->
+               <div id="logo">
+                <a href="#" class="standard-logo" data-dark-logo="{{ asset('/bundles/jariffproject/frontend/images/logo-dark.png') }}"><img src="{{ asset('/bundles/jariffproject/frontend/images/logo.png') }}" alt="TRADEtegy Logo"></a>
+                <a href="#" class="retina-logo" data-dark-logo="{{ asset('/bundles/jariffproject/frontend/images/logo-dark@2x.png') }}"><img src="{{ asset('/bundles/jariffproject/frontend/images/logo@2x.png') }}" alt="TRADEtegy Logo"></a>
+              </div>
+              <!-- #logo end -->
+               <!-- Top Search
+               ============================================= -->
+               <div id="top-search">
+                <a href="#" id="top-search-trigger"><i class="icon-search3"></i><i class="icon-line-cross"></i></a>
+                <form action="search.html" method="get">
+                 <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter..">
+               </form>
+             </div>
+             <!-- #top-search end --> 
+               <!-- Primary Navigation
+               ============================================= -->
+               <nav id="primary-menu" class="style-2 sub-title">
+                <div class="container clearfix">
+                 <ul>
+                  <li>
+                   <a href="#">
+                    <div>How We Help?</div>
+                  </a>
+                </li>
+                <li>
+                 <a href="#">
+                  <div>Plan & Pricing</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- #primary-menu end -->
+      </div>
+    </div>
+  </header>
+  <!-- #header end -->
+      <!-- Page Title
+      ============================================= -->
+      <section id="page-title">
+       <div class="container clearfix">
+        <h1>{{ data.shipperName }}</h1>
+        <span>Company profile made by TRADEtegy</span>
+      </div>
+    </section>
+    <!-- #page-title end -->
+      <!-- Content
+      ============================================= -->
+      <section id="content">
+       <div class="content-wrap">
+        <div class="container clearfix">
+               <!-- Posts
+               ============================================= -->
+               <div id="posts" class="post-grid clearfix">
+                <div class="promo promo-dark promo-uppercase bottommargin">
+                 <h3>See {{ data.shipperName }}'s products and suppliers</h3>
+                 <span>Thousands of companies like you use TRADEtegy to research suppliers and competitors</span>
+                 <a href="#" class="button button-3d button-blue button-xlarge nobottommargin">Start Now</a>
+               </div>
+               <h3 class="text-center">Easy access to trade data</h3>
+               <section id="us-import-shipments" class="shipment-section selected translate">
+                 <div class="dataSection text-center">
+                  <h4>U.S. Customs records organized by company</h4>
+                  <span><span class="notranslate">{{ shipperCount }}</span> U.S. shipments available for <span class="notranslate">{{ data.shipperName }}</span>, updated weekly since 2007</span>
+                  <br><br>
+                </div>
+                <table class="table tightTable monospace">
+                  <thead>
+                   <tr>
+                    <th>Date</th>
+                    <th>Buyer</th>
+                    <th>Supplier</th>
+                    <th>Details</th>
+                    <th>34 more fields</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 {% for company in companies|slice(0,3) %}
+                 {% if loop.index0 == 0 %}
+                 <tr>
+                  <td>{{ company.actualArrivalDate|date("Y-m-d") }}</td>
+                  <td class="locked-content-preview" colspan="4" rowspan="2">
+                   <div class="locked-content-message translate"><span>See all <span class="notranslate">{{ shipperCount }}</span> shipment records for <span class="notranslate">{{ data.shipperName }}</span> with a TRADEtegy data plan.</span><br><a href="/request-demo" class="button buttonPrimary">Request a demo</a></div>
+                 </td>
+               </tr>
+               {% elseif loop.index0 == 1 %}
+               <tr>
+                <td>{{ company.actualArrivalDate|date("Y-m-d") }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td>{{ company.actualArrivalDate|date("Y-m-d") }}</td>
+                <td class="notranslate">{{ company.shipperName }}</td>
+                <td class="notranslate">{{ company.consigneeName }}</td>
+                <td class="commodity notranslate">{{ company.productDesc|replace({('<br/>'): ""}) }}</td>
+                <td><a href="#" onclick="$j('#cr_detail')[0].scrollIntoView(true); return false;">Bill of lading</a></td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="learnMore alignCenter">Shipment data shows what products a company is trading and more.
+            <a href="#" onclick="learn_more_trade_data(); return false;">Learn more</a>     
+          </div>
+        </section>
+        <section id="trading-partners" class="translate">
+          <h3 class="text-center">Quickly analyze trade relationships</h3>
+          <div class="line">
+            <div class="network-view-banner unit size1of1 lastUnit">
+              <div class="networkMap">
+                <h4 class="text-center">Network view map</h4>
+                <p class="networkMapTagline text-center">Explore trading relationships hidden in US import data.</p>
+                <p>See all <span class="notranslate">{{ companies|length }}</span> supplier of <span class="notranslate">{{ data.shipperName }}</span></p>
+                <script defer="defer" type="text/javascript">
+                    //<![CDATA[
+
+                    function learn_more_network_view() {
+                      ;$j.facebox('<div class=\"everest facebox translate\">\n  <div class=\"close\"><a class=\"non_link_look\" href=\"#\" onclick=\"$j(document).trigger(\'close.facebox\'); ; return false;\" style=\"\" title=\"Close\"><span class=\"closeIcon icon panjiva-icon-x-circle\"><\/span><\/a><\/div>\n\n  <h1>Network view<\/h1>\n  <p>Network view allows you to quickly visualize the relationships between companies. Using the three tiered graphic, you can identify companies that share a common trading partner, the strength of relationship between companies, and the size of shipments traded.\n  <\/p>\n  <p>You can filter the visual to see companies that match your product, country, or time specifications. The graph will show as many as 121 companies in a single view and can be exported to an image to put in presentations.\n  <\/p>\n  <img style=\"margin: 0px; padding: 0px; outline: 0px; vertical-align: baseline; background-color: transparent;\" title=\"Network view preview\" src=\"/images/network_view/network_view.png\" alt=\"\">\n<\/div>\n');
+                    }
+
+                    //]]>
+                  </script>      <a href="#" class="button buttonPrimary" onclick="learn_more_network_view(); return false;">Learn more about network view</a>        </div>
+                </div>
+              </div>
+              <br>
+              <div class="unit size1of2">
+
+                <strong>Top suppliers</strong>
+                <ol class="numberedList">
+                  {% for company in companies|slice(0,5) %}
+                  <li>
+                    <a href="https://tradetegy.com/exporter/{{ company.slugShipperName }}" class="top-item-link" style="width: 280px;" title="{{ company.shipperName|title|slice(0,40) }}"><span class="notranslate">{{ company.shipperName|title|slice(0,40) }}</span></a>              
+                    <span style="display: inline-block;" class="progress-bar">
+                      <progress style="width:100px; height: 20px; margin-left: 10px;" title="{{ company.totalShipment }} shipments" value="{{ company.totalShipment }}.0" max="{{ data.totalShipment }}">
+                      </progress>
+                    </span>
+                  </li>
+                  {% endfor %}
+                </ol>
+                <div class="learnMore">
+                  <span class="notranslate">{{ companies|length }}</span> supplier available
+                </div>
+
+              </div>
+              <div class="unit size1of2 lastUnit">
+
+                <strong>Top products</strong>
+                <ol class="numberedList">
+
+                  <li>
+                    <a href="https://panjiva.com/Buyers-Of/rdbf%20red%20ball%20forwarders" class="top-item-link" style="width: 280px;" title="rdbf red ball forwarders">rdbf red ball forwarders</a>              <span style="display: inline-block;" class="progress-bar">
+                    <progress style="width:100px; height: 20px; margin-left: 10px;" title="The term 'rdbf red ball forwarders' appears in 6 shipments" value="6.0" max="7">
+                    </progress>
+                  </span>
+                </li>
+
+                <li>
+                  <a href="https://panjiva.com/Buyers-Of/rdbf%20red%20ball" class="top-item-link" style="width: 280px;" title="rdbf red ball">rdbf red ball</a>              <span style="display: inline-block;" class="progress-bar">
+                  <progress style="width:100px; height: 20px; margin-left: 10px;" title="" value="6.0" max="7">
+                  </progress>
+                </span>
+              </li>
+
+              <li>
+                <a href="https://panjiva.com/Buyers-Of/ball%20forwarders" class="top-item-link" style="width: 280px;" title="ball forwarders">ball forwarders</a>              <span style="display: inline-block;" class="progress-bar">
+                <progress style="width:100px; height: 20px; margin-left: 10px;" title="" value="6.0" max="7">
+                </progress>
+              </span>
+            </li>
+
+            <li>
+              <a href="https://panjiva.com/Buyers-Of/red%20ball%20forwarders" class="top-item-link" style="width: 280px;" title="red ball forwarders">red ball forwarders</a>              <span style="display: inline-block;" class="progress-bar">
+              <progress style="width:100px; height: 20px; margin-left: 10px;" title="" value="6.0" max="7">
+              </progress>
+            </span>
+          </li>
+
+          <li>
+            <a href="https://panjiva.com/Buyers-Of/dod%20sponsored%20household" class="top-item-link" style="width: 280px;" title="dod sponsored household">dod sponsored household</a>              <span style="display: inline-block;" class="progress-bar">
+            <progress style="width:100px; height: 20px; margin-left: 10px;" title="" value="5.0" max="7">
+            </progress>
+          </span>
+        </li>
+
+      </ol>
+      <div class="learnMore">
+       <span class="notranslate">20</span> top products available
+     </div>
+
+   </div>
+ </section>                  
+
+</div>
+<!-- #posts end -->
+</div>
+</div>
+</section>
+<!-- #content end -->
+      <!-- Footer
+      ============================================= -->
+      <footer id="footer" class="dark">
+       <div class="container">
+            <!-- Footer Widgets
+            ============================================= -->
+            <div class="footer-widgets-wrap clearfix">
+             <div class="col_two_third">
+              <div class="col_one_third">
+               <div class="widget widget_links clearfix">
+                <h4>Buyers</h4>
+                <ul>
+                 <li><a href="#">Benefits</a></li>
+                 <li><a href="#">Plans &amp; Pricing </a></li>
+                 <!--<li><a href="#">Clients</a></li>-->
+                 <li><a href="#">Buyer Directory</a></li>
+                 <!--<li><a href="#">Post a Buying Leads</a></li>-->
+               </ul>
+             </div>
+           </div>
+           <div class="col_one_third">
+             <div class="widget widget_links clearfix">
+              <h4>Suppliers</h4>
+              <ul>
+               <li><a href="#">Benefits</a></li>
+               <li><a href="#">Plans &amp; Pricing </a></li>
+               <li><a href="#">Create your Profile</a></li>
+               <li><a href="#">Supplier Directory</a></li>
+             </ul>
+           </div>
+         </div>
+         <div class="col_one_third col_last">
+           <div class="widget widget_links clearfix">
+            <h4>The Company</h4>
+            <ul>
+             <li><a href="#">TRADEtegy</a></li>
+             <li><a href="#">What's New?</a></li>
+             <li><a href="#">Intelligence Platform</a></li>
+             <li><a href="#">Behind the Scenes</a></li>
+             <li><a href="#">Careers</a></li>
+             <li><a href="#">Referral Program</a></li>
+             <li><a href="#">Contact Us</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="col_one_third col_last">
+      <div class="widget clearfix">
+       <img src="{{ asset('/bundles/jariffproject/frontend/images/footer-widget-logo.png') }}" alt="" class="footer-logo">
+       <div style="background: url('images/world-map.png') no-repeat center center; background-size: 100%;">
+        <address>
+         <strong>Headquarters:</strong><br>
+         123 Liberty Ave, Suite 100<br>
+         Ney York, NY 123456<br>
+       </address>
+       <abbr title="Phone Number"><strong>Phone:</strong></abbr> (00) 12345 6789<br>
+       <abbr title="Fax"><strong>Fax:</strong></abbr> (00) 12345 6789<br>
+       <abbr title="Email Address"><strong>Email:</strong></abbr> info@tradetegy.com
+     </div>
+   </div>
+ </div>
+</div>
+<!-- .footer-widgets-wrap end -->
+</div>
+         <!-- Copyrights
+         ============================================= -->
+         <div id="copyrights">
+          <div class="container clearfix">
+           <div class="col_half">
+            Copyrights &copy; 2015 All Rights Reserved by TRADEtegy Inc.<br>
+            <div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+          </div>
+          <div class="col_half col_last tright">
+            <div class="fright clearfix">
+             <a href="#" class="social-icon si-small si-borderless si-facebook">
+               <i class="icon-facebook"></i>
+               <i class="icon-facebook"></i>
+             </a>
+             <a href="#" class="social-icon si-small si-borderless si-twitter">
+               <i class="icon-twitter"></i>
+               <i class="icon-twitter"></i>
+             </a>
+             <a href="#" class="social-icon si-small si-borderless si-linkedin">
+               <i class="icon-linkedin"></i>
+               <i class="icon-linkedin"></i>
+             </a>
+           </div>
+           <div class="clear"></div>
+           <i class="icon-envelope2"></i> info@tradetegy.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +91-55-6666-7777 <span class="middot">&middot;</span> <i class="icon-skype2"></i> TRADEtegy On Skype
+         </div>
+       </div>
+     </div>
+     <!-- #copyrights end -->
+   </footer>
+   <!-- #footer end -->
+ </div>
+ <!-- #wrapper end -->
+   <!-- Go To Top
+   ============================================= -->
+   <div id="gotoTop" class="icon-angle-up"></div>
+ </body>
+ {% endblock body %}

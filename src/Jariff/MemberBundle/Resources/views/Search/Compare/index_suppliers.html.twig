@@ -1,0 +1,47 @@
+{% extends 'JariffProjectBundle::base_member.html.twig' %}
+
+{% block menu_search_shipments %}
+{% endblock %}
+
+{% block content %}
+    <section id="content">
+
+        <div class="content-wrap">
+            <div class="container clearfix col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Address</th>
+                            <th>Shipments Count</th>
+                            <th>Product</th>
+                            <th>Last Exports</th>
+                            <th>Last Company</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for res in entity %}
+                            {% set detailArr = res.getDetail|serializetwig(0) %}
+
+                            <tr>
+                                <th><a href="">{{ res.getNameCompany }}</a></th>
+
+                                <td>{{ detailArr['shipper_address'] }}</td>
+                                <td>Gross weight {{ detailArr['total_weight']|ribuan }} {{ detailArr['weight_unit'] }} in {{ detailArr['total_shipment'] }} time(s) exports </td>
+                                <td>{{ detailArr['product_desc'] }} </td>
+                                <td>{{ detailArr['actual_arrival_date'] }}</td>
+                                <td>{{ detailArr['consignee_name'] }}</td>
+
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

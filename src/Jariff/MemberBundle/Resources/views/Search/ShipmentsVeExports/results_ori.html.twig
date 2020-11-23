@@ -1,0 +1,403 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+{% form_theme form 'JariffProjectBundle:Themes:form_demo.html.twig' %}
+{% form_theme formFieldUsCustom 'JariffProjectBundle:Themes:form_checkbox_original.html.twig' %}
+
+{% block css_page %}style="overflow:visible"{% endblock %}
+{% block menu %}
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div style="text-align: center;padding: 10px 10px 10px 10px">
+                    <img src="/bundles/jariffproject/frontend/images/301.GIF">
+                    <h5>Loading...</h5>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap_cont_nav">
+        <div class="cont_nav">
+            <h1>Search shipments trade data</h1>
+
+            <br/>
+            <br/>
+            <br/>
+
+            <form action="{{ path('member_search_shipments_submit') }}" method="POST" class="form-inline">
+
+                {{ form_widget(formCustom) }}
+
+
+
+                <br/>
+                <br/>
+                <br/>
+
+
+
+                {{ form_start(form) }}
+
+                {% set pro = form_widget(form.condition.vars.prototype)|e ~ form_widget(form.collect.vars.prototype)|e ~ form_widget(form.q.vars.prototype)|e %}
+
+                <div class="form-group j-show" data-prototype='{{ pro|raw }}'>
+
+
+                    {% for tag in form.collect %}
+                        {{ form_row(tag.collect) }}
+                    {% endfor %}
+
+                    {% for tagq in form.q %}
+                        {{ form_row(tagq.q) }}
+                    {% endfor %}
+
+                    <input type="submit" class="button button-search j-tour-button-submit" value="Search">
+
+                    <div class="j-add-filter"></div>
+                </div>
+                {{ form_end(form) }}
+
+                <br/>
+
+
+                <div style="clear: both"></div>
+
+            </form>
+            <br/>
+            <br/>
+
+            <p>You have made <span class="code j-tour-count-search-today">{{ count_search_today }}</span> search(es)
+                today, and you have <span
+                        class="code j-tour-count-search-value">{{ count_search_value }}</span> search(es)
+                left</p>
+            <br/>
+
+            <div style="float: left">
+                <h2>
+                    <totalrow></totalrow>
+                    <span style="font-size: 12px">results found</span>
+                    <totalweight></totalweight>
+                </h2>
+            </div>
+
+            <div style="float: right">
+                <a href="#" data-toggle="modal" class="j-modal-save" data-target="#modalSave"><span
+                            class="glyphicon glyphicon-star-empty"></span> Save</a>&nbsp;&nbsp;
+                <a href="#" data-toggle="modal" class="j-modal-exports" data-target="#modalSave"><span
+                            class="glyphicon glyphicon-save"></span> Export</a>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div style="clear: both"></div>
+            <h5>Column View</h5>
+
+            <form action="{{ path('member_search_columns_category_submit',{'s_cache' : app.request.get('s_cache')}) }}"
+                  method="POST">
+                <div class="cmsms-form-builder">
+                    <div class="form_info cmsms_checkboxes">
+                        {{ form_widget(formFieldUsCustom) }}
+                    </div>
+                </div>
+                <br/>
+
+                <div style="float: right">
+                    <input type="submit" class="button button-search j-tour-button-submit" value="Apply Columns">
+
+                </div>
+
+            </form>
+            <div style="clear: both"></div>
+            <hr/>
+            <br/>
+
+
+
+
+            <div class="j-location-blc"></div>
+            <div style="clear: both"></div>
+            <hr/>
+            <br/>
+
+
+            <h5>Shipments Chart Interval Month</h5>
+
+            <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+            <div style="clear: both"></div>
+            <br/>
+            <br/>
+
+
+            <div class="floatThead-wrapper" style="position: relative; clear:both;">
+                <table class="table" style="table-layout: auto; min-width: 1170px;">
+                    <thead>
+                    <tr role="row">
+                        <th></th>
+                        {% for col in column %}
+                            <th>{{ col|us_column_view }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <colgroup>
+                        <col style="width: 18px;">
+                        {% for col in column %}
+                            <col style="width: auto;">
+                        {% endfor %}
+                    </colgroup>
+
+                    <tbody aria-relevant="all" aria-live="polite" role="alert">
+                    {% for res in resHybird %}
+                        <tr class="odd" id="{{ loop.index }}">
+                            <td class=""></td>
+                            {% for col in column %}
+                                <td class="">
+
+                                    {{ res.getTransformed|us_column_get(col,app.user.id)|raw }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                    <fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;">
+                        <fthrow style="display:table-row;border-spacing:0;height:0;border-collapse:collapse">
+                            <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+                            {% for col in column %}
+                                <fthtd style="display:table-cell;height:0;width:auto;"></fthtd>
+                            {% endfor %}
+                        </fthrow>
+                    </fthfoot>
+                </table>
+                <div style="overflow: hidden; padding-left: 0px; padding-right: 0px; position: absolute; margin-top: 0px; top: 0px; z-index: 1001; left: 0px; width: 1170px;"
+                     class="floatThead-container">
+                    <table class="table table-striped floatThead-table"
+                           style="border-collapse: collapse; border: 0px none rgb(128, 128, 128); display: table; margin: 0px; table-layout: auto; width: 1170px;">
+                        <colgroup>
+                            <col style="width: 18px;">
+                            {% for col in column %}
+                                <col style="width: auto;">
+                            {% endfor %}
+                        </colgroup>
+                    </table>
+                </div>
+            </div>
+
+            <div class="jariff-pagination">
+                {{ pagination|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block style %}
+    <link href="{{ asset('/bundles/jariffproject/frontend/css-old/bootstrap.css') }}" type="text/css"
+          rel="stylesheet"
+          media="screen"/>
+
+    <style>
+        table.floatThead-table {
+            border-top: none;
+            border-bottom: none;
+            background-color: #FFF;
+        }
+    </style>
+
+
+    <div id="dialog-message" title="Advance Search">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            Advanced search is available for <strong>subscribers only</strong>. <a href="{{ path('signup') }}"><strong>See
+                    plans now
+                    »</strong></a>
+        </p>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('/bundles/jariffproject/frontend/js-old/bootstrap/jquery.floatThead.js') }}"></script>
+
+    <script type="text/javascript">
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+        var $addFilterLink = $('<br/><a href="#" class="add_filter_link col-md-12">Add Filter Search <span class="glyphicon glyphicon-circle-arrow-down"></span></a>');
+        var $newLinkLi = $('<div class="j-add-filter"></div>').append($addFilterLink);
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('div.j-show');
+
+            // add a delete link to all of the existing tag form li elements
+            $collectionHolder.find('div.j-add-filter').each(function () {
+                if ($(this).length > 1) {
+                    addTagFormDeleteLink($(this));
+                }
+            });
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addFilterLink.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                var check = $('h5.show');
+
+                if (check.length == 1) {
+                    $("#dialog-message").dialog({
+                        modal: true
+                    });
+                    return false;
+                }
+
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+
+
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            console.log(prototype);
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<div style="clear:both"></div> ').append(newForm);
+            $newLinkLi.before($newFormLi);
+
+            // add a delete link to the new form
+            addTagFormDeleteLink($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#" style="font-size: 16px;" title="Delete This Filter"><span class="glyphicon glyphicon-remove" style="line-height: 2"></span> </a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+
+
+        $("table.table").floatThead();
+
+        $('.j-modal-save').on('click', function () {
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('member_display_modal_save_shipments',{'s_cache' : app.request.get('s_cache')}) }}',
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.modal-content').html(res.html_string);
+                    }
+                }
+            })
+        })
+
+        $('.j-modal-exports').on('click', function () {
+            $.ajax({
+                type: 'GET',
+                url: '{{ path('member_display_modal_exports_shipments',{'s_cache' : app.request.get('s_cache')}) }}',
+
+                success: function (data) {
+                    var res = JSON.parse(data);
+
+                    if (res.success) {
+                        $('.modal-content').html(res.html_string);
+                    }
+                }
+            })
+        })
+
+        $.ajax({
+            type: 'GET',
+            url: '{{ path('member_bill_type_code_form',{'s_cache' : app.request.get('s_cache')}) }}',
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('.j-location-blc').html(res.html_string);
+                }
+            }
+        })
+
+        $.ajax({
+            type: 'GET',
+            url: '{{ path('member_total_shipments_us_importers',{'s_cache' : app.request.get('s_cache')}) }}',
+
+            success: function (data) {
+                var res = JSON.parse(data);
+
+                if (res.success) {
+                    $('totalrow').html(res.total_row);
+                    $('totalweight').html(res.total_weight);
+                }
+            }
+        })
+
+    </script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            var jsonData = $.ajax({
+                url: "{{ path('member_chart_shipments',{'s_cache' : app.request.get('s_cache')}) }}",
+                dataType:"json",
+                async: false
+            }).responseText;
+
+            var obj = jQuery.parseJSON(jsonData);
+
+            var data = google.visualization.arrayToDataTable(obj);
+
+            var options = {
+                title: 'Month Total Shipments',
+                hAxis: {title: 'Month/Year', titleTextStyle: {color: 'red'}}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% block style %}
+    <link href="{{ asset('bundles/jariffproject/frontend/css/flags.css') }}" type="text/css" rel="stylesheet"
+          media="screen"/>
+{% endblock %}
+
+{% block wrap_headline %}
+
+    <div class="wrap_headline">
+        <div class="headline">
+            <div><img alt="" src="{{ asset('bundles/jariffproject/frontend/images/img/icon_heading.png') }}"></div>
+            <div><h1>s<strong>TRADE</strong>tegy</h1></div>
+        </div>
+    </div>
+    <div class="wrap_cont_nav">
+        <div class="cont_nav">
+            <div id="searchfield">
+                <form id="myForm" action="#" method="GET">
+                    {{ form_row(formSearchGlobal.q) }}
+
+                    <input type="submit" class="button button-search global-button-search j-test" value="FIND"
+                           style="margin-top: -48px;">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="effect"><img src="images/image.jpg" width="230px" height="215px" id="lightbox4" alt="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor" rel="http://www.codecanyon.net"/></div>
+    <div id="catalert">
+        <div class="alert-loading">
+            <img src="{{ asset('bundles/jariffproject/frontend/hover/images/loading.gif') }}">
+            <p>Processing...</p>
+        </div>
+
+    </div>
+    <div class="last">
+        <div class="tab">
+
+            <ul class="tabs">
+                <li class="tab-search"><a href="#" class="j-tabs-identify"><span>Raw B/L Data </span>
+                        {#<span class="livicon" data-name="spinner-three" data-c="#c7254e" data-s="14" data-loop="true"></span>#}
+                    </a></li>
+                <li class="tab-search"><a href="#" class="j-tabs-identify"><span
+                                class="cmsms_date_day">By Suppliers</span> <span
+                                class="count-supplier code"></span></a></li>
+                <li class="tab-search"><a href="#" class="j-tabs-identify"><span>By Buyers</span> <span
+                                class="count-buyer code"></span></a></li>
+                <li class="tab-search"><a href="#" class="j-tabs-identify"><span>By Products</span></a></li>
+                <li class="tab-search"><a href="#" class="j-tabs-identify"><span>By Shipments</span></a></li>
+            </ul>
+            <div class="tab_content tab-result">
+                <div class="tabs_tab">
+
+                </div>
+                <div class="tabs_tab j-result-supplier">
+
+                </div>
+                <div class="tabs_tab j-result-buyer">
+
+                </div>
+                <div class="tabs_tab">
+
+                </div>
+                <div class="tabs_tab">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+

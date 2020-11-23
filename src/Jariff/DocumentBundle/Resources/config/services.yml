@@ -1,0 +1,7 @@
+parameters:
+
+services:
+    trademango_service:
+        class: Jariff\DocumentBundle\Command\TrademangoCommand
+        calls:
+            - [setContainer, ["@service_container"] ]

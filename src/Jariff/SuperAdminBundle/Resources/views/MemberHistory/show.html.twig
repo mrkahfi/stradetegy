@@ -1,0 +1,76 @@
+{% extends 'JariffProjectBundle::base_admin.html.twig' %}
+
+{% block breadcrumb_title %}Member #{{ member.number }}{% endblock %}
+
+{% block breadcrumb_content %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('dashboard_admin') }}">Dashboard</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        <a href="{{ path('admin_member_index') }}">Member Index</a>
+        <span class="icon-angle-right"></span>
+    </li>
+    <li>
+        Member #{{ member.number }}
+    </li>
+{% endblock %}
+
+{% block content %}
+
+<div>
+	<img src="/bundles/jariffproject/admin/img/icons/flag/red.png" data-toggle="tooltip" data-placement="right" title="" data-original-title="DONT CONTINUE, Cannot move forward without completing required tasks">
+    <a class="btn" href="{{ path('admin_member_subscription_new', {'id' : member.id}) }}">
+		New Subscription
+    </a>
+    <a class="btn" href="{{ path('admin_member_profile_edit', {'id' : member.id}) }}">
+		Update Profile
+    </a>
+    {#<a class="btn" href="#">
+		Update Payment
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_cancel_request', {'id' : member.id}) }}">
+		Cancel Request
+    </a>
+    {#<a class="btn disabled" href="#">
+		Add Users
+    </a>#}
+    <a class="btn" href="{{ path('admin_member_reset_password', {'id' : member.id}) }}">
+		Reset Password
+    </a>
+    <a class="btn" href="{{ path('admin_member_email_new', {'id' : member.id}) }}">
+		Send email
+    </a>
+</div>
+
+<br/>
+<br/>
+
+<div id="content">
+    <div class="body">
+      <h1>{{ member.profile.salutation }} {{ member.profile.firstName }}, {{ member.profile.lastName }}</h1>
+      <ul id="myTab" class="nav nav-tabs">
+		<li><a href="{{ path('admin_member_profile_show', { 'id' : member.id }) }}">Client Info</a></li>
+		{# <li><a href="{{ path('admin_member_activities', { 'id' : member.id }) }}">Activities</a></li> #}
+		<li><a href="{{ path('admin_member_subscription_show', { 'id' : member.id }) }}">Subscription History</a></li>
+		<li><a href="{{ path('admin_member_invoice_show', { 'id' : member.id }) }}">Invoice History</a></li>
+		<li class="active"><a href="{{ path('admin_member_history_show', { 'id' : member.id }) }}">Client History</a></li>
+		<li><a href="{{ path('admin_member_representative_history_show', { 'id' : member.id }) }}">Representative History</a></li>
+		<li><a href="{{ path('admin_lead_history_show', { 'id' : member.id }) }}">Lead History</a></li>
+		<li><a href="{{ path('admin_member_email_show', { 'id' : member.id }) }}">Email History</a></li>
+      </ul>
+	</div>
+</div>
+
+<div id="content">
+  <div id="grid_paging" data-id="{{ member.id }}"></div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="/bundles/jariffadmin/js/grid-member-history.js"></script>
+    <script type="text/javascript">
+    </script>
+{% endblock %}

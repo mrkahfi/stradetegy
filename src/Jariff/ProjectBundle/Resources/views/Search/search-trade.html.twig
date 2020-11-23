@@ -1,0 +1,300 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+
+    {% block content %}
+                <form action="" method="get" id="myForm" data-url="{{ path('ajax_search') }}">
+
+
+                    <div class="entry-content project_content portfolio_container three_blocks j-content-condition">
+                        <div class="cmsms_media">
+                            <div class="cmsms_media_box">
+                                <div class="form_info cmsms_input">
+
+                                    {#<input type="text" name="wemail" id="field_003" size="10" style="width: 32%;" tabindex="11"#}
+                                    {#/>#}
+                                    <select id="search_form_collect" style="width: 108%" name="collect[]"
+                                            required="required">
+                                        <option value="consignee_name"
+                                                {% if collect[0] is defined and collect[0] == "consignee_name" -%}
+                                                    selected="selected"
+                                                {% elseif collect[0] is not defined%}
+                                                    selected="selected"
+                                                {% endif -%}
+                                                >Consignee Name
+                                        </option>
+                                        <option value="consignee_address"
+                                                {% if collect[0] is defined and collect[0] == "consignee_address" -%}
+                                            selected="selected"
+                                                {% endif -%}>Consignee Address
+                                        </option>
+                                        <option value="notify_name" {% if collect[0] is defined and collect[0] == "notify_name" -%}
+                                            selected="selected"
+                                                {% endif -%}>Notify Name
+                                        </option>
+                                        {#<option value="notify_address" {% if collect[0] is defined and collect[0] == "notify_address" -%}#}
+                                            {#selected="selected"#}
+                                                {#{% endif -%}>Notify Address#}
+                                        {#</option>#}
+                                        <option value="shipper_name" {% if collect[0] is defined and collect[0] == "shipper_name" -%}
+                                            selected="selected"
+                                                {% endif -%}>Shipper Name
+                                        </option>
+                                        <option value="shipper_address" {% if collect[0] is defined and collect[0] == "shipper_address" -%}
+                                            selected="selected"
+                                                {% endif -%}>Shipper Address
+                                        </option>
+                                        <option value="container_number" {% if collect[0] is defined and collect[0] == "container_number" -%}
+                                            selected="selected"
+                                                {% endif -%}>Container Number
+                                        </option>
+                                        <option value="product_description" {% if collect[0] is defined and collect[0] == "product_description" -%}
+                                            selected="selected"
+                                                {% endif -%}>Product Description
+                                        </option>
+                                        <option value="all" {% if collect[0] is defined and collect[0] == "all" -%}
+                                            selected="selected"
+                                                {% endif -%}>All
+                                        </option>
+                                        <option value="carrier" {% if collect[0] is defined and collect[0] == "carrier" -%}
+                                            selected="selected"
+                                                {% endif -%}>Carrier
+                                        </option>
+                                        <option value="vessel" {% if collect[0] is defined and collect[0] == "vessel" -%}
+                                            selected="selected"
+                                                {% endif -%}>Vessel
+                                        </option>
+                                        <option value="voyage" {% if collect[0] is defined and collect[0] == "voyage" -%}
+                                            selected="selected"
+                                                {% endif -%}>Voyage
+                                        </option>
+                                        <option value="us_port" {% if collect[0] is defined and collect[0] == "us_port" -%}
+                                            selected="selected"
+                                                {% endif -%}>Us Port
+                                        </option>
+                                        <option value="foreign_port" {% if collect[0] is defined and collect[0] == "foreign_port" -%}
+                                            selected="selected"
+                                                {% endif -%}>Foreign Port
+                                        </option>
+                                        <option value="country_of_origin" {% if collect[0] is defined and collect[0] == "country_of_origin" -%}
+                                            selected="selected"
+                                                {% endif -%}>Country Of Origin
+                                        </option>
+                                        <option value="place_of_receipt" {% if collect[0] is defined and collect[0] == "place_of_receipt" -%}
+                                            selected="selected"
+                                                {% endif -%}>Place Of Receipt
+                                        </option>
+                                        <option value="bill_of_lading" {% if collect[0] is defined and collect[0] == "bill_of_lading" -%}
+                                            selected="selected"
+                                                {% endif -%}>Bill Of Landing
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cmsms_media">
+                            <div class="cmsms_media_box">
+                                <div class="form_info cmsms_input">
+
+                                    <input type="text" placeholder="Input Keywords" name="q[]" style="width: 108%"
+                                           id="field_003" size="10" tabindex="11" value="{% if q[0] is defined %}{{ q[0] }}{% endif %}"
+                                            />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cmsms_media">
+                            <div class="cmsms_media_box">
+                                <div class="form_info cmsms_input">
+                                    <div class="button_click">
+                                        <a class="button j-condition"
+                                           href="javascript:void(0)"><span>+ Condition</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if collect is not empty %}
+                            {% include 'JariffMemberBundle:Search:append-form-show.html.twig' %}
+                        {% endif %}
+                    </div>
+
+
+                    <div style="clear: both"></div>
+
+
+                    <input type="submit" class="button button-search global-button-search" value="FIND">
+
+                </form>
+                <br/>
+
+
+                <div style="clear: both"></div>
+                <ul class="menu_cols"></ul>
+                <div id="grid_paging"></div>
+    {% endblock content %}
+
+{% block style %}
+
+    <link rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css"/>
+    <link rel="stylesheet"
+          href="{{ asset('/bundles/jariffproject/frontend/js/grid/pqgrid.dev.css') }}"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="{{ asset('/bundles/jariffproject/frontend/js/grid/themes/Office/pqgrid.css') }}"
+          type="text/css"/>
+
+{% endblock %}
+
+{% block javascript %}
+    <!-- Include jTable script file. -->
+    <script src="{{ asset('/bundles/jariffproject/frontend/js/grid/pqgrid.min.js') }}"
+            type="text/javascript"></script>
+    {#<script src="{{ asset('/bundles/jariffproject/frontend/js/jtable.2.3.1/jquery.jtable.min.js') }}"#}
+    {#type="text/javascript"></script>#}
+    {#<script src="{{ asset('bundles/jariffproject/frontend/js/jquery-ui-1.10.1/ui/jquery.ui.datepicker.js') }}"#}
+    {#type="text/javascript"></script>#}
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(".datepicker").datepicker();
+            $(function () {
+                var colM = [
+                    { title: "consignee_name", width: 100 },
+                    { title: "consignee_address", width: 100 },
+                    { title: "notify_name", width: 100 },
+                    { title: "shipper_name", width: 100 },
+                    { title: "shipper_address", width: 100 },
+                    { title: "container_number", width: 100, align: "right" },
+                    { title: "product_description", width: 300 },
+                    { title: "carrier", width: 160 },
+                    { title: "vessel", width: 100 },
+                    { title: "voyage", width: 100 },
+                    { title: "us_port", width: 100 },
+                    { title: "foreign_port", width: 100 },
+                    { title: "country_of_origin", width: 100 },
+                    { title: "place_of_receipt", width: 100 },
+                    { title: "bill_of_lading", width: 100 },
+                    { title: "quantity", width: 100 },
+                    { title: "container_count", width: 100 },
+                    { title: "arrival_date", width: 100 },
+                    { title: "weight", width: 100, align: "right" },
+                    { title: "cbm", width: 100 },
+                    { title: "house_vs_master", width: 100 },
+                    { title: "other_info", width: 100 },
+                    { title: "ship_registered_in", width: 100 }
+                ];
+
+
+                var dataModel = {
+                    location: "remote",
+                    sorting: "remote",
+                    paging: "remote",
+                    dataType: "JSON",
+                    method: "GET",
+                    showTop: false,
+                    showBottom: false,
+                    showHeader: false,
+                    roundCorners: false,
+                    rowBorders: false,
+                    columnBorders: false,
+                    flexHeight: true,
+                    //flexWidth: true,
+                    numberCell: { show: false },
+                    stripeRows: false,
+                    curPage: 1,
+                    rPP: 20,
+                    sortIndx: 2,
+                    selectionModel: { type: 'cell', mode: 'block' },
+                    sortDir: "up",
+                    editModel: {clicksToEdit: 2},
+                    rPPOptions: [1, 10, 20, 30, 40, 50, 100],
+                    getUrl: function () {
+                        var sortDir = (this.sortDir == "up") ? "asc" : "desc";
+                        var sort = ['ShipCountry', 'contactName', 'orderID', 'OrderDate', 'RequiredDate', 'ShippedDate',
+                            'ShipVia', 'Freight', 'ShipName', 'ShipAddress', 'ShipCity', 'ShipRegion', 'ShipPostalCode'];
+                        return { url: "{{ path('load_json_trade') }}", data: (window.location.search).split('?')[1] + "&cur_page=" + this.curPage + "&records_per_page=" +
+                                this.rPP + "&sortBy=" + sort[this.sortIndx] + "&dir=" + sortDir };
+                    },
+                    getData: function (dataJSON) {
+                        //var data=
+                        return { curPage: dataJSON.curPage, totalRecords: dataJSON.totalRecords, data: dataJSON.data };
+                    }
+                }
+
+                var newObj = { width: 937, height: 500,
+                    dataModel: dataModel,
+                    colModel: colM,
+                    title: "Shipping Orders",
+                    resizable: true,
+                    columnBorders: true,
+                    freezeCols: 2
+                };
+
+                $.extend(newObj.colModel[0], { width: 220 });
+                $.extend(newObj.colModel[1], { width: 100 });
+                $.extend(newObj.colModel[2], { hidden: true });
+                $.extend(newObj.colModel[2], { hidden: true });
+                $.extend(newObj.colModel[2], { hidden: true });
+                $.extend(newObj.colModel[2], { hidden: true });
+                $.extend(newObj.colModel[2], { hidden: true });
+                $.extend(newObj.colModel[2], { hidden: true });
+
+                var $grid = $("div#grid_paging").pqGrid(newObj);
+
+                $.each(newObj.colModel, function (i, col) {
+                    //var src = '/Content/images/checkbox-checked.png';
+                    var cls = 'pq-sh-checkbox pq-sh-checkbox-checked';
+                    if (col.hidden) {
+                        cls = 'pq-sh-checkbox';
+                    }
+                    $(".menu_cols").append("<li><a href='#'><span class='" + cls + "'></span> " + col.title + "</a></li>");
+                });
+
+                $(".menu_cols").menu({ select: function (evt, ui) {
+                    var indx = $(ui.item).index();
+
+                    var colM = $grid.pqGrid("option", "colModel");
+                    if (colM[indx].hidden == true) {
+                        colM[indx].hidden = false;
+                        $(ui.item).find("span").addClass("pq-sh-checkbox-checked");
+                    }
+                    else {
+                        colM[indx].hidden = true;
+                        $(ui.item).find("span").removeClass("pq-sh-checkbox-checked");
+                    }
+                    $grid.pqGrid("option", "colModel", colM);
+                    //debugger;
+                    evt.preventDefault();
+                    return false;
+                }
+
+
+                });
+            });
+
+            $('.j-condition').on('click', function () {
+                $.ajax({
+                    type: 'GET',
+                    url: '{{ path('append_form') }}',
+                    success: function (data) {
+                        $('.j-content-condition').append(data);
+                    }
+                })
+                return false;
+
+            })
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.j-remove').on('click', function () {
+                $(this).parents('.button_click').parents('.cmsms_media_box').parents('.cmsms_media').parents('.j-condition-to-remove').remove();
+            })
+        })
+    </script>
+{% endblock %}

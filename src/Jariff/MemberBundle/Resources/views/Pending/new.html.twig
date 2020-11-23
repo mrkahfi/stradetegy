@@ -1,0 +1,764 @@
+{% extends 'JariffProjectBundle::base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block content %}
+
+        <form action="{{ path('pending_create') }}"
+              method="post" {{ form_enctype(form) }}
+              id="signup_form">
+
+                {{ form_errors(form) }}
+
+                <div style="text-align:center;">
+                    <h4>Choose your options below to customize your subscription</h4>
+                    <h4>Compare to the 'The Total Package' before submitting</h4>
+                    <h4>You just might get EVERYTHING cheaper!</h4>
+                </div>
+                <div class="entry">
+                    <div class="one_half">
+                        <div id="overlay_everything" class="pricingtable">
+                            <h2 class="title">The Total Package</h2>
+                            <div class="cmsms_price" style="background-color:#6cc437;">
+                                <span class="currency">$</span>
+                                <span class="price"> 200</span>
+                                <span class="coins"></span>
+                                <span class="period">Per month</span>
+                            </div>
+                            <ul>
+                                <li><h4>Everything Unlimited</h4></li>
+                                <li 
+                                    title="As more history becomes available and while your account remains active, it will be made available to you at no extra charge" 
+                                    class="tooltip22">
+                                        <span class="pricing-label">History</span>
+                                        <span class="pricing-element">: 
+                                        <select>
+                                            <option value="~">Unlimited</option>
+                                        </select>
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-green.png" />
+                                            </a>
+                                        </span>
+                                </li>
+                                <li 
+                                    title="Unlimited number of searches" 
+                                    class="tooltip22">
+                                        <span class="pricing-label">Number of Searches</span>
+                                        <span class="pricing-element">: 
+                                            <select>
+                                                <option value="~">Unlimited</option>
+                                            </select>
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-green.png" />
+                                            </a>
+                                        
+                                </li>
+                                <li 
+                                    title="How many shipment records would you like to download per month?" 
+                                    class="tooltip22">
+                                        <span class="pricing-label">Export Feature</span>
+                                        <span class="pricing-element">: 
+                                            <select>
+                                                <option value="~">Unlimited</option>
+                                            </select>
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-green.png" />
+                                            </a>
+                                        </span>
+                                        
+                                </li>
+                                <li 
+                                    title="Unlimited maps for any U.S. company's trade relationships." 
+                                    class="tooltip22">
+                                        <span class="pricing-label">The Big Picture</span>
+                                        <span class="pricing-element">: 
+                                            <select>
+                                                <option value="~">On</option>
+                                            </select>
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-green.png" />
+                                            </a>
+                                        </span>
+                                        
+                                </li>
+                                        
+                                        
+                                        
+                            </ul>
+                        </div>
+                            <div class="but">
+                                <a href="#" id="button_everything" class="button" style="background-color:#6cc437;">Choose</a>
+                            </div>
+                    </div>
+                    <div class="one_half last">
+                        <div id="overlay_custom" class="pricingtable">
+                            <h2 class="title">Custom Plan</h2>
+                            <div class="cmsms_price" style="background-color:#f97a14;">
+                                <span class="currency">$</span>
+                                <span class="price" id="price_custom">59</span>
+                                <span class="coins"></span>
+                                <span class="period">Per month</span>
+                            </div>
+                            <ul>
+                                <li><h4>Choose from the following:</h4></li>
+                                {# History :  #}
+                                <li 
+                                    title="More extensive history will be available soon" 
+                                    class="tooltip22">
+                                        <span class="pricing-error">{{ form_errors(form.history) }}</span>
+                                        <span class="pricing-label">History</span>
+                                        <span class="pricing-element"> :
+                                            <select id="pending_history" name="pending[history]">
+                                                {# Please read doc/signup.md #}
+                                                <option value="59" default>18 months = $59 per month</option>
+                                                <option value="99" default>36 months = $99 per month</option>
+                                                <option value="150" default>60 months = $150 per month</option>
+                                            </select>
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-orange.png" />
+                                            </a>
+                                        </span>
+                                </li>
+                                {# search :  #}
+                                <li 
+                                    title="How many reports (lists of specific shipment records) would you like to perform?" 
+                                    class="tooltip22">
+                                        <span class="pricing-error">{{ form_errors(form.search) }}</span>
+                                        <span class="pricing-label">Number of Searches</span>
+                                        <span class="pricing-element"> : {{ form_widget(form.search) }}
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/ueMZNLvRfJU">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-orange.png" />
+                                            </a>
+                                        </span>
+                                </li>
+                                {# Download :  #}
+                                <li 
+                                    title="How many shipment records would you like to download per month?" 
+                                    class="tooltip22">
+                                        <span class="pricing-error">{{ form_errors(form.download) }}</span>
+                                        <span class="pricing-label">Export Feature</span>
+                                        <span class="pricing-element">: {{ form_widget(form.download) }}
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/92W4DRCvzH8">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-orange.png" />
+                                            </a>
+                                        </span>
+                                </li>
+                                {# The Big Picture :  #}
+                                <li 
+                                    title="Would you like to access the maps for any U.S. company’s trade relationships?" 
+                                    class="tooltip22">
+                                        <span class="pricing-error">{{ form_errors(form.bigPicture) }}</span>
+                                        <span class="pricing-label">The Big Picture</span>
+                                        <span class="pricing-element">: {{ form_widget(form.bigPicture) }}
+                                            <a class="signup_help" rel="youtubeShow" href="http://youtu.be/tB_WpoOR8pI">
+                                                <img width="30px" src="/bundles/jariffproject/frontend/images-old/info-orange.png" />
+                                            </a>
+                                        </span>
+                                </li>
+                            </ul>
+                        </div>
+                            <div class="but">
+                                <a href="#" id="button_custom" class="button" style="background-color:#f97a14;"><span>Choose</span></a>
+                            </div>
+                    </div>
+
+
+                    <div class="cl"></div>
+
+                    <p>*sAs we continue to add new features to our service and BOOST your sTRADEtegy experience, the pricing will change. Your monthly fee will not increase along with these changes as long as your THE TOTAL PACKAGE subscription remains active.</p>
+
+                    <div class="cl"></div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div id="summary" class="entry" style="opacity:0.1;background-color:grey;">
+
+
+                    <div class="one_half">
+
+                        {#
+                            jika user klik Pay up front, berarti user milih PIF, maka yg muncul
+                                - total amount
+                                - total discount
+
+                            jika user tidak klik Pay up front, berarti user milih MTM, maka yg muncul
+                                - monthly subscription
+                        #}
+
+                        <div class="pricingtable">
+                            <h2 class="title">Summary</h2>
+                            <div
+                                title="" 
+                                class="cmsms_price tooltip22" id="total_price_text" style="background-color:#C437B3;">
+                                <span class="currency">$</span>
+                                <span class="price" id="total_payment">0</span>
+                                <span class="coins"></span>
+                                <span class="period" id="total_payment_text">Total Payment Due Today</span>
+                            </div>
+                            <div 
+                                title="Get a lot of discount by choosing Paid in Full (PIF) payment term below." 
+                                class="cmsms_price tooltip22" style="background-color:#3780C4;">
+                                    <span class="currency">$</span>
+                                    <span class="price" id="total_discount">0</span>
+                                    <span class="coins"></span>
+                                    <span class="period">Total discount</span>
+                            </div>
+                            <ul>
+                                <li 
+                                    title="Month-to-Month terms available via credit card only.  The Month-to-Month subscription requires no long-term commitment, there is no penalty and you are free to cancel any time." 
+                                    class="tooltip22">
+                                        {{ form_errors(form.paymentTerm) }}Payment term : {{ form_widget(form.paymentTerm) }} 
+                                </li>
+                                <li
+                                    title="Get maximum discount by selecting 12 months term." 
+                                    class="tooltip22">
+                                        {{ form_errors(form.month) }}Months : {{ form_widget(form.month) }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                    <p>* You are free to upgrade or downgrade your subscription each billing period as needed, contact us:</p>
+                        <img width="100%" src="/bundles/jariffproject/frontend/images-old/contact_us.gif" />
+                        <p>
+ 
+                            <div class="contactus-div" style="width:80px">
+                                <a href="skype:stradetegy?chat">
+                                    <img class="contactus-logo" src="/bundles/jariffproject/frontend/images-old/logo-chat.png" width="50px" alt="stradetegy skype" /><strong>stradetegy</strong>
+                                </a>
+                            </div>
+                            <div class="contactus-div" style="width:100px">
+                                <a href="tel:+1403333444">
+                                    <img class="contactus-logo" src="/bundles/jariffproject/frontend/images-old/logo-phone.png" width="50px" alt="stradetegy phone" /><strong>+1 403 333 444</strong>
+                                </a>
+                            </div>
+                            <div class="contactus-div" style="width:150px">
+                                <a href="mailto:info@stradetegy.com">
+                                    <img class="contactus-logo" src="/bundles/jariffproject/frontend/images-old/logo-email.png" width="50px" alt="stradetegy email" /><strong>info@stradetegy.com</strong>
+                                </a>
+                            </div>
+                        </p>
+
+                    </div>
+                    <div class="one_half last">
+                	    <h1>Signup</h1>
+
+                                
+
+                        {{ form_row(form.everythingPlan) }}
+                        {{ form_row(form.customPlan) }}
+
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_errors(form.salutation) }}
+                        {{ form_errors(form.firstName) }}
+                        {{ form_errors(form.lastName) }}
+                        Name : <br/>
+                        {{ form_widget(form.salutation) }}
+                        {{ form_widget(form.firstName) }}
+                        {{ form_widget(form.lastName) }}
+
+                        {{ form_row(form.country) }}
+                        {{ form_row(form.companyName) }}
+                        {{ form_row(form.password) }}
+                        <br/>
+                        <br/>
+                                    <img src="/bundles/jariffproject/frontend/images-old/credit_card_logos.gif" />
+                        {{ form_row(form.payment) }}
+                        {{ form_row(form.ccType) }}
+
+                        {{ form_row(form.number) }}
+                        {{ form_row(form.zipToBill) }}
+                        {{ form_row(form.secureCode) }}
+
+                        {{ form_row(form.expired) }}
+                        {{ form_row(form._token) }}
+                        <p id="bankwire_help" style="display:none;">Please transfer the money to BCA 037 278 8249 a.n. Ardian Yuli Setyanto</p>
+                        {# {{ form_rest(form) }} #}
+                        <br/>
+                        <p>You will be prompted to sign the agreement after successful signup in the next page.</p>
+                        <button class="button_large" type="submit" id="pending_submit" name="pending[submit]">Submit</button>
+                       
+
+                    </div>
+                    <div class="cl"></div>
+                </div>
+        </form>
+
+
+<div id="helper_dialog" style="display:none;">
+    <div id="dialog-confirm-cc" title="Credit card info is missing">
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Please complete your credit card credential.</p>
+    </div>
+    <div id="dialog-confirm" title="Payment Unavailable">
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>You can't pay with PayPal, Check, or Bankwire for Month to Month (MTM) term.<br/>Paypal, Check, and Bankwire payment only available for Paid in Full (PIF) term.</p>
+    </div>
+    <div id="dialog-confirm-bankwire" title="Info for Bankwire">
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>We'll send the instructions for making payments via bank wire to your email</p>
+    </div>
+    <div id="dialog-confirm-check" title="Info for Check">
+      <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Checks accepted from U.S. banks only.</p>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block javascript %}
+	{{ parent() }}
+    <script type="text/javascript" src="http://www.youtube.com/player_api"></script>
+    <script type="text/javascript" src="/bundles/jariffproject/frontend/js-old/jquery.select2.js"></script>
+    <script type="text/javascript" src="/bundles/jariffproject/frontend/js-old/jquery.maskedinput.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        // amex 4 angka lainnya 3
+        $("#pending_secureCode").mask("999?9");
+        // amex 15 saja lainnya 16
+        $("#pending_number").mask("9999-9999-9999-999?9");
+
+        $('.tooltip22').qtip({
+            position: {
+                my: 'top center',  // Position my top left...
+                at: 'bottom center', // at the bottom right of...
+            },
+            style: {
+                classes: 'qtip-light qtip-shadow mytip'
+            },
+            show: {
+                effect: function() {
+                    $(this).slideDown();
+                }
+            },
+            hide: {
+                effect: function() {
+                    $(this).fadeOut();
+                }
+            }
+        });
+
+        // sementara disable dulu pop up youtube nya
+        $('.signup_help').on('click', function (e) {
+            e.preventDefault();
+        })
+
+        // start update pricing
+        $('#button_everything').on('click', function (e) {
+            everything();
+            updatePrice();
+            e.preventDefault();
+        })
+
+        $('#button_custom').on('click', function (e) {
+            custom();
+            updatePrice();
+            e.preventDefault();
+        })
+        $('#pending_history').on('change', function () {
+            custom();
+            updatePrice();
+        })
+        $('#pending_search').on('change', function () {
+            custom();
+            updatePrice();
+        })
+        $('#pending_download').on('change', function () {
+            custom();
+            updatePrice();
+        })
+        $('#pending_bigPicture').on('change', function () {
+            custom();
+            updatePrice();
+        })
+        $('#pending_month').on('change', function () {
+            updatePrice();
+        })
+        $('#pending_paymentTerm').on('change', function () {
+            updatePrice();
+            validatePIF();
+        })
+        $('#pending_submit').on('click', function (e) {
+            if( $('#pending_payment').val() == "cc") {
+                validateCC(e);
+                validateCcNumber(e);
+                validateCcSecureCode
+            }
+        })
+
+        // payment type (paypal, cc, check, bankwire)
+        $('#pending_payment').on('change', function () {
+            updateCC();
+            validatePIF();
+            validateBankwire();
+            validateCheck();
+        })
+
+        function updateCC(){
+            var value_payment = $('#pending_payment').val();
+            // ngurusi tampilan CC atau tidaknya
+            if( value_payment != "cc") {
+                $('#pending_number').parent().hide();
+                $('#pending_secureCode').parent().hide();
+                $('#pending_expired').parent().hide();
+                $('#pending_ccType').parent().hide();
+            } else {
+                $('#pending_number').parent().show();
+                $('#pending_secureCode').parent().show();
+                $('#pending_expired').parent().show();
+                $('#pending_ccType').parent().show();
+            }
+            if(value_payment == "check" || value_payment == "bankwire" ){
+                $('#bankwire_help').show();
+            } else {
+                $('#bankwire_help').hide();
+            }
+        }
+        function validateCC(e){
+
+            // jika paypal dan mtm maka tidak bisa,
+            // kasih opsi untuk bayar PIF atau CC
+            if(
+                $('#pending_payment').val() == "cc" &&
+                (
+                    $('#pending_number').val() == "" ||
+                    $('#pending_secureCode').val() == "" 
+                )
+                ) {
+                    $( "#dialog-confirm-cc" ).dialog({
+                        resizable: false,
+                        height:300,
+                        width:500,
+                        modal: true,
+                        buttons: {
+                            "OK": function() {
+                                $('#pending_number').focus();
+                                e.preventDefault();
+                                $( this ).dialog( "close" );
+                            },
+                        }
+                    });
+            }
+        }
+        function validatePIF(){
+
+            // jika paypal dan mtm maka tidak bisa,
+            // kasih opsi untuk bayar PIF atau CC
+            if(
+                $('#pending_payment').val() == "paypal" ||
+                $('#pending_payment').val() == "check" ||
+                $('#pending_payment').val() == "bankwire" 
+                ) {
+                if ($('#pending_paymentTerm').val() == 'mtm' ) {
+                    $( "#dialog-confirm" ).dialog({
+                        resizable: false,
+                        height:300,
+                        width:500,
+                        modal: true,
+                        buttons: {
+                            "Change term to PIF": function() {
+                                $('#pending_paymentTerm').val("pif");
+                                updatePrice();
+                                $( this ).dialog( "close" );
+                                validateBankwire();
+                            },
+                            "Pay with CC": function() {
+                                $('#pending_payment').val("cc");
+                                $('#pending_number').show();
+                                $('#pending_secureCode').show();
+                                $('#pending_expired').parent().show();
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        function validateBankwire(){
+            if($('#pending_payment').val() == "bankwire") {
+                $( "#dialog-confirm-bankwire" ).dialog({
+                    resizable: false,
+                    height:300,
+                    width:500,
+                    modal: true,
+                    buttons: {
+                        "Ok": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
+        }
+
+        function validateCheck(){
+            if($('#pending_payment').val() == "check") {
+                $( "#dialog-confirm-check" ).dialog({
+                    resizable: false,
+                    height:300,
+                    width:500,
+                    modal: true,
+                    buttons: {
+                        "Ok": function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
+        }
+
+        function validateCcNumber(e){
+
+            var number = $('#pending_number').val();
+            var type = $('#pending_ccType').val();
+
+            if ( type == 'american express' &&
+                 number.length != 15 &&
+                 number.substring(0,1) != '3'
+             ) {
+                alert('Your AmEx credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'visa' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '4'
+             ) {
+                alert('Your Visa credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'mastercard' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '5'
+             ) {
+                alert('Your Mastercards credit card number is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'discover' &&
+                 number.length != 16 &&
+                 number.substring(0,1) != '6'
+             ) {
+                alert('Your Discover credit card number is invalid.');
+                e.preventDefault();
+            }
+        }
+
+        function validateCcSecureCode(e){
+
+            var secureCode = $('#pending_secureCode').val();
+            var type = $('#pending_ccType').val();
+
+            if ( type == 'american express' && secureCode.length != 4 ) {
+                alert('Your AmEx credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'visa' && secureCode.length != 3 ) {
+                alert('Your Visa credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'mastercards' && secureCode.length != 3 ) {
+                alert('Your Mastercards credit card secure code is invalid.');
+                e.preventDefault();
+            }
+            if ( type == 'discover' && secureCode.length != 3 ) {
+                alert('Your Discover credit card secure code is invalid.');
+                e.preventDefault();
+            }
+        }
+
+        function updatePrice(){
+            // update payment term
+            var paymentTerm    = $('#pending_paymentTerm').val();
+            if (paymentTerm == 'mtm' ) {
+                $('#pending_month').parent().hide();
+                $('#total_payment_text').text("Per month");
+                $('#total_price_text').attr("title", "Monthly payment auto charged to your credit card.");
+            } else if(paymentTerm == 'pif') {
+                $('#pending_month').parent().show();
+                $('#total_payment_text').text("One time payment due today");
+                $('#total_price_text').attr("title", "This is just one time payment to activate your account. Your account will auto suspended after selected period expired except you contact us to extend your membership.");
+            }
+
+            $('#total_price_text').qtip({
+                overwrite: false, // Don't overwrite tooltips already bound
+                position: {
+                    my: 'top center',  // Position my top left...
+                    at: 'bottom center', // at the bottom right of...
+                },
+                style: {
+                    classes: 'qtip-light qtip-shadow mytip'
+                },
+                show: {
+                    effect: function() {
+                        $(this).slideDown();
+                    }
+                },
+                hide: {
+                    effect: function() {
+                        $(this).fadeOut();
+                    }
+                }
+            });
+            // calculate custom price 
+
+            var pending_history    = parseInt($('#pending_history').val());
+            var pending_search     = parseInt($('#pending_search').val());
+            var pending_download   = parseInt($('#pending_download').val());
+            var pending_bigPicture = parseInt($('#pending_bigPicture').val());
+            var price_custom       = pending_history + pending_search + pending_download + pending_bigPicture;
+            $('#price_custom').text( price_custom );
+
+            // calculate PIF month
+            var pending_month_string = $('#pending_month').val();
+            var pending_month_length = 1;
+
+            // calculate monthly price
+            var price = price_custom;
+            if ($('#pending_everythingPlan').val() == "true") {
+                console.log('total');
+                price = 200;
+            } else {
+                console.log('custom');
+            }
+
+            // calculate discount based on pif / mtm
+            var total_discount = 0;
+            if(paymentTerm == 'pif') {
+                if (pending_month_string == '20' ) {
+                    pending_month_length = 12;
+                }
+                if (pending_month_string == '15' ) {
+                    pending_month_length = 6;
+                }
+                if (pending_month_string == '10' ) {
+                    pending_month_length = 3;
+                }
+                var pending_month_percent = parseInt(pending_month_string) / 100;
+                total_discount            = Math.ceil(price * pending_month_percent * pending_month_length);
+            }
+
+            // update total price
+            $('#total_discount').text( total_discount );
+            console.log(price);
+            console.log(pending_month_length);
+            console.log(total_discount);
+            console.log(price * pending_month_length - total_discount);
+            $('#total_payment').text( price * pending_month_length - total_discount );
+            $('#summary').removeAttr("style");
+        }
+
+        // show everything pricing table
+        function everything(){
+            $('#button_everything').text('Selected');
+            $('#button_custom').text('Choose this plan');
+            $('#overlay_custom').removeClass("selected");
+            $('#overlay_everything').addClass("selected");
+            $('#pending_everythingPlan').val("true");
+            $('#pending_customPlan').val("false");
+        }
+
+        // show custom pricing table
+        function custom(){
+            $('#button_custom').text('Selected');
+            $('#button_everything').text('Choose this plan');
+            $('#overlay_everything').removeClass("selected");
+            $('#overlay_custom').addClass("selected");
+            $('#pending_everythingPlan').val("false");
+            $('#pending_customPlan').val("true");
+        }
+        // end update pricing
+
+        // hide CC expired day
+    	$('#pending_expired_day').hide();
+
+        // create leads
+        var inFormOrLink;
+        $('a').on('click', function() { inFormOrLink = true; });
+        $('form').on('submit', function() { inFormOrLink = true; });
+
+        $(window).on("beforeunload", function() { 
+             console.log('test');
+             var data = $('#signup_form').serializeArray();
+             data.push({name: 'toLeave', value: 1});
+             $.ajax({
+                type:'POST',
+                url: "{{ path('signup_record_ajax') }}",
+                data: data,
+                success:function (data) {
+                    console.log(data);
+                }
+            });
+            return inFormOrLink ? "Do you really want to cancel registration?" : null; 
+        })
+        $('.record').on('blur', function () {
+            console.log('blur');
+            var data = $('#signup_form').serializeArray();
+             data.push({name: 'toLeave', value: 0});
+             $.ajax({
+                type:'POST',
+                url: "{{ path('signup_record_ajax') }}",
+                data:data,
+                success:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        // country select2
+        $(".select2").select2();
+
+        // urusi tampilan jquery setelah submit error
+        {% if entity.everythingPlan == "true" %}
+            updatePrice();
+            validatePIF();
+            updateCC();
+            validateBankwire();
+            everything();
+        {% endif %}
+        {% if entity.customPlan == "true" %}
+            updatePrice();
+            validatePIF();
+            updateCC();
+            validateBankwire();
+            custom();
+        {% endif %}
+    });
+
+    </script>
+{% endblock javascript %}
+
+{% block style %}
+    {% stylesheets 
+        'bundles/jariffproject/frontend/css-old/jquery.select2.css' 
+        filter='cssrewrite' 
+    %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <style media="screen" type="text/css">
+        #signup_form input[type="text"] { width: 100%;}
+        #signup_form input[type="password"] { width: 100%;}
+        #pending_expired_month { width: 100px;}
+        #pending_month { width: 180px;}
+        #pending_expired_year { width: 100px;}
+        .contactus-logo { width: 50px;vertical-align: middle;}
+        .contactus-div { width: 150px;float:left;}
+        .mytip  .qtip-content{
+            font-size: 16px;
+            line-height: 18px;
+        }
+    </style>
+{% endblock style %}
+
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <div style="text-align:center;">
+                <h1 style="color:red;"></h1>
+                {% for error in errors %}
+                    <h2 style="color:red;">{{ error.message }}</h2>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
